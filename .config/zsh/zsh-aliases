@@ -6,6 +6,7 @@ alias nvimrc='nvim ~/.config/nvim/'
 
 alias cat='bat'
 eval "$(hub alias -s)"
+alias vi="lvim"
 
 alias l='exa --icons --git'
 alias la='exa -a --icons --git'

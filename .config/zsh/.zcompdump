@@ -1,4 +1,4 @@
-#files: 783	version: 5.8
+#files: 785	version: 5.8
 
 _comps=(
 '-' '_precommand'
@@ -191,6 +191,7 @@ _comps=(
 'composite' '_imagemagick'
 'compress' '_compress'
 'conch' '_twisted'
+'conda' '_conda'
 '-condition-' '_condition'
 'config.status' '_configure'
 'configure' '_configure'
@@ -1776,7 +1777,7 @@ autoload -Uz _alacritty _bat _bluetoothctl _bootctl _busctl \
             _zargs _zattr _zcalc _zcalc_line _zcompile \
             _zed _zftp _zle _zmodload _zmv \
             _zparseopts _zpty _zsh-mime-handler _zsocket _zstyle \
-            _ztodo _fnm
+            _ztodo _conda _conda _fnm
 autoload -Uz +X _call_program
 
 typeset -gUa _comp_assocs
