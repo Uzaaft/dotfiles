@@ -181,7 +181,7 @@ _G.packer_plugins = {
     path = "/home/uzaaft/.local/share/lunarvim/site/pack/packer/start/telescope.nvim"
   },
   ["vim-rooter"] = {
-    config = { "\27LJ\1\2ê\1\0\0\2\0\t\0\0204\0\0\0007\0\1\0'\1\1\0:\1\2\0004\0\0\0007\0\1\0003\1\4\0:\1\3\0004\0\5\0007\0\6\0007\0\a\0007\0\b\0\15\0\0\0T\1\5€4\0\5\0007\0\6\0007\0\a\0007\0\b\0>\0\1\1G\0\1\0\19on_config_done\vrooter\fbuiltin\tlvim\1\t\0\0\t.git\v_darcs\b.hg\t.bzr\t.svn\rMakefile\17package.json\22package-lock.json\20rooter_patterns\24rooter_silent_chdir\6g\bvim\0" },
+    config = { "\27LJ\1\2„\1\0\0\2\0\a\0\0164\0\0\0007\0\1\0'\1\1\0:\1\2\0004\0\3\0007\0\4\0007\0\5\0007\0\6\0\15\0\0\0T\1\5€4\0\3\0007\0\4\0007\0\5\0007\0\6\0>\0\1\1G\0\1\0\19on_config_done\vrooter\fbuiltin\tlvim\24rooter_silent_chdir\6g\bvim\0" },
     loaded = true,
     path = "/home/uzaaft/.local/share/lunarvim/site/pack/packer/start/vim-rooter"
   },
@@ -201,7 +201,7 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 -- Config for: vim-rooter
 time([[Config for vim-rooter]], true)
-try_loadstring("\27LJ\1\2ê\1\0\0\2\0\t\0\0204\0\0\0007\0\1\0'\1\1\0:\1\2\0004\0\0\0007\0\1\0003\1\4\0:\1\3\0004\0\5\0007\0\6\0007\0\a\0007\0\b\0\15\0\0\0T\1\5€4\0\5\0007\0\6\0007\0\a\0007\0\b\0>\0\1\1G\0\1\0\19on_config_done\vrooter\fbuiltin\tlvim\1\t\0\0\t.git\v_darcs\b.hg\t.bzr\t.svn\rMakefile\17package.json\22package-lock.json\20rooter_patterns\24rooter_silent_chdir\6g\bvim\0", "config", "vim-rooter")
+try_loadstring("\27LJ\1\2„\1\0\0\2\0\a\0\0164\0\0\0007\0\1\0'\1\1\0:\1\2\0004\0\3\0007\0\4\0007\0\5\0007\0\6\0\15\0\0\0T\1\5€4\0\3\0007\0\4\0007\0\5\0007\0\6\0>\0\1\1G\0\1\0\19on_config_done\vrooter\fbuiltin\tlvim\24rooter_silent_chdir\6g\bvim\0", "config", "vim-rooter")
 time([[Config for vim-rooter]], false)
 -- Config for: telescope.nvim
 time([[Config for telescope.nvim]], true)
