@@ -1,4 +1,8 @@
 #!/bin/sh
+if [[ ! $(tmux list-sessions) ]]; then 
+  tmux
+fi
+neofetch
 bindkey -e
 
 # some useful options (man zshoptions)
