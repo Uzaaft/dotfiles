@@ -25,5 +25,5 @@ export PATH="/Applications/MATLAB_R2020b.app/bin:$PATH"
 export PATH="/home/uzaaft/.local/bin:$PATH"
 
 fpath=($fpath ~/.config/zsh/autoload)
-export EDITOR='lvim'
+# export EDITOR='lvim'
 export NPM_CONFIG_PREFIX=~/.npm-global
