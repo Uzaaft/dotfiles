@@ -74,7 +74,7 @@ _G.packer_plugins = {
     path = "/home/uzaaft/.local/share/lunarvim/site/pack/packer/start/astronauta.nvim"
   },
   ["barbar.nvim"] = {
-    config = { "\27LJ\1\2‚\1\0\0\2\0\6\0\0154\0\0\0%\1\1\0>\0\2\0014\0\2\0007\0\3\0007\0\4\0007\0\5\0\15\0\0\0T\1\5€4\0\2\0007\0\3\0007\0\4\0007\0\5\0>\0\1\1G\0\1\0\19on_config_done\15bufferline\fbuiltin\tlvim\20core.bufferline\frequire\0" },
+    config = { "\27LJ\1\2\1\0\0\2\0\a\0\0174\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\0014\0\3\0007\0\4\0007\0\5\0007\0\6\0\15\0\0\0T\1\5€4\0\3\0007\0\4\0007\0\5\0007\0\6\0>\0\1\1G\0\1\0\19on_config_done\15bufferline\fbuiltin\tlvim\nsetup\20core.bufferline\frequire\0" },
     loaded = false,
     needs_bufread = false,
     path = "/home/uzaaft/.local/share/lunarvim/site/pack/packer/opt/barbar.nvim"
@@ -96,11 +96,40 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/uzaaft/.local/share/lunarvim/site/pack/packer/opt/galaxyline.nvim"
   },
+  ["git-blame.nvim"] = {
+    config = { "\27LJ\1\2u\0\0\2\0\5\0\t4\0\0\0007\0\1\0%\1\2\0>\0\2\0014\0\0\0007\0\3\0'\1\0\0:\1\4\0G\0\1\0\21gitblame_enabled\6g3highlight default link gitblame SpecialComment\bcmd\bvim\0" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/uzaaft/.local/share/lunarvim/site/pack/packer/opt/git-blame.nvim"
+  },
   ["gitsigns.nvim"] = {
     config = { "\27LJ\1\2˜\1\0\0\3\0\a\0\0204\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\0014\0\3\0007\0\4\0007\0\5\0007\0\6\0\15\0\0\0T\1\b€4\0\3\0007\0\4\0007\0\5\0007\0\6\0004\1\0\0%\2\5\0>\1\2\0=\0\0\1G\0\1\0\19on_config_done\rgitsigns\fbuiltin\tlvim\nsetup\18core.gitsigns\frequire\0" },
     loaded = false,
     needs_bufread = false,
     path = "/home/uzaaft/.local/share/lunarvim/site/pack/packer/opt/gitsigns.nvim"
+  },
+  ["hop.nvim"] = {
+    config = { "\27LJ\1\2À\1\0\0\5\0\r\0\0224\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\0014\0\3\0007\0\4\0007\0\5\0%\1\6\0%\2\a\0%\3\b\0003\4\t\0>\0\5\0014\0\3\0007\0\4\0007\0\5\0%\1\6\0%\2\n\0%\3\v\0003\4\f\0>\0\5\1G\0\1\0\1\0\1\vsilent\2\17:HopWord<cr>\6S\1\0\1\vsilent\2\18:HopChar2<cr>\6s\6n\20nvim_set_keymap\bapi\bvim\nsetup\bhop\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/uzaaft/.local/share/lunarvim/site/pack/packer/opt/hop.nvim"
+  },
+  ["indent-blankline.nvim"] = {
+    loaded = true,
+    needs_bufread = false,
+    path = "/home/uzaaft/.local/share/lunarvim/site/pack/packer/opt/indent-blankline.nvim"
+  },
+  ["markdown-preview.nvim"] = {
+    config = { "\27LJ\1\0021\0\0\2\0\3\0\0054\0\0\0007\0\1\0'\1\1\0:\1\2\0G\0\1\0\20mkdp_auto_start\6g\bvim\0" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/uzaaft/.local/share/lunarvim/site/pack/packer/opt/markdown-preview.nvim"
+  },
+  ["neoscroll.nvim"] = {
+    config = { "\27LJ\1\2Õ\1\0\0\3\0\6\0\t4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\4\0003\2\3\0:\2\5\1>\0\2\1G\0\1\0\rmappings\1\0\5\24use_local_scrolloff\1\22respect_scrolloff\1\16hide_cursor\2\25cursor_scrolls_alone\2\rstop_eof\2\1\n\0\0\n<C-u>\n<C-d>\n<C-b>\n<C-f>\n<C-y>\n<C-e>\azt\azz\azb\nsetup\14neoscroll\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/uzaaft/.local/share/lunarvim/site/pack/packer/opt/neoscroll.nvim"
   },
   ["nlsp-settings.nvim"] = {
     loaded = true,
@@ -179,6 +208,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/uzaaft/.local/share/lunarvim/site/pack/packer/start/rust-tools.nvim"
   },
+  ["symbols-outline.nvim"] = {
+    commands = { "SymbolsOutline" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/uzaaft/.local/share/lunarvim/site/pack/packer/opt/symbols-outline.nvim"
+  },
   ["telescope.nvim"] = {
     config = { "\27LJ\1\2š\1\0\0\3\0\a\0\0204\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\0014\0\3\0007\0\4\0007\0\5\0007\0\6\0\15\0\0\0T\1\b€4\0\3\0007\0\4\0007\0\5\0007\0\6\0004\1\0\0%\2\5\0>\1\2\0=\0\0\1G\0\1\0\19on_config_done\14telescope\fbuiltin\tlvim\nsetup\19core.telescope\frequire\0" },
     loaded = true,
@@ -189,7 +224,7 @@ _G.packer_plugins = {
     path = "/home/uzaaft/.local/share/lunarvim/site/pack/packer/start/tokyonight.nvim"
   },
   ["vim-rooter"] = {
-    config = { "\27LJ\1\2„\1\0\0\2\0\a\0\0164\0\0\0007\0\1\0'\1\1\0:\1\2\0004\0\3\0007\0\4\0007\0\5\0007\0\6\0\15\0\0\0T\1\5€4\0\3\0007\0\4\0007\0\5\0007\0\6\0>\0\1\1G\0\1\0\19on_config_done\vrooter\fbuiltin\tlvim\24rooter_silent_chdir\6g\bvim\0" },
+    config = { "\27LJ\1\2ˆ\1\0\0\2\0\a\0\0174\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\0014\0\3\0007\0\4\0007\0\5\0007\0\6\0\15\0\0\0T\1\5€4\0\3\0007\0\4\0007\0\5\0007\0\6\0>\0\1\1G\0\1\0\19on_config_done\vrooter\fbuiltin\tlvim\nsetup\16core.rooter\frequire\0" },
     loaded = true,
     path = "/home/uzaaft/.local/share/lunarvim/site/pack/packer/start/vim-rooter"
   },
@@ -207,9 +242,16 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Setup for: indent-blankline.nvim
+time([[Setup for indent-blankline.nvim]], true)
+try_loadstring("\27LJ\1\2ã\2\0\0\2\0\v\0\0254\0\0\0007\0\1\0'\1\1\0:\1\2\0004\0\0\0007\0\1\0%\1\4\0:\1\3\0004\0\0\0007\0\1\0003\1\6\0:\1\5\0004\0\0\0007\0\1\0003\1\b\0:\1\a\0004\0\0\0007\0\1\0)\1\1\0:\1\t\0004\0\0\0007\0\1\0)\1\1\0:\1\n\0G\0\1\0-indent_blankline_show_first_indent_level4indent_blankline_show_trailing_blankline_indent\1\2\0\0\rterminal%indent_blankline_buftype_exclude\1\4\0\0\thelp\rterminal\14dashboard&indent_blankline_filetype_exclude\bâ–\26indent_blankline_char\23indentLine_enabled\6g\bvim\0", "setup", "indent-blankline.nvim")
+time([[Setup for indent-blankline.nvim]], false)
+time([[packadd for indent-blankline.nvim]], true)
+vim.cmd [[packadd indent-blankline.nvim]]
+time([[packadd for indent-blankline.nvim]], false)
 -- Config for: vim-rooter
 time([[Config for vim-rooter]], true)
-try_loadstring("\27LJ\1\2„\1\0\0\2\0\a\0\0164\0\0\0007\0\1\0'\1\1\0:\1\2\0004\0\3\0007\0\4\0007\0\5\0007\0\6\0\15\0\0\0T\1\5€4\0\3\0007\0\4\0007\0\5\0007\0\6\0>\0\1\1G\0\1\0\19on_config_done\vrooter\fbuiltin\tlvim\24rooter_silent_chdir\6g\bvim\0", "config", "vim-rooter")
+try_loadstring("\27LJ\1\2ˆ\1\0\0\2\0\a\0\0174\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\0014\0\3\0007\0\4\0007\0\5\0007\0\6\0\15\0\0\0T\1\5€4\0\3\0007\0\4\0007\0\5\0007\0\6\0>\0\1\1G\0\1\0\19on_config_done\vrooter\fbuiltin\tlvim\nsetup\16core.rooter\frequire\0", "config", "vim-rooter")
 time([[Config for vim-rooter]], false)
 -- Config for: nvim-treesitter
 time([[Config for nvim-treesitter]], true)
@@ -223,15 +265,26 @@ time([[Config for telescope.nvim]], false)
 time([[Config for nvim-tree.lua]], true)
 try_loadstring("\27LJ\1\2©\1\0\0\3\0\b\0\0204\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\0014\0\3\0007\0\4\0007\0\5\0007\0\6\0\15\0\0\0T\1\b€4\0\3\0007\0\4\0007\0\5\0007\0\6\0004\1\0\0%\2\a\0>\1\2\0=\0\0\1G\0\1\0\21nvim-tree.config\19on_config_done\rnvimtree\fbuiltin\tlvim\nsetup\18core.nvimtree\frequire\0", "config", "nvim-tree.lua")
 time([[Config for nvim-tree.lua]], false)
+
+-- Command lazy-loads
+time([[Defining lazy-load commands]], true)
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file SymbolsOutline lua require("packer.load")({'symbols-outline.nvim'}, { cmd = "SymbolsOutline", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]])
+time([[Defining lazy-load commands]], false)
+
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
+  -- Filetype lazy-loads
+time([[Defining lazy-load filetype autocommands]], true)
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'markdown-preview.nvim'}, { ft = "markdown" }, _G.packer_plugins)]]
+time([[Defining lazy-load filetype autocommands]], false)
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au BufRead * ++once lua require("packer.load")({'nvim-comment', 'gitsigns.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
-vim.cmd [[au BufWinEnter * ++once lua require("packer.load")({'which-key.nvim', 'nvim-toggleterm.lua', 'dashboard-nvim', 'barbar.nvim', 'galaxyline.nvim'}, { event = "BufWinEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au VimEnter * ++once lua require("packer.load")({'nvim-lspinstall'}, { event = "VimEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au BufRead * ++once lua require("packer.load")({'gitsigns.nvim', 'hop.nvim', 'git-blame.nvim', 'nvim-comment'}, { event = "BufRead *" }, _G.packer_plugins)]]
+vim.cmd [[au BufWinEnter * ++once lua require("packer.load")({'which-key.nvim', 'barbar.nvim', 'nvim-toggleterm.lua', 'galaxyline.nvim', 'dashboard-nvim'}, { event = "BufWinEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au InsertCharPre * ++once lua require("packer.load")({'vim-vsnip', 'friendly-snippets'}, { event = "InsertCharPre *" }, _G.packer_plugins)]]
 vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-compe'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au VimEnter * ++once lua require("packer.load")({'nvim-lspinstall'}, { event = "VimEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au WinScrolled * ++once lua require("packer.load")({'neoscroll.nvim'}, { event = "WinScrolled *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 if should_profile then save_profiles() end
