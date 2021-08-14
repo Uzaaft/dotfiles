@@ -1,0 +1,10 @@
+function cd {
+    # actually change the directory with all args passed to the function
+    builtin cd "$@"
+    # if there's a regular file named "todo.txt"...
+    if [ -d ".git" ] ; then
+        # display its contents
+        onefetch
+    fi
+}
+

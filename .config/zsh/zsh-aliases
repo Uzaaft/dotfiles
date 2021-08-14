@@ -7,8 +7,11 @@ alias nvimrc='nvim ~/.config/nvim/'
 alias cat='bat'
 eval "$(hub alias -s)"
 alias vi="lvim"
+alias find="fd"
+alias ping="gping"
 
 alias l='exa --icons --git'
+alias ls='exa --icons --git'
 alias la='exa -a --icons --git'
 alias ls='exa --color=auto --icons --git'
 alias ll='exa -la --git --icons'
@@ -29,6 +32,7 @@ alias fgrep='fgrep --color=auto'
 alias cp="cp -i"
 alias mv='mv -i'
 alias rm='rm -i'
+alias du="dust"
 
 # easier to read disk
 alias df='df -h'                          # human-readable sizes
