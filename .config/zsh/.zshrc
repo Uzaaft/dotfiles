@@ -1,4 +1,14 @@
 #!/bin/sh
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    *)          machine="UNKNOWN:${unameOut}"
+esac
+
+
 if [[ ! $(tmux list-sessions) ]]; then 
   tmux
 fi
@@ -25,6 +35,7 @@ _comp_options+=(globdots)		# Include hidden files.
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
+autoload cd
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
@@ -52,10 +63,16 @@ zsh_add_completion "zsh-users/zsh-completions"
 
 # FZF 
 # TODO update for mac
+
+
+
+
+if [ "$machine" = "Linux" ]; then
 [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f $ZDOTDIR/completion/_fnm ] && fpath+="$ZDOTDIR/completion/"
+fi
 # export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 autoload -U compinit && compinit 
 
