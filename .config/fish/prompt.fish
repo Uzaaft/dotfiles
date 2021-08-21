@@ -6,50 +6,6 @@ if status --is-interactive
 	tmux 2> /dev/null; and exec true
 end
 
-if command -v exa > /dev/null
-	abbr -a l 'exa'
-	abbr -a ls 'exa'
-	abbr -a ll 'exa -l'
-	abbr -a lll 'exa -la'
-else
-	abbr -a l 'ls'
-	abbr -a ll 'ls -l'
-	abbr -a lll 'ls -la'
-end
-
-if test -f /usr/share/autojump/autojump.fish;
-	source /usr/share/autojump/autojump.fish;
-end
-
-function ssh
-	switch $argv[1]
-	case "*.amazonaws.com"
-		env TERM=xterm /usr/bin/ssh $argv
-	case "ubuntu@"
-		env TERM=xterm /usr/bin/ssh $argv
-	case "*"
-		/usr/bin/ssh $argv
-	end
-end
-
-function apass
-	if test (count $argv) -ne 1
-		pass $argv
-		return
-	end
-
-	asend (pass $argv[1] | head -n1)
-end
-
-function qrpass
-	if test (count $argv) -ne 1
-		pass $argv
-		return
-	end
-
-	qrsend (pass $argv[1] | head -n1)
-end
-
 function asend
 	if test (count $argv) -ne 1
 		echo "No argument given"
@@ -71,16 +27,6 @@ end
 function limit
 	numactl -C 0,1,2 $argv
 end
-
-function remote_alacritty
-	# https://gist.github.com/costis/5135502
-	set fn (mktemp)
-	infocmp alacritty > $fn
-	scp $fn $argv[1]":alacritty.ti"
-	ssh $argv[1] tic "alacritty.ti"
-	ssh $argv[1] rm "alacritty.ti"
-end
-
 # Type - to move up to top parent dir which is a repository
 function d
 	while test $PWD != "/"
