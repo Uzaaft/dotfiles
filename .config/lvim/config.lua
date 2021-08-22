@@ -27,7 +27,7 @@ lvim.builtin.treesitter.autotag.enable = true
 
 -- Additional Plugins
 require("user.plugins").config()
-require("user.formatters").config()
+-- require("user.formatters").config()
 require("user.linters").config()
 
 lvim.keys.normal_mode = {
