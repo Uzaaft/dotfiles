@@ -3,7 +3,7 @@ if status --is-interactive
 		set fish_function_path $fish_function_path ~/dev/others/base16/templates/fish-shell/functions
 		builtin source ~/dev/others/base16/templates/fish-shell/conf.d/base16.fish
 	end
-	tmux 2> /dev/null; and exec true
+  # tmux 2> /dev/null; and exec true 
 end
 
 function asend
@@ -58,16 +58,6 @@ setenv FZF_DEFAULT_COMMAND 'fd --type file --follow'
 setenv FZF_CTRL_T_COMMAND 'fd --type file --follow'
 setenv FZF_DEFAULT_OPTS '--height 20%'
 
-abbr -a nova 'env OS_PASSWORD=(pass www/mit-openstack | head -n1) nova'
-abbr -a glance 'env OS_PASSWORD=(pass www/mit-openstack | head -n1) glance'
-setenv OS_USERNAME jfrg@csail.mit.edu
-setenv OS_TENANT_NAME usersandbox_jfrg
-setenv OS_AUTH_URL https://nimbus.csail.mit.edu:5001/v2.0
-setenv OS_IMAGE_API_VERSION 1
-setenv OS_VOLUME_API_VERSION 2
-function penv -d "Set up environment for the PDOS openstack service"
-	env OS_PASSWORD=(pass www/mit-openstack | head -n1) OS_TENANT_NAME=pdos OS_PROJECT_NAME=pdos $argv
-end
 function pvm -d "Run nova/glance commands against the PDOS openstack service"
 	switch $argv[1]
 	case 'image-*'
