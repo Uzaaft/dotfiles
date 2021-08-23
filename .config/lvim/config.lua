@@ -5,7 +5,7 @@ lvim.format_on_save = true
 lvim.lint_on_save = true
 lvim.colorscheme = "spacegray"
 lvim.hide_dotfiles = false
-lvim.log.level = "warn"
+lvim.log.level = "trace"
 
 -- keymappings
 lvim.leader = "space"
