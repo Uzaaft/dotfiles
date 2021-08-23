@@ -3,9 +3,10 @@
 -- general
 lvim.format_on_save = true
 lvim.lint_on_save = true
-
-lvim.colorscheme = "tokyonight"
+lvim.colorscheme = "spacegray"
 lvim.hide_dotfiles = false
+lvim.log.level = "warn"
+
 -- keymappings
 lvim.leader = "space"
 
@@ -20,10 +21,9 @@ lvim.builtin.telescope.active = true
 lvim.builtin.gitsigns.active = false
 lvim.transparent_window = true
 -- if you don't want all the parsers change this to a table of the ones you want
-lvim.builtin.treesitter.ensure_installed = {}
+lvim.builtin.treesitter.ensure_installed = "maintained"
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
-lvim.builtin.treesitter.autotag.enable = true
 
 -- Additional Plugins
 require("user.plugins").config()

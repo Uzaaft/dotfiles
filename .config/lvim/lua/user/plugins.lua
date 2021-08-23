@@ -18,8 +18,7 @@ M.config = function()
 				vim.g.symbols_outline = {}
 			end,
 		},
-		-- { "wakatime/vim-wakatime" },
-		{ "folke/tokyonight.nvim" },
+		{ "wakatime/vim-wakatime" },
 		{
 			"simrat39/rust-tools.nvim",
 			config = function()
