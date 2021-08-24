@@ -30,6 +30,7 @@ require("user.plugins").config()
 -- require("user.formatters").config()
 require("user.linters").config()
 
+
 lvim.keys.normal_mode = {
 	["<Leader>m"] = ":Glow<CR>",
 }

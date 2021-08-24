@@ -78,11 +78,12 @@ M.config = function()
 			run = "npm install",
 		},
 		{ "vuki656/package-info.nvim" },
-    {"jose-elias-alvarez/nvim-lsp-ts-utils", 
-      config = function()
-        require("user.nvim_lsp_ts_utils").config()
-      end
-  }
+		{
+			"jose-elias-alvarez/nvim-lsp-ts-utils",
+			config = function()
+				require("user.nvim_lsp_ts_utils").config()
+			end,
+		},
 	}
 end
 return M
