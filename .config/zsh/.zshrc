@@ -32,6 +32,7 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 # compinit
 _comp_options+=(globdots)		# Include hidden files.
+eval $(thefuck --alias)
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
