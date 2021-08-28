@@ -2,6 +2,7 @@ abbr -a yr 'cal -y'
 abbr -a c cargo
 abbr -a e lvim
 abbr -a pr 'gh pr create -t (git show -s --format=%s HEAD) -b (git show -s --format=%B HEAD | tail -n+3)'
+abbr -a vi "lvim"
 if command -v exa > /dev/null
 	abbr -a l 'exa'
 	abbr -a ls 'exa'
@@ -13,10 +14,6 @@ else
 	abbr -a lll 'ls -la'
 end
 
-source ~/.config/fish/prompt.fish
-source ~/.config/fish/env.fish
-if command -v pazi >/dev/null
-  status --is-interactive; and pazi init fish | source
-end
+abbr -a cp "cp -i"
+abbr -a mv "mv -i"
 
-thefuck --alias | source

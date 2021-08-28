@@ -38,12 +38,31 @@ function d
 end
 
 # Fish git prompt
-set __fish_git_prompt_showuntrackedfiles 'yes'
-set __fish_git_prompt_showdirtystate 'yes'
-set __fish_git_prompt_showstashstate ''
-set __fish_git_prompt_showupstream 'none'
-set -g fish_prompt_pwd_dir_length 0
+# set __fish_git_prompt_showuntrackedfiles 'yes'
+# set __fish_git_prompt_showdirtystate 'yes'
+# set __fish_git_prompt_showstashstate ''
+# set __fish_git_prompt_showupstream 'none'
+# set -g fish_prompt_pwd_dir_length 0
+set -g __fish_git_prompt_show_informative_status 1
+set -g __fish_git_prompt_hide_untrackedfiles 1
 
+set -g __fish_git_prompt_color_branch magenta --bold
+set -g __fish_git_prompt_showupstream "informative"
+set -g __fish_git_prompt_char_upstream_ahead "↑"
+set -g __fish_git_prompt_char_upstream_behind "↓"
+set -g __fish_git_prompt_char_upstream_prefix ""
+
+set -g __fish_git_prompt_char_stagedstate "●"
+set -g __fish_git_prompt_char_dirtystate "✚"
+set -g __fish_git_prompt_char_untrackedfiles "…"
+set -g __fish_git_prompt_char_conflictedstate "✖"
+set -g __fish_git_prompt_char_cleanstate "✔"
+
+set -g __fish_git_prompt_color_dirtystate blue
+set -g __fish_git_prompt_color_stagedstate yellow
+set -g __fish_git_prompt_color_invalidstate red
+set -g __fish_git_prompt_color_untrackedfiles $fish_color_normal
+set -g __fish_git_prompt_color_cleanstate green --bold
 # colored man output
 # from http://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/
 setenv LESS_TERMCAP_mb \e'[01;31m'       # begin blinking
@@ -89,7 +108,7 @@ function fish_prompt
   echo -n $USER
   echo -n @
 	echo -n (hostname)
-  echo -n ]➜
+  echo -n ] ➜
 	if [ $PWD != $HOME ]
 		set_color brblack
 		echo -n ' '
