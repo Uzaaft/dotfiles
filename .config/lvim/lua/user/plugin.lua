@@ -72,17 +72,15 @@ M.config = function()
 				})
 			end,
 		},
-		{ "npxbr/glow.nvim", run = "GlowInstall" },
 		{
 			"yardnsm/vim-import-cost",
 			run = "npm install",
 		},
 		{ "vuki656/package-info.nvim" },
 		{
-			"jose-elias-alvarez/nvim-lsp-ts-utils",
-			config = function()
-				require("user.nvim_lsp_ts_utils").config()
-			end,
+			"iamcco/markdown-preview.nvim",
+			run = "cd app && npm install",
+			ft = "markdown",
 		},
 	}
 end
