@@ -25,11 +25,12 @@ lvim.builtin.treesitter.ensure_installed = "maintained"
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
--- Additional Plugins
-require("user.plugins").config()
--- require("user.formatters").config()
-require("user.linters").config()
 
+-- Additional Plugins
+require("user.plugin").config()
+-- require("user.formatters").config()
+-- require("user.linters").config()
+-- 
 
 lvim.keys.normal_mode = {
 	["<Leader>m"] = ":Glow<CR>",
