@@ -19,4 +19,10 @@ if command -v pazi >/dev/null
   status --is-interactive; and pazi init fish | source
 end
 
+function cd
+  builtin cd $argv
+    if test -d .git
+      onefetch
+    end
+end
 thefuck --alias | source
