@@ -42,7 +42,7 @@ zsh_add_file "zsh-prompt"
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
-zsh_add_completion "esc/conda-zsh-completion" false
+# zsh_add_completion "esc/conda-zsh-completion" false
 # For more plugins: https://github.com/unixorn/awesome-zsh-plugins
 # More completions https://github.com/zsh-users/zsh-completions
 
@@ -81,7 +81,7 @@ setxkbmap -option caps:escape
 xset r rate 210 40
 
 # Speedy keys
-xset r rate 210 40
+# xset r rate 210 40
 
 # Environment variables set everywhere
 export EDITOR="nvim"
@@ -92,24 +92,8 @@ export BROWSER="brave"
 export QT_QPA_PLATFORMTHEME=qt5ct
 
 # remap caps to escape
-setxkbmap -option caps:escape
+# setxkbmap -option caps:escape
 # swap escape and caps
 # setxkbmap -option caps:swapescape
 
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
