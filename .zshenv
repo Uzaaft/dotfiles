@@ -11,12 +11,6 @@ export MANWIDTH=999
 export PATH=$PATH:/home/uzaaft/.cargo/bin
 export PATH=$PATH:/home/uzaaft/.local/bin
 
-# Node version manager
-eval "$(fnm env)"
-
-# Zoxide
-eval "$(zoxide init zsh)"
-
 
 export LSCOLORS=cxgxfxexbxegedabagacad
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
