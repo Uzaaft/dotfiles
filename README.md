@@ -23,10 +23,6 @@ brew install --cask font-iosevka-nerd-font-mono
 brew install --cask font-hack-nerd-font
 ```
 
-<details>
-  <summary><strong>Other Stuff</strong> <small><i>(🔎 Click to expand/collapse)</i></small></summary>
-
-
 ### Installing:
 Clone into your `$HOME` directory or `~`
 
