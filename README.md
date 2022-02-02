@@ -27,7 +27,7 @@ brew install --cask font-hack-nerd-font
 Clone into your `$HOME` directory or `~`
 
 ```bash
-git clone https://github.com/ChristianChiarulli/Machfiles.git ~
+git clone https://github.com/uzaaft/dotfiles.git ~
 ```
 
 Run `stow` to symlink everything or just select what you want
