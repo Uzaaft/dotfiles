@@ -12,4 +12,5 @@ set -gx PATH ~/Qt/5.12.12/clang_64/bin/ $PATH
 set -gx XDG_CONFIG_HOME ~/.config
 set -gx GITSTATUS_LOG_LEVEL INFO
 set -gx TMUX_CONFIG_DIR ~/.config/tmux
+# set -gx TERM "wezterm"
 
