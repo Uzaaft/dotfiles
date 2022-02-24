@@ -51,5 +51,6 @@ end
 
 if command -v pnpm > /dev/null
   abbr -a npm "pnpm"
+  abbr -a npx "pnpx"
 end
 

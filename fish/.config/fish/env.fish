@@ -13,4 +13,4 @@ set -gx XDG_CONFIG_HOME ~/.config
 set -gx GITSTATUS_LOG_LEVEL INFO
 set -gx TMUX_CONFIG_DIR ~/.config/tmux
 # set -gx TERM "wezterm"
-
+set -gx SCCACHE_SIZE 50G
