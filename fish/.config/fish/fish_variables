@@ -53,6 +53,6 @@ SETUVAR fish_pager_color_completion:normal
 SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
-SETUVAR fish_user_paths:/opt/homebrew/bin
+SETUVAR fish_user_paths:/opt/homebrew/bin\x1e/Users/uzaaft/\x2efig/bin
 SETUVAR nvm_data:/Users/uzaaft/\x2elocal/share/nvm
 SETUVAR nvm_mirror:https\x3a//nodejs\x2eorg/dist
