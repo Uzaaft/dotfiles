@@ -125,7 +125,7 @@ end
 
 
 function fish_greeting
-neofetch --ascii_distro blackarch
+  #neofetch --ascii_distro blackarch
 
 	set_color normal
 
