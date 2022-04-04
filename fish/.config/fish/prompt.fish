@@ -15,28 +15,6 @@ function asend
 	adb shell input text (echo $argv[1] | sed -e 's/ /%s/g' -e 's/\([#[()<>{}$|;&*\\~"\'`]\)/\\\\\1/g')
 end
 
-function qrsend
-	if test (count $argv) -ne 1
-		echo "No argument given"
-		return
-	end
-
-	qrencode -o - $argv[1] | feh --geometry 500x500 --auto-zoom -
-end
-
-function limit
-	numactl -C 0,1,2 $argv
-end
-# Type - to move up to top parent dir which is a repository
-function d
-	while test $PWD != "/"
-		if test -d .git
-			break
-		end
-		cd ..
-	end
-end
-
 set -g fish_prompt_pwd_dir_length 0
 set -g __fish_git_prompt_show_informative_status 1
 set -g __fish_git_prompt_hide_untrackedfiles 1
@@ -96,7 +74,7 @@ function fish_user_key_bindings
 	end
 end
 
-function fish_prompt
+function _fish_prompt
 	set_color brblack
 	set_color blue
   echo -n [
@@ -111,6 +89,23 @@ function fish_prompt
 		echo -n ' '
 		set_color yellow
 		echo -n (prompt_long_pwd)
+	end
+	set_color green
+	printf '%s ' (__fish_git_prompt)
+	set_color red
+	echo -n '| '
+	set_color normal
+end
+function fish_prompt
+	set_color brblack
+	echo -n "["(date "+%H:%M")"] "
+	set_color blue
+	echo -n (hostname)
+	if [ $PWD != $HOME ]
+		set_color brblack
+		echo -n ':'
+		set_color yellow
+		echo -n (basename $PWD)
 	end
 	set_color green
 	printf '%s ' (__fish_git_prompt)

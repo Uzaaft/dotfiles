@@ -15,3 +15,7 @@ set -gx TMUX_CONFIG_DIR ~/.config/tmux
 # set -gx TERM "wezterm"
 set -gx SCCACHE_SIZE 50G
 set -gx PATH ~/go/bin $PATH
+set -gx PATH ~/dotfiles/jetbrains_ide $PATH
+set -gx GEM_HOME $HOME/.gem
+set -gx PATH  $GEM_HOME/bin $PATH
+set -gx _CONDA_ROOT /opt/homebrew/Caskroom/miniforge/base

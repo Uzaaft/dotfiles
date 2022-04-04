@@ -5,6 +5,8 @@ abbr -a pr 'gh pr create -t (git show -s --format=%s HEAD) -b (git show -s --for
 abbr -a vi "lvim"
 abbr -a pa "ls | xargs -P10 -I{} git -C {} pull"
 abbr -a clc "clear"
+abbr -a gah 'git stash; and git pull --rebase; and git stash pop'
+abbr -a m make
 if command -v exa > /dev/null
 	abbr -a l 'exa -a --icons --color=always -s type -F '
 	abbr -a ls 'exa -a --icons --color=always -s type -F'
