@@ -1,27 +1,25 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR __fish_initialized:3400
-SETUVAR _fish_abbr_ais:aws\x20ec2\x20describe\x2dinstances\x20\x7c\x20jq\x20\x27\x2eReservations\x5b\x5d\x20\x7c\x20\x2eInstances\x5b\x5d\x20\x7c\x20\x7biid\x3a\x20\x2eInstanceId\x2c\x20type\x3a\x20\x2eInstanceType\x2c\x20key\x3a\x2eKeyName\x2c\x20state\x3a\x2eState\x2eName\x2c\x20host\x3a\x2ePublicDnsName\x7d\x27
-SETUVAR _fish_abbr_amz:env\x20AWS_SECRET_ACCESS_KEY\x3d\x28pass\x20www/aws\x2dsecret\x2dkey\x20\x7c\x20head\x20\x2dn1\x29
 SETUVAR _fish_abbr_c:cargo
 SETUVAR _fish_abbr_cat:bat
 SETUVAR _fish_abbr_clc:clear
 SETUVAR _fish_abbr_cp:cp\x20\x2di
 SETUVAR _fish_abbr_ct:cargo\x20t
 SETUVAR _fish_abbr_e:lvim
-SETUVAR _fish_abbr_find:find
+SETUVAR _fish_abbr_find:fd
 SETUVAR _fish_abbr_g:git
 SETUVAR _fish_abbr_ga:git\x20add\x20\x2dp
 SETUVAR _fish_abbr_gah:git\x20stash\x3b\x20and\x20git\x20pull\x20\x2d\x2drebase\x3b\x20and\x20git\x20stash\x20pop
 SETUVAR _fish_abbr_gc:git\x20checkout
 SETUVAR _fish_abbr_glance:env\x20OS_PASSWORD\x3d\x28pass\x20www/mit\x2dopenstack\x20\x7c\x20head\x20\x2dn1\x29\x20glance
-SETUVAR _fish_abbr_grep:grep
+SETUVAR _fish_abbr_grep:rg
 SETUVAR _fish_abbr_kl:keybase\x20chat\x20list
 SETUVAR _fish_abbr_kr:keybase\x20chat\x20read
 SETUVAR _fish_abbr_ks:keybase\x20chat\x20send
-SETUVAR _fish_abbr_l:ls
-SETUVAR _fish_abbr_ll:ls\x20\x2dl
-SETUVAR _fish_abbr_lll:ls\x20\x2dla
+SETUVAR _fish_abbr_l:exa\x20\x2da\x20\x2d\x2dicons\x20\x2d\x2dcolor\x3dalways\x20\x2ds\x20type\x20\x2dF\x20
+SETUVAR _fish_abbr_ll:exa\x20\x2dl\x20\x2d\x2dicons\x20\x2d\x2dcolor\x3dalways\x20\x2ds\x20type\x20\x2dF
+SETUVAR _fish_abbr_lll:exa\x20\x2dla\x20\x2d\x2dicons\x20\x2d\x2dcolor\x3dalways\x20\x2ds\x20type\x20\x2dF
 SETUVAR _fish_abbr_ls:exa\x20\x2da\x20\x2d\x2dicons\x20\x2d\x2dcolor\x3dalways\x20\x2ds\x20type\x20\x2dF
 SETUVAR _fish_abbr_lt:exa\x20\x2dl\x20\x2d\x2dtree\x20\x2dL\x202\x20\x2d\x2dicons\x20\x2d\x2dcolor\x3dalways\x20\x2ds\x20type\x20\x2dF
 SETUVAR _fish_abbr_m:make
@@ -39,10 +37,7 @@ SETUVAR _fish_abbr_vi:lvim
 SETUVAR _fish_abbr_vimdiff:nvim\x20\x2dd
 SETUVAR _fish_abbr_yeet:paru\x20\x2dRsc
 SETUVAR _fish_abbr_yr:cal\x20\x2dy
-SETUVAR _fisher_edc_2F_bass_files:/Users/uzaaft/\x2econfig/fish/functions/__bass\x2epy\x1e/Users/uzaaft/\x2econfig/fish/functions/bass\x2efish
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:/Users/uzaaft/\x2econfig/fish/functions/fisher\x2efish\x1e/Users/uzaaft/\x2econfig/fish/completions/fisher\x2efish
-SETUVAR _fisher_jorgebucaran_2F_nvm_2E_fish_files:/Users/uzaaft/\x2econfig/fish/functions/_nvm_index_update\x2efish\x1e/Users/uzaaft/\x2econfig/fish/functions/_nvm_list\x2efish\x1e/Users/uzaaft/\x2econfig/fish/functions/_nvm_version_activate\x2efish\x1e/Users/uzaaft/\x2econfig/fish/functions/_nvm_version_deactivate\x2efish\x1e/Users/uzaaft/\x2econfig/fish/functions/nvm\x2efish\x1e/Users/uzaaft/\x2econfig/fish/conf\x2ed/nvm\x2efish\x1e/Users/uzaaft/\x2econfig/fish/completions/nvm\x2efish
-SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ejorgebucaran/nvm\x2efish\x1eedc/bass
 SETUVAR fish_color_autosuggestion:4c566a
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:81a1c1
@@ -73,5 +68,3 @@ SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
 SETUVAR fish_user_paths:/opt/homebrew/opt/ruby/bin\x1e/opt/homebrew/bin\x1e/Users/uzaaft/\x2efig/bin\x1e/Users/uzaaft/\x2elocal/bin
-SETUVAR nvm_data:/Users/uzaaft/\x2elocal/share/nvm
-SETUVAR nvm_mirror:https\x3a//nodejs\x2eorg/dist
