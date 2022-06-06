@@ -1,8 +1,8 @@
 # set -gx XDG_CONFIG_HOME ~/.config
-source /Users/uzaaft/.config/fish/alias.fish
-source /Users/uzaaft/.config/fish/env.fish
-source /Users/uzaaft/.config/fish/bangbang.fish
-source /Users/uzaaft/.config/fish/prompt.fish
+source $HOME/.config/fish/alias.fish
+source $HOME/.config/fish/env.fish
+source $HOME/.config/fish/bangbang.fish
+source $HOME/.config/fish/prompt.fish
 if command -v pazi >/dev/null
   status --is-interactive; and pazi init fish | source
 end
