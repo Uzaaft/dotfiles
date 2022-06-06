@@ -56,3 +56,6 @@ if command -v pnpm > /dev/null
   abbr -a npx "pnpx"
 end
 
+if command -v tmux > /dev/null
+  abbr -a t "tmux"
+end

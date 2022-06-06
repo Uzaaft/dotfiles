@@ -5,6 +5,6 @@ function upgrade
   brew upgrade --cask wezterm-nightly --no-quarantine --greedy-latest
   brew upgrade
   rustup update
-  pnpm update -g
+  cargo install-update -a
 end
 

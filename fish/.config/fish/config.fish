@@ -1,9 +1,8 @@
 # set -gx XDG_CONFIG_HOME ~/.config
-source ~/.config/fish/alias.fish
-source ~/.config/fish/env.fish
-source ~/.config/fish/bangbang.fish
-source ~/.config/fish/upgrade.fish
-source ~/.config/fish/prompt.fish
+source /Users/uzaaft/.config/fish/alias.fish
+source /Users/uzaaft/.config/fish/env.fish
+source /Users/uzaaft/.config/fish/bangbang.fish
+source /Users/uzaaft/.config/fish/prompt.fish
 if command -v pazi >/dev/null
   status --is-interactive; and pazi init fish | source
 end
@@ -20,15 +19,11 @@ function cd
 end
 
 
+
 thefuck --alias | source
-
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-eval /opt/homebrew/Caskroom/miniforge/base/bin/conda "shell.fish" "hook" $argv | source
-# <<< conda initialize <<<
 
 # tabtab source for packages
 # uninstall by removing these lines
 [ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true
 
+test -s "$VOLTA_HOME/load.fish"; and source "$VOLTA_HOME/load.fish"
