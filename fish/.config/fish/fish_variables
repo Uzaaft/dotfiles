@@ -35,7 +35,7 @@ SETUVAR _fish_abbr_pr:gh\x20pr\x20create\x20\x2dt\x20\x28git\x20show\x20\x2ds\x2
 SETUVAR _fish_abbr_rm:rm\x20\x2di
 SETUVAR _fish_abbr_t:tmux
 SETUVAR _fish_abbr_up:sudo\x20pacman\x20\x2dSyu
-SETUVAR _fish_abbr_vi:lvim
+SETUVAR _fish_abbr_vi:vim
 SETUVAR _fish_abbr_vimdiff:nvim\x20\x2dd
 SETUVAR _fish_abbr_yeet:paru\x20\x2dRsc
 SETUVAR _fish_abbr_yr:cal\x20\x2dy
