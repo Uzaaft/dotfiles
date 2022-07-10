@@ -26,4 +26,10 @@ thefuck --alias | source
 # uninstall by removing these lines
 [ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true
 
-test -s "$VOLTA_HOME/load.fish"; and source "$VOLTA_HOME/load.fish"
+set -gx VOLTA_HOME "$HOME/.volta"
+set -gx PATH "$VOLTA_HOME/bin" $PATH
+
+# pnpm
+set -gx PNPM_HOME "/Users/uzaaft/Library/pnpm"
+set -gx PATH "$PNPM_HOME" $PATH
+# pnpm end
