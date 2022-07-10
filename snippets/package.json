@@ -22,5 +22,8 @@
         "path": "./react-ts.json"
       }
     ]
+  },
+  "dependencies": {
+    "@types/react-dom": "18.0.5"
   }
 }
