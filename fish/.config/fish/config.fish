@@ -10,26 +10,15 @@ if command -v zoxide > /dev/null
   zoxide init fish | source
 end
 
-function cd
-  builtin cd $argv
-    if test -d .git
-      onefetch
-      git fetch > /dev/null
-    end
-end
 
 
-
-thefuck --alias | source
 
 # tabtab source for packages
 # uninstall by removing these lines
 [ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true
 
-set -gx VOLTA_HOME "$HOME/.volta"
-set -gx PATH "$VOLTA_HOME/bin" $PATH
-
-# pnpm
-set -gx PNPM_HOME "/Users/uzaaft/Library/pnpm"
-set -gx PATH "$PNPM_HOME" $PATH
-# pnpm end
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+# eval /opt/homebrew/Caskroom/miniforge/base/bin/conda "shell.fish" "hook" $argv | source 
+# <<< conda initialize <<<
+starship init fish | source

@@ -2,9 +2,9 @@
 function upgrade
   if command -v brew >/dev/null
      brew update
-     brew upgrade neovim
+     brew upgrade --greedy neovim
      brew upgrade --cask wezterm-nightly --no-quarantine --greedy-latest
-     brew upgrade
+     brew upgrade --greedy
   else if command -v paru > /dev/null
     paru -Syyuu
   else
