@@ -1,0 +1,8 @@
+pane	0	1	1	:*	1	~/dotfiles	:/Users/uzaaft/dotfiles	1	fish	:/opt/homebrew/bin/fish
+pane	9	1	0	:-	1	api.rs (~/Documents/personal/polymath/Septoria/src) - NVIM	:/Users/uzaaft/Documents/personal/polymath/Septoria	1	nvim	:/opt/homebrew/bin/fish
+pane	9	2	1	:*	1	account.rs (/private/tmp/binance-rs/src) - NVIM	:/private/tmp/binance-rs	0	nvim	:/opt/homebrew/bin/fish
+pane	9	2	1	:*	2	[No Name] - NVIM	:/private/tmp/binance-rs	1	nvim	:/opt/homebrew/bin/fish
+window	0	1	:fish	1	:*	b8c1,190x43,0,0,4	:
+window	9	1	:nvim	0	:-	5da5,210x44,0,0,35	:
+window	9	2	:nvim	1	:*	43a1,210x44,0,0{105x44,0,0,43,104x44,106,0,44}	:
+state	9	
