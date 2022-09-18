@@ -1,7 +1,0 @@
-pane	0	1	1	:*	1	~/dotfiles	:/Users/uzaaft/dotfiles	1	fish	:/opt/homebrew/bin/fish
-pane	9	1	1	:*	1	Cargo.toml (~/Documents/personal/polymath/Septoria) - NVIM	:/Users/uzaaft/Documents/personal/polymath/Septoria	1	nvim	:/opt/homebrew/bin/fish
-pane	9	2	0	:-	1	[archpakkis] ~	:/Users/uzaaft/Documents/personal/polymath/Septoria	1	ssh	:/opt/homebrew/bin/fish
-window	0	1	:fish	1	:*	b8c1,190x43,0,0,4	:
-window	9	1	:nvim	1	:*	5da0,210x44,0,0,30	:
-window	9	2	:ssh	0	:-	5da4,210x44,0,0,34	:
-state	9	

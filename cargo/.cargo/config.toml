@@ -4,11 +4,10 @@
 [build]
 rustc-wrapper = "/opt/homebrew/bin/sccache"
 
-[target.aarch64-apple-darwin]
-rustflags = ["-C", "link-arg=-fuse-ld=/usr/local/bin/zld"]
 # [target.aarch64-apple-darwin]
-# linker = "clang"
-# rustflags = ["-Clink-arg=-fuse-ld=~/.local/bin/ld64.lld"]
+# rustflags = ["-C", "link-arg=-fuse-ld=/usr/local/bin/zld"]
+#[target.aarch64-apple-darwin]
+# rustflags = ["-C", "link-arg=-fuse-ld=lld"]
 
 [alias]
 td = "test -- --nocapture"
