@@ -1,4 +1,5 @@
 # set -gx XDG_CONFIG_HOME ~/.config
+
 source $HOME/.config/fish/alias.fish
 source $HOME/.config/fish/env.fish
 source $HOME/.config/fish/bangbang.fish
