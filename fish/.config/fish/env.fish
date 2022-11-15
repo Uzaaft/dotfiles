@@ -23,8 +23,6 @@ set -gx PATH "$PNPM_HOME" $PATH
 set -gx VOLTA_HOME "$HOME/.volta"
 set -gx DENO_INSTALL ~/.deno/
 set -gx PATH $DENO_INSTALL/bin $PATH
-set -gx PATH "$HOME/.bun/bin/" $PATH
-set -Ux BUN_INSTALL "$HOME/.bun"
 set -gx PNPM_HOME "$HOME/Library/pnpm"
 set -gx PATH "$PNPM_HOME" $PATH
 set -gx VOLTA_HOME "$HOME/.volta"

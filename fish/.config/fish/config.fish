@@ -10,8 +10,7 @@ end
 if command -v zoxide > /dev/null
   zoxide init fish | source
 end
-
-
+thefuck --alias | source
 
 
 # tabtab source for packages
