@@ -13,7 +13,7 @@ sketchybar --add item        cpu.top right                  \
                              y_offset=-4                    \
                              width=40                       \
                              icon.drawing=off               \
-                             update_freq=1                  \
+                             update_freq=2                  \
                              mach_helper="$HELPER"          \
                                                             \
            --add graph       cpu.sys right 100              \
