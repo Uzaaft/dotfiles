@@ -27,3 +27,4 @@ set -gx PNPM_HOME "$HOME/Library/pnpm"
 set -gx PATH "$PNPM_HOME" $PATH
 set -gx VOLTA_HOME "$HOME/.volta"
 set -gx PATH "$VOLTA_HOME/bin" $PATH
+set -gx EDITOR "lvim"
