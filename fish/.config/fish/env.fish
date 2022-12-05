@@ -17,7 +17,6 @@ set -gx PATH $HOME/go/bin $PATH
 set -gx PATH $HOME/dotfiles/jetbrains_ide $PATH
 set -gx GEM_HOME $HOME/.gem
 set -gx PATH  $GEM_HOME/bin $PATH
-set -gx _CONDA_ROOT /opt/homebrew/Caskroom/miniforge/base
 set -gx PNPM_HOME "/Users/uzaaft/Library/pnpm"
 set -gx PATH "$PNPM_HOME" $PATH
 set -gx VOLTA_HOME "$HOME/.volta"
