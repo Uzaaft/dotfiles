@@ -1,0 +1,6 @@
+[submodule "lvim/.config/lvim"]
+	path = lvim/.config/lvim
+	url = git@github.com:Uzaaft/lvim
+[submodule "wezterm/.config/wezterm"]
+	path = wezterm/.config/wezterm
+	url = git@github.com:Uzaaft/wezterm
