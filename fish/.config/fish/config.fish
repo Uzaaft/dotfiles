@@ -4,6 +4,7 @@ source $HOME/.config/fish/alias.fish
 source $HOME/.config/fish/env.fish
 source $HOME/.config/fish/bangbang.fish
 source $HOME/.config/fish/prompt.fish
+source $HOME/.config/fish/command_not_found.fish
 if command -v pazi >/dev/null
   status --is-interactive; and pazi init fish | source
 end
