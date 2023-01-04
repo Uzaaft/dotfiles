@@ -1,4 +1,5 @@
 local util = require("lazyvim.util")
+vim.opt.timeoutlen = 500
 
 return {
 
@@ -123,6 +124,7 @@ return {
         ["<leader>g"] = { name = "+git" },
         ["<leader>h"] = { name = "+help" },
         ["<leader>x"] = { name = "+diagnostics" },
+        ["<leader>e"] = { "<cmd> Neotree toggle<cr>", "Explorer" },
       })
     end,
   },
