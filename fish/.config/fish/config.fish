@@ -5,6 +5,7 @@ source $HOME/.config/fish/env.fish
 source $HOME/.config/fish/bangbang.fish
 source $HOME/.config/fish/prompt.fish
 source $HOME/.config/fish/command_not_found.fish
+source $HOME/.config/fish/secretive.fish
 if command -v pazi >/dev/null
   status --is-interactive; and pazi init fish | source
 end
@@ -23,3 +24,4 @@ thefuck --alias | source
 # eval /opt/homebrew/Caskroom/miniforge/base/bin/conda "shell.fish" "hook" $argv | source 
 # <<< conda initialize <<<
 starship init fish | source
+
