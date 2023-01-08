@@ -39,3 +39,14 @@ stow */ # Everything (the '/' ignores the README)
 ```bash
 stow zsh # Just my zsh config
 ```
+
+To disable automatic reopen on reboot:
+```bash
+sudo chown root ~/Library/Preferences/ByHost/com.apple.loginwindow*
+sudo chmod 000 ~/Library/Preferences/ByHost/com.apple.loginwindow*
+```
+To undo:
+```bash
+sudo rm -f ~/Library/Preferences/ByHost/com.apple.loginwindow*
+```
+
