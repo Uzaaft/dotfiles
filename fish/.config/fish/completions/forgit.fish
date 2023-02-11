@@ -2,9 +2,6 @@
 
 set INSTALL_DIR (dirname (dirname (status -f)))
 set FORGIT "$INSTALL_DIR/conf.d/bin/git-forgit"
-if [ ! -e "$FORGIT" ]
-    set FORGIT "$INSTALL_DIR/vendor_conf.d/bin/git-forgit"
-end
 
 function forgit::warn
     printf "%b[Warn]%b %s\n" '\e[0;33m' '\e[0m' "$argv" >&2;
@@ -167,6 +164,7 @@ if test -z "$FORGIT_NO_ALIASES"
         alias gbd 'forgit::branch::delete'
     end
 
+
     if test -n "$forgit_clean"
         alias $forgit_clean 'forgit::clean'
     else
@@ -213,18 +211,6 @@ if test -z "$FORGIT_NO_ALIASES"
         alias $forgit_revert_commit 'forgit::revert::commit'
     else
         alias grc 'forgit::revert::commit'
-    end
-
-    if test -n "$forgit_blame"
-        alias $forgit_blame 'forgit::blame'
-    else
-        alias gbl 'forgit::blame'
-    end
-
-    if test -n "$forgit_checkout_tag"
-        alias $forgit_checkout_tag 'forgit::checkout::tag'
-    else
-        alias gct 'forgit::checkout::tag'
     end
 
 end

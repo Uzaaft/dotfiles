@@ -59,3 +59,8 @@ end
 if command -v tmux > /dev/null
   abbr -a t "tmux"
 end
+
+if command -v lazygit > /dev/null
+ abbr -a lg "lazygit"
+end
+

@@ -38,7 +38,7 @@ SETUVAR _fish_abbr_yeet:paru\x20\x2dRsc
 SETUVAR _fish_abbr_yr:cal\x20\x2dy
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:/Users/uzaaft/\x2econfig/fish/functions/fisher\x2efish\x1e/Users/uzaaft/\x2econfig/fish/completions/fisher\x2efish
 SETUVAR _fisher_plugins:wfxr/forgit
-SETUVAR _fisher_wfxr_2F_forgit_files:/Users/uzaaft/\x2econfig/fish/conf\x2ed/bin\x1e/Users/uzaaft/\x2econfig/fish/conf\x2ed/forgit\x2eplugin\x2efish
+SETUVAR _fisher_wfxr_2F_forgit_files:/Users/uzaaft/\x2econfig/fish/conf\x2ed/bin\x1e/Users/uzaaft/\x2econfig/fish/conf\x2ed/forgit\x2eplugin\x2efish\x1e/Users/uzaaft/\x2econfig/fish/completions/git\x2dforgit\x2ebash
 SETUVAR fish_color_autosuggestion:4c566a
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:81a1c1
@@ -68,4 +68,4 @@ SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
-SETUVAR fish_user_paths:/opt/homebrew/opt/gnu\x2dsed/libexec/gnubin\x1e/Users/uzaaft/\x2elocal/share/neovim/bin\x1e/Users/uzaaft/Library/Application\x20Support/neovim/bin\x1e/opt/homebrew/opt/ruby/bin\x1e/opt/homebrew/bin\x1e/opt/homebrew/opt/fzf/bin
+SETUVAR fish_user_paths:/opt/homebrew/opt/icu4c/sbin\x1e/opt/homebrew/opt/icu4c/bin\x1e/opt/homebrew/opt/gnu\x2dsed/libexec/gnubin\x1e/Users/uzaaft/\x2elocal/share/neovim/bin\x1e/Users/uzaaft/Library/Application\x20Support/neovim/bin\x1e/opt/homebrew/opt/ruby/bin\x1e/opt/homebrew/bin\x1e/opt/homebrew/opt/fzf/bin
