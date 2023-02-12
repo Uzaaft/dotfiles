@@ -30,4 +30,4 @@ export PNPM_HOME="$HOME/Library/pnpm"
 export VOLTA_HOME="$HOME/.volta"
 export EDITOR="nvim"
 export XDG_CONFIG_HOME="$HOME/.config"
-
+export RUSTC_WRAPPER="$(which sccache)"
