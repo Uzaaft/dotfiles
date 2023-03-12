@@ -1,35 +1,21 @@
-# Personal Zsh configuration file. It is strongly recommended to keep all
-# shell customization and configuration (including exported environment
-# variables such as PATH) in this file or in files sourced from it.
-#
-# Documentation: https://github.com/romkatv/zsh4humans/blob/v5/README.md.
-
-[[ -f $ZDOTDIR/styles.zsh ]] && source $ZDOTDIR/styles.zsh
-
-[[ -f $ZDOTDIR/styles.zsh ]] && source $ZDOTDIR/z4h.zsh
-
-# Extend PATH.
-path=(~/bin $path)
-
-# Export environment variables.
-export GPG_TTY=$TTY
-
-# Autoload functions.
-autoload -Uz zmv
-
-# Define functions and completions.
-function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
-compdef _directories md
-
-# Define named directories: ~w <=> Windows home directory on WSL.
-[[ -z $z4h_win_home ]] || hash -d w=$z4h_win_home
-
-
-# Add flags to existing aliases.
-alias ls="${aliases[ls]:-ls} -A"
-
-# Set shell options: http://zsh.sourceforge.net/Doc/Release/Options.html.
-setopt glob_dots     # no special treatment for file names with a leading dot
-setopt no_auto_menu  # require an extra TAB press to open the completion menu
 source $ZDOTDIR/env.zsh
+source $ZDOTDIR/alias.zsh
+
+
+
+source $ZDOTDIR/prompt.zsh
+compinit
+
 eval "$(zoxide init zsh)"
+# eval $(thefuck --alias --enable-experimental-instant-mode)
+eval "$($(which rtx) activate zsh)"
+# eval "$(pyenv init -)"
+
+# export PYENV_ROOT="$HOME/.pyenv"
+# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+
+# bun completions
+[ -s "/Users/uzaaft/.bun/_bun" ] && source "/Users/uzaaft/.bun/_bun"
+
+source /opt/homebrew/share/zsh-abbr/zsh-abbr.zsh
+
