@@ -2,5 +2,7 @@
 **/resurrect/*
 **/bin
 **/git
+**/.zsh_history
 zsh/.config/zsh/.zsh_history
 lazygit/.config/lazygit/state.yml
+zsh/.config/zsh/.zsh_history
