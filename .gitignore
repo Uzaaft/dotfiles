@@ -3,3 +3,4 @@
 **/bin
 **/git
 zsh/.config/zsh/.zsh_history
+lazygit/.config/lazygit/state.yml
