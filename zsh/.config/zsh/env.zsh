@@ -34,3 +34,8 @@ export RUSTC_WRAPPER="$(which sccache)"
 
 export PATH="$HOME/pnpm:$PATH"
 export PNPM_HOME="$HOME/pnpm"
+
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
