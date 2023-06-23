@@ -1,27 +1,45 @@
-sketchybar --add item volume right                      \
-           --set volume script="$PLUGIN_DIR/volume.sh"  \
-                        updates=on                      \
-                        icon.background.drawing=on      \
-                        icon.background.color=$BLUE     \
-                        icon.background.height=8        \
-                        icon.background.corner_radius=3 \
-                        icon.width=0                    \
-                        icon.align=right                \
-                        label.drawing=off               \
-                        background.drawing=on           \
-                        background.color=$BACKGROUND_2  \
-                        background.height=8             \
-                        background.corner_radius=3      \
-                        align=left                      \
-           --subscribe volume volume_change
+#!/bin/bash
 
-sketchybar --add alias "Control Center,Sound" right                      \
-           --rename "Control Center,Sound" volume_alias                  \
-           --set volume_alias icon.drawing=off                           \
-                              label.drawing=off                          \
-                              alias.color=$WHITE                         \
-                              background.padding_right=0                 \
-                              background.padding_left=5                  \
-                              width=50                                   \
-                              align=right                                \
-                              click_script="$PLUGIN_DIR/volume_click.sh"
+volume_slider=(
+  script="$PLUGIN_DIR/volume.sh"
+  updates=on
+  label.drawing=off
+  icon.drawing=off
+  slider.highlight_color=$BLUE
+  slider.background.height=5
+  slider.background.corner_radius=3
+  slider.background.color=$BACKGROUND_2
+  slider.knob=􀀁
+  slider.knob.drawing=off
+)
+
+volume_icon=(
+  click_script="$PLUGIN_DIR/volume_click.sh"
+  padding_left=10
+  icon=$VOLUME_100
+  icon.width=0
+  icon.align=left
+  icon.color=$GREY
+  icon.font="$FONT:Regular:14.0"
+  label.width=25
+  label.align=left
+  label.font="$FONT:Regular:14.0"
+)
+
+status_bracket=(
+  background.color=$BACKGROUND_1
+  background.border_color=$BACKGROUND_2
+)
+
+sketchybar --add slider volume right            \
+           --set volume "${volume_slider[@]}"   \
+           --subscribe volume volume_change     \
+                              mouse.clicked     \
+                              mouse.entered     \
+                              mouse.exited      \
+                                                \
+           --add item volume_icon right         \
+           --set volume_icon "${volume_icon[@]}"
+
+sketchybar --add bracket status brew github.bell volume_icon \
+           --set status "${status_bracket[@]}"
