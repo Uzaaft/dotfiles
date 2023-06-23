@@ -19,8 +19,8 @@ export PATH="$HOME/.local/share/neovim/bin/:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 
 export ANDROID_HOME="$HOME/Library/Android/Sdk"
-export TMUX_CONFIG_DIR="/Users/uzaaft/.config/tmux"
-export TERM="wezterm"
+# export TMUX_CONFIG_DIR="/Users/uzaaft/.config/tmux"
+# export TERM="wezterm"
 export TERM="xterm-256color"
 export SCCACHE_SIZE="50G"
 export GEM_HOME="$HOME/.gem"
@@ -30,12 +30,22 @@ export VOLTA_HOME="$HOME/.volta"
 export EDITOR="nvim"
 export XDG_CONFIG_HOME="$HOME/.config"
 export RUSTC_WRAPPER="$(which sccache)"
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 
 export PATH="$HOME/pnpm:$PATH"
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export PNPM_HOME="$HOME/pnpm"
 
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
+
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+
+
