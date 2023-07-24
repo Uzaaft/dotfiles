@@ -26,8 +26,6 @@ yabai -m config external_bar all:39:0 \
 	window_border_width 0 \
 	window_border_hidpi off \
 	window_animation_duration 0.2 \
-	active_window_border_color 0xffe1e3e4 \
-	normal_window_border_color 0xff2a2f38 \
 	insert_feedback_color 0xff9dd274 \
 	split_ratio 0.50 \
 	auto_balance off \
@@ -35,14 +33,14 @@ yabai -m config external_bar all:39:0 \
 	mouse_action1 move \
 	mouse_action2 resize \
 	mouse_drop_action swap \
-	top_padding 2 \
-	bottom_padding 2 \
-	left_padding 2 \
-	right_padding 2 \
-	window_gap 1
+	top_padding 0 \
+	bottom_padding 0 \
+	left_padding 0 \
+	right_padding 0 \
+	window_gap 0
 
 # Exclude problematic apps from being managed:
-yabai -m rule --add app="^(LuLu|Vimac|Calculator|Software Update|Dictionary|VLC|System Preferences|zoom.us|Photo Booth|Archive Utility|Python|LibreOffice|App Store|Steam|Alfred|Activity Monitor|iTerm2| Jetbrains Toolbox)$" manage=off
+yabai -m rule --add app="^(LuLu|Vimac|Calculator|Software Update|Dictionary|VLC|System Preferences|zoom.us|Photo Booth|Archive Utility|Python|LibreOffice|App Store|Steam|Alfred|Activity Monitor|iTerm2| Jetbrains Toolbox|Numi)$" manage=off
 yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
 yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
 yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
