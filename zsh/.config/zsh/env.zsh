@@ -24,9 +24,7 @@ export ANDROID_HOME="$HOME/Library/Android/Sdk"
 export TERM="xterm-256color"
 export SCCACHE_SIZE="50G"
 export GEM_HOME="$HOME/.gem"
-export VOLTA_HOME="$HOME/.volta"
 export DENO_INSTALL="$HOME/.deno/"
-export VOLTA_HOME="$HOME/.volta"
 export EDITOR="nvim"
 export XDG_CONFIG_HOME="$HOME/.config"
 export RUSTC_WRAPPER="$(which sccache)"
@@ -46,6 +44,4 @@ esac
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-
-
 
