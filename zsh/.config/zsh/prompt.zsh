@@ -46,11 +46,7 @@ function zsh_install_missing_plugins() {
     clone-plugin "https://github.com/zsh-users/zsh-autosuggestions"
     zcompile-many ${zsh_plugins}/zsh-autosuggestions/{zsh-autosuggestions.zsh,src/**/*.zsh}
   fi
-  if [[ ! -e ${zsh_plugins}/zsh-nvm ]]; then
-    clone-plugin "https://github.com/lukechilds/zsh-nvm"
-    zcompile-many ${zsh_plugins}/zsh-nvm/zsh-nvm.plugin.zsh
-  fi
-  if [[ ! -e ${zsh_plugins}/powerlevel10k ]]; then
+    if [[ ! -e ${zsh_plugins}/powerlevel10k ]]; then
     clone-plugin "https://github.com/romkatv/powerlevel10k"
     make -C ${zsh_plugins}/powerlevel10k pkg > /dev/null || echo "Error building powerlevel10k"
   fi
@@ -74,7 +70,7 @@ setopt inc_append_history
 setopt interactivecomments
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd:cd ..:cd.."
 export HISTSIZE=25000
-export HISTFILE="${ZDOTDIR}/.zsh_history"
+export HISTFILE="${XDG_STATE_HOME-$HOME/.local/state}/zsh/history"
 export SAVEHIST=10000
 export KEYTIMEOUT=10
 
@@ -155,6 +151,7 @@ source ${zsh_plugins}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ${zsh_plugins}/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 
+
 # --- powerlevel10k prompt ---
 source ${zsh_plugins}/powerlevel10k/powerlevel10k.zsh-theme
 [ -f ${ZDOTDIR:-$HOME}/.p10k.zsh ] && source ${ZDOTDIR:-$HOME}/.p10k.zsh
@@ -214,4 +211,4 @@ path=(
 #   export MANPAGER="nvr -c 'Man!' -o -"
 # else
 #   export MANPAGER="nvim -c 'Man!'"
-# fi
+# fi(${NVM_DIR}/versions/n
