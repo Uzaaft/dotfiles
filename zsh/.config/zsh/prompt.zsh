@@ -97,10 +97,7 @@ export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # --- completion ---
-autoload -Uz compinit
-comp_cache=${zsh_cache}/zcompdump-${ZSH_VERSION}
-compinit -d ${comp_cache}
-[[ ${comp_cache}.zwc -nt ${comp_cache} ]] || zcompile -R -- "${comp_cache}".zwc "${comp_cache}" # compile completion  cache
+# [[ ${comp_cache}.zwc -nt ${comp_cache} ]] || zcompile -R -- "${comp_cache}".zwc "${comp_cache}" # compile completion  cache
 zstyle ':completion:*' cache-path ${zsh_cache} # cache path
 zstyle ':completion:*' menu select # select completions with arrow keys
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} # use ls colors
@@ -149,6 +146,11 @@ source ${zsh_plugins}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # --- zsh-autosuggestions ---
 source ${zsh_plugins}/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# --- zsh-nvim-app-appname
+source ${zsh_plugins}/zsh-nvim-appname/zsh-nvim-appname.plugin.zsh
+
+
 
 
 
