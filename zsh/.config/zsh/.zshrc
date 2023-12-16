@@ -23,9 +23,6 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 # bun completions
 [ -s "/Users/uzaaft/.bun/_bun" ] && source "/Users/uzaaft/.bun/_bun"
 
-source /opt/homebrew/share/zsh-abbr/zsh-abbr.zsh
-
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/uzaaft/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/uzaaft/google-cloud-sdk/path.zsh.inc'; fi
 
