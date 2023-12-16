@@ -50,6 +50,9 @@ function zsh_install_missing_plugins() {
     clone-plugin "https://github.com/romkatv/powerlevel10k"
     make -C ${zsh_plugins}/powerlevel10k pkg > /dev/null || echo "Error building powerlevel10k"
   fi
+  if [[ ! -e ${zsh_plugins}/zsh-nvim-appname ]]; then
+    clone-plugin "https://github.com/mehalter/zsh-nvim-appname"
+  fi
   unfunction zcompile-many clone-plugin
 }
 # --- zsh plugin manager updater ---
@@ -149,10 +152,6 @@ source ${zsh_plugins}/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # --- zsh-nvim-app-appname
 source ${zsh_plugins}/zsh-nvim-appname/zsh-nvim-appname.plugin.zsh
-
-
-
-
 
 # --- powerlevel10k prompt ---
 source ${zsh_plugins}/powerlevel10k/powerlevel10k.zsh-theme

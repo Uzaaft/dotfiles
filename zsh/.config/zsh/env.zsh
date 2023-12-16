@@ -31,7 +31,9 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export RUSTC_WRAPPER="$(which sccache)"
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 export BAT_THEME="Catppuccin-mocha"
-
+if [[ $(uname) == "Darwin" ]]; then
+export OPENAI_API_KEY=$(security find-generic-password -w -s 'OPENAI' -a 'uzaaft')
+fi
 
 export PATH="$HOME/pnpm:$PATH"
 export PAmH="/opt/homebrew/opt/llvm/bin:$PATH"
@@ -41,11 +43,6 @@ case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-
-
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
