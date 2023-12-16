@@ -53,6 +53,9 @@ function zsh_install_missing_plugins() {
   if [[ ! -e ${zsh_plugins}/zsh-nvim-appname ]]; then
     clone-plugin "https://github.com/mehalter/zsh-nvim-appname"
   fi
+  if [[ ! -e ${zsh_plugins}/zsh-abbr ]]; then
+    clone-plugin "https://github.com/olets/zsh-abbr"
+  fi
   unfunction zcompile-many clone-plugin
 }
 # --- zsh plugin manager updater ---
@@ -156,6 +159,9 @@ source ${zsh_plugins}/zsh-nvim-appname/zsh-nvim-appname.plugin.zsh
 # --- powerlevel10k prompt ---
 source ${zsh_plugins}/powerlevel10k/powerlevel10k.zsh-theme
 [ -f ${ZDOTDIR:-$HOME}/.p10k.zsh ] && source ${ZDOTDIR:-$HOME}/.p10k.zsh
+
+# --- abbr---
+source ${zsh_plugins}/zsh-abbr/zsh-abbr.zsh
 
 # === END PLUGINS ===
 
