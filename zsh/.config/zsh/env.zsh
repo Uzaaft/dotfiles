@@ -31,9 +31,6 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export RUSTC_WRAPPER="$(which sccache)"
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 export BAT_THEME="Catppuccin-mocha"
-if [[ $(uname) == "Darwin" ]]; then
-export OPENAI_API_KEY=$(security find-generic-password -w -s 'OPENAI' -a 'uzaaft')
-fi
 
 export PATH="$HOME/pnpm:$PATH"
 export PAmH="/opt/homebrew/opt/llvm/bin:$PATH"
