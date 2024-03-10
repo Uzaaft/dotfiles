@@ -14,7 +14,7 @@ source "$ZDOTDIR"/brew.zsh
 
 if command -v zoxide &> /dev/null; then eval "$(zoxide init zsh)"; fi
 # eval $(thefuck --alias --enable-experimental-instant-mode)
-eval "$($(which rtx) activate zsh)"
+eval "$($(which mise) activate zsh)"
 # eval "$(pyenv init -)"
 
 # export PYENV_ROOT="$HOME/.pyenv"
