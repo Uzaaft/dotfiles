@@ -7,9 +7,7 @@ import os
 import sys
 def main():
     folder_name = sys.argv[1]
-    os.mkdir(folder_name)
-    os.mkdir(folder_name + "/.config")
-    os.mkdir(folder_name + "/.config/" + folder_name)
+    os.mkdir(".config/folder_name")
 
 if __name__ == "__main__":
     main()
