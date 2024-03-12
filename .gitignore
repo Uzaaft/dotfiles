@@ -1,6 +1,7 @@
 .DS_Store
 **/resurrect/*
 **/bin
+!.local/bin/*
 **/git
 **/.zsh_history
 zsh/.config/zsh/.zsh_history
