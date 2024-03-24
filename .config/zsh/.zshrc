@@ -32,3 +32,6 @@ if [ -f '/Users/uzaaft/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/uz
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 export PATH=$PATH:/Users/uzaaft/.spicetify
+
+# opam configuration
+[[ ! -r /Users/uzaaft/.opam/opam-init/init.zsh ]] || source /Users/uzaaft/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null

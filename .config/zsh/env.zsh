@@ -22,13 +22,14 @@ export BOB_CONFIG=$XDG_CONFIG_HOME/bob/config.json
 export ANDROID_HOME="$HOME/Library/Android/Sdk"
 # export TMUX_CONFIG_DIR="/Users/uzaaft/.config/tmux"
 # export TERM="wezterm"
+export GIT_PATH="$HOME/repositories/"
 export SCCACHE_SIZE="50G"
 export GEM_HOME="$HOME/.gem"
 export DENO_INSTALL="$HOME/.deno/"
 export EDITOR="nvim"
 export MANPAGER='nvim +Man!'
 export XDG_CONFIG_HOME="$HOME/.config"
-export RUSTC_WRAPPER="$(which sccache)"
+# export RUSTC_WRAPPER="$(which sccache)"
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 export BAT_THEME="Catppuccin-mocha"
 
