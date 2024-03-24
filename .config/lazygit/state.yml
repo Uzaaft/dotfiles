@@ -1,7 +1,25 @@
 lastupdatecheck: 0
 recentrepos:
 - /Users/uzaaft/dotfiles
+- /Users/uzaaft/repositories/github.com/Cadea-as/cadea-frontend
+- /Users/uzaaft/.config/nvim_v4
+- /Users/uzaaft/repositories/github.com/nikitabobko/AeroSpace
+- /Users/uzaaft/repositories/github.com/uzaaft/nvim
+- /Users/uzaaft/repositories/github.com/eik-lab/eik-web
+- /Users/uzaaft/repositories/github.com/astronvim/astrocommunity
+- /Users/uzaaft/repositories/github.com/eik-lab/posten-hackathon
+- /Users/uzaaft/repositories/github.com/uzaaft/alpha-be
+- /Users/uzaaft/repositories/github.com/uzaaft/alpha
+- /Users/uzaaft/repositories/github.com/uzaaft/extend
+- /Users/uzaaft/repositories/github.com/polymath-as/doc.ai-be
+- /Users/uzaaft/repositories/github.com/uzaaft/uzaaft.github.io
 startuppopupversion: 5
+lastversion: 0.41.0
 customcommandshistory: []
 hidecommandlog: false
 ignorewhitespaceindiffview: false
+diffcontextsize: 3
+localbranchsortorder: recency
+remotebranchsortorder: alphabetical
+gitlogorder: topo-order
+gitlogshowgraph: always

@@ -168,6 +168,13 @@ source ${zsh_plugins}/zsh-abbr/zsh-abbr.zsh
 # --- keybindings ---
 autoload -Uz edit-command-line
 function zle-keymap-select() { zle reset-prompt; zle -R }
+git_go() {
+  target=`git_cd`
+  builtin cd "$target";
+  zle reset-prompt;
+}
+zle -N git_go
+
 zle -N edit-command-line
 zle -N zle-keymap-select
 bindkey -v
@@ -187,6 +194,8 @@ bindkey -M vicmd '/' history-incremental-search-forward
 bindkey "^?" backward-delete-char
 bindkey '^x^e' edit-command-line
 bindkey '^ ' autosuggest-accept
+# Uzair aftab's keybindings
+bindkey "^g" git_go
 # expand ... to ../.. recursively
 function _rationalise-dot { # This was written entirely by Mikael Magnusson (Mikachu)
   local MATCH # keep the regex match from leaking to the environment

@@ -1,17 +1,6 @@
 [source.crates-io]
 registry = "git://github.com/rust-lang/crates.io-index.git"
 
-[build]
-rustc-wrapper = "/opt/homebrew/bin/sccache"
-
-[target.x86_64-apple-darwin]
-linker = "clang"
-rustflags = ["-C", "link-arg=-fuse-ld=mold"]
-
-[target.aarch64-apple-darwin]
-linker = "clang"
-rustflags = ["-C", "link-arg=-fuse-ld=mold"]
-
 [alias]
 td = "test -- --nocapture"
 tn = "nextest run"
