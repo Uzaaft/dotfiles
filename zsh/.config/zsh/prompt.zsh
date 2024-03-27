@@ -170,7 +170,7 @@ autoload -Uz edit-command-line
 function zle-keymap-select() { zle reset-prompt; zle -R }
 git_go() {
   target=`git_cd`
-  builtin cd "$target";
+   [[ ! -z "$target" ]] && builtin cd "$target" ||
   zle reset-prompt;
 }
 zle -N git_go
