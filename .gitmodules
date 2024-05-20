@@ -1,6 +1,0 @@
-[submodule "wezterm/.config/wezterm"]
-	path = .config/wezterm
-	url = git@github.com:Uzaaft/wezterm
-[submodule ".local/bin/yabai3"]
-	path = .local/bin/yabai3
-	url = https://github.com/sebastianst/yabai3
