@@ -46,14 +46,19 @@ function zsh_install_missing_plugins() {
     clone-plugin "https://github.com/zsh-users/zsh-autosuggestions"
     zcompile-many ${zsh_plugins}/zsh-autosuggestions/{zsh-autosuggestions.zsh,src/**/*.zsh}
   fi
-  if [[ ! -e ${zsh_plugins}/zsh-nvm ]]; then
-    clone-plugin "https://github.com/lukechilds/zsh-nvm"
-    zcompile-many ${zsh_plugins}/zsh-nvm/zsh-nvm.plugin.zsh
-  fi
   if [[ ! -e ${zsh_plugins}/powerlevel10k ]]; then
     clone-plugin "https://github.com/romkatv/powerlevel10k"
     make -C ${zsh_plugins}/powerlevel10k pkg > /dev/null || echo "Error building powerlevel10k"
   fi
+  if [[ ! -e ${zsh_plugins}/powerlevel10k ]]; then
+    clone-plugin "https://github.com/olets/zsh-abbr"
+    zcompile-many ${zsh_plugins}/zsh-abbr/zsh-abbr.plugin.zsh
+  fi
+  if [[ ! -e ${zsh_plugins}/zsh-nvim-appname ]]; then
+    clone-plugin "https://github.com/mehalter/zsh-nvim-appname"
+    zcompile-many ${zsh_plugins}/zsh-nvim-appname/zsh-nvim-appname.plugin.zsh
+  fi
+
   unfunction zcompile-many clone-plugin
 }
 # --- zsh plugin manager updater ---
@@ -158,6 +163,12 @@ source ${zsh_plugins}/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ${zsh_plugins}/powerlevel10k/powerlevel10k.zsh-theme
 [ -f ${ZDOTDIR:-$HOME}/.p10k.zsh ] && source ${ZDOTDIR:-$HOME}/.p10k.zsh
 
+# --- zsh-abbr ---
+source ${zsh_plugins}/zsh-abbr/zsh-abbr.plugin.zsh
+
+# --- zsh-nvim-appname ---
+source ${zsh_plugins}/zsh-nvim-appname/zsh-nvim-appname.plugin.zsh
+
 # === END PLUGINS ===
 #
 # -- Custom Uzaaft keybinding
@@ -166,8 +177,13 @@ git_go() {
    [[ ! -z "$target" ]] && builtin cd "$target" ||
   zle reset-prompt;
 }
+config_go() {
+  target=`config_cd`
+  [[ ! -z "$target" ]] && builtin cd "$target" ||
+    zle reset-prompt
+}
 zle -N git_go
-bindkey "^g" git_go
+zle -N config_go
 
 # --- keybindings ---
 autoload -Uz edit-command-line
@@ -191,6 +207,9 @@ bindkey -M vicmd '/' history-incremental-search-forward
 bindkey "^?" backward-delete-char
 bindkey '^x^e' edit-command-line
 bindkey '^ ' autosuggest-accept
+bindkey "^g" git_go
+bindkey "ç" config_go
+
 # expand ... to ../.. recursively
 function _rationalise-dot { # This was written entirely by Mikael Magnusson (Mikachu)
   local MATCH # keep the regex match from leaking to the environment
@@ -208,20 +227,23 @@ bindkey -M isearch . self-insert # without this, typing . aborts incr history se
 
 # --- configure path ---
 path=(
-  /opt/homebrew/bin,
-  $HOME/.local/bin,
-  $HOME/.cargo/bin,
-  $HOME/.bun/bin,
-  $HOME/pnpm,
-  $HOME/go/bin,
+  /opt/homebrew/bin/
+  $HOME/.local/bin
+  $HOME/.cargo/bin
+  $HOME/.bun/bin
+  $HOME/pnpm
+  $HOME/go/bin
   $HOME/.npm-global/bin
-  /opt/homebrew/opt/llvm/bin,
-  /opt/homebrew/opt/gnu-sed/libexec/gnubin,
-  /opt/homebrew/opt/libpq/bin,
-  /opt/homebrew/opt/gnu-sed/libexec/gnubin,
+  /opt/homebrew/opt/llvm/bin
+  /opt/homebrew/opt/gnu-sed/libexec/gnubin
+  /opt/homebrew/opt/libpq/bin
+  /opt/homebrew/opt/gnu-sed/libexec/gnubin
   $path
 )
 # source env.zsh
+
+# Colorful sudo prompt.
+SUDO_PROMPT="$(tput setaf 2 bold)Password: $(tput sgr0)" && export SUDO_PROMPT
 
 # --- source various other scripts ---
 # source ${ZDOTDIR:-$HOME}/.aliases
@@ -232,6 +254,15 @@ path=(
 # opam configuration
 [[ ! -r /Users/uzaaft/.opam/opam-init/init.zsh ]] || source /Users/uzaaft/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
-FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+FPATH="/opt/homebrew/share/zsh/site-functions:${FPATH}"
+FPATH="$zsh_plugins/zsh-nvim-appname:${FPATH}"
 
 eval "$(/opt/homebrew/bin/mise activate zsh)"
+
+# pnpm
+export PNPM_HOME="/Users/uzaaft/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
