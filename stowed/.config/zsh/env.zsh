@@ -23,3 +23,6 @@ if [ -n "${NVIM_LISTEN_ADDRESS+x}" ] || [ -n "${NVIM+x}" ]; then
 else
   export MANPAGER="nvim -c 'Man!'"
 fi
+
+# SSH Signing (with Secretive)
+# export SSH_AUTH_SOCK="$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh"

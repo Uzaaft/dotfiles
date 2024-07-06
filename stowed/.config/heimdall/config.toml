@@ -1,0 +1,25 @@
+[[bindings]]
+key = "Enter"
+modifiers = ["Cmd"]
+command = "open -n /Applications/Ghostty.app"
+
+
+[[bindings]]
+arrow = "Right"
+modifiers = ["Ctrl"]
+command = "yabai -m space --focus next"
+
+[[bindings]]
+arrow = "Left"
+modifiers = ["Ctrl"]
+command = "yabai -m space --focus prev"
+
+[[bindings]]
+key = "l"
+modifiers = ["Ctrl", "Option"]
+command = "yabai -m space --focus next"
+
+[[bindings]]
+key = "h"
+modifiers = ["Ctrl", "Option"]
+command = "yabai -m space --focus prev"
