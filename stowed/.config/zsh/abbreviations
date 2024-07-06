@@ -1,0 +1,4 @@
+abbr -g "cat"="bat"
+abbr -g "ps"="procs"
+abbr -g "tn"="tmux new -s (pwd | sed 's/.*\///g')"
+abbr "t"="tmux"

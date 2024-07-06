@@ -5,9 +5,12 @@
 #
 import os
 import sys
+
+
 def main():
     folder_name = sys.argv[1]
     os.mkdir(".config/folder_name")
+
 
 if __name__ == "__main__":
     main()

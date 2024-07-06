@@ -1,3 +1,5 @@
+# zmodload zsh/zprof
+
 # assumed commands:
 #   git (plugin management)
 #   wget (downloading  preview script)
@@ -49,10 +51,6 @@ function zsh_install_missing_plugins() {
   if [[ ! -e ${zsh_plugins}/powerlevel10k ]]; then
     clone-plugin "https://github.com/romkatv/powerlevel10k"
     make -C ${zsh_plugins}/powerlevel10k pkg > /dev/null || echo "Error building powerlevel10k"
-  fi
-  if [[ ! -e ${zsh_plugins}/powerlevel10k ]]; then
-    clone-plugin "https://github.com/olets/zsh-abbr"
-    zcompile-many ${zsh_plugins}/zsh-abbr/zsh-abbr.plugin.zsh
   fi
   if [[ ! -e ${zsh_plugins}/zsh-nvim-appname ]]; then
     clone-plugin "https://github.com/mehalter/zsh-nvim-appname"
@@ -106,6 +104,8 @@ export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # --- completion ---
+source $ZDOTDIR/brew.zsh
+source $ZDOTDIR/alias.zsh
 autoload -Uz compinit
 comp_cache=${zsh_cache}/zcompdump-${ZSH_VERSION}
 compinit -d ${comp_cache}
@@ -162,9 +162,6 @@ source ${zsh_plugins}/zsh-autosuggestions/zsh-autosuggestions.zsh
 # --- powerlevel10k prompt ---
 source ${zsh_plugins}/powerlevel10k/powerlevel10k.zsh-theme
 [ -f ${ZDOTDIR:-$HOME}/.p10k.zsh ] && source ${ZDOTDIR:-$HOME}/.p10k.zsh
-
-# --- zsh-abbr ---
-source ${zsh_plugins}/zsh-abbr/zsh-abbr.plugin.zsh
 
 # --- zsh-nvim-appname ---
 source ${zsh_plugins}/zsh-nvim-appname/zsh-nvim-appname.plugin.zsh
@@ -227,6 +224,7 @@ bindkey -M isearch . self-insert # without this, typing . aborts incr history se
 
 # --- configure path ---
 path=(
+  /opt/homebrew/opt/llvm/bin
   /opt/homebrew/bin/
   $HOME/.local/bin
   $HOME/.cargo/bin
@@ -234,13 +232,13 @@ path=(
   $HOME/pnpm
   $HOME/go/bin
   $HOME/.npm-global/bin
-  /opt/homebrew/opt/llvm/bin
   /opt/homebrew/opt/gnu-sed/libexec/gnubin
   /opt/homebrew/opt/libpq/bin
   /opt/homebrew/opt/gnu-sed/libexec/gnubin
   $path
 )
 # source env.zsh
+source $ZDOTDIR/env.zsh
 
 # Colorful sudo prompt.
 SUDO_PROMPT="$(tput setaf 2 bold)Password: $(tput sgr0)" && export SUDO_PROMPT
@@ -266,3 +264,8 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+# zprof
+
+# bun completions
+[ -s "/Users/uzaaft/.bun/_bun" ] && source "/Users/uzaaft/.bun/_bun"
