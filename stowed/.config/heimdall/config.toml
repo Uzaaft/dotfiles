@@ -1,6 +1,6 @@
 [[bindings]]
 key = "Enter"
-modifiers = ["Cmd"]
+modifiers = ["Option"]
 command = "open -n /Applications/Ghostty.app"
 
 
