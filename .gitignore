@@ -9,4 +9,5 @@ lazygit/.config/lazygit/state.yml
 zsh/.config/zsh/.zsh_history
 fish/.config/fish/conf.d/forgit.plugin.fish
 zsh/.config/zsh/.zsh_sessions
-zsh/.config/zsh/.zcompdump
+**/.zcompdump.*
+**/.zcompdump
