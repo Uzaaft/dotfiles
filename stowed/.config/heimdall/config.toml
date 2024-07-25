@@ -2,6 +2,10 @@
 key = "Enter"
 modifiers = ["Option"]
 command = "open -n /Applications/Ghostty.app"
+[[bindings]]
+key = "e"
+modifiers = ["CMD"]
+command = "open -n /Applications/Safari.app"
 
 
 [[bindings]]
