@@ -10,6 +10,8 @@ export GIT_PATH="$HOME/repositories/"
 export GEM_HOME="$HOME/.gem"
 export DENO_INSTALL="$HOME/.deno/"
 export EDITOR="nvim"
+export GEM_HOME=$HOME/.gem
+export PATH=$PATH:$GEM_HOME/bin
 
 export XDG_CONFIG_HOME="$HOME/.config"
 # export RUSTC_WRAPPER="$(which sccache)"
