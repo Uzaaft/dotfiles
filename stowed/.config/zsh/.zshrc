@@ -56,6 +56,10 @@ function zsh_install_missing_plugins() {
     clone-plugin "https://github.com/mehalter/zsh-nvim-appname"
     zcompile-many ${zsh_plugins}/zsh-nvim-appname/zsh-nvim-appname.plugin.zsh
   fi
+  if [[ ! -e ${zsh_plugins}/evalcache ]]; then
+    clone-plugin "https://github.com/mroth/evalcache"
+    zcompile-many ${zsh_plugins}/evalcache/evalcache.plugin.zsh
+  fi
 
   unfunction zcompile-many clone-plugin
 }
@@ -104,11 +108,9 @@ export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # --- completion ---
-source $ZDOTDIR/brew.zsh
 source $ZDOTDIR/alias.zsh
 autoload -Uz compinit
 comp_cache=${zsh_cache}/zcompdump-${ZSH_VERSION}
-compinit -d ${comp_cache}
 [[ ${comp_cache}.zwc -nt ${comp_cache} ]] || zcompile -R -- "${comp_cache}".zwc "${comp_cache}" # compile completion  cache
 zstyle ':completion:*' cache-path ${zsh_cache} # cache path
 zstyle ':completion:*' menu select # select completions with arrow keys
@@ -165,6 +167,9 @@ source ${zsh_plugins}/powerlevel10k/powerlevel10k.zsh-theme
 
 # --- zsh-nvim-appname ---
 source ${zsh_plugins}/zsh-nvim-appname/zsh-nvim-appname.plugin.zsh
+
+# --- eval ---
+source ${zsh_plugins}/evalcache/evalcache.plugin.zsh
 
 # === END PLUGINS ===
 #
@@ -224,6 +229,7 @@ bindkey -M isearch . self-insert # without this, typing . aborts incr history se
 
 # --- configure path ---
 path=(
+  /opt/homebrew/opt/rustup/bin:
   /opt/homebrew/opt/llvm/bin
   /opt/homebrew/bin/
   $HOME/.local/bin
@@ -237,6 +243,14 @@ path=(
   /opt/homebrew/opt/gnu-sed/libexec/gnubin
   $path
 )
+
+fpath=(
+  /opt/homebrew/share/zsh/site-functions
+  $zsh_plugins/zsh-nvim-appname
+  $zsh_plugins/zig-completions
+  $fpath
+)
+compinit -d ${comp_cache}
 # source env.zsh
 source $ZDOTDIR/env.zsh
 
@@ -249,13 +263,12 @@ SUDO_PROMPT="$(tput setaf 2 bold)Password: $(tput sgr0)" && export SUDO_PROMPT
 # --- miscellaneous ---
 # # configure nvim as manpager (requires neovim-remote)
 #
-# opam configuration
-[[ ! -r /Users/uzaaft/.opam/opam-init/init.zsh ]] || source /Users/uzaaft/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+# # opam configuration
+# [[ ! -r /Users/uzaaft/.opam/opam-init/init.zsh ]] || source /Users/uzaaft/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+#
+# eval "$(/opt/homebrew/bin/mise activate zsh)"
 
-FPATH="/opt/homebrew/share/zsh/site-functions:${FPATH}"
-FPATH="$zsh_plugins/zsh-nvim-appname:${FPATH}"
-
-eval "$(/opt/homebrew/bin/mise activate zsh)"
+_evalcache mise activate zsh
 
 # pnpm
 export PNPM_HOME="/Users/uzaaft/Library/pnpm"
