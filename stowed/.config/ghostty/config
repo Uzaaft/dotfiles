@@ -1,8 +1,10 @@
-font-size = 12
+font-size = 14
+
 background-blur-radius = 100
 macos-non-native-fullscreen = visible-menu
 mouse-hide-while-typing = true
-window-decoration = false
-
 macos-option-as-alt = false
-#theme = catppuccin-mocha
+theme = catppuccin-mocha
+#font-family = Iosevka Nerd Font Mono
+
+window-decoration = false
