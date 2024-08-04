@@ -209,8 +209,33 @@ bindkey -M vicmd '/' history-incremental-search-forward
 bindkey "^?" backward-delete-char
 bindkey '^x^e' edit-command-line
 bindkey '^ ' autosuggest-accept
-bindkey "^g" git_go
 bindkey "ç" config_go
+
+_git_go() {
+   # Run the command and capture the selected path
+   local selected_path
+    selected_path=$(fd -HI '^.git$' --max-depth 4 --type d --base-directory ${GIT_PATH} | sed 's|/.git/$||' | fzf -n 1)
+    echo $selected_path
+
+    # Check if a path was selected
+    if [ -n "$selected_path" ]; then
+        # Change to the selected directory
+        cd "${GIT_PATH}/$selected_path"
+        # Reset the prompt
+        zle reset-prompt
+    else
+        echo "No selection made."
+        zle reset-prompt
+    fi
+  zle reset-prompt
+    # Add any commands you want to execute here
+}
+
+# Make the function a Zle widget
+zle -N git_go
+
+# Bind Ctrl+G to the function
+bindkey '^G' git_go
 
 # expand ... to ../.. recursively
 function _rationalise-dot { # This was written entirely by Mikael Magnusson (Mikachu)
@@ -256,17 +281,6 @@ source $ZDOTDIR/env.zsh
 
 # Colorful sudo prompt.
 SUDO_PROMPT="$(tput setaf 2 bold)Password: $(tput sgr0)" && export SUDO_PROMPT
-
-# --- source various other scripts ---
-# source ${ZDOTDIR:-$HOME}/.aliases
-
-# --- miscellaneous ---
-# # configure nvim as manpager (requires neovim-remote)
-#
-# # opam configuration
-# [[ ! -r /Users/uzaaft/.opam/opam-init/init.zsh ]] || source /Users/uzaaft/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
-#
-# eval "$(/opt/homebrew/bin/mise activate zsh)"
 
 _evalcache mise activate zsh
 
