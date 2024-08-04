@@ -1,0 +1,2 @@
+# [build]
+# target = ["arm64e-apple-darwin", "arm64e-apple-ios"]

@@ -10,7 +10,7 @@ alias lg="lazygit"
 alias ll="eza -l --icons --color=always -s type -F"
 alias lll="eza -la --icons --color=always -s type -F"
 alias ls="eza -a --icons --color=always -s type -F"
-alias lt="eza -l --tree -L 2 --icons --color=always -s type -F"
+alias lt="eza -T --icons=auto --group-directories-first --hyperlink"
 
 alias lg="lazygit"
 alias gg="git get"
