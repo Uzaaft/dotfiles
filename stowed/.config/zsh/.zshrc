@@ -60,9 +60,14 @@ function zsh_install_missing_plugins() {
     clone-plugin "https://github.com/mroth/evalcache"
     zcompile-many ${zsh_plugins}/evalcache/evalcache.plugin.zsh
   fi
+  if [[ ! -e ${zsh_plugins}/zsh-nix-shell ]]; then
+    clone-plugin "https://github.com/chisui/zsh-nix-shell"
+    zcompile-many ${zsh_plugins}/zsh-nix-shell/nix-shell.plugin.zsh
+  fi
 
   unfunction zcompile-many clone-plugin
 }
+
 # --- zsh plugin manager updater ---
 function zsh_update_plugins() { rm -rf ${zsh_plugins}/**; zsh_install_missing_plugins }
 
@@ -85,23 +90,6 @@ export HISTFILE="${XDG_STATE_HOME-$HOME/.local/state}/zsh/history"
 export SAVEHIST=10000
 export KEYTIMEOUT=10
 
-# --- setup fzf ---
-export FZF_HOME=${XDG_CONFIG_HOME:-$HOME/.config}/fzf
-if [ ! -d ${FZF_HOME} ]; then
-  git clone --depth 1 https://github.com/junegunn/fzf.git ${FZF_HOME}
-  ${FZF_HOME}/install --xdg --no-update-rc
-fi
-function zsh_update_fzf() {
-  if test "$(git -C ${FZF_HOME} rev-parse HEAD)" = "$(git -C ${FZF_HOME} rev-parse master)"; then
-    echo "No updates for FZF"
-  else
-    echo "Pulling the latest FZF..."
-    git -C ${FZF_HOME} reset --hard master
-    git -C ${FZF_HOME} pull
-    echo "Updating FZF..."
-    ${FZF_HOME}/install
-  fi
-}
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
 export FZF_DEFAULT_OPTS="--extended"
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow"
@@ -154,7 +142,7 @@ zstyle ':fzf-tab:complete:git-checkout:*' fzf-preview \
   "recent commit object name") git show --color=always $word | delta ;;
   *) git log --color=always $word ;;
   esac'
-
+#
 # --- zsh-syntax-highlighting ---
 source ${zsh_plugins}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -171,21 +159,18 @@ source ${zsh_plugins}/zsh-nvim-appname/zsh-nvim-appname.plugin.zsh
 # --- eval ---
 source ${zsh_plugins}/evalcache/evalcache.plugin.zsh
 
+# --- zsh-nix-shell ---
+source ${zsh_plugins}/zsh-nix-shell/nix-shell.plugin.zsh
+
 # === END PLUGINS ===
 #
 # -- Custom Uzaaft keybinding
-git_go() {
-  target=`git_cd`
-   [[ ! -z "$target" ]] && builtin cd "$target" ||
-  zle reset-prompt;
-}
 config_go() {
   target=`config_cd`
   [[ ! -z "$target" ]] && builtin cd "$target" ||
     zle reset-prompt
 }
 zle -N git_go
-zle -N config_go
 
 # --- keybindings ---
 autoload -Uz edit-command-line
@@ -209,8 +194,32 @@ bindkey -M vicmd '/' history-incremental-search-forward
 bindkey "^?" backward-delete-char
 bindkey '^x^e' edit-command-line
 bindkey '^ ' autosuggest-accept
-bindkey "^g" git_go
-bindkey "ç" config_go
+
+_git_go() {
+   # Run the command and capture the selected path
+   local selected_path
+    selected_path=$(fd -HI '^.git$' --max-depth 4 --type d --base-directory ${GIT_PATH} | sed 's|/.git/$||' | fzf -n 1)
+    echo $selected_path
+
+    # Check if a path was selected
+    if [ -n "$selected_path" ]; then
+        # Change to the selected directory
+        cd "${GIT_PATH}/$selected_path"
+        # Reset the prompt
+        zle reset-prompt
+    else
+        echo "No selection made."
+        zle reset-prompt
+    fi
+  zle reset-prompt
+    # Add any commands you want to execute here
+}
+
+# Make the function a Zle widget
+zle -N _git_go
+
+# Bind Ctrl+G to the function
+bindkey '^G' _git_go
 
 # expand ... to ../.. recursively
 function _rationalise-dot { # This was written entirely by Mikael Magnusson (Mikachu)
@@ -229,7 +238,7 @@ bindkey -M isearch . self-insert # without this, typing . aborts incr history se
 
 # --- configure path ---
 path=(
-  /opt/homebrew/opt/rustup/bin:
+  /opt/homebrew/opt/rustup/bin
   /opt/homebrew/opt/llvm/bin
   /opt/homebrew/bin/
   $HOME/.local/bin
@@ -250,23 +259,11 @@ fpath=(
   $zsh_plugins/zig-completions
   $fpath
 )
+
 compinit -d ${comp_cache}
-# source env.zsh
-source $ZDOTDIR/env.zsh
 
 # Colorful sudo prompt.
 SUDO_PROMPT="$(tput setaf 2 bold)Password: $(tput sgr0)" && export SUDO_PROMPT
-
-# --- source various other scripts ---
-# source ${ZDOTDIR:-$HOME}/.aliases
-
-# --- miscellaneous ---
-# # configure nvim as manpager (requires neovim-remote)
-#
-# # opam configuration
-# [[ ! -r /Users/uzaaft/.opam/opam-init/init.zsh ]] || source /Users/uzaaft/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
-#
-# eval "$(/opt/homebrew/bin/mise activate zsh)"
 
 _evalcache mise activate zsh
 
@@ -282,3 +279,5 @@ export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
 # bun completions
 [ -s "/Users/uzaaft/.bun/_bun" ] && source "/Users/uzaaft/.bun/_bun"
+
+source <(fzf --zsh)
