@@ -60,6 +60,10 @@ function zsh_install_missing_plugins() {
     clone-plugin "https://github.com/mroth/evalcache"
     zcompile-many ${zsh_plugins}/evalcache/evalcache.plugin.zsh
   fi
+  if [[ ! -e ${zsh_plugins}/zsh-nix-shell ]]; then
+    clone-plugin "https://github.com/chisui/zsh-nix-shell"
+    zcompile-many ${zsh_plugins}/zsh-nix-shell/nix-shell.plugin.zsh
+  fi
 
   unfunction zcompile-many clone-plugin
 }
@@ -171,6 +175,9 @@ source ${zsh_plugins}/zsh-nvim-appname/zsh-nvim-appname.plugin.zsh
 # --- eval ---
 source ${zsh_plugins}/evalcache/evalcache.plugin.zsh
 
+# --- zsh-nix-shell ---
+source ${zsh_plugins}/zsh-nix-shell/nix-shell.plugin.zsh
+
 # === END PLUGINS ===
 #
 # -- Custom Uzaaft keybinding
@@ -275,14 +282,14 @@ fpath=(
   $zsh_plugins/zig-completions
   $fpath
 )
+
 compinit -d ${comp_cache}
-# source env.zsh
-source $ZDOTDIR/env.zsh
 
 # Colorful sudo prompt.
 SUDO_PROMPT="$(tput setaf 2 bold)Password: $(tput sgr0)" && export SUDO_PROMPT
 
 _evalcache mise activate zsh
+_evalcache atuin init zsh
 
 # pnpm
 export PNPM_HOME="/Users/uzaaft/Library/pnpm"
