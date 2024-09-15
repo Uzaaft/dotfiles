@@ -67,6 +67,7 @@ function zsh_install_missing_plugins() {
 
   unfunction zcompile-many clone-plugin
 }
+
 # --- zsh plugin manager updater ---
 function zsh_update_plugins() { rm -rf ${zsh_plugins}/**; zsh_install_missing_plugins }
 
@@ -289,7 +290,6 @@ compinit -d ${comp_cache}
 SUDO_PROMPT="$(tput setaf 2 bold)Password: $(tput sgr0)" && export SUDO_PROMPT
 
 _evalcache mise activate zsh
-_evalcache atuin init zsh
 
 # pnpm
 export PNPM_HOME="/Users/uzaaft/Library/pnpm"
