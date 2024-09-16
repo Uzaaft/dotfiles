@@ -90,23 +90,6 @@ export HISTFILE="${XDG_STATE_HOME-$HOME/.local/state}/zsh/history"
 export SAVEHIST=10000
 export KEYTIMEOUT=10
 
-# --- setup fzf ---
-export FZF_HOME=${XDG_CONFIG_HOME:-$HOME/.config}/fzf
-if [ ! -d ${FZF_HOME} ]; then
-  git clone --depth 1 https://github.com/junegunn/fzf.git ${FZF_HOME}
-  ${FZF_HOME}/install --xdg --no-update-rc
-fi
-function zsh_update_fzf() {
-  if test "$(git -C ${FZF_HOME} rev-parse HEAD)" = "$(git -C ${FZF_HOME} rev-parse master)"; then
-    echo "No updates for FZF"
-  else
-    echo "Pulling the latest FZF..."
-    git -C ${FZF_HOME} reset --hard master
-    git -C ${FZF_HOME} pull
-    echo "Updating FZF..."
-    ${FZF_HOME}/install
-  fi
-}
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
 export FZF_DEFAULT_OPTS="--extended"
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow"
