@@ -94,6 +94,7 @@ export KEYTIMEOUT=10
 export FZF_DEFAULT_OPTS="--extended"
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+source <(fzf --zsh)
 
 # --- completion ---
 source $ZDOTDIR/alias.zsh
@@ -142,7 +143,7 @@ zstyle ':fzf-tab:complete:git-checkout:*' fzf-preview \
   "recent commit object name") git show --color=always $word | delta ;;
   *) git log --color=always $word ;;
   esac'
-
+#
 # --- zsh-syntax-highlighting ---
 source ${zsh_plugins}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -165,18 +166,12 @@ source ${zsh_plugins}/zsh-nix-shell/nix-shell.plugin.zsh
 # === END PLUGINS ===
 #
 # -- Custom Uzaaft keybinding
-git_go() {
-  target=`git_cd`
-   [[ ! -z "$target" ]] && builtin cd "$target" ||
-  zle reset-prompt;
-}
 config_go() {
   target=`config_cd`
   [[ ! -z "$target" ]] && builtin cd "$target" ||
     zle reset-prompt
 }
 zle -N git_go
-zle -N config_go
 
 # --- keybindings ---
 autoload -Uz edit-command-line
@@ -200,7 +195,6 @@ bindkey -M vicmd '/' history-incremental-search-forward
 bindkey "^?" backward-delete-char
 bindkey '^x^e' edit-command-line
 bindkey '^ ' autosuggest-accept
-bindkey "ç" config_go
 
 _git_go() {
    # Run the command and capture the selected path
@@ -223,10 +217,10 @@ _git_go() {
 }
 
 # Make the function a Zle widget
-zle -N git_go
+zle -N _git_go
 
 # Bind Ctrl+G to the function
-bindkey '^G' git_go
+bindkey '^G' _git_go
 
 # expand ... to ../.. recursively
 function _rationalise-dot { # This was written entirely by Mikael Magnusson (Mikachu)
