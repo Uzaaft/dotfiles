@@ -94,7 +94,6 @@ export KEYTIMEOUT=10
 export FZF_DEFAULT_OPTS="--extended"
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-source <(fzf --zsh)
 
 # --- completion ---
 source $ZDOTDIR/alias.zsh
@@ -239,7 +238,7 @@ bindkey -M isearch . self-insert # without this, typing . aborts incr history se
 
 # --- configure path ---
 path=(
-  /opt/homebrew/opt/rustup/bin:
+  /opt/homebrew/opt/rustup/bin
   /opt/homebrew/opt/llvm/bin
   /opt/homebrew/bin/
   $HOME/.local/bin
@@ -280,3 +279,5 @@ export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
 # bun completions
 [ -s "/Users/uzaaft/.bun/_bun" ] && source "/Users/uzaaft/.bun/_bun"
+
+source <(fzf --zsh)
