@@ -1,1 +1,6 @@
 keybind = global:cmd+period=toggle_quick_terminal
+scrollback-limit = 100000000
+#custom-shader = ./shader.glsl
+theme = tokyonight
+
+shell-integration-features = sudo
