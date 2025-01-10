@@ -11,3 +11,4 @@ fish/.config/fish/conf.d/forgit.plugin.fish
 zsh/.config/zsh/.zsh_sessions
 **/.zcompdump.*
 **/.zcompdump
+stowed/.config/nix-darwin/result

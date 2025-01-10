@@ -60,9 +60,9 @@ function zsh_install_missing_plugins() {
     clone-plugin "https://github.com/mroth/evalcache"
     zcompile-many ${zsh_plugins}/evalcache/evalcache.plugin.zsh
   fi
-  if [[ ! -e ${zsh_plugins}/zsh-nix-shell ]]; then
-    clone-plugin "https://github.com/chisui/zsh-nix-shell"
-    zcompile-many ${zsh_plugins}/zsh-nix-shell/nix-shell.plugin.zsh
+  if [[ ! -e ${zsh_plugins}/yabai-zsh-completions ]]; then
+    clone-plugin "https://github.com/Amar1729/yabai-zsh-completions"
+    zcompile-many ${zsh_plugins}/yabai-zsh-completions/yabai-zsh-completions.plugin.zsh
   fi
 
   unfunction zcompile-many clone-plugin
