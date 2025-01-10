@@ -1,6 +1,7 @@
 . "$HOME/.cargo/env"
 export SSH_AUTH_SOCK="/Users/uzaaft/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 
+export GOKU_EDN_CONFIG_FILE="$HOME/.config/goku/karabiner.edn"
 export NPM_CONFIG_PREFIX="/Users/uzaaft/.npm-global"
 
 # OLD Path stuff
@@ -28,3 +29,8 @@ if [ -n "${NVIM_LISTEN_ADDRESS+x}" ] || [ -n "${NVIM+x}" ]; then
 else
   export MANPAGER="nvim -c 'Man!'"
 fi
+
+# NIX env stuff
+export NIXPKGS_ALLOW_UNFREE=1
+export NIX_PATH=darwin-config=$HOME/.nixpkgs/darwin-configuration.nix:$HOME/.nix-defexpr/channels:$NIX_PATH
+export ANTHROPIC_API_KEY="op://Personal/AnthropicNeovim/credential"

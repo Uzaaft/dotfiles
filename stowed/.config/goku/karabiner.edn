@@ -1,0 +1,25 @@
+
+;; note: super key is cmd + ctrl + opt (CTO/QWE); we can't use fn because that isn't recognized as a modifier key on macOS apps
+{
+	:devices {
+		:macbook-keyboard [{:vendor_id 0 :product_id 0}]
+	}
+	:main, [
+		{:des "Configure modifier keys on macbook keyboard" :rules [
+			;; fn -> super
+			[:##fn :!TOleft_command :macbook-keyboard]
+
+		]}
+
+		{:des "Arrow keys on MacBook keyboard" :rules [
+			;; fn + esdf -> arrow keys
+			[:!F##e :up_arrow :macbook-keyboard]
+			[:!F##s :left_arrow :macbook-keyboard]
+			[:!F##d :down_arrow :macbook-keyboard]
+			[:!F##f :right_arrow :macbook-keyboard]
+		]}
+
+	}
+
+	]
+}

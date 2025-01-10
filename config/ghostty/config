@@ -1,0 +1,19 @@
+font-thicken = true
+shell-integration-features = sudo
+window-padding-x = 0
+quit-after-last-window-closed = true
+mouse-hide-while-typing = true
+
+# Slashed zero
+font-feature = zero
+# m with shorter leg
+font-feature = cv06
+# W and w with lower middle connection
+font-feature = cv07
+# y with different ascender construction
+font-feature = cv11
+# u with traditional construction
+font-feature = cv12
+# Q with bent tail
+font-feature = cv16
+# vim: set ft=config

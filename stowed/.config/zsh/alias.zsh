@@ -13,13 +13,23 @@ alias ls="eza -a --icons --color=always -s type -F"
 alias lt="eza -T --icons=auto --group-directories-first --hyperlink"
 
 alias lg="lazygit"
+alias ldo="lazydocker"
 alias gg="git get"
+alias caz="AZURE_CONFIG_DIR=$HOME/.azure/cadea az"
+
+alias ga='git add'
+alias gc='git commit'
+alias gco='git checkout'
+alias gdiff='git diff'
+alias gp="git push";
+alias gs="git status";
+alias gt="git tag";
+alias ":q"="exit";
 
 alias arcopen="open -n /Applications/Arc.app"
 
 openwin() { osascript -e "tell application \"$1\" to activate" -e 'tell application "System Events" to keystroke "n" using command down'; }
 
 lowpower(){
-
   pmset -a lowpoermode 1
 }
