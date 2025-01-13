@@ -10,13 +10,13 @@ in
     # modules: allows for reusable code
     modules = [
       system-config
-
       inputs.home-manager.darwinModules.home-manager
       {
         # add home-manager settings here
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users."${username}" = home-manager-config;
+        home-manager.backupFileExtension = "backup";
       }
     ];
   }
