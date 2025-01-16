@@ -281,3 +281,4 @@ export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 [ -s "/Users/uzaaft/.bun/_bun" ] && source "/Users/uzaaft/.bun/_bun"
 
 source <(fzf --zsh)
+eval "$(direnv hook zsh)"
