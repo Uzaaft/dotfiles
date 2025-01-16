@@ -32,25 +32,14 @@
   };
 
   environment = {
-    shells = [pkgs.zsh pkgs.fish];
     systemPackages = [
       pkgs.devenv
     ];
-  };
-
-  programs = {
-    fish = {
-      enable = true;
-    };
-    zsh = {
-      enable = true;
-    };
   };
 
   services.nix-daemon.enable = true;
 
   users.users.${username} = {
     home = "/Users/${username}";
-    shell = pkgs.fish;
   };
 }
