@@ -15,13 +15,15 @@ in {
     gh
     nixd
     alejandra
+    neovim
+    lazygit
   ];
 
   programs.direnv = {
     enable = true;
-    enableZshIntegration = true;
     nix-direnv.enable = true;
   };
+
   home.file = {
     ".zshenv" = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/.zshenv";
@@ -38,6 +40,9 @@ in {
     };
     zsh = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/zsh";
+    };
+    yabai = {
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/yabai";
     };
   };
 }
