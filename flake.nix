@@ -10,6 +10,7 @@
     home-manager.url = "github:nix-community/home-manager";
     # nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs = {
@@ -38,14 +39,6 @@
         ...
       }: {
         formatter = pkgs.alejandra;
-
-        packages = {
-          mono-lisa = self.lib.mono-lisa {inherit (pkgs) stdenvNoCC;};
-          catppuccin-tmux = self.lib.catppuccin-tmux {
-            inherit (pkgs.tmuxPlugins) mkTmuxPlugin;
-            inherit (pkgs) fetchFromGitHub;
-          };
-        };
       };
     };
 }
