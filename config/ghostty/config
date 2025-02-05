@@ -3,6 +3,7 @@ shell-integration-features = sudo
 window-padding-x = 0
 quit-after-last-window-closed = true
 mouse-hide-while-typing = true
+macos-titlebar-style = hidden
 
 # Slashed zero
 font-feature = zero

@@ -2,43 +2,79 @@
   description = "Example nix-darwin system flake";
 
   inputs = {
-    darwin.url = "github:LnL7/nix-darwin";
-    darwin.inputs.nixpkgs.follows = "nixpkgs";
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    # Pin our primary nixpkgs repository. This is the main nixpkgs repository
+    # we'll use for our configurations. Be very careful changing this because
+    # it'll impact your entire system.
 
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager";
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    # We use the unstable nixpkgs repo for some packages.
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+    };
+    jujutsu.url = "github:martinvonz/jj";
+    zig.url = "github:mitchellh/zig-overlay";
   };
 
   outputs = {
     self,
-    darwin,
-    home-manager,
     nixpkgs,
-    flake-parts,
+    home-manager,
+    darwin,
+    ...
   } @ inputs: let
-    username = "uzaaft";
-    darwin-system = import ./system/darwin.nix {inherit inputs username;};
-  in
-    flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = ["aarch64-darwin"];
-      flake = {
-        darwinConfigurations = {
-          ArchMac = darwin-system "aarch64-darwin";
-        };
+    # Overlays is the list of overlays we want to apply from flake inputs.
+    overlays = [
+      inputs.jujutsu.overlays.default
+      inputs.zig.overlays.default
+    ];
 
-        lib = import ./lib {inherit inputs;};
-      };
-      perSystem = {
-        config,
-        pkgs,
-        system,
-        ...
-      }: {
-        formatter = pkgs.alejandra;
-      };
+    mkSystem = import ./lib/mksystem.nix {
+      inherit overlays nixpkgs inputs;
     };
+  in {
+    /*
+      nixosConfigurations.vm-aarch64 = mkSystem "vm-aarch64" {
+      system = "aarch64-linux";
+      user = "uzaaft";
+    };
+
+    nixosConfigurations.vm-aarch64-prl = mkSystem "vm-aarch64-prl" rec {
+      system = "aarch64-linux";
+      user = "uzaaft";
+    };
+
+    nixosConfigurations.vm-aarch64-utm = mkSystem "vm-aarch64-utm" rec {
+      system = "aarch64-linux";
+      user = "uzaaft";
+    };
+
+    nixosConfigurations.vm-intel = mkSystem "vm-intel" rec {
+      system = "x86_64-linux";
+      user = "uzaaft";
+    };
+    */
+
+    nixosConfigurations.wsl = mkSystem "wsl" {
+      system = "x86_64-linux";
+      user = "uzaaft";
+      wsl = true;
+    };
+
+    darwinConfigurations.ArchMac = mkSystem "macbook" {
+      system = "aarch64-darwin";
+      user = "uzaaft";
+      darwin = true;
+    };
+  };
 }
