@@ -24,24 +24,23 @@ in {
   # Packages I always want installed.
   home.packages =
     [
-       pkgs._1password-cli
-    pkgs.asciinema
-    pkgs.bat
-    pkgs.eza
-    pkgs.fd
-    pkgs.fzf
-    pkgs.gh
-    pkgs.htop
-    pkgs.jq
-    pkgs.ripgrep
-    pkgs.sentry-cli
-    pkgs.tree
-    pkgs.watch
+      pkgs._1password-cli
+      pkgs.asciinema
+      pkgs.bat
+      pkgs.eza
+      pkgs.fd
+      pkgs.fzf
+      pkgs.gh
+      pkgs.htop
+      pkgs.jq
+      pkgs.ripgrep
+      pkgs.sentry-cli
+      pkgs.tree
+      pkgs.watch
       pkgs.alejandra
       pkgs.nixd
       pkgs.lazygit
-          pkgs.zigpkgs."0.13.0"
-
+      pkgs.zigpkgs."0.13.0"
     ]
     ++ (lib.optionals isDarwin [
       # darwin packages
@@ -54,29 +53,27 @@ in {
   # dotfiles
   #---------------------------------------------------------------------
   home.file = {
- ".zshenv" = {
+    ".zshenv" = {
       source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/.zshenv";
     };
-
   };
 
   xdg.configFile =
     {
       # Always include these
       ghostty = {
-           source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/ghostty";
-           recursive = true;
-         };
-         nvim = {
-           source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/nvim";
-         };
-         zsh = {
-           source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/zsh";
-         };
-         yabai = {
-           source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/yabai";
-         };
-
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/ghostty";
+        recursive = true;
+      };
+      nvim = {
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/nvim";
+      };
+      zsh = {
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/zsh";
+      };
+      yabai = {
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/yabai";
+      };
     }
     // (
       if isDarwin
