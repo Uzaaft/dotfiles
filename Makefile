@@ -1,14 +1,21 @@
 .PHONY: build switch test clean
 
-default: build
+# The name of the nixosConfiguration in the flake
+NIXNAME ?= ArchMac
 
-# Build the configuration
-build:
-	darwin-rebuild build --flake .#
+# We need to do some OS switching below.
+UNAME := $(shell uname)
+
+default: build
 
 # Build and switch to the configuration
 switch:
-	darwin-rebuild switch --flake .#
+ifeq ($(UNAME), Darwin)
+	nix build --extra-experimental-features nix-command --extra-experimental-features flakes ".#darwinConfigurations.${NIXNAME}.system"
+		./result/sw/bin/darwin-rebuild switch --flake "$$(pwd)#${NIXNAME}"
+else
+sudo NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1 nixos-rebuild switch --flake ".#${NIXNAME}"
+endif
 
 # Test the configuration without switching
 test:
@@ -21,11 +28,6 @@ clean:
 # Update all flake inputs
 update:
 	nix flake update
-
-# Update specific input
-update-input:
-	@read -p "Enter input name: " input; \
-	nix flake lock --update-input $$input
 
 # Show the current system generation
 show:
