@@ -6,7 +6,7 @@ NIXNAME ?= ArchMac
 # We need to do some OS switching below.
 UNAME := $(shell uname)
 
-default: build
+default: switch
 
 # Build and switch to the configuration
 switch:
