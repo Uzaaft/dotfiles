@@ -40,6 +40,8 @@ in {
       pkgs.alejandra
       pkgs.nixd
       pkgs.lazygit
+      pkgs.git-get
+      pkgs.fzf
       pkgs.zigpkgs."0.13.0"
     ]
     ++ (lib.optionals isDarwin [
