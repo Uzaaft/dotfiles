@@ -42,6 +42,7 @@ in {
       pkgs.lazygit
       pkgs.git-get
       pkgs.fzf
+      pkgs.gh-dash
       pkgs.zigpkgs."0.13.0"
     ]
     ++ (lib.optionals isDarwin [
