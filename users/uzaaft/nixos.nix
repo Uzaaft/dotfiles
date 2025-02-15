@@ -14,9 +14,9 @@
 
   users.users.uzaaft = {
     isNormalUser = true;
-    home = "/home/mitchellh";
+    home = "/home/uzaaft";
     extraGroups = [];
-    shell = pkgs.uzaaft;
+    shell = pkgs.zsh;
     # hashedPassword = "";
     # openssh.authorizedKeys.keys = [
     #   "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGbTIKIPtrymhvtTvqbU07/e7gyFJqNS4S0xlfrZLOaY mitchellh"
