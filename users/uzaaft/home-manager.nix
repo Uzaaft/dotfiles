@@ -46,6 +46,8 @@ in {
       pkgs.zigpkgs."0.13.0"
     ]
     ++ (lib.optionals isDarwin [
+      pkgs.ollama
+      pkgs.llama-cpp
       # darwin packages
     ])
     ++ (lib.optionals (isLinux && !isWSL) [
