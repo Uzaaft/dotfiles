@@ -41,26 +41,12 @@
       inherit overlays nixpkgs inputs;
     };
   in {
-    /*
-    nixosConfigurations.wsl = mkSystem "wsl" {
-          system = "x86_64-linux";
-          user = "uzaaft";
-          wsl = true;
-        };
-
-
-        nixosConfigurations.vm-aarch64-prl = mkSystem "vm-aarch64-prl" rec {
-          system = "aarch64-linux";
-          user = "uzaaft";
-        };
-
-        nixosConfigurations.vm-intel = mkSystem "vm-intel" rec {
-          system = "x86_64-linux";
-          user = "uzaaft";
-        };
-    */
-
     nixosConfigurations.vm-aarch64 = mkSystem "vm-aarch64" {
+      system = "aarch64-linux";
+      user = "uzaaft";
+    };
+
+    nixosConfiguration.nvidia-workstation = mkSystem "ws-nvda-x86" {
       system = "aarch64-linux";
       user = "uzaaft";
     };
