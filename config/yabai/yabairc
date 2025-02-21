@@ -1,53 +1,49 @@
 #!/usr/bin/env sh
 
-# Unload the macOS WindowManager process
-# launchctl unload -F /System/Library/LaunchAgents/com.apple.WindowManager.plist > /dev/null 2>&1 &
-
+#
+# for this to work you must configure sudo such that
+# it will be able to run the command without password
+#
+# see this wiki page for information:
+#  - https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#configure-scripting-addition
+#
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
-yabai -m signal --add event=display_added action="sleep 1 && $HOME/.config/yabai/create_spaces.sh"
-yabai -m signal --add event=display_removed action="sleep 1 && $HOME/.config/yabai/create_spaces.sh"
-yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
-yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
+sudo yabai --load-sa
 
-"$HOME"/.config/yabai/create_spaces.sh
+# yabai -m signal --add app='^Ghostty$' event=window_created action='yabai -m space --layout bsp'
+# yabai -m signal --add app='^Ghostty$' event=window_destroyed action='yabai -m space --layout bsp'
 
-yabai -m config external_bar all:39:0 \
-	window_border off \
+# global settings
+yabai -m config \
+	external_bar all:40:0 \
+	menubar_opacity 1.0 \
 	mouse_follows_focus off \
-	focus_follows_mouse on \
+	focus_follows_mouse off \
+	display_arrangement_order default \
+	window_origin_display default \
 	window_placement second_child \
-	window_topmost off \
-	window_shadow float \
-	window_opacity on \
-	window_opacity_duration 0.15 \
+	window_zoom_persist on \
+	window_shadow on \
+	window_animation_duration 0.0 \
+	window_animation_easing ease_out_circ \
+	window_opacity_duration 0.0 \
 	active_window_opacity 1.0 \
-	normal_window_opacity 0.95 \
-	window_border_width 0 \
-	window_border_hidpi off \
-	window_animation_duration 0.2 \
-	insert_feedback_color 0xff9dd274 \
+	window_opacity off \
+	insert_feedback_color 0xffd75f5f \
 	split_ratio 0.50 \
+	split_type auto \
 	auto_balance off \
+	top_padding 4 \
+	bottom_padding 4 \
+	left_padding 4 \
+	right_padding 4 \
+	window_gap 4 \
+	layout bsp \
 	mouse_modifier fn \
 	mouse_action1 move \
 	mouse_action2 resize \
-	mouse_drop_action swap \
-	top_padding 0 \
-	bottom_padding 0 \
-	left_padding 0 \
-	right_padding 0 \
-	window_gap 0
-
-# Exclude problematic apps from being managed:
-yabai -m rule --add app="^(LuLu|Vimac|Calculator|Software Update|Dictionary|VLC|System Preferences|zoom.us|Photo Booth|Archive Utility|Python|LibreOffice|App Store|Steam|Alfred|Activity Monitor|iTerm2| Jetbrains Toolbox|Numi)$" manage=off
-yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
-yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
-yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
-yabai -m rule --add label="Select file to save to" app="^Inkscape$" title="Select file to save to" manage=off
+	mouse_drop_action swap
 
 yabai -m config layout bsp
-
-sudo yabai --load-sa
 
 echo "yabai configuration loaded.."
