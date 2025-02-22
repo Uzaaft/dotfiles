@@ -25,7 +25,9 @@ in {
   home.packages =
     [
       pkgs._1password-cli
+      # Stuff
       pkgs.asciinema
+      # CLI tools
       pkgs.bat
       pkgs.eza
       pkgs.fd
@@ -34,20 +36,27 @@ in {
       pkgs.htop
       pkgs.jq
       pkgs.ripgrep
-      pkgs.sentry-cli
       pkgs.tree
       pkgs.watch
+      pkgs.hyperfine
+      pkgs.git-get
+      pkgs.gh-dash
+      pkgs.dua
+      pkgs.curl
+      pkgs.fastfetch
+      pkgs.onefetch
+      pkgs.yabai
+      # Nix stuff
       pkgs.alejandra
       pkgs.nixd
+      # TUI
       pkgs.lazygit
-      pkgs.git-get
-      pkgs.fzf
-      pkgs.gh-dash
       pkgs.zigpkgs."0.13.0"
     ]
     ++ (lib.optionals isDarwin [
       pkgs.ollama
       pkgs.llama-cpp
+      pkgs.macmon
       # darwin packages
     ])
     ++ (lib.optionals (isLinux && !isWSL) [
