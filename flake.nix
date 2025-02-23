@@ -48,10 +48,15 @@
       user = "uzaaft";
     };
 
-    nixosConfiguration.nvidia-workstation = mkSystem "ws-nvda-x86" {
+    nixosConfigurations.latte-panda-x86_64 = mkSystem "latte-panda-x86_64" {
       system = "x86_64-linux";
       user = "uzaaft";
     };
+
+    # nixosConfiguration.nvidia-workstation = mkSystem "ws-nvda-x86" {
+    #   system = "x86_64-linux";
+    #   user = "uzaaft";
+    # };
 
     darwinConfigurations.ArchMac = mkSystem "macbook" {
       system = "aarch64-darwin";
