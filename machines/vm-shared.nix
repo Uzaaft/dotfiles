@@ -69,7 +69,6 @@
       fcitx5.addons = with pkgs; [
         fcitx5-mozc
         fcitx5-gtk
-        fcitx5-chinese-addons
       ];
     };
   };
@@ -100,7 +99,6 @@
       cachix
       gnumake
       killall
-      niv
       xclip
 
       # For hypervisors that support auto-resizing, this script forces it.
