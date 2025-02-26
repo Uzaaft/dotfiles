@@ -20,6 +20,10 @@ in {
   #---------------------------------------------------------------------
   # Packages
   #---------------------------------------------------------------------
+  programs.neovim = {
+    enable = true;
+    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+  };
 
   # Packages I always want installed.
   home.packages =
