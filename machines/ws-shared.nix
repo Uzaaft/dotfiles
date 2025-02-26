@@ -32,6 +32,7 @@
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
+  networking.networkmanager.enable = true;
 
   # Don't require password for sudo
   security.sudo.wheelNeedsPassword = false;
@@ -51,7 +52,6 @@
       fcitx5.addons = with pkgs; [
         fcitx5-mozc
         fcitx5-gtk
-        fcitx5-chinese-addons
       ];
     };
   };
@@ -81,7 +81,6 @@
     cachix
     gnumake
     killall
-    niv
     xclip
 
     # For hypervisors that support auto-resizing, this script forces it.
@@ -99,14 +98,6 @@
     displayManager.gdm.enable = true;
   };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   services.openssh.settings.PasswordAuthentication = true;
@@ -114,7 +105,6 @@
 
   # Disable the firewall since we're in a VM and we want to make it
   # easy to visit stuff in here. We only use NAT networking anyways.
-  networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
