@@ -52,10 +52,10 @@ in {
       # Cargo stuff
       pkgs.cargo-edit
       pkgs.cargo-nextest
-      pkgs.cargo-lipo
-      pkgs.cargo-workspace
+      # pkgs.cargo-lipo
+      # pkgs.cargo-workspace
       pkgs.cargo-xwin
-      pkgs.cargocleaner
+      # pkgs.cargocleaner
       # TUI
       pkgs.lazygit
       pkgs.zigpkgs."0.13.0"
