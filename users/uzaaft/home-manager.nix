@@ -45,7 +45,6 @@ in {
       pkgs.curl
       pkgs.fastfetch
       pkgs.onefetch
-      pkgs.yabai
       # Nix stuff
       pkgs.alejandra
       pkgs.nixd
@@ -64,6 +63,7 @@ in {
       pkgs.ollama
       pkgs.llama-cpp
       pkgs.macmon
+      pkgs.yabai
       # darwin packages
     ])
     ++ (lib.optionals (isLinux && !isWSL) [
