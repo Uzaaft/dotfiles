@@ -24,6 +24,18 @@ in {
     enable = true;
     package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
   };
+  programs.git = {
+    enable = true;
+    userName = "Uzair Aftab";
+    userEmail = "uzaaft@outlook.com";
+    extraConfig = {
+      branch.autosetuprebase = "always";
+      color.ui = true;
+      github.user = "uzaaft";
+      push.default = "tracking";
+      init.defaultBranch = "main";
+    };
+  };
 
   # Packages I always want installed.
   home.packages =
