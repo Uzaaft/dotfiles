@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./hardware/latte-panda-x86_64.nix
+    ./ws-shared.nix
   ];
 
   # Setup qemu so we can run x86_64 binaries
