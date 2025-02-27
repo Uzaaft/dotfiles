@@ -23,6 +23,7 @@
     powerManagement.finegrained = false;
     open = false;
     nvidiaSettings = true;
+    # https://github.com/NixOS/nixpkgs/issues/375730#issuecomment-2625157971
     package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
       version = "570.86.16"; # use latest 1080-ti drivers
       sha256_64bit = "sha256-RWPqS7ZUJH9JEAWlfHLGdqrNlavhaR1xMyzs8lJhy9U=";
