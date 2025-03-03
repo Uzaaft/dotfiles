@@ -6,7 +6,6 @@ alias rest="timer 10m && terminal-notifier -message 'Pomodoro' -title 'Break is 
 alias work="timer 60m && terminal-notifier -message 'Pomodoro' -title 'Work Timer is up\\! Take a Break 😊' -appIcon '~/Pictures/pumpkin.png' -sound Crystal"
 # eza aliases
 alias l="eza -a --icons --color=always -s type -F "
-alias lg="lazygit"
 alias ll="eza -l --icons --color=always -s type -F"
 alias lll="eza -la --icons --color=always -s type -F"
 alias ls="eza -a --icons --color=always -s type -F"
@@ -15,7 +14,6 @@ alias lt="eza -T --icons=auto --group-directories-first --hyperlink"
 alias lg="lazygit"
 alias ldo="lazydocker"
 alias gg="git get"
-alias caz="AZURE_CONFIG_DIR=$HOME/.azure/cadea az"
 
 alias ga='git add'
 alias gc='git commit'
