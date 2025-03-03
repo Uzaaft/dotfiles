@@ -85,9 +85,9 @@ setopt hist_verify
 setopt inc_append_history
 setopt interactivecomments
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd:cd ..:cd.."
-export HISTSIZE=25000
+export HISTSIZE=1000000
 export HISTFILE="${XDG_STATE_HOME-$HOME/.local/state}/zsh/history"
-export SAVEHIST=10000
+export SAVEHIST=1000000
 export KEYTIMEOUT=10
 
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
