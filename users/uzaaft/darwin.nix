@@ -3,10 +3,10 @@
   pkgs,
   ...
 }: {
-  homebrew = {
-    enable = true;
-    casks = [];
-  };
+  # homebrew = {
+  #   enable = true;
+  #   casks = [];
+  # };
   services.yabai = {
     enable = true;
     enableScriptingAddition = true;
