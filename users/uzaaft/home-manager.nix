@@ -28,7 +28,11 @@ in {
     enable = true;
     userName = "Uzair Aftab";
     userEmail = "uzaaft@outlook.com";
+
     extraConfig = {
+      fetch = {
+        prune = true;
+      };
       branch.autosetuprebase = "always";
       color.ui = true;
       github.user = "uzaaft";
