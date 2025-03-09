@@ -40,7 +40,12 @@ in
     inherit system;
 
     modules = [
-      inputs.determinate.nixosModules.default
+      # Bring in determinate nix module if none darwin system
+      (
+        if darwin
+        then {}
+        else inputs.determinate.nixosModules.default
+      )
 
       # Apply our overlays. Overlays are keyed by system type so we have
       # to go through and apply our system type. We do this first so
