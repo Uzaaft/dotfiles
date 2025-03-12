@@ -76,7 +76,6 @@ in {
       pkgs.ollama
       pkgs.llama-cpp
       pkgs.macmon
-      pkgs.yabai
       # darwin packages
     ])
     ++ (lib.optionals (isLinux && !isWSL) [
