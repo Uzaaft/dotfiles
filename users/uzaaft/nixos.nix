@@ -10,8 +10,10 @@
   environment.localBinInPath = true;
 
   # Since we're using fish as our shell
-  programs.fish.enable = true;
-  programs.fish.package = pkgs.fish;
+  programs.fish = {
+    enable = true;
+    package = pkgs.fish;
+  };
 
   users.users.uzaaft = {
     isNormalUser = true;

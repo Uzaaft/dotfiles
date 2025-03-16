@@ -34,6 +34,10 @@
     # Overlays is the list of overlays we want to apply from flake inputs.
     overlays = [
       inputs.zig.overlays.default
+
+      (final: prev: rec {
+        fish = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.fish;
+      })
     ];
 
     mkSystem = import ./lib/mksystem.nix {
