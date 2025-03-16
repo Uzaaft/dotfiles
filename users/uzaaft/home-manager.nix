@@ -65,6 +65,8 @@ in {
       pkgs.curl
       pkgs.fastfetch
       pkgs.onefetch
+      pkgs.dua
+      pkgs.cargo-update
       # Nix stuff
       pkgs.alejandra
       pkgs.nixd
