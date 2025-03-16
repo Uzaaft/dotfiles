@@ -5,7 +5,8 @@
 }: {
   homebrew = {
     enable = true;
-    casks = [
+
+    brews = [
       "yabai"
     ];
   };
