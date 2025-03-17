@@ -11,7 +11,7 @@ MAKEFILE_DIR := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 SSH_OPTIONS=-o PubkeyAuthentication=no -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
 
 # The name of the nixosConfiguration in the flake
-NIXNAME ?= ArchMac
+NIXNAME ?= vm-aarch64
 
 # We need to do some OS switching below.
 UNAME := $(shell uname)
@@ -21,14 +21,16 @@ default: switch
 # Build and switch to the configuration
 switch:
 ifeq ($(UNAME), Darwin)
-	nix build --extra-experimental-features nix-command --extra-experimental-features flakes ".#darwinConfigurations.${NIXNAME}.system"
-		./result/sw/bin/darwin-rebuild switch --flake "$$(pwd)#${NIXNAME}"
+	echo "Macos build"
+	nix build --extra-experimental-features nix-command --extra-experimental-features flakes ".#darwinConfigurations.ArchMac.system"
+		./result/sw/bin/darwin-rebuild switch --flake "$$(pwd)#ArchMac"
 else
+	echo "NixOS build"
 	sudo NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1 nixos-rebuild switch --flake ".#${NIXNAME}"
 endif
 
 vm/bootstrap0:
-	ssh$(SSH_OPTIONS) -p$(NIXPORT) root@$(NIXADDR) " \
+	ssh $(SSH_OPTIONS) -p$(NIXPORT) root@$(NIXADDR) " \
 		parted /dev/nvme0n1 -- mklabel gpt; \
 		parted /dev/nvme0n1 -- mkpart primary 512MB -8GB; \
 		parted /dev/nvme0n1 -- mkpart primary linux-swap -8GB 100\%; \
@@ -38,27 +40,20 @@ vm/bootstrap0:
 		mkfs.ext4 -L nixos /dev/nvme0n1p1; \
 		mkswap -L swap /dev/nvme0n1p2; \
 		mkfs.fat -F 32 -n boot /dev/nvme0n1p3; \
-		sleep 1
-		mount /dev/disk/by-label/nixos /mnt
-		mkdir -p /mnt/boot
-		mount /dev/disk/by-label/boot /mnt/boot
-		nixos-generate-config --root /mnt
+		sleep 1; \
+		mount /dev/disk/by-label/nixos /mnt; \
+		mkdir -p /mnt/boot; \
+		mount /dev/disk/by-label/boot /mnt/boot; \
+		nixos-generate-config --root /mnt; \
 		sed --in-place '/system\.stateVersion = .*/a \
-			nix.package = pkgs.nixUnstable
-			\n
 			nix.extraOptions = \"experimental-features = nix-command flakes\";\n \
-			nix.settings.substituters = [\"https://mitchellh-nixos-config.cachix.org\"]
-			\n
-			nix.settings.trusted-public-keys = [\"mitchellh-nixos-config.cachix.org-1:bjEbXJyLrL1HZZHBbO4QALnI5faYZppzkU4D2s0G8RQ=\"];\n \
-	 			services.openssh.enable = true
-	 			\n
 			services.openssh.settings.PasswordAuthentication = true;\n \
-			services.openssh.settings.PermitRootLogin = \"yes\"
-			\n
+			services.openssh.settings.PermitRootLogin = \"yes\";\n \
 			users.users.root.initialPassword = \"root\";\n \
 		' /mnt/etc/nixos/configuration.nix; \
 		nixos-install --no-root-passwd && reboot; \
 	"
+
 # after bootstrap0, run this to finalize. After this, do everything else
 # in the VM unless secrets change.
 vm/bootstrap:
