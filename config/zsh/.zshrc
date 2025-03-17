@@ -1,5 +1,4 @@
 # zmodload zsh/zprof
-
 # assumed commands:
 #   git (plugin management)
 #   wget (downloading  preview script)
@@ -265,7 +264,6 @@ compinit -d ${comp_cache}
 # Colorful sudo prompt.
 SUDO_PROMPT="$(tput setaf 2 bold)Password: $(tput sgr0)" && export SUDO_PROMPT
 
-_evalcache mise activate zsh
 
 # pnpm
 export PNPM_HOME="/Users/uzaaft/Library/pnpm"
