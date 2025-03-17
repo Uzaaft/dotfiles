@@ -5,9 +5,10 @@
 }: {
   homebrew = {
     enable = true;
+	taps = [ "koekeishiya/formulae"];
 
     brews = [
-      "yabai"
+      "koekeishiya/formulae/yabai"
     ];
   };
   nix.enable = false;
