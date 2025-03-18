@@ -74,6 +74,7 @@ in {
       # TUI
       pkgs.lazygit
       pkgs.zigpkgs."0.13.0"
+      pkgs.delta
     ]
     ++ (lib.optionals isDarwin [
       pkgs.ollama
