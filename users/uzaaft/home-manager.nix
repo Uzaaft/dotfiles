@@ -75,6 +75,7 @@ in {
       pkgs.lazygit
       pkgs.zigpkgs."0.13.0"
       pkgs.delta
+      pkgs.rustup
     ]
     ++ (lib.optionals isDarwin [
       pkgs.ollama
