@@ -95,6 +95,8 @@
       # You can test if you don't need this by deleting this and seeing
       # if the clipboard sill works.
       gtkmm3
+      ghostty
+      swaylock
     ];
 
   # Our default non-specialised desktop environment.
