@@ -20,6 +20,9 @@
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
     };
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+    };
 
     zig.url = "github:mitchellh/zig-overlay";
   };
@@ -34,6 +37,7 @@
     # Overlays is the list of overlays we want to apply from flake inputs.
     overlays = [
       inputs.zig.overlays.default
+      inputs.ghostty.overlays.default
 
       (final: prev: rec {
         fish = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.fish;
