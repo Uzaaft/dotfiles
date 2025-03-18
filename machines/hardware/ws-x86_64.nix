@@ -17,7 +17,7 @@
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
-    fsType = "btrfs";
+    fsType = "ext4";
   };
 
   fileSystems."/boot" = {
