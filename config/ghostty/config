@@ -1,3 +1,5 @@
+# vim: set ft=config
+
 font-thicken = true
 shell-integration-features = sudo
 window-padding-x = 0
@@ -17,4 +19,6 @@ font-feature = cv11
 font-feature = cv12
 # Q with bent tail
 font-feature = cv16
-# vim: set ft=config
+
+config-file = ?config-linux
+# config-file = ?config-macos

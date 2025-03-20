@@ -1,0 +1,4 @@
+gtk-adwaita = false
+
+# Use a simple titlebar:
+gtk-titlebar = false
