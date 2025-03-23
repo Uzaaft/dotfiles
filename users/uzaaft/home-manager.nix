@@ -67,6 +67,7 @@ in {
       pkgs.onefetch
       pkgs.dua
       pkgs.cargo-update
+      pkgs.ijq
       # Nix stuff
       pkgs.alejandra
       pkgs.nixd
