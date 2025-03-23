@@ -15,6 +15,7 @@
       "alt-tab"
       "orbstack"
       "bruno"
+      "tableplus"
       # Required for Norwegian jobs
       "microsoft-teams"
       "ghostty@tip"
