@@ -81,6 +81,7 @@ in {
       pkgs.ollama
       pkgs.llama-cpp
       pkgs.macmon
+      pkgs.tart
       # darwin packages
     ])
     ++ (lib.optionals (isLinux && !isWSL) [
