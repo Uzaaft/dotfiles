@@ -46,11 +46,15 @@ vm/bootstrap0:
 		mount /dev/disk/by-label/boot /mnt/boot; \
 		nixos-generate-config --root /mnt; \
 		sed --in-place '/system\.stateVersion = .*/a \
-			nix.extraOptions = \"experimental-features = nix-command flakes\";\n \
-			services.openssh.settings.PasswordAuthentication = true;\n \
-			services.openssh.settings.PermitRootLogin = \"yes\";\n \
-			users.users.root.initialPassword = \"root\";\n \
-		' /mnt/etc/nixos/configuration.nix; \
+						nix.package = pkgs.nixVersions.latest;\n \
+						nix.extraOptions = \"experimental-features = nix-command flakes\";\n \
+						nix.settings.substituters = [\"https://uzaaft-nixos-config.cachix.org\"];\n \
+						nix.settings.trusted-public-keys = [\"uzaaft-nixos-config.cachix.org-1:Aq0SI5W8qOROEbbYHS2rfukZpaDmFsjYAfQGDyJE/Pw=\"];\n \
+  					services.openssh.enable = true;\n \
+						services.openssh.settings.PasswordAuthentication = true;\n \
+						services.openssh.settings.PermitRootLogin = \"yes\";\n \
+						users.users.root.initialPassword = \"root\";\n \
+					' /mnt/etc/nixos/configuration.nix; \
 		nixos-install --no-root-passwd && reboot; \
 	"
 
