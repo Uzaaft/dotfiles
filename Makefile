@@ -100,6 +100,10 @@ update:
 show:
 	darwin-rebuild --list-generations
 
+cache:
+	nix build '.#nixosConfigurations.$(NIXNAME).config.system.build.toplevel' --json \
+		| jq -r '.[].outputs | to_entries[].value' \
+		| cachix push uzaaft-nixos-config
 help:
 	@echo "Available targets:"
 	@echo "  build   - Build the configuration"
