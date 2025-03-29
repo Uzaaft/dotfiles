@@ -56,6 +56,7 @@ in {
       pkgs.htop
       pkgs.jq
       pkgs.ripgrep
+      pkgs.repgrep
       pkgs.tree
       pkgs.watch
       pkgs.hyperfine
