@@ -20,43 +20,21 @@ in {
   #---------------------------------------------------------------------
   # Packages
   #---------------------------------------------------------------------
-  programs.neovim = {
-    enable = true;
-    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
-  };
-  programs.git = {
-    enable = true;
-    userName = "Uzair Aftab";
-    userEmail = "uzaaft@outlook.com";
-
-    extraConfig = {
-      fetch = {
-        prune = true;
-      };
-      branch.autosetuprebase = "always";
-      color.ui = true;
-      github.user = "uzaaft";
-      push.default = "tracking";
-      init.defaultBranch = "main";
-    };
-  };
-
   # Packages I always want installed.
   home.packages =
     [
       pkgs._1password-cli
       # Stuff
       pkgs.asciinema
+      pkgs.fish
       # CLI tools
       pkgs.bat
       pkgs.eza
       pkgs.fd
       pkgs.fzf
       pkgs.gh
-      pkgs.htop
       pkgs.jq
       pkgs.ripgrep
-      pkgs.repgrep
       pkgs.tree
       pkgs.watch
       pkgs.hyperfine
@@ -66,18 +44,21 @@ in {
       pkgs.curl
       pkgs.fastfetch
       pkgs.onefetch
-      pkgs.fish
       pkgs.dua
       pkgs.cargo-update
-      pkgs.ijq
       # Nix stuff
       pkgs.alejandra
       pkgs.nixd
       # TUI
       pkgs.lazygit
-      pkgs.zigpkgs."0.14.0"
       pkgs.delta
+      pkgs.htop
+      pkgs.repgrep
+      pkgs.ijq
+      # Languages
       pkgs.rustup
+      pkgs.zigpkgs."0.14.0"
+      pkgs.file
     ]
     ++ (lib.optionals isDarwin [
       pkgs.ollama
@@ -135,6 +116,28 @@ in {
   #---------------------------------------------------------------------
   # Programs
   #---------------------------------------------------------------------
+  programs.neovim = {
+    enable = true;
+    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+  };
+  programs.fuzzel.enable = true;
+
+  programs.git = {
+    enable = true;
+    userName = "Uzair Aftab";
+    userEmail = "uzaaft@outlook.com";
+
+    extraConfig = {
+      fetch = {
+        prune = true;
+      };
+      branch.autosetuprebase = "always";
+      color.ui = true;
+      github.user = "uzaaft";
+      push.default = "tracking";
+      init.defaultBranch = "main";
+    };
+  };
 
   programs.gpg.enable = !isDarwin;
 

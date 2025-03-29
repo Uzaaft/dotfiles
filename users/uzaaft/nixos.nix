@@ -4,17 +4,9 @@
   ...
 }: {
   # https://github.com/nix-community/home-manager/pull/2408
-  environment.pathsToLink = ["/share/fish"];
 
   # Add ~/.local/bin to PATH
   environment.localBinInPath = true;
-  programs.niri.enable = true;
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-    ];
-  };
 
   # Since we're using fish as our shell
   programs.zsh = {
