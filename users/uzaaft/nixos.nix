@@ -7,13 +7,6 @@
 
   # Add ~/.local/bin to PATH
   environment.localBinInPath = true;
-  programs.niri.enable = true;
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-    ];
-  };
 
   programs.zsh = {
     enable = true;
