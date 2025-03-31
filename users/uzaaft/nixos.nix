@@ -8,9 +8,6 @@
   # Add ~/.local/bin to PATH
   environment.localBinInPath = true;
 
-  programs.zsh = {
-    enable = true;
-  };
 
   users.users.uzaaft = {
     isNormalUser = true;
