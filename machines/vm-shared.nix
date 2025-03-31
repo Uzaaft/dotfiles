@@ -15,7 +15,6 @@
   # Be careful updating this.
   boot.kernelPackages = pkgs.linuxPackages_latest;
   nix = {
-    package = pkgs.nixVersions.latest;
     extraOptions = ''
       experimental-features = nix-command flakes
       keep-outputs = true
@@ -72,6 +71,7 @@
 
   services.tailscale.enable = true;
   programs.niri.enable = true;
+  programs._1password-gui.enable = true;
 
   xdg.portal = {
     enable = true;

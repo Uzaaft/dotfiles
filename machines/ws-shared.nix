@@ -23,7 +23,6 @@
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
-  networking.networkmanager.enable = true;
 
   # Don't require password for sudo
   security.sudo.wheelNeedsPassword = false;

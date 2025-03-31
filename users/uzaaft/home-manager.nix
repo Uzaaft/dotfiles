@@ -45,6 +45,8 @@ in {
       pkgs.onefetch
       pkgs.dua
       pkgs.cargo-update
+      # Fallback shell
+      pkgs.zsh
       # Nix stuff
       pkgs.alejandra
       pkgs.nixd
@@ -52,6 +54,7 @@ in {
       pkgs.lazygit
       pkgs.delta
       pkgs.htop
+      pkgs.btop
       pkgs.repgrep
       pkgs.ijq
       # Languages
