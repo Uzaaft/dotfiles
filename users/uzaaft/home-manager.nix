@@ -108,6 +108,9 @@ in {
         # Darwin stuf
       }
       else {
+        niri = {
+          source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/niri";
+        };
       }
     )
     // (
