@@ -24,8 +24,6 @@
       url = "github:ghostty-org/ghostty";
     };
 
-    nushell = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.nushell;
-
     zig.url = "github:mitchellh/zig-overlay";
 
   };
@@ -43,6 +41,7 @@
       inputs.ghostty.overlays.default
 
       (final: prev: rec {
+        nushell = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.nushell;
       })
     ];
 
