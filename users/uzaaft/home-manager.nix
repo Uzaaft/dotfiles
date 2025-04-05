@@ -120,6 +120,9 @@ in {
     enable = true;
     package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
   };
+  programs.nushell = {
+    enable = true;
+  };
 
   programs.git = {
     enable = true;
