@@ -116,6 +116,7 @@
       gtkmm3
       ghostty
       swaylock
+      wayclip
     ];
 
   # Our default non-specialised desktop environment.

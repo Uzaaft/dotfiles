@@ -71,6 +71,7 @@ in {
       # darwin packages
     ])
     ++ (lib.optionals (isLinux && !isWSL) [
+      pkgs.zathura
       # non-darwin packages
     ]);
 
