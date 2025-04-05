@@ -71,6 +71,7 @@ in {
     ])
     ++ (lib.optionals (isLinux && !isWSL) [
       pkgs.zathura
+
       # non-darwin packages
     ]);
 
@@ -155,6 +156,8 @@ in {
       };
     };
   };
+
+  programs.fuzzel.enable = isLinux;
 
   programs.jujutsu = {
     enable = true;
