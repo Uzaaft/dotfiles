@@ -27,6 +27,20 @@
   # This works through our custom module imported above
   virtualisation.vmware.guest.enable = true;
 
+  services.greetd = {
+    enable = true;
+    package = pkgs.greetd.tuigreet;
+    settings = {
+      # terminal = {
+      #   vt = 1;
+      # };
+      default_session = {
+        user = "uzaaft";
+        command = "${lib.getExe pkgs.greetd.tuigreet} --cmd ${lib.getExe' pkgs.niri "niri-session"}";
+      };
+    };
+  };
+
   # Share our host filesystem
   fileSystems."/host" = {
     fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";
