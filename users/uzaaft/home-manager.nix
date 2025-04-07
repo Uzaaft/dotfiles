@@ -26,6 +26,7 @@ in {
       pkgs._1password-cli
       # Stuff
       pkgs.asciinema
+      pkgs.zsh
       # CLI tools
       pkgs.bat
       pkgs.eza
@@ -61,6 +62,7 @@ in {
       pkgs.rustup
       pkgs.zigpkgs."0.14.0"
       pkgs.file
+      pkgs.balena-cli
     ]
     ++ (lib.optionals isDarwin [
       pkgs.ollama
@@ -71,6 +73,7 @@ in {
     ])
     ++ (lib.optionals (isLinux && !isWSL) [
       pkgs.zathura
+      pkgs.greetd.tuigreet
 
       # non-darwin packages
     ]);
