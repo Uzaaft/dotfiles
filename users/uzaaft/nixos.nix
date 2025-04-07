@@ -4,10 +4,14 @@
   ...
 }: {
   # https://github.com/nix-community/home-manager/pull/2408
+  # imports = [
+  #   ./waybar.nix
+  # ];
 
   # Add ~/.local/bin to PATH
   environment.localBinInPath = true;
 
+  programs.zsh.enable = true;
 
   users.users.uzaaft = {
     isNormalUser = true;
