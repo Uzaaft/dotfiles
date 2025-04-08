@@ -46,6 +46,7 @@ in {
       pkgs.onefetch
       pkgs.dua
       pkgs.cargo-update
+      pkgs.cargo-zigbuild
       # Fallback shell
       pkgs.zsh
       # Nix stuff
@@ -156,6 +157,7 @@ in {
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
+    enableZshIntegration = true;
     config = {
       whitelist = {
         # Should add the following: polymath, stormwater-ai, uzaaft
