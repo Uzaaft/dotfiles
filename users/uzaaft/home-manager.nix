@@ -47,6 +47,8 @@ in {
       pkgs.dua
       pkgs.cargo-update
       pkgs.cargo-zigbuild
+      pkgs.cargo-workspaces
+      pkgs.watchexec
       # Fallback shell
       pkgs.zsh
       # Nix stuff
@@ -168,6 +170,6 @@ in {
   programs.fuzzel.enable = isLinux;
 
   programs.jujutsu = {
-    enable = true;
+    enable = false;
   };
 }
