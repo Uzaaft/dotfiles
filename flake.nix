@@ -25,7 +25,6 @@
     };
 
     zig.url = "github:mitchellh/zig-overlay";
-
   };
 
   outputs = {
@@ -42,6 +41,7 @@
 
       (final: prev: rec {
         nushell = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.nushell;
+        macmon = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.macmon;
       })
     ];
 
