@@ -101,7 +101,6 @@
       cachix
       gnumake
       killall
-      xclip
 
       # For hypervisors that support auto-resizing, this script forces it.
       # I've noticed not everyone listens to the udev events so this is a hack.
@@ -118,14 +117,6 @@
       swaylock
       wayclip
     ];
-
-  # Our default non-specialised desktop environment.
-  services.xserver = lib.mkIf (config.specialisation != {}) {
-    enable = true;
-    xkb.layout = "us";
-    desktopManager.gnome.enable = true;
-    displayManager.gdm.enable = true;
-  };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
