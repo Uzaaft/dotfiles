@@ -101,7 +101,7 @@ in {
       yabai = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/yabai";
       };
-      lazygit = {source = ./config.yml;};
+      "lazygit/config.yml" = {source = ./lazygit.yml;};
     }
     // (
       # Darwin stuf
