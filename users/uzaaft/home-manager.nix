@@ -78,7 +78,7 @@ in {
   #---------------------------------------------------------------------
   home.file = {
     ".zshenv" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/.zshenv";
+      source = ./.zshenv;
     };
   };
 
@@ -101,6 +101,7 @@ in {
       yabai = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/yabai";
       };
+      lazygit = {source = ./config.yml;};
     }
     // (
       # Darwin stuf
