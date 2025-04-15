@@ -68,7 +68,6 @@
 
   services.tailscale.enable = true;
   programs.niri.enable = true;
-  programs._1password-gui.enable = true;
 
   xdg.portal = {
     enable = true;
@@ -109,10 +108,9 @@
       # This is needed for the vmware user tools clipboard to work.
       # You can test if you don't need this by deleting this and seeing
       # if the clipboard sill works.
-      gtkmm3
       ghostty
       swaylock
-      wayclip
+      wl-clipboard
     ];
 
   # Enable the OpenSSH daemon.
