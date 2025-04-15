@@ -10,6 +10,10 @@
 }: let
   isDarwin = pkgs.stdenv.isDarwin;
   isLinux = pkgs.stdenv.isLinux;
+  shellAliases = {
+    pbcopy = "wl-copy";
+    pbpaste = "wl-paste";
+  };
 in {
   # Home-manager 22.11 requires this be set. We never set it so we have
   # to use the old state version.
@@ -30,35 +34,23 @@ in {
       pkgs.zsh
       # CLI tools
       pkgs.bat
+      pkgs.curl
       pkgs.eza
+      pkgs.fastfetch
       pkgs.fd
       pkgs.fzf
       pkgs.gh
+      pkgs.git-get
       pkgs.jq
+      pkgs.onefetch
       pkgs.ripgrep
       pkgs.tree
       pkgs.watch
-      pkgs.hyperfine
-      pkgs.git-get
-      pkgs.gh-dash
-      pkgs.dua
-      pkgs.curl
-      pkgs.fastfetch
-      pkgs.onefetch
-      pkgs.dua
-      pkgs.cargo-update
-      pkgs.cargo-zigbuild
-      pkgs.cargo-workspaces
-      pkgs.watchexec
-      # Fallback shell
-      pkgs.zsh
       # Nix stuff
       pkgs.alejandra
       pkgs.nixd
       # TUI
       pkgs.lazygit
-      pkgs.delta
-      pkgs.htop
       pkgs.btop
       pkgs.repgrep
       pkgs.ijq
@@ -67,19 +59,18 @@ in {
       pkgs.zigpkgs."0.14.0"
       pkgs.file
       pkgs.balena-cli
+      # Formatters
     ]
     ++ (lib.optionals isDarwin [
       pkgs.ollama
       pkgs.llama-cpp
       pkgs.macmon
-      pkgs.tart
       # darwin packages
     ])
     ++ (lib.optionals (isLinux && !isWSL) [
+      # non-darwin packages
       pkgs.zathura
       pkgs.greetd.tuigreet
-
-      # non-darwin packages
     ]);
 
   #---------------------------------------------------------------------
@@ -112,20 +103,19 @@ in {
       };
     }
     // (
+      # Darwin stuf
       if isDarwin
       then {
-        # Darwin stuf
       }
-      else {
+      else {}
+    )
+    // (
+      # Linux stuf
+      if isLinux
+      then {
         niri = {
           source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/niri";
         };
-      }
-    )
-    // (
-      if isLinux
-      then {
-        # Linux stuf
       }
       else {}
     );
@@ -137,8 +127,19 @@ in {
     enable = true;
     package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
   };
+
+  # Playing around with this
   programs.nushell = {
     enable = true;
+    configFile.source = ./config.nu;
+    shellAliases = shellAliases;
+  };
+
+  # Using this alongside nushell for now.
+  programs.oh-my-posh = {
+    enable = true;
+    enableNushellIntegration = true;
+    settings = builtins.fromJSON (builtins.readFile ./omp.json);
   };
 
   programs.git = {
@@ -172,8 +173,4 @@ in {
   };
 
   programs.fuzzel.enable = isLinux;
-
-  programs.jujutsu = {
-    enable = false;
-  };
 }
