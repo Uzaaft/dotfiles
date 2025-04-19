@@ -30,5 +30,4 @@ else
 fi
 
 # NIX env stuff
-export NIX_PATH=darwin-config=$HOME/.nix-defexpr/channels:$NIX_PATH
 export ANTHROPIC_API_KEY="op://Personal/AnthropicNeovim/credential"
