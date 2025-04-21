@@ -30,6 +30,7 @@
     ];
     brews = [
       "koekeishiya/formulae/yabai"
+      "spotify"
     ];
   };
   nix.enable = false;
