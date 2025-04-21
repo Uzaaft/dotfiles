@@ -85,7 +85,7 @@ in {
     {
       # Always include these
       ghostty = {
-        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/ghostty";
+        source = ./ghostty;
         recursive = true;
       };
       nvim = {
@@ -94,15 +94,15 @@ in {
       zsh = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/zsh";
       };
-      yabai = {
-        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/yabai";
-      };
       "lazygit/config.yml" = {source = ./lazygit.yml;};
     }
     // (
       # Darwin stuf
       if isDarwin
       then {
+        yabai = {
+          source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/yabai";
+        };
       }
       else {}
     )
