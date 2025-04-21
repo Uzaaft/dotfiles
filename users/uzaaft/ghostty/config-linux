@@ -1,7 +1,7 @@
 command = fish
 # Use a simple titlebar:
 gtk-titlebar = false
-gtk-single-instance = false
+gtk-single-instance = true
 
 font-size = 12
 font-family = JetBrains Mono
