@@ -128,9 +128,6 @@ in {
     enable = true;
     package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
   };
-  programs.emacs = {
-    enable = true;
-  };
 
   # Playing around with this
   programs.nushell = {
