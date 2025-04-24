@@ -29,7 +29,7 @@ in {
     [
       pkgs._1password-cli
       # Stuff
-      pkgs.asciinema
+      # pkgs.asciinema
       pkgs.fish
       pkgs.zsh
       # CLI tools
@@ -44,7 +44,7 @@ in {
       pkgs.jq
       pkgs.onefetch
       pkgs.ripgrep
-      pkgs.tree
+      # pkgs.tree
       pkgs.watch
       # Nix stuff
       pkgs.alejandra
@@ -56,14 +56,13 @@ in {
       pkgs.ijq
       # Languages
       pkgs.rustup
-      pkgs.zigpkgs."0.14.0"
+      # pkgs.zigpkgs."0.14.0"
       pkgs.file
-      pkgs.balena-cli
       # Formatters
     ]
     ++ (lib.optionals isDarwin [
-      pkgs.ollama
-      pkgs.llama-cpp
+      # pkgs.ollama
+      # pkgs.llama-cpp
       pkgs.macmon
       # darwin packages
     ])
