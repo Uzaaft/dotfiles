@@ -16,6 +16,7 @@
       "orbstack"
       "bruno"
       "tableplus"
+      "spotify"
       # Required for Norwegian jobs
       "microsoft-teams"
       "ghostty@tip"
@@ -30,7 +31,6 @@
     ];
     brews = [
       "koekeishiya/formulae/yabai"
-      "spotify"
     ];
   };
   nix.enable = false;
