@@ -56,7 +56,6 @@ in {
       pkgs.ijq
       # Languages
       pkgs.rustup
-      # pkgs.zigpkgs."0.14.0"
       pkgs.file
       # Formatters
     ]
