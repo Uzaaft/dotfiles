@@ -23,6 +23,7 @@
     ghostty = {
       url = "github:ghostty-org/ghostty";
     };
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
   outputs = {
