@@ -40,7 +40,6 @@
       (final: prev: rec {
         fish = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.fish;
         nushell = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.nushell;
-        macmon = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.macmon;
       })
     ];
 
