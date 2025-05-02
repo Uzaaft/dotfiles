@@ -59,11 +59,7 @@ in {
       # Formatters
     ]
     ++ (lib.optionals isDarwin [
-      # pkgs.ollama
-      # pkgs.llama-cpp
-      pkgs.macmon
-      # darwin packages
-    ])
+      ])
     ++ (lib.optionals (isLinux && !isWSL) [
       # non-darwin packages
       pkgs.zathura
