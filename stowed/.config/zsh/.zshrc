@@ -159,9 +159,6 @@ source ${zsh_plugins}/zsh-nvim-appname/zsh-nvim-appname.plugin.zsh
 # --- eval ---
 source ${zsh_plugins}/evalcache/evalcache.plugin.zsh
 
-# --- zsh-nix-shell ---
-source ${zsh_plugins}/zsh-nix-shell/nix-shell.plugin.zsh
-
 # === END PLUGINS ===
 #
 # -- Custom Uzaaft keybinding
