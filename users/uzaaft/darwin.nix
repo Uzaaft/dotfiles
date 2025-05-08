@@ -27,7 +27,7 @@
       "segger-jlink"
       "nordic-nrf-command-line-tools"
       # Testing this out to see what the hype is about
-      "cursor"
+      "windsurf"
     ];
     brews = [
       "koekeishiya/formulae/yabai"
