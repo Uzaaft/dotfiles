@@ -14,6 +14,15 @@
     pbcopy = "wl-copy";
     pbpaste = "wl-paste";
   };
+  neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default.overrideAttrs (old: {
+    meta =
+      old.meta
+      or {}
+      // {
+        maintainers = old.maintainers or [];
+      }; # TS Parsers are installed through Lazy.vim
+    treesitter-parsers = {};
+  });
 in {
   # Home-manager 22.11 requires this be set. We never set it so we have
   # to use the old state version.
@@ -120,7 +129,7 @@ in {
   #---------------------------------------------------------------------
   programs.neovim = {
     enable = true;
-    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+    package = neovim-unwrapped;
   };
 
   # Playing around with this
