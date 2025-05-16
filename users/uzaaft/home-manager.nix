@@ -172,5 +172,15 @@ in {
     };
   };
 
+  programs.jujutsu = {
+    enable = true;
+    settings = {
+      user = {
+        name = "Uzair Aftab";
+        email = "uzaaft@outlook.com";
+      };
+    };
+  };
+
   programs.fuzzel.enable = isLinux;
 }
