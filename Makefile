@@ -26,7 +26,7 @@ ifeq ($(UNAME), Darwin)
 		./result/sw/bin/darwin-rebuild switch --flake "$$(pwd)#ArchMac"
 else
 	echo "NixOS build"
-	sudo NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1 nixos-rebuild switch --flake ".#${NIXNAME}"
+	sudo nixos-rebuild switch --flake ".#${NIXNAME}"
 endif
 
 vm/bootstrap0:
@@ -50,7 +50,7 @@ vm/bootstrap0:
 						nix.extraOptions = \"experimental-features = nix-command flakes\";\n \
 						nix.settings.substituters = [\"https://uzaaft-nixos-config.cachix.org\"];\n \
 						nix.settings.trusted-public-keys = [\"uzaaft-nixos-config.cachix.org-1:Aq0SI5W8qOROEbbYHS2rfukZpaDmFsjYAfQGDyJE/Pw=\"];\n \
-  					services.openssh.enable = true;\n \
+	 					services.openssh.enable = true;\n \
 						services.openssh.settings.PasswordAuthentication = true;\n \
 						services.openssh.settings.PermitRootLogin = \"yes\";\n \
 						users.users.root.initialPassword = \"root\";\n \
@@ -101,9 +101,9 @@ show:
 	darwin-rebuild --list-generations
 
 cache:
-	nix build '.#nixosConfigurations.$(NIXNAME).config.system.build.toplevel' --json \
-		| jq -r '.[].outputs | to_entries[].value' \
-		| cachix push uzaaft-nixos-config
+	nix build '.#nixosConfigurations.$(NIXNAME).config.system.build.toplevel' --json |
+	  jq -r '.[].outputs | to_entries[].value' |
+	  cachix push uzaaft-nixos-config
 help:
 	@echo "Available targets:"
 	@echo "  build   - Build the configuration"
