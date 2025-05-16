@@ -6,11 +6,8 @@
   currentSystemName,
   ...
 }: {
-  # imports = [
-  #   ../modules/specialization/plasma.nix
-  #   ../modules/specialization/i3.nix
-  #   ../modules/specialization/gnome-ibus.nix
-  # ];
+  imports = [
+  ];
 
   # Be careful updating this.
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -23,10 +20,13 @@
 
     #
     settings = {
-      substituters = ["https://mitchellh-nixos-config.cachix.org" "https://nix-community.cachix.org"];
+      substituters = [
+        "https://mitchellh-nixos-config.cachix.org"
+        # "https://nix-community.cachix.org"
+      ];
       trusted-public-keys = [
         "mitchellh-nixos-config.cachix.org-1:bjEbXJyLrL1HZZHBbO4QALnI5faYZppzkU4D2s0G8RQ="
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        # "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
   };
