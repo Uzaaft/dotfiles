@@ -22,8 +22,8 @@ default: switch
 switch:
 ifeq ($(UNAME), Darwin)
 	echo "Macos build"
-	nix build --extra-experimental-features nix-command --extra-experimental-features flakes ".#darwinConfigurations.ArchMac.system"
-		./result/sw/bin/darwin-rebuild switch --flake "$$(pwd)#ArchMac"
+	sudo nix build --extra-experimental-features nix-command --extra-experimental-features flakes ".#darwinConfigurations.ArchMac.system"
+	sudo ./result/sw/bin/darwin-rebuild switch --flake "$$(pwd)#ArchMac"
 else
 	echo "NixOS build"
 	sudo nixos-rebuild switch --flake ".#${NIXNAME}"

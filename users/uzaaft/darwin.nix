@@ -34,7 +34,7 @@
     ];
   };
   nix.enable = false;
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
   system = {
     keyboard = {
       enableKeyMapping = true;
@@ -45,6 +45,7 @@
 
   # The user should already exist, but we need to set this up so Nix knows
   # what our home directory is (https://github.com/LnL7/nix-darwin/issues/423).
+  system.primaryUser = "uzaaft";
   users.users.uzaaft = {
     home = "/Users/uzaaft";
   };
