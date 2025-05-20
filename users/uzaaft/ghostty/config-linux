@@ -1,4 +1,3 @@
-# command = fish
 # Use a simple titlebar:
 gtk-titlebar = false
 gtk-single-instance = true
