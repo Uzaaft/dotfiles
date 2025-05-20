@@ -11,10 +11,6 @@
   # Add ~/.local/bin to PATH
   environment.localBinInPath = true;
 
-  # Since we're using fish as our shell
-  programs.fish = {
-    enable = true;
-  };
   programs.zsh.enable = true;
 
   users.users.uzaaft = {

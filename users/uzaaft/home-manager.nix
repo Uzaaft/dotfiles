@@ -39,7 +39,6 @@ in {
       pkgs._1password-cli
       # Stuff
       # pkgs.asciinema
-      pkgs.fish
       pkgs.zsh
       # CLI tools
       pkgs.bat
@@ -97,9 +96,6 @@ in {
       };
       zsh = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/zsh";
-      };
-      fish = {
-        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/fish";
       };
       "lazygit/config.yml" = {source = ./lazygit.yml;};
     }
