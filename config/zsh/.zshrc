@@ -34,7 +34,6 @@ _comp_options+=(globdots)		# Include hidden files.
 compinit -d ${comp_cache}
 [[ ${comp_cache}.zwc -nt ${comp_cache} ]] || zcompile -R -- "${comp_cache}".zwc "${comp_cache}" # compile completion  cache
 
-
 source $ZDOTDIR/git_go.zsh
 source $ZDOTDIR/path.zsh
 source $ZDOTDIR/rationalise-dot.zsh
