@@ -1,2 +1,3 @@
 !/stowed/.config/
 !/**/zsh/.*
+config/nvim/spell/*
