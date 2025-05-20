@@ -18,37 +18,29 @@ export HISTFILE="${XDG_STATE_HOME-$HOME/.local/state}/zsh/history"
 export SAVEHIST=1000000
 export KEYTIMEOUT=10
 
-# Basic auto/tab complete:
-autoload -U compinit
+# --- zsh data directories ---
+zsh_data="${XDG_DATA_HOME:-$HOME/.local/share}/zsh"
+[ ! -d ${zsh_data} ] && mkdir -p ${zsh_data}
+zsh_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+[ ! -d ${zsh_cache} ] && mkdir -p ${zsh_cache}
+zsh_plugins="${zsh_data}/plugins"
+[ ! -d ${zsh_plugins} ] && mkdir -p ${zsh_plugins}
+
+# --- completion ---
+autoload -Uz compinit
 zmodload zsh/complist
-compinit
+comp_cache=${zsh_cache}/zcompdump-${ZSH_VERSION}
 _comp_options+=(globdots)		# Include hidden files.
-
-_git_go() {
-   local selected_path=$(fd -HI '^.git$' --max-depth 4 --type d --base-directory ${GIT_PATH} | sed 's|/.git/$||' | fzf -n 1)
-
-    if [ -n "$selected_path" ]; then
-        cd "${GIT_PATH}/$selected_path"
-        # Reset the prompt
-        zle reset-prompt
-    else
-        echo "No selection made."
-        zle reset-prompt
-    fi
-}
-
-# Make the function a Zle widget
-zle -N _git_go
-
-# Bind Ctrl+G to the function
-bindkey '^G' _git_go
+compinit -d ${comp_cache}
+[[ ${comp_cache}.zwc -nt ${comp_cache} ]] || zcompile -R -- "${comp_cache}".zwc "${comp_cache}" # compile completion  cache
 
 
+source $ZDOTDIR/git_go.zsh
+source $ZDOTDIR/path.zsh
+source $ZDOTDIR/rationalise-dot.zsh
+source $ZDOTDIR/aliases.zsh
+source $ZDOTDIR/plugin_manager.zsh
 
-source ./path.zsh
-source ./rationalise-dot.zsh
-source ./aliases.zsh
-source ./plugin_manager.zsh
-
+source <(fzf --zsh)
 # Load zsh-syntax-highlighting; should be last.
 # source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

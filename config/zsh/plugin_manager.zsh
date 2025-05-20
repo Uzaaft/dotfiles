@@ -45,3 +45,7 @@ function zsh_update_plugins() { rm -rf ${zsh_plugins}/**; zsh_install_missing_pl
 # --- install zsh plugins ---
 zsh_install_missing_plugins
 
+# --- zsh-syntax-highlighting ---
+source ${zsh_plugins}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# --- zsh-autosuggestions ---
+source ${zsh_plugins}/zsh-autosuggestions/zsh-autosuggestions.zsh
