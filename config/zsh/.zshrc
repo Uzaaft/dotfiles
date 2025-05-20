@@ -2,10 +2,21 @@ autoload -U colors && colors
 bindkey -e
 PS1="%{$fg[magenta]%}%~%{$fg[red]%} %{$reset_color%}$%b "
 
-# History in cache directory:
-HISTSIZE=10000
-SAVEHIST=10000
-alias vim=nvim
+# Settings
+setopt autocd
+setopt bash_rematch
+setopt correct
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
+setopt hist_verify
+setopt inc_append_history
+setopt interactivecomments
+export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd:cd ..:cd.."
+export HISTSIZE=1000000
+export HISTFILE="${XDG_STATE_HOME-$HOME/.local/state}/zsh/history"
+export SAVEHIST=1000000
+export KEYTIMEOUT=10
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -31,6 +42,13 @@ zle -N _git_go
 
 # Bind Ctrl+G to the function
 bindkey '^G' _git_go
+
+
+
+source ./path.zsh
+source ./rationalise-dot.zsh
+source ./aliases.zsh
+source ./plugin_manager.zsh
 
 # Load zsh-syntax-highlighting; should be last.
 # source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
