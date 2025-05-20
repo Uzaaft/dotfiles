@@ -16,7 +16,6 @@
       url = "github:nix-darwin/nix-darwin/nix-darwin-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    jujutsu.url = "github:martinvonz/jj";
 
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
@@ -37,11 +36,11 @@
     # Overlays is the list of overlays we want to apply from flake inputs.
     overlays = [
       inputs.ghostty.overlays.default
-      inputs.jujutsu.overlays.default
 
       (final: prev: rec {
         fish = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.fish;
         nushell = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.nushell;
+        jujutsu = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.jujutsu;
       })
     ];
 
