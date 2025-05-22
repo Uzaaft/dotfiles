@@ -1,5 +1,5 @@
 autoload -U colors && colors
-bindkey -e
+bindkey -v
 PS1="%{$fg[magenta]%}%~%{$fg[red]%} %{$reset_color%}$%b "
 
 # Settings
