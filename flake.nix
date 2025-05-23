@@ -37,10 +37,7 @@
     overlays = [
       inputs.ghostty.overlays.default
 
-      (final: prev: rec {
-        nushell = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.nushell;
-        jujutsu = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.jujutsu;
-      })
+      (final: prev: rec {})
     ];
 
     mkSystem = import ./lib/mksystem.nix {
