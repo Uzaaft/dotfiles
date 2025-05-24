@@ -41,10 +41,6 @@ source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/plugin_manager.zsh
 
 source <(fzf --zsh)
-source ./path.zsh
-source ./rationalise-dot.zsh
-source ./aliases.zsh
-source ./plugin_manager.zsh
 
 eval "$(direnv hook zsh)"
 # Load zsh-syntax-highlighting; should be last.
