@@ -66,6 +66,9 @@ in {
       pkgs.rustup
       pkgs.file
       # Formatters
+      # AI format
+      pkgs.codex
+      pkgs.claude-code
     ]
     ++ (lib.optionals isDarwin [
       ])
