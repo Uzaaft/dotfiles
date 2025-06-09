@@ -37,7 +37,9 @@
     overlays = [
       inputs.ghostty.overlays.default
 
-      (final: prev: rec {})
+      (final: prev: rec {
+        claude-code = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.claude-code;
+      })
     ];
 
     mkSystem = import ./lib/mksystem.nix {
