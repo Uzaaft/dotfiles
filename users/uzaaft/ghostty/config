@@ -20,5 +20,7 @@ font-feature = cv12
 # Q with bent tail
 font-feature = cv16
 
+macos-icon = blueprint
+
 config-file = ?config-linux
 # config-file = ?config-macos
