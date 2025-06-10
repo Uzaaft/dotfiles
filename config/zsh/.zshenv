@@ -20,3 +20,5 @@ fi
 
 # NIX env stuff
 export ANTHROPIC_API_KEY="op://Personal/AnthropicNeovim/credential"
+export OPENAI_API_KEY="op://Polymath/OpenAI API Key/api key"
+
