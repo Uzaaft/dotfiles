@@ -19,8 +19,13 @@
       "spotify"
       # Required for Norwegian jobs
       "microsoft-teams"
-      "ghostty@tip"
+      {
+        name = "ghostty@tip";
+        greedy = true;
+      }
       "linear-linear"
+      # Required for startup
+      "slack"
       # Need this for nrf development
       "visual-studio-code"
       "nrf-connect"
