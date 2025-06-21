@@ -62,6 +62,7 @@ in {
       pkgs.btop
       pkgs.repgrep
       pkgs.ijq
+      pkgs.tmux
       # Languages
       pkgs.rustup
       pkgs.file
