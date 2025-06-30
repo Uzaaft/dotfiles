@@ -14,6 +14,7 @@
     pbcopy = "wl-copy";
     pbpaste = "wl-paste";
   };
+
   neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default.overrideAttrs (old: {
     meta =
       old.meta
@@ -70,6 +71,9 @@ in {
       # AI format
       pkgs.codex
       pkgs.claude-code
+
+      # neomutt wizard
+      pkgs.mutt-wizard
     ]
     ++ (lib.optionals isDarwin [
       ])
@@ -91,10 +95,8 @@ in {
   xdg.configFile =
     {
       # Always include these
-      ghostty = {
-        source = ./ghostty;
-        recursive = true;
-      };
+      "ghostty/config".text = builtins.readFile ./ghostty/config;
+      "ghostty/cursor.glsl".text = builtins.readFile ./ghostty/cursor.glsl;
       nvim = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/nvim";
       };
@@ -131,19 +133,9 @@ in {
     enable = true;
     package = neovim-unwrapped;
   };
-
-  # Playing around with this
-  programs.nushell = {
+  programs.neomutt = {
     enable = true;
-    configFile.source = ./config.nu;
-    shellAliases = shellAliases;
-  };
-
-  # Using this alongside nushell for now.
-  programs.oh-my-posh = {
-    enable = true;
-    enableNushellIntegration = true;
-    settings = builtins.fromJSON (builtins.readFile ./omp.json);
+    package = pkgs.neomutt;
   };
 
   programs.git = {
@@ -152,6 +144,7 @@ in {
     userEmail = "uzaaft@outlook.com";
 
     extraConfig = {
+      # Sign all commits using ssh key
       fetch = {
         prune = true;
       };
