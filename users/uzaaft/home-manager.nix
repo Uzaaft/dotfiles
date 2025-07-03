@@ -67,10 +67,10 @@ in {
       # Languages
       pkgs.rustup
       pkgs.file
-      # Formatters
-      # AI format
+      # AI
       pkgs.codex
       pkgs.claude-code
+      pkgs.gemini-cli
 
       # neomutt wizard
       pkgs.mutt-wizard

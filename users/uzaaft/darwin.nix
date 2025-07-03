@@ -5,7 +5,7 @@
 }: {
   homebrew = {
     enable = true;
-    taps = ["koekeishiya/formulae"];
+    taps = ["koekeishiya/formulae" "dagger/tap"];
 
     casks = [
       "1password"
@@ -33,6 +33,7 @@
       "nordic-nrf-command-line-tools"
       # Testing this out to see what the hype is about
       "windsurf"
+      "dagger/tap/container-use"
     ];
     brews = [
       "koekeishiya/formulae/yabai"
