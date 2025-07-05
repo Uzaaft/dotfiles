@@ -39,7 +39,6 @@
       "koekeishiya/formulae/yabai"
     ];
   };
-  nix.enable = false;
   security.pam.services.sudo_local = {
     touchIdAuth = true;
     reattach = true;

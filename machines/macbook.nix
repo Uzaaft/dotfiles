@@ -7,6 +7,8 @@
   system.stateVersion = 5;
 
   nix = {
+    enable = false;
+
     # We need to enable flakes
     extraOptions = ''
       experimental-features = nix-command flakes
