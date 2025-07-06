@@ -19,7 +19,8 @@
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
-    fsType = "ext4";
+    fsType = "btrfs";
+    options = ["compress=zstd"];
   };
 
   fileSystems."/boot" = {
