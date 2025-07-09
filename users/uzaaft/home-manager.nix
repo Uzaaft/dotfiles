@@ -88,7 +88,7 @@ in {
   #---------------------------------------------------------------------
   home.file = {
     ".zshenv" = {
-      source = ./.zshenv;
+      source = builtins.path { path = ./.zshenv; };
     };
   };
 
