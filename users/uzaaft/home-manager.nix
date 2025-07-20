@@ -53,6 +53,7 @@ in {
       pkgs.jq
       pkgs.onefetch
       pkgs.ripgrep
+      pkgs.git-lfs
       # pkgs.tree
       pkgs.watch
       # Nix stuff
@@ -88,7 +89,7 @@ in {
   #---------------------------------------------------------------------
   home.file = {
     ".zshenv" = {
-      source = builtins.path { path = ./.zshenv; };
+      source = builtins.path {path = ./.zshenv;};
     };
   };
 
@@ -140,6 +141,7 @@ in {
   };
 
   programs.git = {
+    lfs.enable = true;
     enable = true;
     userName = "Uzair Aftab";
     userEmail = "uzaaft@outlook.com";
