@@ -19,6 +19,7 @@
       "spotify"
       "linear-linear"
       "istat-menus"
+      "hiddenbar"
       # Required for Norwegian jobs
       "microsoft-teams"
       {
