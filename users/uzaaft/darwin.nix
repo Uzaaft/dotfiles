@@ -17,13 +17,14 @@
       "bruno"
       "tableplus"
       "spotify"
+      "linear-linear"
+      "istat-menus"
       # Required for Norwegian jobs
       "microsoft-teams"
       {
         name = "ghostty@tip";
         greedy = true;
       }
-      "linear-linear"
       # Required for startup
       "slack"
       # Need this for nrf development
