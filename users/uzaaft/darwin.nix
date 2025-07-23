@@ -22,6 +22,7 @@
       "hiddenbar"
       # Required for Norwegian jobs
       "microsoft-teams"
+      "notion"
       {
         name = "ghostty@tip";
         greedy = true;
