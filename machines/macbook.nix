@@ -15,6 +15,7 @@
     '';
     settings = {
       substituters = ["https://mitchellh-nixos-config.cachix.org" "https://nix-community.cachix.org"];
+      trusted-users = ["@admin"];
       trusted-public-keys = [
         "mitchellh-nixos-config.cachix.org-1:bjEbXJyLrL1HZZHBbO4QALnI5faYZppzkU4D2s0G8RQ="
       ];
