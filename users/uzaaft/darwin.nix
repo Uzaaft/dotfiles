@@ -23,6 +23,7 @@
       # Required for Norwegian jobs
       "microsoft-teams"
       "notion"
+      "lm-studio"
       {
         name = "ghostty@tip";
         greedy = true;
@@ -40,12 +41,19 @@
     ];
     brews = [
       "koekeishiya/formulae/yabai"
+      "gnupg"
     ];
   };
   security.pam.services.sudo_local = {
     touchIdAuth = true;
     reattach = true;
   };
+
+  services.yabai = {
+    enable = true;
+    # enableScriptAddition = true;
+  };
+
   system = {
     keyboard = {
       enableKeyMapping = true;
