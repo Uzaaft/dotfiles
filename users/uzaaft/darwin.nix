@@ -24,6 +24,7 @@
       "microsoft-teams"
       "notion"
       "lm-studio"
+      "pycharm"
       {
         name = "ghostty@tip";
         greedy = true;
