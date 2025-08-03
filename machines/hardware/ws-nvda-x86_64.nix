@@ -10,10 +10,22 @@
 }: {
   imports = [];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "sr_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = [];
+  boot.blacklistedKernelModules = ["nouveau"];
+  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "thunderbolt" "usbhid" "uas" "usb_storage" "sd_mod"];
+  boot.initrd.kernelModules = ["r8169"];
+  boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
+
+  hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
+    modesetting.enable = true;
+    powerManagement.enable = true;
+    nvidiaSettings = true;
+    open = true;
+    # prime = {
+    #   amdgpuBusId = "PCI:121:0:0";
+    # };
+  };
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
@@ -26,11 +38,7 @@
     fsType = "vfat";
   };
 
-  swapDevices = [
-    {
-      device = "/dev/disk/by-label/swap";
-    }
-  ];
+  swapDevices = [];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
