@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    ./hardware/ws-nvda-x86_.nix
+    ./hardware/ws-nvda-x86_64.nix
     ./ws-shared.nix
   ];
 

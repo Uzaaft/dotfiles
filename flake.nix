@@ -56,7 +56,7 @@
       user = "uzaaft";
     };
 
-    nixosConfigurations.nvidia-workstation = mkSystem "ws-nvda-x86" {
+    nixosConfigurations.nvidia-workstation = mkSystem "ws-nvda-x86_64" {
       system = "x86_64-linux";
       user = "uzaaft";
     };
