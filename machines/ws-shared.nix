@@ -28,44 +28,13 @@
   security.sudo.wheelNeedsPassword = false;
 
   # Virtualization settings
-  virtualisation.docker.enable = true;
-  virtualisation.docker.rootless.enable = true;
+  # virtualisation.docker.enable = true;
+  # virtualisation.docker.rootless.enable = true;
 
-  virtualisation.lxd = {
-    enable = true;
-  };
-
-  # Select internationalisation properties.
-  i18n = {
-    defaultLocale = "en_US.UTF-8";
-    inputMethod = {
-      enable = true;
-      type = "fcitx5";
-      fcitx5.addons = with pkgs; [
-        fcitx5-mozc
-        fcitx5-gtk
-      ];
-    };
-  };
-
-  # Enable tailscale. We manually authenticate when we want with
-  # "sudo tailscale up". If you don't use tailscale, you should comment
-  # out or delete all of this.
   services.tailscale.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.mutableUsers = false;
-
-  # Manage fonts. We pull these from a secret directory since most of these
-  # fonts require a purchase.
-  fonts = {
-    fontDir.enable = true;
-
-    packages = [
-      pkgs.fira-code
-      pkgs.jetbrains-mono
-    ];
-  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -81,21 +50,10 @@
     '')
   ];
 
-  # Our default non-specialised desktop environment.
-  services.xserver = lib.mkIf (config.specialisation != {}) {
-    enable = true;
-    xkb.layout = "us";
-    desktopManager.gnome.enable = true;
-    displayManager.gdm.enable = true;
-  };
-
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   services.openssh.settings.PasswordAuthentication = true;
   services.openssh.settings.PermitRootLogin = "no";
-
-  # Disable the firewall since we're in a VM and we want to make it
-  # easy to visit stuff in here. We only use NAT networking anyways.
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
