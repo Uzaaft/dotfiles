@@ -15,6 +15,8 @@
   # customizations to make this work on aarch64.
   systemd.network.enable = true;
   networking.useNetworkd = true;
+  networking.interfaces.enp7s0.useDHCP = true;
+
   services.xserver.videoDrivers = ["nvidia"];
 
   # Lots of stuff that uses aarch64 that claims doesn't work, but actually works.
