@@ -10,7 +10,10 @@
 }: {
   imports = [];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "sr_mod"];
+  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "thunderbolt" "usbhid" "uas" "usb_storage" "sd_mod" "mt76"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-amd"];
+  boot.extraModulePackages = [];
 
   hardware.graphics = {
     enable = true;
@@ -24,10 +27,6 @@
     open = false;
     nvidiaSettings = true;
   };
-
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = [];
-  boot.extraModulePackages = [];
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";

@@ -8,6 +8,8 @@
 }: {
   # Be careful updating this.
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  hardware.enableRedistributableFirmware = true;
+  boot.extraModulePackages = [];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
