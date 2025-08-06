@@ -13,8 +13,8 @@
 
   # Disable the default module and import our override. We have
   # customizations to make this work on aarch64.
-  systemd.network.enable = true;
-  networking.useNetworkd = true;
+  networking.networkmanager.enable = true;
+
   networking.interfaces.enp7s0.useDHCP = true;
 
   services.xserver.videoDrivers = ["nvidia"];
