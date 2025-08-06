@@ -37,6 +37,7 @@ in {
   # Packages I always want installed.
   home.packages =
     [
+      pkgs.pciutils
       pkgs._1password-cli
       # Stuff
       # pkgs.asciinema

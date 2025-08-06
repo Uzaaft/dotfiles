@@ -10,22 +10,21 @@
 }: {
   imports = [];
 
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "thunderbolt" "usbhid" "uas" "usb_storage" "sd_mod" "mt76"];
-  boot.initrd.kernelModules = [];
+  boot.blacklistedKernelModules = ["nouveau"];
+  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "thunderbolt" "usbhid" "uas" "usb_storage" "sd_mod"];
+  boot.initrd.kernelModules = ["r8169"];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
 
-  hardware.graphics = {
-    enable = true;
-  };
-
-  services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
     modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    open = false;
+    powerManagement.enable = true;
     nvidiaSettings = true;
+    open = true;
+    # prime = {
+    #   amdgpuBusId = "PCI:121:0:0";
+    # };
   };
 
   fileSystems."/" = {
