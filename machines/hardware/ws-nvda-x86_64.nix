@@ -15,17 +15,12 @@
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
 
-  hardware.graphics = {
-    enable = true;
-  };
-
-  services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
     modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
+    powerManagement.enable = true;
+    nvidiaSettings = false;
     open = false;
-    nvidiaSettings = true;
   };
 
   fileSystems."/" = {

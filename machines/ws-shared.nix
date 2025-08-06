@@ -7,7 +7,7 @@
   ...
 }: {
   # Be careful updating this.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
   hardware.enableRedistributableFirmware = true;
   boot.extraModulePackages = [];
 
@@ -56,6 +56,7 @@
   services.openssh.enable = true;
   services.openssh.settings.PasswordAuthentication = true;
   services.openssh.settings.PermitRootLogin = "no";
+  services.xserver.videoDrivers = ["nvidia"];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
