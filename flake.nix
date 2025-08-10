@@ -39,6 +39,7 @@
       (final: prev: rec {
         claude-code = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.claude-code;
         gemini-cli = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.gemini-cli;
+        llama-cpp = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.llama-cpp;
       })
     ];
 

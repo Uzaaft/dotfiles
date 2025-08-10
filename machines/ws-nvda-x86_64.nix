@@ -43,6 +43,10 @@
   security.sudo.wheelNeedsPassword = false;
 
   services.tailscale.enable = true;
+  services.ollama = {
+    enable = true;
+    acceleration = "cuda";
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.mutableUsers = false;
