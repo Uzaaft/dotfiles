@@ -1,8 +1,4 @@
-{
-  isWSL,
-  inputs,
-  ...
-}: {
+{inputs, ...}: {
   config,
   lib,
   pkgs,
@@ -105,7 +101,7 @@ in {
     ]
     ++ (lib.optionals isDarwin [
       ])
-    ++ (lib.optionals (isLinux && !isWSL) [
+    ++ (lib.optionals isLinux [
       # non-darwin packages
       pkgs.zathura
       pkgs.greetd.tuigreet

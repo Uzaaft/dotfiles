@@ -8,14 +8,7 @@
   system,
   user,
   darwin ? false,
-  wsl ? false,
 }: let
-  # True if this is a WSL system.
-  isWSL = wsl;
-
-  # True if Linux, which is a heuristic for not being Darwin.
-  isLinux = !darwin && !isWSL;
-
   # The config files for this system.
   machineConfig = ../machines/${name}.nix;
   userOSConfig =
@@ -55,13 +48,6 @@ in
       # Allow unfree packages.
       {nixpkgs.config.allowUnfree = true;}
 
-      # Bring in WSL if this is a WSL build
-      (
-        if isWSL
-        then inputs.nixos-wsl.nixosModules.wsl
-        else {}
-      )
-
       machineConfig
       userOSConfig
       home-manager.home-manager
@@ -70,7 +56,6 @@ in
         home-manager.useUserPackages = true;
         home-manager.backupFileExtension = "backup";
         home-manager.users.${user} = import userHMConfig {
-          isWSL = isWSL;
           inputs = inputs;
         };
       }
@@ -82,7 +67,6 @@ in
           currentSystem = system;
           currentSystemName = name;
           currentSystemUser = user;
-          isWSL = isWSL;
           inputs = inputs;
         };
       }
