@@ -11,6 +11,7 @@ alias lt="eza -T --icons=auto --group-directories-first --hyperlink"
 alias lg="lazygit"
 alias ldo="lazydocker"
 alias gg="git get"
+alias c="cargo"
 
 alias ga='git add'
 alias gc='git commit'
