@@ -69,9 +69,13 @@
   ];
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-  services.openssh.settings.PasswordAuthentication = true;
-  services.openssh.settings.PermitRootLogin = "no";
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = true;
+      PermitRootLogin = "no";
+    };
+  };
   services.xserver.videoDrivers = ["nvidia"];
 
   system.stateVersion = "24.11"; # Did you read the comment?
