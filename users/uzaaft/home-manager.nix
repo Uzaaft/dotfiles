@@ -77,7 +77,7 @@ in {
       pkgs.onefetch
       pkgs.ripgrep
       pkgs.git-lfs
-      # pkgs.tree
+      pkgs.tree
       pkgs.watch
       # Nix stuff
       pkgs.alejandra
@@ -105,6 +105,7 @@ in {
       # non-darwin packages
       pkgs.zathura
       pkgs.greetd.tuigreet
+      pkgs.lmstudio
     ]);
 
   #---------------------------------------------------------------------
@@ -169,17 +170,38 @@ in {
     userName = "Uzair Aftab";
     userEmail = "uzaaft@outlook.com";
 
-    extraConfig = {
-      # Sign all commits using ssh key
-      fetch = {
-        prune = true;
-      };
-      branch.autosetuprebase = "always";
-      color.ui = true;
-      github.user = "uzaaft";
-      push.default = "tracking";
-      init.defaultBranch = "main";
-    };
+    extraConfig =
+      {
+        # Sign all commits using ssh key
+        fetch = {
+          prune = true;
+        };
+        branch.autosetuprebase = "always";
+        color.ui = true;
+        github.user = "uzaaft";
+        push.default = "tracking";
+        init.defaultBranch = "main";
+        user = {
+          user = "Uzair Aftab";
+          email = "uzaaft@outlook.com";
+          signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYZX17OSEH3mKJsP4oFuaGtr8F5TF/3/RXOCw2cBgps";
+        };
+      }
+      // (
+        if !isLinux
+        then {
+          gpg = {
+            format = "ssh";
+          };
+          "gpg \"ssh\"" = {
+            program = "${lib.getExe' pkgs._1password-gui "op-ssh-sign"}";
+          };
+          commit = {
+            gpgsign = true;
+          };
+        }
+        else {}
+      );
   };
 
   programs.gpg.enable = !isDarwin;
