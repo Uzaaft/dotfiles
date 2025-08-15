@@ -9,6 +9,7 @@
 
     casks = [
       "1password"
+      "bitwarden"
       "discord"
       "vmware-fusion"
       "BetterDisplay"
