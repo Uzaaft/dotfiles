@@ -82,7 +82,9 @@
 
   networking.networkmanager.enable = true;
   networking.interfaces.enp7s0.useDHCP = true;
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.cudaSupport = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    cudaSupport = true;
+  };
   # nixpkgs.config.allowUnsupportedSystem = true;
 }
