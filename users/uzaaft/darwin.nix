@@ -57,6 +57,7 @@
   };
 
   system = {
+    startup = {chime = true;};
     keyboard = {
       enableKeyMapping = true;
       remapCapsLockToControl = true;
