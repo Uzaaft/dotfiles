@@ -188,7 +188,7 @@ in {
         };
       }
       // (
-        if !isLinux
+        if isLinux
         then {
           gpg = {
             format = "ssh";
