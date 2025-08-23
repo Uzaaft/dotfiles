@@ -52,6 +52,7 @@
     rootless = {
       enable = true;
       setSocketVariable = true;
+      daemon.settings.features.cdi = true;
     };
   };
 

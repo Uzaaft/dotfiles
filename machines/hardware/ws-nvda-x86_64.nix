@@ -26,6 +26,7 @@
     #   amdgpuBusId = "PCI:121:0:0";
     # };
   };
+  hardware.nvidia-container-toolkit.enable = true;
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
