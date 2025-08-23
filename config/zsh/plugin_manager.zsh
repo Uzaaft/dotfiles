@@ -49,3 +49,6 @@ zsh_install_missing_plugins
 source ${zsh_plugins}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # --- zsh-autosuggestions ---
 source ${zsh_plugins}/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+bindkey '^ ' autosuggest-accept
+
