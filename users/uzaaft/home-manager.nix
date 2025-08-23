@@ -10,6 +10,7 @@
     pbcopy = "wl-copy";
     pbpaste = "wl-paste";
   };
+  onePassPath = "~/.1password/agent.sock";
 
   neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default.overrideAttrs (old: {
     meta =
@@ -93,7 +94,6 @@ in {
       pkgs.file
       # AI
       pkgs.codex
-      pkgs.claude-code
       pkgs.gemini-cli
 
       # neomutt wizard
@@ -106,6 +106,7 @@ in {
       pkgs.zathura
       pkgs.greetd.tuigreet
       pkgs.lmstudio
+      pkgs.usbutils
     ]);
 
   #---------------------------------------------------------------------
@@ -155,18 +156,65 @@ in {
   #---------------------------------------------------------------------
   # Programs
   #---------------------------------------------------------------------
-  programs.neovim = {
-    enable = true;
-    package = neovim-unwrapped;
-  };
-  programs.neomutt = {
-    enable = true;
-    package = pkgs.neomutt;
+  programs = {
+    # TODO: add this whenever claude-code is released in hm
+    # claude-code = {
+    #   enable = true;
+    #   agents = {
+    #     api-designer = builtins.readFile ./agents/api-designer.md;
+    #     backend-developer = builtins.readFile ./agents/backend-developer.md;
+    #     nextjs-developer = builtins.readFile ./agents/nextjs-developer.md;
+    #     perf-engineer = builtins.readFile ./agents/perf-engineer.md;
+    #     react-specialist = builtins.readFile ./agents/react-specialist.md;
+    #     senior-code-reviewer = builtins.readFile ./agents/senior-code-reviewer.md;
+    #     rust-engineer = builtins.readFile ./agents/rust-engineer.md;
+    #     terraform-engineer = builtins.readFile ./agents/terraform-engineer.md;
+    #     ui-engineer = builtins.readFile ./agents/ui-engineer.md;
+    #   };
+    # };
+    gpg.enable = !isDarwin;
+
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+      enableZshIntegration = true;
+      config = {
+        whitelist = {
+          # Should add the following: polymath, stormwater-ai, uzaaft
+        };
+      };
+    };
+
+    jujutsu = {
+      enable = true;
+      settings = {
+        user = {
+          name = "Uzair Aftab";
+          email = "uzaaft@outlook.com";
+        };
+      };
+    };
+
+    fuzzel.enable = isLinux;
+
+    neovim = {
+      enable = true;
+      package = neovim-unwrapped;
+    };
+
+    ssh = {
+      enable = true;
+      extraConfig = ''
+        Host *
+            IdentityAgent ${onePassPath}
+      '';
+    };
   };
 
   programs.git = {
     lfs.enable = true;
     enable = true;
+
     userName = "Uzair Aftab";
     userEmail = "uzaaft@outlook.com";
 
@@ -188,7 +236,7 @@ in {
         };
       }
       // (
-        if isLinux
+        if !isLinux
         then {
           gpg = {
             format = "ssh";
@@ -203,29 +251,4 @@ in {
         else {}
       );
   };
-
-  programs.gpg.enable = !isDarwin;
-
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-    enableZshIntegration = true;
-    config = {
-      whitelist = {
-        # Should add the following: polymath, stormwater-ai, uzaaft
-      };
-    };
-  };
-
-  programs.jujutsu = {
-    enable = true;
-    settings = {
-      user = {
-        name = "Uzair Aftab";
-        email = "uzaaft@outlook.com";
-      };
-    };
-  };
-
-  programs.fuzzel.enable = isLinux;
 }
