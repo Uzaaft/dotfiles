@@ -3,11 +3,11 @@
 
   inputs = {
     # We use the unstable nixpkgs repo for some packages.
-    nixpkgs.url = "https://channels.nixos.org/nixos-25.05/nixexprs.tar.xz";
-    nixpkgs-unstable.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+    # nixpkgs.url = "https://channels.nixos.org/nixos-25.05/nixexprs.tar.xz";
+    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
@@ -37,9 +37,6 @@
       inputs.ghostty.overlays.default
 
       (final: prev: rec {
-        claude-code = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.claude-code;
-        gemini-cli = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.gemini-cli;
-        llama-cpp = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.llama-cpp;
       })
     ];
 
