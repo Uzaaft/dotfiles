@@ -42,6 +42,8 @@ in {
   home.packages =
     [
       crush
+      # tsgo
+      # pkgs.claude-code
       pkgs.llama-cpp
       pkgs.ollama
       pkgs.python313Packages.huggingface-hub
@@ -142,21 +144,20 @@ in {
   # Programs
   #---------------------------------------------------------------------
   programs = {
-    # TODO: add this whenever claude-code is released in hm
-    # claude-code = {
-    #   enable = true;
-    #   agents = {
-    #     api-designer = builtins.readFile ./agents/api-designer.md;
-    #     backend-developer = builtins.readFile ./agents/backend-developer.md;
-    #     nextjs-developer = builtins.readFile ./agents/nextjs-developer.md;
-    #     perf-engineer = builtins.readFile ./agents/perf-engineer.md;
-    #     react-specialist = builtins.readFile ./agents/react-specialist.md;
-    #     senior-code-reviewer = builtins.readFile ./agents/senior-code-reviewer.md;
-    #     rust-engineer = builtins.readFile ./agents/rust-engineer.md;
-    #     terraform-engineer = builtins.readFile ./agents/terraform-engineer.md;
-    #     ui-engineer = builtins.readFile ./agents/ui-engineer.md;
-    #   };
-    # };
+    claude-code = {
+      enable = true;
+      agents = {
+        api-designer = builtins.readFile ./agents/api-designer.md;
+        backend-developer = builtins.readFile ./agents/backend-developer.md;
+        nextjs-developer = builtins.readFile ./agents/nextjs-developer.md;
+        perf-engineer = builtins.readFile ./agents/perf-engineer.md;
+        react-specialist = builtins.readFile ./agents/react-specialist.md;
+        senior-code-reviewer = builtins.readFile ./agents/senior-code-reviewer.md;
+        rust-engineer = builtins.readFile ./agents/rust-engineer.md;
+        terraform-engineer = builtins.readFile ./agents/terraform-engineer.md;
+        ui-engineer = builtins.readFile ./agents/ui-engineer.md;
+      };
+    };
     gpg.enable = !isDarwin;
 
     direnv = {
