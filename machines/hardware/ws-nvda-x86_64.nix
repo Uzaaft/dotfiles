@@ -15,6 +15,7 @@
   boot.initrd.kernelModules = ["r8169"];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
+  hardware.graphics.enable = true;
 
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.latest;
