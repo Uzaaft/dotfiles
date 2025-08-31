@@ -1,3 +1,3 @@
 [submodule "config/nvim"]
 	path = config/nvim
-	url = https://github.com/uzaaft/nvim
+	url = git@github.com:uzaaft/nvim
