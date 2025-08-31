@@ -43,57 +43,47 @@ in {
     [
       crush
       # tsgo
-      # pkgs.claude-code
+      pkgs._1password-cli
       pkgs.llama-cpp
       pkgs.ollama
-      pkgs.python313Packages.huggingface-hub
       pkgs.pciutils
-      pkgs._1password-cli
+      pkgs.python313Packages.huggingface-hub
       # Stuff
       # pkgs.asciinema
-      pkgs.zsh
       # CLI tools
+      pkgs.alejandra
       pkgs.bat
+      pkgs.btop
       pkgs.curl
       pkgs.eza
       pkgs.fastfetch
       pkgs.fd
+      pkgs.file
       pkgs.fzf
       pkgs.gh
       pkgs.git-get
-      pkgs.jq
-      pkgs.onefetch
-      pkgs.ripgrep
       pkgs.git-lfs
+      pkgs.ijq
+      pkgs.jq
+      pkgs.lazygit
+      pkgs.nixd
+      pkgs.onefetch
+      pkgs.repgrep
+      pkgs.ripgrep
+      pkgs.rustup
+      pkgs.tmux
       pkgs.tree
       pkgs.watch
-      # Nix stuff
-      pkgs.alejandra
-      pkgs.nixd
-      # TUI
-      pkgs.lazygit
-      pkgs.btop
-      pkgs.repgrep
-      pkgs.ijq
-      pkgs.tmux
-      # Languages
-      pkgs.rustup
-      pkgs.file
       # AI
-      pkgs.codex
-      pkgs.gemini-cli
-
-      # neomutt wizard
-      pkgs.mutt-wizard
     ]
     ++ (lib.optionals isDarwin [
       ])
     ++ (lib.optionals isLinux [
       # non-darwin packages
-      pkgs.zathura
       pkgs.greetd.tuigreet
       pkgs.lmstudio
       pkgs.usbutils
+      pkgs.zathura
     ]);
 
   #---------------------------------------------------------------------
