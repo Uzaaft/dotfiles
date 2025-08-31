@@ -103,6 +103,9 @@ in {
     ".zshenv" = {
       source = builtins.path {path = ./.zshenv;};
     };
+    ".claude/CLAUDE.md" = {
+      source = builtins.path {path = ./claude.md;};
+    };
   };
 
   xdg.configFile =
