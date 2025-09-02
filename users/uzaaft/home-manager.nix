@@ -67,6 +67,7 @@ in {
       pkgs.jq
       pkgs.lazygit
       pkgs.nixd
+      pkgs.nodejs_24
       pkgs.onefetch
       pkgs.repgrep
       pkgs.ripgrep
@@ -197,37 +198,36 @@ in {
     userName = "Uzair Aftab";
     userEmail = "uzaaft@outlook.com";
 
-    extraConfig =
-      {
-        # Sign all commits using ssh key
-        fetch = {
-          prune = true;
-        };
-        branch.autosetuprebase = "always";
-        color.ui = true;
-        github.user = "uzaaft";
-        push.default = "tracking";
-        init.defaultBranch = "main";
-        user = {
-          user = "Uzair Aftab";
-          email = "uzaaft@outlook.com";
-          signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYZX17OSEH3mKJsP4oFuaGtr8F5TF/3/RXOCw2cBgps";
-        };
-      }
-      // (
-        if !isLinux
+    extraConfig = {
+      # Sign all commits using ssh key
+      fetch = {
+        prune = true;
+      };
+      branch.autosetuprebase = "always";
+      color.ui = true;
+      github.user = "uzaaft";
+      push.default = "tracking";
+      init.defaultBranch = "main";
+      user = {
+        user = "Uzair Aftab";
+        email = "uzaaft@outlook.com";
+        signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYZX17OSEH3mKJsP4oFuaGtr8F5TF/3/RXOCw2cBgps";
+      };
+      gpg = {
+        format = "ssh";
+      };
+
+      "gpg \"ssh\"" =
+        if isLinux
         then {
-          gpg = {
-            format = "ssh";
-          };
-          "gpg \"ssh\"" = {
-            program = "${lib.getExe' pkgs._1password-gui "op-ssh-sign"}";
-          };
-          commit = {
-            gpgsign = true;
-          };
+          program = "${lib.getExe' pkgs._1password-gui "op-ssh-sign"}";
         }
-        else {}
-      );
+        else {
+          program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+        };
+      commit = {
+        gpgsign = true;
+      };
+    };
   };
 }
