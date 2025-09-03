@@ -54,6 +54,13 @@
       setSocketVariable = true;
       daemon.settings.features.cdi = true;
     };
+    daemon.settings = {
+      ipv6 = false;
+      hosts = [
+        "unix:///run/user/1000/docker.sock"
+        "tcp://0.0.0.0:2375"
+      ];
+    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
