@@ -25,9 +25,9 @@
   crush = import ./crush.nix {
     inherit lib pkgs;
   };
-  # tsgo = import ./typescript-go.nix {
-  #   inherit lib pkgs;
-  # };
+  tsgo = import ./typescript-go.nix {
+    inherit lib pkgs;
+  };
 in {
   # Home-manager 22.11 requires this be set. We never set it so we have
   # to use the old state version.
@@ -42,7 +42,7 @@ in {
   home.packages =
     [
       crush
-      # tsgo
+      tsgo
       pkgs._1password-cli
       pkgs.llama-cpp
       pkgs.ollama
@@ -52,8 +52,10 @@ in {
       # pkgs.asciinema
       # CLI tools
       pkgs.alejandra
+      pkgs.ast-grep
       pkgs.bat
       pkgs.btop
+      pkgs.codeberg-cli
       pkgs.curl
       pkgs.eza
       pkgs.fastfetch

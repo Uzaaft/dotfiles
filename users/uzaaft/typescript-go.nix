@@ -3,23 +3,45 @@
   pkgs,
   ...
 }:
-pkgs.buildGoModule rec {
+pkgs.buildGo125Module {
   pname = "typescript-go";
-  version = "unstable-2024-12-20";
+  version = "0-unstable-2025-08-26";
 
   src = pkgs.fetchFromGitHub {
     owner = "microsoft";
     repo = "typescript-go";
-    rev = "main";
-    hash = "sha256-hNAn3nAYa/VOZ6BlQSlYfKwCXrS3ySvbTDql76KdBBI=";
+    rev = "d85436e9a34a27ed2c3dd77767574717e22ccf85";
+    hash = "sha256-3uD9vo/Gg4YjLSrGT3x+XfkVOseV9+JN07TxzVOv/5w=";
+    fetchSubmodules = false;
   };
 
-  vendorHash = lib.fakeHash;
+  vendorHash = "sha256-w+v74GjOKyhBLj557m2yjgtCqcBOi+IKJ6kkI68AjKk=";
+
+  ldflags = [
+    "-s"
+    "-w"
+  ];
+
+  env.CGO_ENABLED = 0;
+
+  subPackages = [
+    "cmd/tsgo"
+  ];
+
+  doInstallCheck = true;
+  installCheckPhase = ''
+    runHook preInstallCheck
+
+    version="$("$out/bin/tsgo" --version)"
+    [[ "$version" == *"7.0.0"* ]]
+
+    runHook postInstallCheck
+  '';
 
   meta = {
-    description = "TypeScript implementation in Go";
+    description = "Go implementation of TypeScript";
     homepage = "https://github.com/microsoft/typescript-go";
-    license = lib.licenses.mit;
-    mainProgram = "typescript-go";
+    license = lib.licenses.asl20;
+    mainProgram = "tsgo";
   };
 }
