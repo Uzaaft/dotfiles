@@ -84,7 +84,6 @@ in {
     ++ (lib.optionals isLinux [
       # non-darwin packages
       pkgs.greetd.tuigreet
-      pkgs.lmstudio
       pkgs.usbutils
       pkgs.zathura
     ]);
