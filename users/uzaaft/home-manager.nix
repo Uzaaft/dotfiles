@@ -10,7 +10,12 @@
     pbcopy = "wl-copy";
     pbpaste = "wl-paste";
   };
-  onePassPath = "~/.1password/agent.sock";
+  onePassPath = (
+    if isLinux
+    then "~/.1password/agent.sock"
+    # TODO: Symlink this to a more conviniet location
+    else "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+  );
 
   neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default.overrideAttrs (old: {
     meta =
@@ -186,8 +191,7 @@ in {
     ssh = {
       enable = true;
       extraConfig = ''
-        Host *
-            IdentityAgent ${onePassPath}
+        IdentityAgent "${onePassPath}"
       '';
     };
   };
