@@ -41,8 +41,8 @@ in {
   # Packages I always want installed.
   home.packages =
     [
-      crush
-      tsgo
+      # crush
+      # tsgo
       pkgs._1password-cli
       pkgs.llama-cpp
       pkgs.ollama
@@ -221,7 +221,15 @@ in {
       "gpg \"ssh\"" =
         if isLinux
         then {
-          program = "${lib.getExe' pkgs._1password-gui "op-ssh-sign"}";
+          gpg = {
+            format = "ssh";
+          };
+          "gpg \"ssh\"" = {
+            program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+          };
+          commit = {
+            gpgsign = true;
+          };
         }
         else {
           program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
