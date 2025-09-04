@@ -23,6 +23,7 @@
     ghostty = {
       url = "github:ghostty-org/ghostty";
     };
+    nix-ai-tools.url = "github:numtide/nix-ai-tools";
   };
 
   outputs = {

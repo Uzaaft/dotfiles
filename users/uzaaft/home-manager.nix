@@ -48,6 +48,7 @@ in {
     [
       # crush
       # tsgo
+      inputs.nix-ai-tools.packages.${pkgs.system}.amp
       pkgs._1password-cli
       pkgs.llama-cpp
       pkgs.ollama
