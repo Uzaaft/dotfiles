@@ -6,10 +6,6 @@
 }: let
   isDarwin = pkgs.stdenv.isDarwin;
   isLinux = pkgs.stdenv.isLinux;
-  shellAliases = {
-    pbcopy = "wl-copy";
-    pbpaste = "wl-paste";
-  };
   onePassPath = (
     if isLinux
     then "~/.1password/agent.sock"
@@ -24,7 +20,6 @@
       // {
         maintainers = old.maintainers or [];
       }; # TS Parsers are installed through Lazy.vim
-    treesitter-parsers = {};
   });
 
   crush = import ./crush.nix {
@@ -187,60 +182,57 @@ in {
     neovim = {
       enable = true;
       package = neovim-unwrapped;
+      plugins = [
+        pkgs.vimPlugins.nvim-treesitter
+      ];
     };
 
     ssh = {
       enable = true;
       extraConfig = ''
-        IdentityAgent "${onePassPath}"
+        ${
+          if isDarwin
+          then ''
+            IdentityAgent "${onePassPath}"
+          ''
+          else ""
+        }
       '';
     };
-  };
 
-  programs.git = {
-    lfs.enable = true;
-    enable = true;
+    git = {
+      lfs.enable = true;
+      enable = true;
 
-    userName = "Uzair Aftab";
-    userEmail = "uzaaft@outlook.com";
+      userName = "Uzair Aftab";
+      userEmail = "uzaaft@outlook.com";
 
-    extraConfig = {
-      # Sign all commits using ssh key
-      fetch = {
-        prune = true;
-      };
-      branch.autosetuprebase = "always";
-      color.ui = true;
-      github.user = "uzaaft";
-      push.default = "tracking";
-      init.defaultBranch = "main";
-      user = {
-        user = "Uzair Aftab";
-        email = "uzaaft@outlook.com";
-        signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYZX17OSEH3mKJsP4oFuaGtr8F5TF/3/RXOCw2cBgps";
-      };
-      gpg = {
-        format = "ssh";
-      };
-
-      "gpg \"ssh\"" =
-        if isLinux
-        then {
-          gpg = {
-            format = "ssh";
-          };
-          "gpg \"ssh\"" = {
-            program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
-          };
-          commit = {
-            gpgsign = true;
-          };
-        }
-        else {
-          program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+      extraConfig = {
+        # Sign all commits using ssh key
+        fetch = {
+          prune = true;
         };
-      commit = {
-        gpgsign = true;
+        branch.autosetuprebase = "always";
+        color.ui = true;
+        github.user = "uzaaft";
+        push.default = "tracking";
+        init.defaultBranch = "main";
+        user = {
+          user = "Uzair Aftab";
+          email = "uzaaft@outlook.com";
+          signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYZX17OSEH3mKJsP4oFuaGtr8F5TF/3/RXOCw2cBgps";
+        };
+        gpg = {
+          format = "ssh";
+        };
+
+        "gpg \"ssh\"" =
+          if isLinux
+          then {}
+          else {program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";};
+        commit = {
+          gpgsign = true;
+        };
       };
     };
   };
