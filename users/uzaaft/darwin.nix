@@ -5,45 +5,39 @@
 }: {
   homebrew = {
     enable = true;
-    taps = ["koekeishiya/formulae" "dagger/tap"];
+    taps = ["koekeishiya/formulae"];
 
     casks = [
       "1password"
-      "bitwarden"
-      "discord"
-      "vmware-fusion"
       "BetterDisplay"
       "alt-tab"
-      "orbstack"
+      "bitwarden"
       "bruno"
-      "tableplus"
-      "spotify"
-      "linear-linear"
-      "istat-menus"
+      "discord"
       "hiddenbar"
+      "istat-menus"
+      "linear-linear"
+      "monodraw"
+      "orbstack"
+      "slack"
+      "spotify"
+      "tableplus"
+      "vmware-fusion"
       # Required for Norwegian jobs
       "microsoft-teams"
       "notion"
-      "lm-studio"
       "pycharm"
       {
         name = "ghostty@tip";
         greedy = true;
       }
-      # Required for startup
-      "slack"
       # Need this for nrf development
       "visual-studio-code"
-      "nrf-connect"
-      "segger-jlink"
-      "nordic-nrf-command-line-tools"
       # Testing this out to see what the hype is about
-      "windsurf"
-      "dagger/tap/container-use"
     ];
     brews = [
-      "koekeishiya/formulae/yabai"
       "gnupg"
+      "koekeishiya/formulae/yabai"
     ];
   };
   security.pam.services.sudo_local = {
