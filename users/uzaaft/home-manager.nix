@@ -74,7 +74,6 @@ in {
       pkgs.onefetch
       pkgs.repgrep
       pkgs.ripgrep
-      pkgs.rustup
       pkgs.tmux
       pkgs.tree
       pkgs.watch
