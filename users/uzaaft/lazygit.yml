@@ -3,3 +3,5 @@ os:
 gui:
     border: rounded
     nerdFontsVersion: "3"
+git:
+  overrideGpg: true
