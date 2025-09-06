@@ -21,11 +21,11 @@ default: switch
 # Build and switch to the configuration
 switch:
 ifeq ($(UNAME), Darwin)
-	echo "Macos build"
-	NIXPKGS_ALLOW_UNFREE=1 nix build --impure --extra-experimental-features nix-command --extra-experimental-features flakes ".#darwinConfigurations.ArchMac.system"
-	sudo NIXPKGS_ALLOW_UNFREE=1 ./result/sw/bin/darwin-rebuild switch --impure --flake "$$(pwd)#ArchMac"
+	# NIXPKGS_ALLOW_UNFREE=1 nix build --impure --extra-experimental-features nix-command --extra-experimental-features flakes ".#darwinConfigurations.ArchMac.system"
+	# sudo NIXPKGS_ALLOW_UNFREE=1 ./result/sw/bin/darwin-rebuild switch --impure --flake "$$(pwd)#ArchMac"
+	NIXPKGS_ALLOW_UNFREE=1 NIXPKGS_IMPURE=1 nix run nixpkgs#nh -- darwin switch ".#nixosConfigurations.ArchMac"
 else
-	sudo NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch --impure --flake ".#${NIXNAME}"
+	NIXPKGS_ALLOW_UNFREE=1 NIXPKGS_IMPURE=1 nix run nixpkgs#nh -- os switch ".#nixosConfigurations.${NIXNAME}"
 endif
 
 vm/bootstrap0:

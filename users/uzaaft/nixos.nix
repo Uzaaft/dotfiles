@@ -12,6 +12,9 @@
   environment.localBinInPath = true;
 
   programs.zsh.enable = true;
+  programs.nh = {
+    enable = true;
+  };
 
   users.users.uzaaft = {
     isNormalUser = true;
