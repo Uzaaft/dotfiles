@@ -258,11 +258,11 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
-        "lastModified": 1757111114,
-        "narHash": "sha256-pf/XTuWIJWcEXb/hcZ30MV6Alpnz8iP9dF4v1YBFqMI=",
+        "lastModified": 1757217657,
+        "narHash": "sha256-VE/i2WnclOcXCjagtopyrAMJEmMmgaFrBHVoMYE77vc=",
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "e4c3a56242c3e70366bdd8013537a8fed8f7a147",
+        "rev": "aaaaf1c6ad6c531406fb89c13e8508632d52bab1",
         "type": "github"
       },
       "original": {
@@ -395,11 +395,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1757117124,
-        "narHash": "sha256-ZUnJehqxYrhfvIdLrFC3l/w8pX4ObEIWZYqL1UpgvRE=",
+        "lastModified": 1757230098,
+        "narHash": "sha256-MSw+IU56NbE+U0vSxn/Gwg6eIvl4IJqiy20QOg9SAL4=",
         "owner": "nix-community",
         "repo": "neovim-nightly-overlay",
-        "rev": "b447e494cafb7adaf396714a285245e4d1536a6a",
+        "rev": "db6e74196727c16d825a2a6f076b1817b7dc668d",
         "type": "github"
       },
       "original": {
@@ -411,11 +411,11 @@
     "neovim-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1757081548,
-        "narHash": "sha256-24Jg5pMGTofEJ6Pz6OBDAMH6hc9gbMqgZhhVe+uZF3M=",
+        "lastModified": 1757200352,
+        "narHash": "sha256-qtWORsM/mj6NtWziW8PE+VYNQnLj4VTtV6ZUaVSjMio=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "069be911064d0e64f1efc13348dbb878afaf347f",
+        "rev": "21f2c2b19c40882dc6985f87a2e3527c60e3cfaa",
         "type": "github"
       },
       "original": {
@@ -452,11 +452,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1757126870,
-        "narHash": "sha256-VooK6/O0vza4FnKQxz7oNKyiZWhb+76KLzGDNQbwaoE=",
+        "lastModified": 1757213190,
+        "narHash": "sha256-8jJGxoisftexgRWds3eYAFpXyG6Sb6Z3iRKqnctLN3U=",
         "owner": "numtide",
         "repo": "nix-ai-tools",
-        "rev": "35dd1eddd7deaa9806111603c7fda9e88d88f435",
+        "rev": "427a58280cdf840351296c0f4b9c41b677c1f105",
         "type": "github"
       },
       "original": {
@@ -569,11 +569,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1756542300,
-        "narHash": "sha256-tlOn88coG5fzdyqz6R93SQL5Gpq+m/DsWpekNFhqPQk=",
+        "lastModified": 1757068644,
+        "narHash": "sha256-NOrUtIhTkIIumj1E/Rsv1J37Yi3xGStISEo8tZm3KW4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d7600c775f877cd87b4f5a831c28aa94137377aa",
+        "rev": "8eb28adfa3dc4de28e792e3bf49fcf9007ca8ac9",
         "type": "github"
       },
       "original": {
@@ -585,11 +585,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1756875158,
-        "narHash": "sha256-nDWEPoSmjN0P/NG9XntBijws0vwxnbeq+pKBLJGC0sA=",
-        "rev": "d0fc30899600b9b3466ddb260fd83deb486c32f1",
+        "lastModified": 1757208601,
+        "narHash": "sha256-n2RYdKMqyU5qQOyMEtkywqUTZQ0kzmlKyDtrJpoRQwY=",
+        "rev": "8eb28adfa3dc4de28e792e3bf49fcf9007ca8ac9",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre855242.d0fc30899600/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-25.11pre856926.8eb28adfa3dc/nixexprs.tar.xz"
       },
       "original": {
         "type": "tarball",
@@ -710,24 +710,20 @@
     },
     "zon2nix": {
       "inputs": {
-        "flake-utils": [
-          "ghostty",
-          "flake-utils"
-        ],
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1756000480,
-        "narHash": "sha256-fR5pdcjO0II5MNdCzqvyokyuFkmff7/FyBAjUS6sMfA=",
+        "lastModified": 1757167408,
+        "narHash": "sha256-4XyJ6fmKd9wgJ7vHUQuULYy5ps2gUgkkDk/PrJb2OPY=",
         "owner": "jcollie",
         "repo": "zon2nix",
-        "rev": "d9dc9ef1ab9ae45b5c9d80c6a747cc9968ee0c60",
+        "rev": "dc78177e2ad28d5a407c9e783ee781bd559d7dd5",
         "type": "github"
       },
       "original": {
         "owner": "jcollie",
         "repo": "zon2nix",
-        "rev": "d9dc9ef1ab9ae45b5c9d80c6a747cc9968ee0c60",
+        "rev": "dc78177e2ad28d5a407c9e783ee781bd559d7dd5",
         "type": "github"
       }
     }
