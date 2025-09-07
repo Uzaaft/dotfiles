@@ -5,16 +5,19 @@
     # We use the unstable nixpkgs repo for some packages.
     # nixpkgs.url = "https://channels.nixos.org/nixos-25.05/nixexprs.tar.xz";
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+    # Spesific nixpkgs for darwin as recommended by nix-darwin docs.
+    nixpkgs-darwin.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
 
     darwin = {
       url = "github:nix-darwin/nix-darwin/master";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
 
     neovim-nightly-overlay = {
@@ -23,6 +26,7 @@
     ghostty = {
       url = "github:ghostty-org/ghostty";
     };
+
     nix-ai-tools.url = "github:numtide/nix-ai-tools";
   };
 
@@ -37,8 +41,7 @@
     overlays = [
       inputs.ghostty.overlays.default
 
-      (final: prev: rec {
-      })
+      (final: prev: {})
     ];
 
     mkSystem = import ./lib/mksystem.nix {
