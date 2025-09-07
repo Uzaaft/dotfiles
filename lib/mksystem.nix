@@ -36,7 +36,7 @@ in
       # Bring in determinate nix module if none darwin system
       (
         if darwin
-        then {}
+        then inputs.determinate.darwinModules.default
         else inputs.determinate.nixosModules.default
       )
 
