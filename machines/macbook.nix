@@ -4,7 +4,7 @@
   ...
 }: {
   # Set in Sept 2024 as part of the macOS Sequoia release.
-  import = [
+  imports = [
     ./shared.nix
   ];
   system.stateVersion = 5;
