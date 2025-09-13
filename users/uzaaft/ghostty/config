@@ -2,7 +2,6 @@
 
 # font-thicken = true
 font-family = JetBrains Mono
-shell-integration-features = sudo
 font-size = 12
 font-family = JetBrains Mono
 background-opacity = 0.95
@@ -29,7 +28,6 @@ macos-icon = blueprint
 
 # custom-shader = cursor.glsl
 
-config-file = ?config-linux
 # config-file = ?config-macos
 
 keybind = super+c=copy_to_clipboard

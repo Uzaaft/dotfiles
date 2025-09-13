@@ -93,7 +93,6 @@ in {
     {
       # Always include these
       "ghostty/config".text = builtins.readFile ./ghostty/config;
-      "ghostty/config-linux".text = builtins.readFile ./ghostty/config-linux;
       "ghostty/cursor.glsl".text = builtins.readFile ./ghostty/cursor.glsl;
       nvim = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/nvim";
