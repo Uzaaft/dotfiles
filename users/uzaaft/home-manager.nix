@@ -48,7 +48,6 @@ in {
       pkgs.llama-cpp
       pkgs.ollama
       pkgs.pciutils
-      pkgs.python313Packages.huggingface-hub
       # Stuff
       # pkgs.asciinema
       # CLI tools
@@ -56,7 +55,6 @@ in {
       pkgs.ast-grep
       pkgs.bat
       pkgs.btop
-      pkgs.codeberg-cli
       pkgs.curl
       pkgs.eza
       pkgs.fastfetch
@@ -85,7 +83,7 @@ in {
       # non-darwin packages
       pkgs.greetd.tuigreet
       pkgs.usbutils
-      pkgs.zathura
+      pkgs.ghostty
     ]);
 
   #---------------------------------------------------------------------
