@@ -32,8 +32,8 @@
       #   vt = 1;
       # };
       default_session = {
+        command = "${pkgs.tuigreet} --cmd ${lib.getExe' pkgs.niri "niri-session"}";
         user = "uzaaft";
-        command = "${lib.getExe pkgs.greetd.tuigreet} --cmd ${lib.getExe' pkgs.niri "niri-session"}";
       };
     };
   };
