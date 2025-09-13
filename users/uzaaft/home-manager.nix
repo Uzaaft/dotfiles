@@ -13,15 +13,6 @@
     else "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
   );
 
-  neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default.overrideAttrs (old: {
-    meta =
-      old.meta
-      or {}
-      // {
-        maintainers = old.maintainers or [];
-      }; # TS Parsers are installed through Lazy.vim
-  });
-
   crush = import ./crush.nix {
     inherit lib pkgs;
   };
@@ -178,7 +169,8 @@ in {
 
     neovim = {
       enable = true;
-      package = neovim-unwrapped;
+      package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+
       plugins = [
         pkgs.vimPlugins.nvim-treesitter
       ];
