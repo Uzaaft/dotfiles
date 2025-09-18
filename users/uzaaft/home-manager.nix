@@ -150,6 +150,10 @@ in {
       config = {
         whitelist = {
           # Should add the following: polymath, stormwater-ai, uzaaft
+          prefix = [
+            "$HOME/repositories/github.com/uzaaft"
+            "$HOME/repositories/github.com/polymath-as"
+          ];
         };
       };
     };
