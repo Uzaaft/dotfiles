@@ -32,8 +32,6 @@ in {
   # Packages I always want installed.
   home.packages =
     [
-      # crush
-      # tsgo
       inputs.nix-ai-tools.packages.${pkgs.system}.amp
       pkgs._1password-cli
       pkgs.llama-cpp
@@ -75,6 +73,8 @@ in {
       pkgs.greetd.tuigreet
       pkgs.usbutils
       pkgs.ghostty
+      tsgo
+      crush
     ]);
 
   #---------------------------------------------------------------------
