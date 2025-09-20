@@ -127,6 +127,7 @@ in {
   # Programs
   #---------------------------------------------------------------------
   programs = {
+    nh.enable = true;
     claude-code = {
       enable = true;
       agents = {
