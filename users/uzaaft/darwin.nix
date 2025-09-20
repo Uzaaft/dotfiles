@@ -12,7 +12,6 @@
       "BetterDisplay"
       "alt-tab"
       "bitwarden"
-      "bruno"
       "discord"
       "hiddenbar"
       "istat-menus"
