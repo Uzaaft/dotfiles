@@ -1,5 +1,7 @@
 os:
   editPreset: nvim
+git:
+  overrideGpg: true
 gui:
     border: rounded
     nerdFontsVersion: "3"
