@@ -28,7 +28,6 @@ in {
       inputs.nix-ai-tools.packages.${pkgs.system}.amp
       pkgs._1password-cli
       pkgs.llama-cpp
-      pkgs.ollama
       pkgs.pciutils
       # Stuff
       # pkgs.asciinema
@@ -58,6 +57,7 @@ in {
       pkgs.tree
       pkgs.watch
       # AI
+      # pkgs.ollama
     ]
     ++ (lib.optionals isDarwin [
       ])
