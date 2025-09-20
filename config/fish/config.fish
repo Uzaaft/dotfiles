@@ -11,7 +11,7 @@ if status is-interactive
     # Simple, fast prompt
     function fish_prompt
         set_color magenta --bold
-        echo -n (prompt_pwd)
+        echo -n (pwd)
         set_color red
         echo -n ' $ '
         set_color normal
