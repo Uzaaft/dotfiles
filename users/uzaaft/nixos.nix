@@ -13,9 +13,6 @@
 
   programs.zsh.enable = true;
   programs.fish.enable = true;
-  programs.nh = {
-    enable = true;
-  };
 
   users.users.uzaaft = {
     isNormalUser = true;
