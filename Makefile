@@ -21,9 +21,9 @@ default: switch
 # Build and switch to the configuration
 switch:
 ifeq ($(UNAME), Darwin)
-	NIXPKGS_ALLOW_UNFREE=1 NIXPKGS_IMPURE=1 nix run nixpkgs#nh -- darwin switch ".#darwinConfigurations.ArchMac"
+	NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs#nh -- darwin switch --impure  ".#darwinConfigurations.ArchMac"
 else
-	NIXPKGS_ALLOW_UNFREE=1 NIXPKGS_IMPURE=1 nix run nixpkgs#nh -- os switch ".#nixosConfigurations.${NIXNAME}"
+	NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs#nh -- os switch --impure ".#nixosConfigurations.${NIXNAME}"
 endif
 
 vm/bootstrap0:
