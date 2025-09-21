@@ -69,7 +69,7 @@
   #   };
   # };
 
-  # services.tailscale.enable = true;
+  services.tailscale.enable = true;
   programs.niri.enable = true;
   # programs.waybar.enable = true;
 
