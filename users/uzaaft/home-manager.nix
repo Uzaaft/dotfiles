@@ -12,13 +12,6 @@
     # TODO: Symlink this to a more conviniet location
     else "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
   );
-
-  crush = import ./crush.nix {
-    inherit lib pkgs;
-  };
-  tsgo = import ./typescript-go.nix {
-    inherit lib pkgs;
-  };
 in {
   # Home-manager 22.11 requires this be set. We never set it so we have
   # to use the old state version.
@@ -73,8 +66,6 @@ in {
       pkgs.greetd.tuigreet
       pkgs.usbutils
       pkgs.ghostty
-      tsgo
-      crush
     ]);
 
   #---------------------------------------------------------------------
@@ -131,20 +122,7 @@ in {
   #---------------------------------------------------------------------
   programs = {
     nh.enable = true;
-    claude-code = {
-      enable = true;
-      agents = {
-        api-designer = builtins.readFile ./agents/api-designer.md;
-        backend-developer = builtins.readFile ./agents/backend-developer.md;
-        nextjs-developer = builtins.readFile ./agents/nextjs-developer.md;
-        perf-engineer = builtins.readFile ./agents/perf-engineer.md;
-        react-specialist = builtins.readFile ./agents/react-specialist.md;
-        senior-code-reviewer = builtins.readFile ./agents/senior-code-reviewer.md;
-        rust-engineer = builtins.readFile ./agents/rust-engineer.md;
-        terraform-engineer = builtins.readFile ./agents/terraform-engineer.md;
-        ui-engineer = builtins.readFile ./agents/ui-engineer.md;
-      };
-    };
+
     gpg.enable = !isDarwin;
 
     direnv = {
