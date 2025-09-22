@@ -56,22 +56,8 @@
   # Virtualization settings
   virtualisation.docker.enable = true;
 
-  # # Select internationalisation properties.
-  # i18n = {
-  #   defaultLocale = "en_US.UTF-8";
-  #   inputMethod = {
-  #     enable = true;
-  #     type = "fcitx5";
-  #     fcitx5.addons = with pkgs; [
-  #       fcitx5-mozc
-  #       fcitx5-gtk
-  #     ];
-  #   };
-  # };
-
   services.tailscale.enable = true;
   programs.niri.enable = true;
-  # programs.waybar.enable = true;
 
   xdg.portal = {
     enable = true;
@@ -109,7 +95,6 @@
       # This is needed for the vmware user tools clipboard to work.
       # You can test if you don't need this by deleting this and seeing
       # if the clipboard sill works.
-      swaylock
       wl-clipboard
     ];
 
