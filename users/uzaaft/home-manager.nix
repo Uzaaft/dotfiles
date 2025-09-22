@@ -27,7 +27,6 @@ in {
     [
       inputs.nix-ai-tools.packages.${pkgs.system}.amp
       pkgs._1password-cli
-      pkgs.llama-cpp
       pkgs.pciutils
       # Stuff
       # pkgs.asciinema
@@ -58,6 +57,7 @@ in {
       pkgs.watch
       # AI
       # pkgs.ollama
+      # pkgs.llama-cpp
     ]
     ++ (lib.optionals isDarwin [
       ])
@@ -129,6 +129,8 @@ in {
       enable = true;
       nix-direnv.enable = true;
       enableZshIntegration = true;
+      enableFishIntegration = true;
+      silent = true;
       config = {
         whitelist = {
           # Should add the following: polymath, stormwater-ai, uzaaft
