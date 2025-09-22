@@ -145,7 +145,7 @@ in {
       settings = {
         user = {
           name = "Uzair Aftab";
-          email = "uzaaft@outlook.com";
+          email = "git@uzaaft.me";
         };
       };
     };
@@ -179,7 +179,7 @@ in {
       enable = true;
 
       userName = "Uzair Aftab";
-      userEmail = "uzaaft@outlook.com";
+      userEmail = "git@uzaaft.me";
 
       extraConfig = {
         # Sign all commits using ssh key
@@ -193,7 +193,7 @@ in {
         init.defaultBranch = "main";
         user = {
           user = "Uzair Aftab";
-          email = "uzaaft@outlook.com";
+          email = "git@uzaaft.me";
           signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYZX17OSEH3mKJsP4oFuaGtr8F5TF/3/RXOCw2cBgps";
         };
         gpg = {
