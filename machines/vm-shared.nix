@@ -18,7 +18,6 @@
       keep-derivations = true
     '';
 
-    #
     settings = {
       substituters = [
         "https://mitchellh-nixos-config.cachix.org"
@@ -56,7 +55,17 @@
   # Virtualization settings
   virtualisation.docker.enable = true;
 
-  services.tailscale.enable = true;
+  services = {
+    tailscale.enable = true;
+    openssh = {
+      enable = true;
+      settings = {
+        PasswordAuthentication = true;
+        PermitRootLogin = "no";
+      };
+    };
+  };
+
   programs.niri.enable = true;
 
   xdg.portal = {
@@ -93,15 +102,8 @@
     ]
     ++ lib.optionals (currentSystemName == "vm-aarch64") [
       # This is needed for the vmware user tools clipboard to work.
-      # You can test if you don't need this by deleting this and seeing
-      # if the clipboard sill works.
       wl-clipboard
     ];
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-  services.openssh.settings.PasswordAuthentication = true;
-  services.openssh.settings.PermitRootLogin = "no";
 
   # Disable the firewall since we're in a VM and we want to make it
   # easy to visit stuff in here. We only use NAT networking anyways.

@@ -42,8 +42,18 @@
 
   # Don't require password for sudo
   security.sudo.wheelNeedsPassword = false;
+  services = {
+    tailscale.enable = true;
+    xserver.videoDrivers = ["nvidia"];
+    openssh = {
+      enable = true;
+      settings = {
+        PasswordAuthentication = true;
+        PermitRootLogin = "no";
+      };
+    };
+  };
 
-  services.tailscale.enable = true;
   virtualisation.docker = {
     enable = true;
     rootless = {
@@ -73,16 +83,6 @@
     '')
   ];
 
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    settings = {
-      PasswordAuthentication = true;
-      PermitRootLogin = "no";
-    };
-  };
-  services.xserver.videoDrivers = ["nvidia"];
-
   system.stateVersion = "24.11"; # Did you read the comment?
 
   networking.networkmanager.enable = true;
@@ -91,5 +91,6 @@
     allowUnfree = true;
     cudaSupport = true;
   };
+
   # nixpkgs.config.allowUnsupportedSystem = true;
 }
