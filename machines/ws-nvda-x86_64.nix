@@ -44,10 +44,6 @@
   security.sudo.wheelNeedsPassword = false;
 
   services.tailscale.enable = true;
-  services.ollama = {
-    enable = true;
-    acceleration = "cuda";
-  };
   virtualisation.docker = {
     enable = true;
     rootless = {
