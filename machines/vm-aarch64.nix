@@ -22,19 +22,8 @@
   # nixpkgs.config.allowUnsupportedSystem = true;
 
   virtualisation.vmware.guest.enable = true;
-
-  services.greetd = {
+  services.displayManager.ly = {
     enable = true;
-    package = pkgs.greetd.tuigreet;
-    settings = {
-      # terminal = {
-      #   vt = 1;
-      # };
-      default_session = {
-        user = "uzaaft";
-        command = "${lib.getExe pkgs.greetd.tuigreet} --cmd ${lib.getExe' pkgs.niri "niri-session"}";
-      };
-    };
   };
 
   # Share our host filesystem

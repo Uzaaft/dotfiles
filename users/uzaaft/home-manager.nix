@@ -63,7 +63,6 @@ in {
       ])
     ++ (lib.optionals isLinux [
       # non-darwin packages
-      pkgs.greetd.tuigreet
       pkgs.usbutils
       pkgs.ghostty
     ]);
