@@ -19,9 +19,6 @@ in {
 
   xdg.enable = true;
 
-  #---------------------------------------------------------------------
-  # Packages
-  #---------------------------------------------------------------------
   # Packages I always want installed.
   home.packages =
     [
@@ -192,22 +189,21 @@ in {
         github.user = "uzaaft";
         push.default = "tracking";
         init.defaultBranch = "main";
-        user = {
-          user = "Uzair Aftab";
-          email = "git@uzaaft.me";
-          signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYZX17OSEH3mKJsP4oFuaGtr8F5TF/3/RXOCw2cBgps";
-        };
-        gpg = {
+        commit.gpgsign = true;
+        gpg.format = "ssh";
+        signing = {
           format = "ssh";
+          key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYZX17OSEH3mKJsP4oFuaGtr8F5TF/3/RXOCw2cBgps";
         };
+        user.signingKey = "~/.ssh/id_ed25519.pub";
 
-        "gpg \"ssh\"" =
-          if isLinux
-          then {}
-          else {program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";};
-        commit = {
-          gpgsign = true;
-        };
+        # "gpg \"ssh\"" =
+        #   if isLinux
+        #   then {}
+        #   else {program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";};
+        # commit = {
+        #   gpgsign = true;
+        # };
       };
     };
   };
