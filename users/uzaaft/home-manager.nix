@@ -52,6 +52,7 @@ in {
       pkgs.tmux
       pkgs.tree
       pkgs.watch
+      pkgs.nix-output-monitor
       # AI
       # pkgs.ollama
       # pkgs.llama-cpp
