@@ -178,12 +178,18 @@ in {
 
       userName = "Uzair Aftab";
       userEmail = "git@uzaaft.me";
+      ignores = [".DS_Store" ".direnv" ".env" ".rgignore"];
+
+      aliases = {
+        st = "status";
+      };
 
       extraConfig = {
         # Sign all commits using ssh key
         fetch = {
           prune = true;
         };
+
         branch.autosetuprebase = "always";
         color.ui = true;
         github.user = "uzaaft";
