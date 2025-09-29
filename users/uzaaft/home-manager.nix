@@ -6,10 +6,9 @@
 }: let
   isDarwin = pkgs.stdenv.isDarwin;
   isLinux = pkgs.stdenv.isLinux;
-  onePassPath = (
+  sshKeyPath = (
     if isLinux
-    then "~/.1password/agent.sock"
-    # TODO: Symlink this to a more conviniet location
+    then "~/.ssh/id_ed25519.pub"
     else "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
   );
 in {
@@ -166,7 +165,7 @@ in {
         ${
           if isDarwin
           then ''
-            IdentityAgent "${onePassPath}"
+            IdentityAgent "${sshKeyPath}"
           ''
           else ""
         }
@@ -202,15 +201,12 @@ in {
           format = "ssh";
           key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYZX17OSEH3mKJsP4oFuaGtr8F5TF/3/RXOCw2cBgps";
         };
-        user.signingKey = "~/.ssh/id_ed25519.pub";
+        user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYZX17OSEH3mKJsP4oFuaGtr8F5TF/3/RXOCw2cBgps";
 
-        # "gpg \"ssh\"" =
-        #   if isLinux
-        #   then {}
-        #   else {program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";};
-        # commit = {
-        #   gpgsign = true;
-        # };
+        "gpg \"ssh\"" =
+          if isDarwin
+          then {program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";}
+          else {};
       };
     };
   };
