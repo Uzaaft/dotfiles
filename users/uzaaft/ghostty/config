@@ -51,3 +51,6 @@ keybind = super+d=new_split:right
 keybind = super+shift+d=new_split:down
 keybind = super+right_bracket=goto_split:next
 keybind = super+left_bracket=goto_split:previous
+
+custom-shader = cursor.glsl
+
