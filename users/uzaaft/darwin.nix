@@ -22,18 +22,16 @@
       "spotify"
       "tableplus"
       "vmware-fusion"
+      "yaak"
       # Required for Norwegian jobs
       "microsoft-teams"
       "notion"
       "pycharm"
-      "yaak"
+      "visual-studio-code"
       {
         name = "ghostty@tip";
         greedy = true;
       }
-      # Need this for nrf development
-      "visual-studio-code"
-      # Testing this out to see what the hype is about
     ];
     brews = [
       "gnupg"
