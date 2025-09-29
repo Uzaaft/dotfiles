@@ -29,36 +29,34 @@ end
 
 # Universal variables (set once, persist across sessions)
 # Run these once if not already set
-if not set -q __fish_initialized
     # Environment variables
-    set -Ux GOKU_EDN_CONFIG_FILE "$HOME/.config/goku/karabiner.edn"
-    set -Ux NPM_CONFIG_PREFIX "/Users/uzaaft/.npm-global"
-    set -Ux GIT_PATH "$HOME/repositories"
-    set -Ux GEM_HOME "$HOME/.gem"
-    set -Ux DENO_INSTALL "$HOME/.deno"
-    set -Ux EDITOR nvim
-    set -Ux XDG_CONFIG_HOME "$HOME/.config"
-    set -Ux BAT_THEME "Catppuccin-mocha"
-    set -Ux PNPM_HOME "$HOME/pnpm"
-    set -Ux ANTHROPIC_API_KEY "op://Personal/AnthropicNeovim/credential"
+set -gx NPM_CONFIG_PREFIX "/Users/uzaaft/.npm-global"
+set -gx GIT_PATH "$HOME/repositories"
+set -gx GEM_HOME "$HOME/.gem"
+set -gx DENO_INSTALL "$HOME/.deno"
+set -gx EDITOR nvim
+set -gx XDG_CONFIG_HOME "$HOME/.config"
+set -gx BAT_THEME "Catppuccin-mocha"
+set -gx PNPM_HOME "$HOME/pnpm"
+set -gx ANTHROPIC_API_KEY "op://Personal/AnthropicNeovim/credential"
 
-    # Path configuration (persistent)
-    fish_add_path /opt/homebrew/opt/rustup/bin
-    fish_add_path /opt/homebrew/opt/llvm/bin
-    fish_add_path /opt/homebrew/bin
-    fish_add_path $HOME/.local/bin
-    fish_add_path $HOME/.cargo/bin
-    fish_add_path $HOME/.bun/bin
-    fish_add_path $HOME/pnpm
-    fish_add_path $HOME/go/bin
-    fish_add_path $HOME/.npm-global/bin
-    fish_add_path /opt/homebrew/opt/gnu-sed/libexec/gnubin
-    fish_add_path /opt/homebrew/opt/libpq/bin
-    fish_add_path $GEM_HOME/bin
-
-    # Mark as initialized
-    set -U __fish_initialized 1
+# Path configuration (persistent)
+switch (uname)
+    case 'Darwin'
+        fish_add_path /opt/homebrew/opt/rustup/bin
+        fish_add_path /opt/homebrew/opt/llvm/bin
+        fish_add_path /opt/homebrew/bin
+        fish_add_path /opt/homebrew/opt/gnu-sed/libexec/gnubin
+        fish_add_path /opt/homebrew/opt/libpq/bin
 end
+
+fish_add_path $HOME/.local/bin
+fish_add_path $HOME/.cargo/bin
+fish_add_path $HOME/.bun/bin
+fish_add_path $HOME/pnpm
+fish_add_path $HOME/go/bin
+fish_add_path $HOME/.npm-global/bin
+fish_add_path $GEM_HOME/bin
 
 # Dynamic MANPAGER based on nvim context
 if set -q NVIM_LISTEN_ADDRESS; or set -q NVIM
