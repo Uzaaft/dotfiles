@@ -118,6 +118,10 @@ in {
   #---------------------------------------------------------------------
   programs = {
     nh.enable = true;
+    claude-code = {
+      enable = true;
+      package = inputs.nix-ai-tools.packages.${pkgs.system}.claude-code;
+    };
 
     gpg.enable = !isDarwin;
 
