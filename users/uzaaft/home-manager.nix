@@ -53,7 +53,7 @@ in {
       pkgs.watch
       pkgs.nix-output-monitor
       # AI
-      # pkgs.ollama
+      pkgs.ollama
       # pkgs.llama-cpp
     ]
     ++ (lib.optionals isDarwin [
