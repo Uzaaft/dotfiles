@@ -62,6 +62,8 @@ in {
       # non-darwin packages
       pkgs.usbutils
       pkgs.ghostty
+      # Fallback CPU based terminal
+      pkgs.foot
     ]);
 
   #---------------------------------------------------------------------
@@ -118,6 +120,9 @@ in {
   #---------------------------------------------------------------------
   programs = {
     nh.enable = true;
+    ghostty = {
+      enable = true;
+    };
     claude-code = {
       enable = true;
       package = inputs.nix-ai-tools.packages.${pkgs.system}.claude-code;
