@@ -24,9 +24,10 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-    };
+
+    # ghostty = {
+    #   url = "github:ghostty-org/ghostty";
+    # };
 
     nix-ai-tools.url = "github:numtide/nix-ai-tools";
   };
@@ -40,7 +41,7 @@
   } @ inputs: let
     # Overlays is the list of overlays we want to apply from flake inputs.
     overlays = [
-      inputs.ghostty.overlays.default
+      # inputs.ghostty.overlays.default
 
       (final: prev: {})
     ];
