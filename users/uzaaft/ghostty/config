@@ -1,9 +1,6 @@
-# vim: set ft=config
-
-# font-thicken = true
+font-thicken = true
 font-family = JetBrains Mono
 font-size = 12
-font-family = JetBrains Mono
 background-opacity = 0.95
 background-blur-radius = 20
 macos-non-native-fullscreen = visible-menu
@@ -54,3 +51,4 @@ keybind = super+left_bracket=goto_split:previous
 
 custom-shader = cursor.glsl
 
+# vim set ft=config
