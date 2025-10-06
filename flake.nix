@@ -40,8 +40,6 @@
   } @ inputs: let
     # Overlays is the list of overlays we want to apply from flake inputs.
     overlays = [
-      # inputs.ghostty.overlays.default
-
       (final: prev: {})
     ];
 
