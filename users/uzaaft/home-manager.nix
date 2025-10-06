@@ -76,6 +76,9 @@ in {
     ".claude/CLAUDE.md" = {
       source = builtins.path {path = ./claude.md;};
     };
+    ".tmux.conf" = {
+      source = builtins.path {path = ./.tmux.conf;};
+    };
   };
 
   xdg.configFile =
