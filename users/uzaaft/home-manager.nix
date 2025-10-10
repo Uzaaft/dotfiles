@@ -52,6 +52,7 @@ in {
       pkgs.tree
       pkgs.watch
       pkgs.nix-output-monitor
+      pkgs.attic-client
       # AI
       pkgs.ollama
       # pkgs.llama-cpp
