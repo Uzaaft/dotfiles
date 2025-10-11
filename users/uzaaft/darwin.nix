@@ -9,6 +9,7 @@
 
     casks = [
       "1password"
+      "arc"
       "BetterDisplay"
       "alt-tab"
       "bitwarden"
@@ -21,7 +22,6 @@
       "slack"
       "spotify"
       "tableplus"
-      "vmware-fusion"
       "yaak"
       # Required for Norwegian jobs
       "microsoft-teams"
