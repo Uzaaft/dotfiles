@@ -125,7 +125,7 @@ in {
   programs = {
     nh.enable = true;
     ghostty = {
-      enable = true;
+      enable = isLinux;
     };
     claude-code = {
       enable = true;
