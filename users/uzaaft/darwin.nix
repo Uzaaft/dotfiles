@@ -35,17 +35,12 @@
     ];
     brews = [
       "gnupg"
-      "koekeishiya/formulae/yabai"
+      # "koekeishiya/formulae/yabai"
     ];
   };
   security.pam.services.sudo_local = {
     touchIdAuth = true;
     reattach = true;
-  };
-
-  services.yabai = {
-    enable = true;
-    # enableScriptAddition = true;
   };
 
   system = {
