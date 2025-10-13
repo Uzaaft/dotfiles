@@ -6,7 +6,6 @@ background-blur-radius = 20
 macos-non-native-fullscreen = visible-menu
 macos-option-as-alt = left
 mouse-hide-while-typing = true
-theme = Catppuccin Macchiato
 window-theme = ghostty
 
 
