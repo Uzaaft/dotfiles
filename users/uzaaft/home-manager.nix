@@ -23,7 +23,6 @@ in {
     [
       inputs.nix-ai-tools.packages.${pkgs.system}.amp
       pkgs._1password-cli
-      pkgs.pciutils
       # Stuff
       # pkgs.asciinema
       # CLI tools
@@ -44,7 +43,7 @@ in {
       pkgs.jq
       pkgs.lazygit
       pkgs.nixd
-      pkgs.nodejs_24
+      pkgs.nodejs-slim_24
       pkgs.onefetch
       pkgs.repgrep
       pkgs.ripgrep
@@ -63,6 +62,7 @@ in {
       # non-darwin packages
       pkgs.usbutils
       pkgs.ghostty
+      pkgs.pciutils
       # Fallback CPU based terminal
       pkgs.foot
     ]);
@@ -73,9 +73,6 @@ in {
   home.file = {
     ".zshenv" = {
       source = builtins.path {path = ./.zshenv;};
-    };
-    ".claude/CLAUDE.md" = {
-      source = builtins.path {path = ./claude.md;};
     };
     ".tmux.conf" = {
       source = builtins.path {path = ./.tmux.conf;};
