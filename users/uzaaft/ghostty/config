@@ -1,10 +1,11 @@
 font-thicken = true
 font-family = JetBrains Mono
-font-size = 10
+font-size = 13
 background-opacity = 0.95
 background-blur-radius = 20
 macos-non-native-fullscreen = visible-menu
 macos-option-as-alt = left
+macos-window-shadow = false
 mouse-hide-while-typing = true
 window-theme = ghostty
 
