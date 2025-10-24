@@ -9,9 +9,9 @@
 
     casks = [
       "1password"
-      "arc"
       "BetterDisplay"
       "alt-tab"
+      "arc"
       "bitwarden"
       "discord"
       "hiddenbar"
@@ -22,7 +22,6 @@
       "slack"
       "spotify"
       "tableplus"
-      "yaak"
       # Required for Norwegian jobs
       "microsoft-teams"
       "notion"
