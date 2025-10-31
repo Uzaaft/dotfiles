@@ -1,5 +1,6 @@
 function git_go --description 'Navigate to git repositories with fzf'
-    set -l selected_path (fd -HI '^.git$' --max-depth 4 --type d --base-directory $GIT_PATH | sed 's|/.git/$||' | fzf -n 1)
+    # Depth is 5 to account for project based scopes like monorepos
+    set -l selected_path (fd -HI '^.git$' --max-depth 5 --type d --base-directory $GIT_PATH | sed 's|/.git/$||' | fzf -n 1)
 
     if test -n "$selected_path"
         cd "$GIT_PATH/$selected_path"
