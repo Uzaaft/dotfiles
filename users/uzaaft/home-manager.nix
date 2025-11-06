@@ -22,12 +22,13 @@ in {
   home.packages =
     [
       inputs.nix-ai-tools.packages.${pkgs.system}.amp
+      inputs.nix-ai-tools.packages.${pkgs.system}.goose-cli
       pkgs._1password-cli
       # Stuff
       # pkgs.asciinema
       # CLI tools
       pkgs.alejandra
-      pkgs.ast-grep
+      pkgs.attic-client
       pkgs.bat
       pkgs.btop
       pkgs.curl
@@ -42,6 +43,7 @@ in {
       pkgs.ijq
       pkgs.jq
       pkgs.lazygit
+      pkgs.nix-output-monitor
       pkgs.nixd
       pkgs.nodejs-slim_24
       pkgs.onefetch
@@ -50,11 +52,6 @@ in {
       pkgs.tmux
       pkgs.tree
       pkgs.watch
-      pkgs.nix-output-monitor
-      pkgs.attic-client
-      # AI
-      pkgs.ollama
-      # pkgs.llama-cpp
     ]
     ++ (lib.optionals isDarwin [
       ])
@@ -65,6 +62,7 @@ in {
       pkgs.pciutils
       # Fallback CPU based terminal
       pkgs.foot
+      pkgs.ollama
     ]);
 
   #---------------------------------------------------------------------
@@ -125,7 +123,7 @@ in {
       enable = isLinux;
     };
     claude-code = {
-      enable = true;
+      enable = false;
       package = inputs.nix-ai-tools.packages.${pkgs.system}.claude-code;
     };
 
