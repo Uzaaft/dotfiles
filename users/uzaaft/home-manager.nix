@@ -184,18 +184,17 @@ in {
       lfs.enable = true;
       enable = true;
 
-      userName = "Uzair Aftab";
-      userEmail = "git@uzaaft.me";
       ignores = [".DS_Store" ".direnv" ".env" ".rgignore"];
 
-      aliases = {
-        st = "status";
-      };
-
-      extraConfig = {
+      settings = {
+        user.name = "Uzair Aftab";
+        user.email = "git@uzaaft.me";
         # Sign all commits using ssh key
         fetch = {
           prune = true;
+        };
+        aliases = {
+          st = "status";
         };
 
         branch.autosetuprebase = "always";
