@@ -122,10 +122,6 @@ in {
     ghostty = {
       enable = isLinux;
     };
-    claude-code = {
-      enable = false;
-      package = inputs.nix-ai-tools.packages.${pkgs.system}.claude-code;
-    };
 
     gpg.enable = !isDarwin;
 
