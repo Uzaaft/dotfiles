@@ -5,6 +5,7 @@
 }: {
   homebrew = {
     enable = true;
+
     taps = ["koekeishiya/formulae"];
 
     casks = [
@@ -40,6 +41,11 @@
   security.pam.services.sudo_local = {
     touchIdAuth = true;
     reattach = true;
+  };
+  nix-homebrew = {
+    enable = true;
+    autoMigrate = true;
+    user = "uzaaft";
   };
 
   system = {

@@ -39,6 +39,11 @@ in
         then inputs.determinate.darwinModules.default
         else inputs.determinate.nixosModules.default
       )
+      (
+        if darwin
+        then inputs.nix-homebrew.darwinModules.nix-homebrew
+        else {}
+      )
 
       # Apply our overlays. Overlays are keyed by system type so we have
       # to go through and apply our system type. We do this first so
