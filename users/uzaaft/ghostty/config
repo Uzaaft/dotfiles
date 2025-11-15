@@ -53,3 +53,37 @@ keybind = super+left_bracket=goto_split:previous
 custom-shader = cursor.glsl
 
 # vim set ft=config
+
+
+# UI Colors
+background = #161616
+foreground = #FFF5E6
+cursor-color = #FFA366
+selection-background = #2D4448
+selection-foreground = #FFF5E6
+split-divider-color = #7A96A8
+
+# macOS Icon Colors
+macos-icon = custom-style
+macos-icon-ghost-color = #FFA366
+macos-icon-screen-color = #0A0A0A
+
+# Standard ANSI Colors (0-7)
+palette = 0=#2A2A2A
+palette = 1=#FF7A66
+palette = 2=#99C4BE
+palette = 3=#FFBB77
+palette = 4=#4A90CC
+palette = 5=#D9A8C4
+palette = 6=#77B3B3
+palette = 7=#F5F5F5
+
+# Bright ANSI Colors (8-15)
+palette = 8=#7A96A8
+palette = 9=#FFA366
+palette = 10=#CCEFD2
+palette = 11=#FFDDA8
+palette = 12=#8FBFEE
+palette = 13=#EECCBB
+palette = 14=#AADDDD
+palette = 15=#FFF5E6
