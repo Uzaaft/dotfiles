@@ -191,6 +191,7 @@ in {
         };
         aliases = {
           st = "status";
+          feedback = "!f() { git checkout -b \"$(git rev-parse --abbrev-ref HEAD)/feedback\" && git add -A && git commit -m \"$1\"; }; f";
         };
 
         branch.autosetuprebase = "always";
