@@ -8,15 +8,6 @@ if status is-interactive
     # Vi mode with custom bindings
     fish_vi_key_bindings
 
-    # Simple, fast prompt
-    function fish_prompt
-        set_color magenta --bold
-        echo -n (pwd)
-        set_color red
-        echo -n ' $ '
-        set_color normal
-    end
-
     # Lazy load integrations
     if type -q fzf
         fzf --fish | source
