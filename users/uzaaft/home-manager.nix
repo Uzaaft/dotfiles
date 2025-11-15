@@ -62,7 +62,6 @@ in {
       pkgs.pciutils
       # Fallback CPU based terminal
       pkgs.foot
-      pkgs.ollama
     ]);
 
   #---------------------------------------------------------------------
