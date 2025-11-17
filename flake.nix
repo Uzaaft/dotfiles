@@ -3,7 +3,7 @@
 
   inputs = {
     # We use the unstable nixpkgs repo for some packages.
-    # nixpkgs.url = "https://channels.nixos.org/nixos-25.05/nixexprs.tar.xz";
+    nixpkgs-stable.url = "https://channels.nixos.org/nixos-25.05/nixexprs.tar.xz";
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
     # Spesific nixpkgs for darwin as recommended by nix-darwin docs.
 
@@ -41,7 +41,10 @@
   } @ inputs: let
     # Overlays is the list of overlays we want to apply from flake inputs.
     overlays = [
-      (final: prev: {})
+      (final: prev: {
+        # Overlay fish from stable
+        fish = inputs.nixpkgs-stable.legacyPackages.${final.system}.fish;
+      })
     ];
 
     mkSystem = import ./lib/mksystem.nix {
