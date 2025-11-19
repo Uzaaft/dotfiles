@@ -40,10 +40,8 @@
     # Overlays is the list of overlays we want to apply from flake inputs.
     overlays = [
       (final: prev: {
-        # Overlay fish from stable
-        fish = inputs.nixpkgs-stable.legacyPackages.${final.system}.fish;
         # Add amp package
-        amp = prev.callPackage ./packages/amp { };
+        amp = prev.callPackage ./packages/amp {};
       })
     ];
 
@@ -52,14 +50,15 @@
     };
   in {
     # Expose amp package
-    packages = nixpkgs.lib.genAttrs [
-      "x86_64-linux"
-      "aarch64-linux"
-      "x86_64-darwin"
-      "aarch64-darwin"
-    ] (system: {
-      amp = nixpkgs.legacyPackages.${system}.callPackage ./packages/amp { };
-    });
+    packages =
+      nixpkgs.lib.genAttrs [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ] (system: {
+        amp = nixpkgs.legacyPackages.${system}.callPackage ./packages/amp {};
+      });
     nixosConfigurations.vm-aarch64 = mkSystem "vm-aarch64" {
       system = "aarch64-linux";
       user = "uzaaft";
