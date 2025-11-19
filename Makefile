@@ -93,6 +93,7 @@ clean:
 
 # Update all flake inputs
 update:
+	nix-shell -p nodejs --run "cd packages/amp && ./update.sh"
 	nix flake update
 
 # Show the current system generation

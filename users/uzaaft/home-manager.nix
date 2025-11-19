@@ -21,8 +21,7 @@ in {
   # Packages I always want installed.
   home.packages =
     [
-      inputs.nix-ai-tools.packages.${pkgs.system}.amp
-      inputs.nix-ai-tools.packages.${pkgs.system}.goose-cli
+      pkgs.amp
       pkgs._1password-cli
       # Stuff
       # pkgs.asciinema
