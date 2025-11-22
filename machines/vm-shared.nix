@@ -53,7 +53,13 @@
   security.sudo.wheelNeedsPassword = false;
 
   # Virtualization settings
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+  };
 
   services = {
     tailscale.enable = true;
@@ -93,6 +99,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs;
     [
+      docker-compose
       cachix
       gnumake
       killall
