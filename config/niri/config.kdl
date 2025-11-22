@@ -23,7 +23,7 @@ cursor {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
-/-output "Virtual-1" {
+output "Virtual-1" {
     // Uncomment this line to disable this output.
     // off
 
@@ -59,7 +59,7 @@ cursor {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 2
+    gaps 1.5
 
     center-focused-column "never"
 
