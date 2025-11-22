@@ -83,9 +83,6 @@ in {
       nvim = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/nvim";
       };
-      fish = {
-        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/fish";
-      };
       zsh = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/zsh";
       };
@@ -127,7 +124,6 @@ in {
       enable = true;
       nix-direnv.enable = true;
       enableZshIntegration = true;
-      enableFishIntegration = true;
       silent = true;
       config = {
         whitelist = {
