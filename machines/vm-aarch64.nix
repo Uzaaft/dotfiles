@@ -23,7 +23,7 @@
 
   virtualisation.vmware.guest.enable = true;
   services.displayManager.ly = {
-    enable = false;
+    enable = true;
   };
 
   # Share our host filesystem
