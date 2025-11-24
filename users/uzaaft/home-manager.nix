@@ -24,9 +24,9 @@ in {
       pkgs.amp
       pkgs._1password-cli
       # Stuff
-      # pkgs.asciinema
       # CLI tools
       pkgs.alejandra
+      pkgs.asciinema
       pkgs.attic-client
       pkgs.bat
       pkgs.btop
