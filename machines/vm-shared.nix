@@ -100,6 +100,7 @@
   environment.systemPackages = with pkgs;
     [
       docker-compose
+      docker-buildx
       cachix
       gnumake
       killall
