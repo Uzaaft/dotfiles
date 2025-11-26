@@ -35,6 +35,10 @@ function zsh_install_missing_plugins() {
     clone-plugin "https://github.com/Amar1729/yabai-zsh-completions"
     zcompile-many ${zsh_plugins}/yabai-zsh-completions/yabai-zsh-completions.plugin.zsh
   fi
+  if [[ ! -e ${zsh_plugins}/zsh-defer ]]; then
+    clone-plugin "https://github.com/romkatv/zsh-defer"
+    zcompile-many ${zsh_plugins}/zsh-defer/zsh-defer.plugin.zsh
+  fi
 
   unfunction zcompile-many clone-plugin
 }
@@ -45,10 +49,13 @@ function zsh_update_plugins() { rm -rf ${zsh_plugins}/**; zsh_install_missing_pl
 # --- install zsh plugins ---
 zsh_install_missing_plugins
 
+# --- zsh-defer ---
+source ${zsh_plugins}/zsh-defer/zsh-defer.plugin.zsh
+
 # --- zsh-syntax-highlighting ---
-source ${zsh_plugins}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+zsh-defer source ${zsh_plugins}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # --- zsh-autosuggestions ---
-source ${zsh_plugins}/zsh-autosuggestions/zsh-autosuggestions.zsh
+zsh-defer source ${zsh_plugins}/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 bindkey '^ ' autosuggest-accept
 
