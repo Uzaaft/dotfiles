@@ -197,9 +197,15 @@ in {
         gpg.format = "ssh";
         signing = {
           format = "ssh";
-          key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYZX17OSEH3mKJsP4oFuaGtr8F5TF/3/RXOCw2cBgps";
+          key =
+            if isLinux
+            then "${config.home.homeDirectory}/.ssh/id_ed25519.pub"
+            else "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYZX17OSEH3mKJsP4oFuaGtr8F5TF/3/RXOCw2cBgps";
         };
-        user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYZX17OSEH3mKJsP4oFuaGtr8F5TF/3/RXOCw2cBgps";
+        user.signingkey =
+          if isLinux
+          then "${config.home.homeDirectory}/.ssh/id_ed25519.pub"
+          else "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYZX17OSEH3mKJsP4oFuaGtr8F5TF/3/RXOCw2cBgps";
 
         "gpg \"ssh\"" =
           if isDarwin
