@@ -1,5 +1,5 @@
 _git_go() {
-   local selected_path=$(fd -HI '^.git$' --max-depth 5 --base-directory ${GIT_PATH} | sed 's|/.git$||' | sort -u | fzf -n 1)
+   local selected_path=$(fd -HI '^.git$' --max-depth 5 --base-directory ${GIT_PATH} | sed -E 's|/.git/?$||' | sort -u | fzf -n 1)
 
     if [ -n "$selected_path" ]; then
         cd "${GIT_PATH}/$selected_path"
