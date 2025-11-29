@@ -7,6 +7,7 @@
   imports = [
     ./shared.nix
   ];
+  networking.hostName = "archmac";
   system.stateVersion = 5;
 
   nix = {
