@@ -21,8 +21,9 @@ alias gp="git push";
 alias gs="git status";
 alias gt="git tag";
 alias ":q"="exit";
-alias codex="op run -- codex"
-# alias claude="op run -- claude"
+alias pp="pnpm"
+alias ls-scripts='cat package.json | jq .scripts'
+
 
 openwin() { osascript -e "tell application \"$1\" to activate" -e 'tell application "System Events" to keystroke "n" using command down'; }
 
