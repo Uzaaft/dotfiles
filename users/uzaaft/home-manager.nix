@@ -192,7 +192,7 @@ in {
         color.ui = true;
         github.user = "uzaaft";
         push.default = "tracking";
-        init.defaultBranch = "main";
+        init.defaultBranch = "master";
         commit.gpgsign = true;
         gpg.format = "ssh";
         signing = {
