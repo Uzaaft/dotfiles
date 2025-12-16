@@ -25,9 +25,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # ghostty = {
-    #   url = "github:ghostty-org/ghostty";
-    # };
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+    };
   };
 
   outputs = {

@@ -57,7 +57,6 @@ in {
     ++ (lib.optionals isLinux [
       # non-darwin packages
       pkgs.usbutils
-      pkgs.ghostty
       pkgs.pciutils
       pkgs.clang
       # Fallback CPU based terminal
@@ -117,6 +116,7 @@ in {
     nh.enable = true;
     ghostty = {
       enable = isLinux;
+      package = inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default;
     };
 
     gpg.enable = !isDarwin;
