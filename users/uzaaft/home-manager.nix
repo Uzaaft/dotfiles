@@ -59,6 +59,7 @@ in {
       pkgs.usbutils
       pkgs.ghostty
       pkgs.pciutils
+      pkgs.clang
       # Fallback CPU based terminal
       pkgs.foot
     ]);
