@@ -140,6 +140,29 @@ in {
     jujutsu = {
       enable = true;
       settings = {
+        ui = {
+          editor = "nvim";
+          diff-editor = ":builtin";
+          diff-formatter = ":git";
+          pager = "less -FRX";
+          default-command = ["log"];
+          graph.style = "curved";
+        };
+        template-aliases = {
+          "format_short_id(id)" = "id.shortest(8)";
+        };
+        signing = {
+          behavior = "own";
+          backend = "ssh";
+          key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
+        };
+        git = {
+          colocate = true;
+          sign-on-push = true;
+        };
+        templates = {
+          push-bookmark-prefix = "uzaaft/";
+        };
         user = {
           name = "Uzair Aftab";
           email = "git@uzaaft.me";
