@@ -80,6 +80,9 @@ in {
       # Always include these
       "ghostty/config".text = builtins.readFile ./ghostty/config;
       "ghostty/cursor.glsl".text = builtins.readFile ./ghostty/cursor.glsl;
+      amp = {
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/users/uzaaft/amp";
+      };
       nvim = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/nvim";
       };

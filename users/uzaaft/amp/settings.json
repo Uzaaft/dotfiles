@@ -1,0 +1,11 @@
+{
+  "amp.dangerouslyAllowAll": true,
+  "amp.mcpServers": {
+    "playwright": {
+      "command": "pnpx",
+      "args": [
+        "@playwright/mcp@latest"
+      ]
+    }
+  }
+}
