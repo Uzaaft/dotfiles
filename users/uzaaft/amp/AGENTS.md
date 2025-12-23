@@ -1,29 +1,55 @@
-- In all interaction and commit messages, be extremely concise and sacrifice grammar for the sake of con
-cision.
+# Core Philosophy
+Safety → Performance → Developer Experience. Zero technical debt. Think twice, code once.
 
-## Code Quality Standards
+## Communication
+- Extremely concise; sacrifice grammar for brevity
+- Plans end with unresolved questions (concise, if any)
 
-- Make minimal, surgical changes
-- **Never compromise type safety**: No `any`, no non-null assertion operator (`!`), no type assertions (
-`as Type`)
-- **Prefer proper enums over string unions and literal**
-- **Never propose defaults. Throw errors instead.**
-- **Never add dependencies manually.** Use package manager commands.
+## Code Quality
+
+### Fundamentals
+- Minimal, surgical changes
+- Preserve existing code style/conventions
+- No implicit defaults—throw errors instead
+- Never add dependencies manually; use package manager
+
+### Type Safety
+- Never escape the type system (no `any`, `unknown`, type assertions, forced casts, unsafe coercions)
+- Prove types, don't assume them—let the compiler verify
+- Prefer explicit types over inferred when intent matters
+- Use sum types/enums over string literals or magic values
+- If a type is "too hard", redesign the data structure
+
+### Safety
+- Fail-fast: crash on programmer errors
+- Fixed limits on all loops/queues (no unbounded iteration)
+- Min 2 assertions per function
+- Assert args, return values, pre/postconditions, invariants
+- Pair assertions: validate at multiple checkpoints
+
+### Control Flow
+- Push `if`s up, `for`s down
+- Centralize state in parent functions
+- Keep leaf functions pure
+- Minimize variable scope
+
+### Naming
+- Get nouns/verbs right
+- Units/qualifiers last: `latency_ms_max`
+- No abbreviations (except: ID, URL, etc.)
+- Comments explain "why", not "what"
+
+## Commits
+- Conventional: `<type>[scope]: <description>`
+- Commit frequently on big features
+- No AI attribution
 
 ## Testing
-
-- Write tests that verify semantically correct behavior
-- **Failing tests are acceptable** when they expose genuine bugs and test correct behavior
-
-## Plans
-
-- At the end of each plan, give me a list of unresolved questions to answer, if any. Make the questions
-extremely concise. Sacrifice grammar for the sake of concision.
+- Verify semantically correct behavior
+- Failing tests acceptable when exposing genuine bugs
 
 ## Logging
-- Log only meaningful, goal-aligned events; avoid noise.
-- Use consistent structure (e.g., JSON) and proper log levels.
-- Add contextual metadata (request ID, user ID, stack traces).
-- Centralize, aggregate, and sample logs for high-volume systems.
-- Secure logs and follow clear retention policies.
-- Avoid logging sensitive data or impacting performance.
+- Log meaningful, goal-aligned events only
+- Consistent structure (JSON), proper levels
+- Include metadata (request ID, user ID, traces)
+- Never log sensitive data
