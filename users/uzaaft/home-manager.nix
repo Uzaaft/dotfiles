@@ -179,9 +179,7 @@ in {
       enable = true;
       package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
 
-      plugins = [
-        pkgs.vimPlugins.nvim-treesitter
-      ];
+      plugins = [];
     };
 
     ssh = {
