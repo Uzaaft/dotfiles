@@ -154,6 +154,9 @@ in {
         template-aliases = {
           "format_short_id(id)" = "id.shortest(8)";
         };
+        reset-aliases = {
+          "mine()" = "author(uzaaft)";
+        };
         signing = {
           behavior = "own";
           backend = "ssh";
