@@ -84,6 +84,9 @@ in {
       amp = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/users/uzaaft/amp";
       };
+      agents = {
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/users/uzaaft/agents";
+      };
       nvim = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/nvim";
       };
