@@ -1,0 +1,30 @@
+{
+  "playwright": {
+    "command": "npx",
+    "args": ["-y", "@playwright/mcp@latest"],
+    "includeTools": [
+      "browser_navigate",
+      "browser_navigate_back",
+      "browser_snapshot",
+      "browser_take_screenshot",
+      "browser_click",
+      "browser_hover",
+      "browser_type",
+      "browser_fill_form",
+      "browser_select_option",
+      "browser_press_key",
+      "browser_drag",
+      "browser_file_upload",
+      "browser_tabs",
+      "browser_resize",
+      "browser_wait_for",
+      "browser_handle_dialog",
+      "browser_evaluate",
+      "browser_run_code",
+      "browser_console_messages",
+      "browser_network_requests",
+      "browser_close",
+      "browser_install"
+    ]
+  }
+}
