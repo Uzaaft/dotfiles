@@ -2,16 +2,5 @@
   "amp.dangerouslyAllowAll": true,
   "amp.experimental.tools": [
     "handoff"
-  ],
-  "amp.mcpServers": {
-    "playwright": {
-      "command": "pnpx",
-      "args": [
-        "@playwright/mcp@latest"
-      ]
-    },
-    "sentry": {
-      "url": "https://mcp.sentry.dev/mcp"
-    }
-  }
+  ]
 }
