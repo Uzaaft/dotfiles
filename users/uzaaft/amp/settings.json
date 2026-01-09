@@ -1,5 +1,8 @@
 {
   "amp.dangerouslyAllowAll": true,
+  "amp.experimental.tools": [
+    "handoff"
+  ],
   "amp.mcpServers": {
     "playwright": {
       "command": "pnpx",
