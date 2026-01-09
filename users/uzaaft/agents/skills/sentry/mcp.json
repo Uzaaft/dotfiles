@@ -1,0 +1,20 @@
+{
+  "sentry": {
+    "command": "npx",
+    "args": ["-y", "@sentry/mcp-server@latest"],
+    "includeTools": [
+      "whoami",
+      "find_organizations",
+      "find_projects",
+      "find_teams",
+      "find_releases",
+      "get_issue_details",
+      "search_issues",
+      "search_events",
+      "search_issue_events",
+      "get_trace_details",
+      "get_event_attachment",
+      "analyze_issue_with_seer"
+    ]
+  }
+}
