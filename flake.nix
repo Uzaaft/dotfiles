@@ -40,8 +40,8 @@
     # Overlays is the list of overlays we want to apply from flake inputs.
     overlays = [
       (final: prev: {
-        # Add amp package
         amp = prev.callPackage ./packages/amp {};
+        opencode = prev.callPackage ./packages/opencode {};
       })
     ];
 
@@ -58,6 +58,7 @@
         "aarch64-darwin"
       ] (system: {
         amp = nixpkgs.legacyPackages.${system}.callPackage ./packages/amp {};
+        opencode = nixpkgs.legacyPackages.${system}.callPackage ./packages/opencode {};
       });
     nixosConfigurations.vm-aarch64 = mkSystem "vm-aarch64" {
       system = "aarch64-linux";
