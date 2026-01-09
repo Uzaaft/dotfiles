@@ -6,6 +6,9 @@
       "args": [
         "@playwright/mcp@latest"
       ]
+    },
+    "sentry": {
+      "url": "https://mcp.sentry.dev/mcp"
     }
   }
 }
