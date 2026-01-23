@@ -41,6 +41,7 @@
     overlays = [
       (final: prev: {
         amp = prev.callPackage ./packages/amp {};
+        git-hunks = prev.callPackage ./packages/git-hunks {};
         opencode = prev.callPackage ./packages/opencode {};
       })
     ];
@@ -58,6 +59,7 @@
         "aarch64-darwin"
       ] (system: {
         amp = nixpkgs.legacyPackages.${system}.callPackage ./packages/amp {};
+        git-hunks = nixpkgs.legacyPackages.${system}.callPackage ./packages/git-hunks {};
         opencode = nixpkgs.legacyPackages.${system}.callPackage ./packages/opencode {};
       });
     nixosConfigurations.vm-aarch64 = mkSystem "vm-aarch64" {

@@ -39,6 +39,7 @@ in {
       pkgs.fzf
       pkgs.gh
       pkgs.git-get
+      pkgs.git-hunks
       pkgs.git-lfs
       pkgs.ijq
       pkgs.jq
