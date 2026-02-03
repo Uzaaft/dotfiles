@@ -1,5 +1,12 @@
 {
+  
+  "amp.experimental.modes": [
+    "bombadil"
+  ],
   "amp.experimental.tools": [
     "handoff"
-  ]
+  ],
+  "amp.git.commit.ampThread.enabled": true,
+  "amp.git.commit.coauthor.enabled": true,
+  "amp.terminal.theme": "catppuccin-mocha"
 }
