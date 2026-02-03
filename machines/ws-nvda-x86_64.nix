@@ -44,6 +44,8 @@
   security.sudo.wheelNeedsPassword = false;
   services = {
     tailscale.enable = true;
+    ollama.enable = true;
+
     xserver.videoDrivers = ["nvidia"];
     openssh = {
       enable = true;
@@ -84,6 +86,13 @@
   ];
 
   system.stateVersion = "24.11"; # Did you read the comment?
+  programs.niri.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+    ];
+  };
 
   networking.networkmanager.enable = true;
   networking.interfaces.enp7s0.useDHCP = true;
