@@ -1,12 +1,37 @@
 {
-  
+  "amp.notifications.enabled": false,
+  "amp.tab.clipboard.enabled": false,
+  "amp.git.commit.coauthor.enabled": false,
+  "amp.git.commit.ampThread.enabled": false,
   "amp.experimental.modes": [
     "bombadil"
   ],
-  "amp.experimental.tools": [
-    "handoff"
+  "amp.anthropic.effort": "max",
+  "amp.permissions": [
+    {
+      "tool": "Bash",
+      "action": "ask"
+    },
+    {
+      "tool": "create_file",
+      "action": "ask"
+    },
+    {
+      "tool": "edit_file",
+      "action": "ask"
+    },
+    {
+      "tool": "undo_edit",
+      "action": "ask"
+    },
+    {
+      "tool": "painter",
+      "action": "reject"
+    },
+    {
+      "tool": "*",
+      "action": "allow"
+    }
   ],
-  "amp.git.commit.ampThread.enabled": true,
-  "amp.git.commit.coauthor.enabled": true,
-  "amp.terminal.theme": "catppuccin-mocha"
+  "amp.dangerouslyAllowAll": true
 }
