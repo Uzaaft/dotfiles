@@ -22,7 +22,6 @@ in {
   home.packages =
     [
       pkgs.amp
-      pkgs.opencode
       pkgs._1password-cli
       # Stuff
       # CLI tools
@@ -122,7 +121,10 @@ in {
   #---------------------------------------------------------------------
   programs = {
     nh.enable = true;
-    opencode.enable = true;
+    opencode = {
+      enable = true;
+      package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    };
     ghostty = {
       enable = isLinux;
       package = inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default;

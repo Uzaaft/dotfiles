@@ -18,11 +18,15 @@
       url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    opencode = {
+      url = "github:anomalyco/opencode";
     };
 
     ghostty = {
@@ -42,7 +46,6 @@
       (final: prev: {
         amp = prev.callPackage ./packages/amp {};
         git-hunks = prev.callPackage ./packages/git-hunks {};
-        opencode = prev.callPackage ./packages/opencode {};
       })
     ];
 
