@@ -8,7 +8,7 @@
     ./hardware/ws-nvda-x86_64.nix
   ];
   # Be careful updating this.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
   hardware.enableRedistributableFirmware = true;
 
   # Use the systemd-boot EFI boot loader.
