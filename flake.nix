@@ -27,6 +27,7 @@
     };
     opencode = {
       url = "github:anomalyco/opencode";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     ghostty = {
