@@ -277,6 +277,22 @@
         "type": "github"
       }
     },
+    "homebrew-core": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1771068847,
+        "narHash": "sha256-TOld8A203d26rk7kzfoYPrRVMY9VqqBg6tmb6oghhvk=",
+        "owner": "homebrew",
+        "repo": "homebrew-core",
+        "rev": "f0c207ba3b866db15dfbe2c514a629abd7f26de7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "homebrew",
+        "repo": "homebrew-core",
+        "type": "github"
+      }
+    },
     "neovim-nightly-overlay": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -479,6 +495,7 @@
         "determinate": "determinate",
         "ghostty": "ghostty",
         "home-manager": "home-manager_2",
+        "homebrew-core": "homebrew-core",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nix-homebrew": "nix-homebrew",
         "nixpkgs": "nixpkgs_4",

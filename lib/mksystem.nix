@@ -44,6 +44,16 @@ in
         then inputs.nix-homebrew.darwinModules.nix-homebrew
         else {}
       )
+      {
+        nix-homebrew = {
+          # Install Homebrew under the default prefix
+          enable = true;
+          user = "uzaaft";
+          taps = {
+            "homebrew/homebrew-core" = inputs.homebrew-core;
+          };
+        };
+      }
       (
         if darwin
         then {nix.enable = false;}

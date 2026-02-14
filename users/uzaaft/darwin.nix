@@ -5,6 +5,11 @@
 }: {
   homebrew = {
     enable = true;
+    onActivation = {
+      upgrade = true;
+      autoUpdate = false;
+      cleanup = "uninstall";
+    };
 
     taps = ["koekeishiya/formulae"];
 
@@ -28,6 +33,7 @@
       "notion"
       "pycharm"
       "visual-studio-code"
+      "raycast"
       {
         name = "ghostty@tip";
         greedy = true;
