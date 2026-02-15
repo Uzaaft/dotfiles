@@ -98,6 +98,7 @@
 
   networking.networkmanager.enable = true;
   networking.interfaces.enp7s0.useDHCP = true;
+  networking.firewall.allowedUDPPorts = [41641];
   nixpkgs.config = {
     allowUnfree = true;
     cudaSupport = true;
