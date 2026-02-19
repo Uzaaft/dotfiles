@@ -41,7 +41,8 @@
     ];
     brews = [
       "gnupg"
-      # "koekeishiya/formulae/yabai"
+      "koekeishiya/formulae/yabai"
+      "zig"
     ];
   };
   security.pam.services.sudo_local = {
