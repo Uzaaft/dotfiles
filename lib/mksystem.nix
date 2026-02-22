@@ -49,9 +49,6 @@ in
           # Install Homebrew under the default prefix
           enable = true;
           user = "uzaaft";
-          taps = {
-            "homebrew/homebrew-core" = inputs.homebrew-core;
-          };
         };
       }
       (
