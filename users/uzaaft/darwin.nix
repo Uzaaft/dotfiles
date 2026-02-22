@@ -34,6 +34,8 @@
       "pycharm"
       "visual-studio-code"
       "raycast"
+      "proton-mail"
+      "helium-browser"
       {
         name = "ghostty@tip";
         greedy = true;
