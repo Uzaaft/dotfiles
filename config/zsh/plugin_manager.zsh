@@ -57,5 +57,9 @@ zsh-defer source ${zsh_plugins}/zsh-syntax-highlighting/zsh-syntax-highlighting.
 # --- zsh-autosuggestions ---
 zsh-defer source ${zsh_plugins}/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+# --- zsh-nvim-appname ---
+fpath+=${zsh_plugins}/zsh-nvim-appname
+source ${zsh_plugins}/zsh-nvim-appname/zsh-nvim-appname.plugin.zsh
+
 bindkey '^ ' autosuggest-accept
 
