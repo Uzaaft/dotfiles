@@ -44,13 +44,17 @@ in
         then inputs.nix-homebrew.darwinModules.nix-homebrew
         else {}
       )
-      {
-        nix-homebrew = {
-          # Install Homebrew under the default prefix
-          enable = true;
-          user = "uzaaft";
-        };
-      }
+      (
+        if darwin
+        then {
+          nix-homebrew = {
+            # Install Homebrew under the default prefix
+            enable = true;
+            user = "uzaaft";
+          };
+        }
+        else {}
+      )
       (
         if darwin
         then {nix.enable = false;}
