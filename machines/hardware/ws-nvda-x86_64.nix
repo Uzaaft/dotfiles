@@ -27,7 +27,6 @@
     #   amdgpuBusId = "PCI:121:0:0";
     # };
   };
-  programs.mosh.enable = true;
   hardware.nvidia-container-toolkit.enable = true;
 
   fileSystems."/" = {
