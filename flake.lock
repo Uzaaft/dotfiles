@@ -197,11 +197,11 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
-        "lastModified": 1771905839,
-        "narHash": "sha256-notDX7PdNlsCseRDTGD0ZImE/SKkrLWrguYsqELi/0E=",
+        "lastModified": 1771930713,
+        "narHash": "sha256-NPOmouXCaizb9Xv0l4xus8/MLOvs+7TktkaElr7Gqoo=",
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "c51f0d745d3f8048d9f1262c9f54c34a6e4ef422",
+        "rev": "d0e308f32b0024d2203232626e605b2fd4417d21",
         "type": "github"
       },
       "original": {
@@ -280,11 +280,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1771912490,
-        "narHash": "sha256-XliWxwrrydAwBnNlzUCyZETKUWzqytJaLQjjA+xb4ME=",
+        "lastModified": 1771938098,
+        "narHash": "sha256-g2AABSQq8lcVsoypiGmkgQE1KnxFprMlYT3fj7+Pw1c=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "e112d3c5b89a4013a95e412a5b75a64a1f03ecab",
+        "rev": "bfb0a6985ba785c873c4b0fae071972752a74e1e",
         "type": "github"
       },
       "original": {
@@ -418,11 +418,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1771714954,
-        "narHash": "sha256-3JH5newbGjzKZGyK3I/52PhoOnyFZWynGRRN7ZkjIfc=",
-        "rev": "afbbf774e2087c3d734266c22f96fca2e78d3620",
+        "lastModified": 1771903837,
+        "narHash": "sha256-jEA8WggGKtMFeNeCKq3NK8cLEjJmG6/RLUElYYbBZ0E=",
+        "rev": "e764fc9a405871f1f6ca3d1394fb422e0a0c3951",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/25.11/nixos-25.11.6392.afbbf774e208/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixos/25.11/nixos-25.11.6495.e764fc9a4058/nixexprs.tar.xz"
       },
       "original": {
         "type": "tarball",
@@ -476,11 +476,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771913205,
-        "narHash": "sha256-uhHYB6sxspu5qs4hyjv4OmZjQKQ2udLE5PoslAB2k0Y=",
+        "lastModified": 1771938198,
+        "narHash": "sha256-0PMQ+WdT3nrV7qESUbGNBRzRNgpsoVWWpuhLbtFqg3Q=",
         "owner": "anomalyco",
         "repo": "opencode",
-        "rev": "cf5cfb48cd756ebd59e6c5005d64c307f76b7424",
+        "rev": "3d379c20c4973ef2b1c0305dbd1064ba0f1d8e3f",
         "type": "github"
       },
       "original": {
