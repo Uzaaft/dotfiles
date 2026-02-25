@@ -29,14 +29,14 @@
       "spotify"
       "tableplus"
       # Required for Norwegian jobs
+      "helium-browser"
       "microsoft-teams"
       "notion"
-      "wispr-flow"
-      "pycharm"
-      "visual-studio-code"
-      "raycast"
       "proton-mail"
-      "helium-browser"
+      "pycharm"
+      "raycast"
+      "visual-studio-code"
+      "wispr-flow"
       {
         name = "ghostty@tip";
         greedy = true;
