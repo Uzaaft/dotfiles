@@ -31,6 +31,7 @@
       # Required for Norwegian jobs
       "microsoft-teams"
       "notion"
+      "wispr-flow"
       "pycharm"
       "visual-studio-code"
       "raycast"
