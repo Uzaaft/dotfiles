@@ -8,6 +8,11 @@ Safety→Perf→DX. Zero debt. Think twice, code once.
 - **Make illegal states unrepresentable**: Model domain with ADTs/discriminated unions; parse inputs at boundaries into typed structures; if state can't exist, code can't mishandle it
 - **Abstractions**: Consciously constrained, pragmatically parameterised, doggedly documented
 
+## Log Quality Standards
+
+- **Context**: What, why, how. Not just what changed, but why it changed and how it works.
+- **Clarity**: Clear, concise, unambiguous. Avoid jargon and abbreviations. Dont use arrows, emojies, or other symbols that humans wont use. I.e ===>, -> , ===, etc
+
 ### **ENTROPY REMINDER**
 This codebase will outlive you. Every shortcut you take becomes
 someone else's burden. Every hack compounds into technical debt
