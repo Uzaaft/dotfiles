@@ -122,6 +122,7 @@ in {
   programs = {
     nh.enable = true;
     aerc = {enable = true;};
+    lazydocker = {enable = true;};
     opencode = {
       enable = true;
       package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
