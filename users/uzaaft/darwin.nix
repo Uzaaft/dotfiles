@@ -52,11 +52,6 @@
     touchIdAuth = true;
     reattach = true;
   };
-  nix-homebrew = {
-    enable = true;
-    autoMigrate = true;
-    user = "uzaaft";
-  };
 
   system = {
     startup = {chime = true;};
