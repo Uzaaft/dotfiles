@@ -119,136 +119,138 @@ in {
   #---------------------------------------------------------------------
   # Programs
   #---------------------------------------------------------------------
-  programs = {
-    nh.enable = true;
-    aerc = {enable = true;};
-    lazydocker = {enable = true;};
-    opencode = {
-      enable = false;
-    };
-    ghostty = {
-      enable = isLinux;
-      package = inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default;
-    };
+  programs.nh.enable = true;
 
-    gpg.enable = !isDarwin;
+  programs.aerc = {enable = true;};
 
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
-      enableZshIntegration = true;
-      silent = true;
-      config = {
-        whitelist = {
-          # Should add the following: polymath, stormwater-ai, uzaaft
-          prefix = [
-            "$HOME/repositories/github.com/uzaaft"
-            "$HOME/repositories/github.com/polymath-as"
-          ];
-        };
+  programs.lazydocker = {enable = true;};
+
+  programs.opencode = {
+    enable = false;
+  };
+
+  programs.ghostty = {
+    enable = isLinux;
+    package = inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  };
+
+  programs.gpg.enable = !isDarwin;
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+    enableZshIntegration = true;
+    silent = true;
+    config = {
+      whitelist = {
+        # Should add the following: polymath, stormwater-ai, uzaaft
+        prefix = [
+          "$HOME/repositories/github.com/uzaaft"
+          "$HOME/repositories/github.com/polymath-as"
+        ];
       };
     };
+  };
 
-    jujutsu = {
-      enable = true;
-      settings = {
-        ui = {
-          editor = "nvim";
-          diff-editor = ":builtin";
-          diff-formatter = ":git";
-          pager = "less -FRX";
-          default-command = ["log"];
-          graph.style = "curved";
-        };
-        template-aliases = {
-          "format_short_id(id)" = "id.shortest(8)";
-        };
-        reset-aliases = {
-          "mine()" = "author(uzaaft)";
-        };
-        signing = {
-          behavior = "own";
-          backend = "ssh";
-          key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
-        };
-        git = {
-          colocate = true;
-          sign-on-push = true;
-        };
-        templates = {
-          push-bookmark-prefix = "uzaaft/";
-        };
-        user = {
-          name = "Uzair Aftab";
-          email = "git@uzaaft.me";
-        };
+  programs.jujutsu = {
+    enable = true;
+    settings = {
+      ui = {
+        editor = "nvim";
+        diff-editor = ":builtin";
+        diff-formatter = ":git";
+        pager = "less -FRX";
+        default-command = ["log"];
+        graph.style = "curved";
+      };
+      template-aliases = {
+        "format_short_id(id)" = "id.shortest(8)";
+      };
+      reset-aliases = {
+        "mine()" = "author(uzaaft)";
+      };
+      signing = {
+        behavior = "own";
+        backend = "ssh";
+        key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
+      };
+      git = {
+        colocate = true;
+        sign-on-push = true;
+      };
+      templates = {
+        push-bookmark-prefix = "uzaaft/";
+      };
+      user = {
+        name = "Uzair Aftab";
+        email = "git@uzaaft.me";
       };
     };
+  };
 
-    fuzzel.enable = isLinux;
+  programs.fuzzel.enable = isLinux;
 
-    neovim = {
-      enable = true;
-      package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+  programs.neovim = {
+    enable = true;
+    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
 
-      plugins = [];
-    };
+    plugins = [];
+  };
 
-    ssh = {
-      enable = true;
-      extraConfig = ''
-        ${
-          if isDarwin
-          then ''
-            IdentityAgent "${sshKeyPath}"
-          ''
-          else ""
-        }
-      '';
-    };
+  programs.ssh = {
+    enable = true;
+    extraConfig = ''
+      ${
+        if isDarwin
+        then ''
+          IdentityAgent "${sshKeyPath}"
+        ''
+        else ""
+      }
+    '';
+  };
 
-    git = {
-      lfs.enable = true;
-      enable = true;
+  programs.git = {
+    lfs.enable = true;
+    enable = true;
 
-      ignores = [".DS_Store" ".direnv" ".env" ".rgignore"];
+    ignores = [".DS_Store" ".direnv" ".env" ".rgignore"];
 
-      settings = {
-        user.name = "Uzair Aftab";
-        user.email = "git@uzaaft.me";
-        # Sign all commits using ssh key
-        fetch = {
-          prune = true;
-        };
-        aliases = {
-          st = "status";
-          feedback = "!f() { git checkout -b \"$(git rev-parse --abbrev-ref HEAD)/feedback\" && git add -A && git commit -m \"$1\"; }; f";
-        };
+    settings = {
+      user.name = "Uzair Aftab";
+      user.email = "git@uzaaft.me";
+      # Sign all commits using ssh key
+      fetch = {
+        prune = true;
+      };
+      aliases = {
+        st = "status";
+        feedback = "!f() { git checkout -b \"$(git rev-parse --abbrev-ref HEAD)/feedback\" && git add -A && git commit -m \"$1\"; }; f";
+      };
 
-        branch.autosetuprebase = "always";
-        color.ui = true;
-        github.user = "uzaaft";
-        push.default = "tracking";
-        init.defaultBranch = "master";
-        commit.gpgsign = true;
-        gpg.format = "ssh";
-        signing = {
-          format = "ssh";
-          key =
-            if isLinux
-            then "${config.home.homeDirectory}/.ssh/id_ed25519.pub"
-            else "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYZX17OSEH3mKJsP4oFuaGtr8F5TF/3/RXOCw2cBgps";
-        };
-        user.signingkey =
+      branch.autosetuprebase = "always";
+      color.ui = true;
+      github.user = "uzaaft";
+      push.default = "tracking";
+      init.defaultBranch = "master";
+      commit.gpgsign = true;
+      gpg.format = "ssh";
+      signing = {
+        format = "ssh";
+        key =
           if isLinux
           then "${config.home.homeDirectory}/.ssh/id_ed25519.pub"
           else "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYZX17OSEH3mKJsP4oFuaGtr8F5TF/3/RXOCw2cBgps";
-
-        "gpg \"ssh\"" =
-          if isDarwin
-          then {program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";}
-          else {};
       };
+      user.signingkey =
+        if isLinux
+        then "${config.home.homeDirectory}/.ssh/id_ed25519.pub"
+        else "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYZX17OSEH3mKJsP4oFuaGtr8F5TF/3/RXOCw2cBgps";
+
+      "gpg \"ssh\"" =
+        if isDarwin
+        then {program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";}
+        else {};
     };
   };
 }
