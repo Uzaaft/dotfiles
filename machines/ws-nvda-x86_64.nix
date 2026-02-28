@@ -81,6 +81,7 @@
     cachix
     gnumake
     killall
+    qemu
 
     (writeShellScriptBin "niri-auto" ''
       niri msg output Virtual-1 mode auto
