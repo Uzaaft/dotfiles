@@ -1,6 +1,11 @@
 # Philosophy
 Safety→Perf→DX. Zero debt. Think twice, code once.
 
+## Environment
+
+- This is a Nix system.
+- If a project does not provide a dev shell, run needed binaries thats not installed with `nix run nixpkgs#<package>`.
+
 ## Code Quality Standards
 
 - Make minimal, surgical changes
