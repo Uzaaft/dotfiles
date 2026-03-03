@@ -22,6 +22,7 @@ alias gs="git status";
 alias gt="git tag";
 alias ":q"="exit";
 alias pp="pnpm"
+alias atc="amp threads continue"
 alias ls-scripts='cat package.json | jq .scripts'
 
 # macOS specific
