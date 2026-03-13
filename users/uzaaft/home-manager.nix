@@ -46,6 +46,7 @@ in {
       pkgs.nix-output-monitor
       pkgs.nixd
       pkgs.nodejs-slim_24
+      pkgs.nushell
       pkgs.onefetch
       pkgs.repgrep
       pkgs.ripgrep
@@ -90,6 +91,7 @@ in {
       nvim = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/nvim";
       };
+      "nushell/config.nu".text = builtins.readFile ./config.nu;
       zsh = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/zsh";
       };
