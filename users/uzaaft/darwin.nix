@@ -25,6 +25,7 @@
       "linear-linear"
       "monodraw"
       "orbstack"
+      "sioyek"
       "slack"
       "spotify"
       "tableplus"
