@@ -6,14 +6,14 @@
   ripgrep,
   runCommand,
 }: let
-  version = "0.0.1772516766-g0ea5eb";
+  version = "0.0.1773677937-gaa0875";
 
   srcWithLock = runCommand "amp-src-with-lock" {} ''
     mkdir -p $out
     tar -xzf ${
       fetchurl {
-        url = "https://registry.npmjs.org/@sourcegraph/amp/-/amp-0.0.1772516766-g0ea5eb.tgz";
-        hash = "sha256-x5fbfCt+pBtZfClTtE7Lgb/NQKtXo0pZKka3Pw5Dcdw=";
+        url = "https://registry.npmjs.org/@sourcegraph/amp/-/amp-0.0.1773677937-gaa0875.tgz";
+        hash = "sha256-JTV5h3ZLn6xvfnliYAZAREkzKzqdNaA+5mtmBJaR+3I=";
       }
     } -C $out --strip-components=1
     cp ${./package-lock.json} $out/package-lock.json
@@ -27,7 +27,7 @@ in
 
     npmDeps = fetchNpmDeps {
       inherit src;
-      hash = "sha256-2+OxGkv5VcmPVDmKIkGSNYbMbokDSUfvXlKlfiOLrAM=";
+      hash = "sha256-+3ESYa4SX1R8Z8ONZoydH3bVIhXp68QoT/8StupILro=";
     };
 
     dontNpmBuild = true;

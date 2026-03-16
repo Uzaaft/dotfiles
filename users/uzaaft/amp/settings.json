@@ -33,5 +33,6 @@
       "action": "allow"
     }
   ],
-  "amp.dangerouslyAllowAll": true
+  "amp.dangerouslyAllowAll": true,
+  "amp.agent.deepReasoningEffort": "xhigh"
 }
