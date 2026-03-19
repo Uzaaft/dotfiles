@@ -12,8 +12,10 @@
   # Setup qemu so we can run x86_64 binaries
   boot.binfmt.emulatedSystems = ["x86_64-linux"];
 
-  # Interface is this on M1
+  # VMware NIC naming can vary by virtual device and udev rules across installs.
+  # Keep DHCP enabled for both observed names so networking survives host/VM changes.
   networking.interfaces.ens160.useDHCP = true;
+  networking.interfaces.enp2s0.useDHCP = true;
   systemd.network.enable = true;
   networking.useNetworkd = true;
 
