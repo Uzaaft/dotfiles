@@ -9,6 +9,7 @@
   ];
   networking.hostName = "archmac";
   system.stateVersion = 5;
+  nixpkgs.config.allowUnfree = true;
 
   nix = {
     enable = false;
