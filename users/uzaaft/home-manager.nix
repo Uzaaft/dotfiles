@@ -53,6 +53,7 @@ in {
       pkgs.tmux
       pkgs.tree
       pkgs.watch
+      inputs.helium.packages.${pkgs.system}.default
     ]
     ++ (lib.optionals isDarwin [
       ])
