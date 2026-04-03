@@ -6,6 +6,47 @@
 }: let
   isDarwin = pkgs.stdenv.isDarwin;
   isLinux = pkgs.stdenv.isLinux;
+
+  shellAliases = {
+
+    cat="bat";
+    vi="nvim";
+    vim="nvim" ;
+    # eza aliases
+    l="eza -a --icons --color=always -s type -F "                        ; 
+    ll="eza -l --icons --color=always -s type -F";
+    lll="eza -la --icons --color=always -s type -F";
+    ls="eza -a --icons --color=always -s type -F";
+    lt="eza -T --icons=auto --group-directories-first --hyperlink";
+
+    lg="lazygit";
+    ldo="lazydocker";
+    gg="git get";
+    c="cargo";
+    pp="pnpm";
+    atc="amp threads continue";
+    ls-scripts="cat package.json | jq .scripts";
+
+    ga = "git add";
+    gc = "git commit";
+    gco = "git checkout";
+    gcp = "git cherry-pick";
+    gdiff = "git diff";
+    gl = "git prettylog";
+    gp = "git push";
+    gs = "git status";
+    gt = "git tag";
+
+    jd = "jj desc";
+    jf = "jj git fetch";
+    jn = "jj new";
+    jp = "jj git push";
+    js = "jj st";
+
+
+
+  };
+
   sshKeyPath = (
     if isLinux
     then "~/.ssh/id_ed25519.pub"
@@ -211,6 +252,13 @@ in {
         else ""
       }
     '';
+  };
+   programs.bash = {
+    enable = true;
+    shellOptions = [];
+    historyControl = [ "ignoredups" "ignorespace" ];
+    initExtra = builtins.readFile ./bashrc;
+    shellAliases = shellAliases;
   };
 
   programs.git = {
