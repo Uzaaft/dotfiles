@@ -207,7 +207,7 @@ in {
   programs.go = {
     enable = true;
     env = { 
-      GOPATH = "Documents/go";
+      GOPATH = "${config.home.homeDirectory}/Developer/go";
       GOPRIVATE = [ "github.com/mitchellh" ];
     };
   };
