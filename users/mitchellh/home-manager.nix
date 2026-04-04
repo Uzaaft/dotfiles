@@ -6,6 +6,7 @@ let
   sources = import ../../nix/sources.nix;
   isDarwin = pkgs.stdenv.isDarwin;
   isLinux = pkgs.stdenv.isLinux;
+  gopath = "${config.home.homeDirectory}/Developer/go";
 
   shellAliases = {
     ga = "git add";
@@ -99,6 +100,10 @@ in {
   #---------------------------------------------------------------------
   # Env vars and dotfiles
   #---------------------------------------------------------------------
+
+  home.sessionPath = [
+    "${gopath}/bin"
+  ];
 
   home.sessionVariables = {
     LANG = "en_US.UTF-8";
@@ -207,7 +212,7 @@ in {
   programs.go = {
     enable = true;
     env = { 
-      GOPATH = "${config.home.homeDirectory}/Developer/go";
+      GOPATH = gopath;
       GOPRIVATE = [ "github.com/mitchellh" ];
     };
   };
