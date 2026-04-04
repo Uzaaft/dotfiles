@@ -280,6 +280,7 @@ in {
       };
 
       branch.autosetuprebase = "always";
+      merge.conflictstyle = "zdiff3";
       color.ui = true;
       github.user = "uzaaft";
       push.default = "tracking";
@@ -302,6 +303,16 @@ in {
         if isDarwin
         then {program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";}
         else {};
+    };
+  };
+
+  programs.delta = {
+    enableGitIntegration = true;
+    # enableJujutsuIntegration = true;
+    enable = true;
+    options = {
+      navigate = true;
+      dark = true;
     };
   };
 }
