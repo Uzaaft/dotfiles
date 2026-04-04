@@ -25,11 +25,6 @@ alias pp="pnpm"
 alias atc="amp threads continue"
 alias ls-scripts='cat package.json | jq .scripts'
 
-# macOS specific
-if [[ "$OSTYPE" == darwin* ]]; then
-  alias vmrun="/Applications/'VMware Fusion.app'/Contents/Library/vmrun"
-fi
-
 
 openwin() { osascript -e "tell application \"$1\" to activate" -e 'tell application "System Events" to keystroke "n" using command down'; }
 
