@@ -315,4 +315,22 @@ in {
       dark = true;
     };
   };
+
+  programs.vicinae = {
+    enable = isLinux;
+    settings = {
+      
+        favicon_service = "twenty";
+        pop_to_root_on_close = true;
+        telemetry = {
+          system_info = false;
+        };
+        theme = {
+          dark = {
+            name = "vicinae-dark";
+          };
+        };
+    };
+  };
+
 }
