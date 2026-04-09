@@ -3,3 +3,4 @@ result
 config/zsh/.zsh_history
 config/zsh/.zcompdump
 config/fish/completions
+/config/zsh/.zcompcache
