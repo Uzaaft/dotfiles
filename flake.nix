@@ -64,7 +64,6 @@
       ] (system: {
         amp = nixpkgs.legacyPackages.${system}.callPackage ./packages/amp {};
         git-hunks = nixpkgs.legacyPackages.${system}.callPackage ./packages/git-hunks {};
-        opencode = nixpkgs.legacyPackages.${system}.callPackage ./packages/opencode {};
       });
     nixosConfigurations.vm-aarch64 = mkSystem "vm-aarch64" {
       system = "aarch64-linux";
