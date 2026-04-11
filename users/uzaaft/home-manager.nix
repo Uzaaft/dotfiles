@@ -59,6 +59,7 @@ in {
   home.packages =
     [
       pkgs.amp
+      pkgs.oh-my-openagent
       pkgs._1password-cli
       # Stuff
       # CLI tools

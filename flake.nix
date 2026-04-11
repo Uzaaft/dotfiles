@@ -33,6 +33,11 @@
       url = "github:schembriaiden/helium-browser-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    bun2nix = {
+      url = "github:baileyluTCD/bun2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -40,13 +45,17 @@
     nixpkgs,
     home-manager,
     darwin,
+    bun2nix,
     ...
   } @ inputs: let
     # Overlays is the list of overlays we want to apply from flake inputs.
     overlays = [
+      bun2nix.overlays.default
       (final: prev: {
         amp = prev.callPackage ./packages/amp {};
         git-hunks = prev.callPackage ./packages/git-hunks {};
+        oh-my-pi = prev.callPackage ./packages/oh-my-pi {};
+        oh-my-openagent = prev.callPackage ./packages/oh-my-openagent {};
       })
     ];
 
@@ -61,9 +70,13 @@
         "aarch64-linux"
         "x86_64-darwin"
         "aarch64-darwin"
-      ] (system: {
-        amp = nixpkgs.legacyPackages.${system}.callPackage ./packages/amp {};
-        git-hunks = nixpkgs.legacyPackages.${system}.callPackage ./packages/git-hunks {};
+      ] (system: let
+        pkgs = nixpkgs.legacyPackages.${system}.extend bun2nix.overlays.default;
+      in {
+        amp = pkgs.callPackage ./packages/amp {};
+        git-hunks = pkgs.callPackage ./packages/git-hunks {};
+        oh-my-pi = pkgs.callPackage ./packages/oh-my-pi {};
+        oh-my-openagent = pkgs.callPackage ./packages/oh-my-openagent {};
       });
     nixosConfigurations.vm-aarch64 = mkSystem "vm-aarch64" {
       system = "aarch64-linux";
