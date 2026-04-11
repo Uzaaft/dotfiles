@@ -1,6 +1,5 @@
 {
   lib,
-  flake,
   stdenv,
   bun2nix,
   bun,
