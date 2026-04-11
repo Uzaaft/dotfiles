@@ -166,7 +166,7 @@ in {
   programs.lazydocker = {enable = true;};
 
   programs.opencode = {
-    enable = false;
+    enable = true;
   };
 
   programs.ghostty = {
