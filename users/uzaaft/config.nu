@@ -134,3 +134,6 @@ $env.config.keybindings = $env.config.keybindings | append [
 if (is-terminal --stdin) {
   $env.GPG_TTY = (tty)
 }
+
+alias atc = amp threads continue
+alias lg = lazygit
