@@ -59,6 +59,8 @@ in {
   home.packages =
     [
       pkgs.amp
+      pkgs.codex
+      pkgs.oh-my-codex
       pkgs.oh-my-openagent
       pkgs._1password-cli
       # Stuff

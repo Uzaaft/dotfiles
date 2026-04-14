@@ -28,7 +28,6 @@
       url = "github:ghostty-org/ghostty";
     };
 
-
     helium = {
       url = "github:schembriaiden/helium-browser-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,7 +52,9 @@
       bun2nix.overlays.default
       (final: prev: {
         amp = prev.callPackage ./packages/amp {};
+        codex = final.callPackage ./packages/codex {};
         git-hunks = prev.callPackage ./packages/git-hunks {};
+        oh-my-codex = final.callPackage ./packages/oh-my-codex {};
         oh-my-pi = prev.callPackage ./packages/oh-my-pi {};
         oh-my-openagent = prev.callPackage ./packages/oh-my-openagent {};
       })
@@ -72,9 +73,11 @@
         "aarch64-darwin"
       ] (system: let
         pkgs = nixpkgs.legacyPackages.${system}.extend bun2nix.overlays.default;
-      in {
+      in rec {
         amp = pkgs.callPackage ./packages/amp {};
+        codex = pkgs.callPackage ./packages/codex/package.nix {};
         git-hunks = pkgs.callPackage ./packages/git-hunks {};
+        oh-my-codex = pkgs.callPackage ./packages/oh-my-codex/package.nix {inherit codex;};
         oh-my-pi = pkgs.callPackage ./packages/oh-my-pi {};
         oh-my-openagent = pkgs.callPackage ./packages/oh-my-openagent {};
       });
