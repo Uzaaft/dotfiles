@@ -57,6 +57,7 @@
         oh-my-codex = final.callPackage ./packages/oh-my-codex {};
         oh-my-pi = prev.callPackage ./packages/oh-my-pi {};
         oh-my-openagent = prev.callPackage ./packages/oh-my-openagent {};
+        nushell = inputs.nixpkgs-stable.legacyPackages.${prev.system}.nushell;
       })
     ];
 
