@@ -63,6 +63,7 @@ in {
       pkgs.oh-my-codex
       pkgs.oh-my-openagent
       pkgs._1password-cli
+      inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
       # Stuff
       # CLI tools
       pkgs.alejandra
@@ -93,6 +94,7 @@ in {
       pkgs.tmux
       pkgs.tree
       pkgs.watch
+      pkgs.llama-cpp
       inputs.helium.packages.${pkgs.system}.default
     ]
     ++ (lib.optionals isDarwin [
@@ -232,13 +234,6 @@ in {
   };
 
   programs.fuzzel.enable = isLinux;
-
-  programs.neovim = {
-    enable = true;
-    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
-
-    plugins = [];
-  };
 
   programs.ssh = {
     enable = true;
