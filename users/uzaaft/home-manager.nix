@@ -84,6 +84,7 @@ in {
       pkgs.ijq
       pkgs.jq
       pkgs.lazygit
+      pkgs.llama-cpp
       pkgs.nix-output-monitor
       pkgs.nixd
       pkgs.nodejs-slim_24
@@ -94,7 +95,6 @@ in {
       pkgs.tmux
       pkgs.tree
       pkgs.watch
-      pkgs.llama-cpp
       inputs.helium.packages.${pkgs.system}.default
     ]
     ++ (lib.optionals isDarwin [
