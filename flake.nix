@@ -52,7 +52,6 @@
       bun2nix.overlays.default
       (final: prev: {
         amp = prev.callPackage ./packages/amp {};
-        codex = final.callPackage ./packages/codex {};
         git-hunks = prev.callPackage ./packages/git-hunks {};
         oh-my-codex = final.callPackage ./packages/oh-my-codex {};
         oh-my-pi = prev.callPackage ./packages/oh-my-pi {};
