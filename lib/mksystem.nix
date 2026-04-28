@@ -25,6 +25,8 @@ let
   # NixOS vs nix-darwin functionst
   systemFunc = if darwin then inputs.darwin.lib.darwinSystem else nixpkgs.lib.nixosSystem;
   home-manager = if darwin then inputs.home-manager.darwinModules else inputs.home-manager.nixosModules;
+
+  inherit (nixpkgs.lib) optionals;
 in systemFunc rec {
   inherit system;
 
@@ -36,13 +38,24 @@ in systemFunc rec {
 
     # Allow unfree packages.
     { nixpkgs.config.allowUnfree = true; }
+  ] ++ optionals isWSL [
+    inputs.nixos-wsl.nixosModules.wsl
+  ] ++ optionals isLinux [
+    inputs.nix-snapd.nixosModules.default
+  ] ++ optionals darwin [
+    # An existing Linux builder is needed to initially bootstrap
+    # `nix-rosetta-builder`. After the first `darwin-rebuild switch`,
+    # `nix-rosetta-builder` can rebuild itself.
+    inputs.nix-rosetta-builder.darwinModules.default
+    {
+      # see available options in module.nix's `options.nix-rosetta-builder`
+      nix-rosetta-builder.onDemand = true;
 
-    # Bring in WSL if this is a WSL build
-    (if isWSL then inputs.nixos-wsl.nixosModules.wsl else {})
-
-    # Snapd on Linux
-    (if isLinux then inputs.nix-snapd.nixosModules.default else {})
-
+      # `nix-rosetta-builder` depends on `lima`, which is currently
+      # marked insecure in nixpkgs.
+      nixpkgs.config.permittedInsecurePackages = [ "lima-1.2.2" ];
+    }
+  ] ++ [
     machineConfig
     userOSConfig
     home-manager.home-manager {

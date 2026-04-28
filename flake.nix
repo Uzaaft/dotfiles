@@ -26,6 +26,10 @@
     nix-snapd.url = "github:nix-community/nix-snapd";
     nix-snapd.inputs.nixpkgs.follows = "nixpkgs";
 
+    # https://github.com/cpick/nix-rosetta-builder
+    nix-rosetta-builder.url = "github:cpick/nix-rosetta-builder";
+    nix-rosetta-builder.inputs.nixpkgs.follows = "nixpkgs";
+
     home-manager = {
       # We need to use nightly home-manager because it contains this
       # fix we need for nushell nightly:
