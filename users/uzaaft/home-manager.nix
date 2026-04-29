@@ -166,7 +166,6 @@ in {
   #---------------------------------------------------------------------
   programs.nh.enable = true;
 
-  programs.aerc = {enable = true;};
 
   programs.lazydocker = {enable = true;};
 
