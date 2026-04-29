@@ -57,6 +57,7 @@
         oh-my-pi = prev.callPackage ./packages/oh-my-pi {};
         oh-my-openagent = prev.callPackage ./packages/oh-my-openagent {};
         nushell = inputs.nixpkgs-stable.legacyPackages.${prev.system}.nushell;
+        direnv = inputs.nixpkgs-stable.legacyPackages.${prev.system}.direnv;
       })
     ];
 
