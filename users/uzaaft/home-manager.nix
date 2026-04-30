@@ -59,9 +59,9 @@ in {
   home.packages =
     [
       pkgs.amp
-      pkgs.codex
-      pkgs.oh-my-codex
-      pkgs.oh-my-openagent
+      # pkgs.codex
+      # pkgs.oh-my-codex
+      # pkgs.oh-my-openagent
       pkgs._1password-cli
       inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
       # Stuff
@@ -182,6 +182,7 @@ in {
 
   programs.direnv = {
     enable = true;
+    package = pkgs.direnv;
     nix-direnv.enable = true;
     enableZshIntegration = true;
     silent = true;
