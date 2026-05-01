@@ -33,10 +33,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    bun2nix = {
-      url = "github:baileyluTCD/bun2nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    
   };
 
   outputs = {
@@ -44,20 +41,18 @@
     nixpkgs,
     home-manager,
     darwin,
-    bun2nix,
     ...
   } @ inputs: let
     # Overlays is the list of overlays we want to apply from flake inputs.
     overlays = [
-      bun2nix.overlays.default
       (final: prev: {
         amp = prev.callPackage ./packages/amp {};
         git-hunks = prev.callPackage ./packages/git-hunks {};
-        oh-my-codex = final.callPackage ./packages/oh-my-codex {};
-        oh-my-pi = prev.callPackage ./packages/oh-my-pi {};
-        oh-my-openagent = prev.callPackage ./packages/oh-my-openagent {};
+        # direnv's checkPhase fails when direnv is loaded in the shell.
+        # Remove this once https://nixpk.gs/pr-tracker.html?pr=513971 lands.
+        direnv = prev.direnv.overrideAttrs {doCheck = false;};
         nushell = inputs.nixpkgs-stable.legacyPackages.${prev.system}.nushell;
-        direnv = inputs.nixpkgs-stable.legacyPackages.${prev.system}.direnv;
+        # direnv = inputs.nixpkgs-stable.legacyPackages.${prev.system}.direnv;
       })
     ];
 
@@ -73,14 +68,10 @@
         "x86_64-darwin"
         "aarch64-darwin"
       ] (system: let
-        pkgs = nixpkgs.legacyPackages.${system}.extend bun2nix.overlays.default;
-      in rec {
+        pkgs = nixpkgs.legacyPackages.${system};
+      in {
         amp = pkgs.callPackage ./packages/amp {};
-        codex = pkgs.callPackage ./packages/codex/package.nix {};
         git-hunks = pkgs.callPackage ./packages/git-hunks {};
-        oh-my-codex = pkgs.callPackage ./packages/oh-my-codex/package.nix {inherit codex;};
-        oh-my-pi = pkgs.callPackage ./packages/oh-my-pi {};
-        oh-my-openagent = pkgs.callPackage ./packages/oh-my-openagent {};
       });
     nixosConfigurations.vm-aarch64 = mkSystem "vm-aarch64" {
       system = "aarch64-linux";
