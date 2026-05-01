@@ -89,7 +89,6 @@ in {
       pkgs.nix-output-monitor
       pkgs.nixd
       pkgs.nodejs-slim_24
-      pkgs.nushell
       pkgs.onefetch
       pkgs.repgrep
       pkgs.ripgrep
@@ -174,9 +173,7 @@ in {
 
   programs.lazydocker = {enable = true;};
 
-  programs.opencode = {
-    enable = true;
-  };
+  programs.nushell = { enable = true; };
 
   programs.ghostty = {
     enable = isLinux;
@@ -190,6 +187,7 @@ in {
     package = pkgs.direnv;
     nix-direnv.enable = true;
     enableZshIntegration = true;
+    enableNushellIntegration = false;
     silent = true;
     config = {
       whitelist = {
