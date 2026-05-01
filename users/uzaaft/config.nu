@@ -1,6 +1,14 @@
 $env.config.show_banner = false
 $env.config.highlight_resolved_externals = true
 
+let starship_autoload_dir = (($nu | get 'data-dir') | path join 'vendor' 'autoload')
+let starship_autoload = ($starship_autoload_dir | path join 'starship.nu')
+
+if ((which starship | length) > 0) {
+  mkdir $starship_autoload_dir
+  starship init nu | save -f $starship_autoload
+}
+
 def git_go_refresh_cache [git_path: string cache_dir: string projects_cache_file: string path_cache_file: string] {
   let refresh_script = "cache_dir=\"$1\"; git_path=\"$2\"; projects_cache_file=\"$3\"; path_cache_file=\"$4\"; (mkdir -p \"$cache_dir\" && fd -HI '^\\.git$' --max-depth 5 --type d --base-directory \"$git_path\" | sed -E 's|/\\.git/?$||' | sort -u > \"$projects_cache_file.tmp\" && mv \"$projects_cache_file.tmp\" \"$projects_cache_file\" && printf '%s' \"$git_path\" > \"$path_cache_file\") >/dev/null 2>&1 &"
   ^bash -lc $refresh_script _ $cache_dir $git_path $projects_cache_file $path_cache_file

@@ -1,8 +1,3 @@
-# --- powerlevel10k instant prompt ---
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 autoload -U colors && colors
 bindkey -v
 # PS1="%{$fg[magenta]%}%~%{$fg[red]%} %{$reset_color%}$%b "
@@ -87,6 +82,7 @@ source $ZDOTDIR/aliases.zsh
 # Load zsh-syntax-highlighting; should be last.
 # source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# --- powerlevel10k prompt ---
-source ${zsh_plugins}/powerlevel10k/powerlevel10k.zsh-theme
-[ -f ${ZDOTDIR:-$HOME}/.p10k.zsh ] && source ${ZDOTDIR:-$HOME}/.p10k.zsh
+# --- starship prompt ---
+if (( $+commands[starship] )); then
+  eval "$(starship init zsh)"
+fi

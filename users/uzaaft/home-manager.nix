@@ -83,6 +83,7 @@ in {
       pkgs.git-lfs
       pkgs.ijq
       pkgs.jq
+      pkgs.jj-starship
       pkgs.lazygit
       pkgs.llama-cpp
       pkgs.nix-output-monitor
@@ -92,6 +93,7 @@ in {
       pkgs.onefetch
       pkgs.repgrep
       pkgs.ripgrep
+      pkgs.starship
       pkgs.tmux
       pkgs.tree
       pkgs.watch
@@ -133,6 +135,9 @@ in {
       };
       nvim = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/nvim";
+      };
+      "starship.toml" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/starship.toml";
       };
       "nushell/config.nu".text = builtins.readFile ./config.nu;
       zsh = {

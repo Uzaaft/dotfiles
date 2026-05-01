@@ -22,10 +22,6 @@ function zsh_install_missing_plugins() {
     clone-plugin "https://github.com/zsh-users/zsh-autosuggestions"
     zcompile-many ${zsh_plugins}/zsh-autosuggestions/{zsh-autosuggestions.zsh,src/**/*.zsh}
   fi
-  if [[ ! -e ${zsh_plugins}/powerlevel10k ]]; then
-    clone-plugin "https://github.com/romkatv/powerlevel10k"
-    make -C ${zsh_plugins}/powerlevel10k pkg > /dev/null || echo "Error building powerlevel10k"
-  fi
   if [[ ! -e ${zsh_plugins}/zsh-nvim-appname ]]; then
     clone-plugin "https://github.com/mehalter/zsh-nvim-appname"
     zcompile-many ${zsh_plugins}/zsh-nvim-appname/zsh-nvim-appname.plugin.zsh
@@ -62,4 +58,3 @@ fpath+=${zsh_plugins}/zsh-nvim-appname
 source ${zsh_plugins}/zsh-nvim-appname/zsh-nvim-appname.plugin.zsh
 
 bindkey '^ ' autosuggest-accept
-
