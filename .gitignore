@@ -1,6 +1,6 @@
 result
 .DS_Store
 config/zsh/.zsh_history
-config/zsh/.zcompdump
+config/zsh/.zcompdump*
 config/fish/completions
 /config/zsh/.zcompcache
