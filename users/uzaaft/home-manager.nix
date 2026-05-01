@@ -168,7 +168,7 @@ in {
   #---------------------------------------------------------------------
   # Programs
   #---------------------------------------------------------------------
-  programs.nh.enable = true;
+  programs.nh = {enable = true;};
 
 
   programs.lazydocker = {enable = true;};
@@ -316,18 +316,16 @@ in {
   programs.vicinae = {
     enable = isLinux;
     settings = {
-      
-        favicon_service = "twenty";
-        pop_to_root_on_close = true;
-        telemetry = {
-          system_info = false;
+      favicon_service = "twenty";
+      pop_to_root_on_close = true;
+      telemetry = {
+        system_info = false;
+      };
+      theme = {
+        dark = {
+          name = "vicinae-dark";
         };
-        theme = {
-          dark = {
-            name = "vicinae-dark";
-          };
-        };
+      };
     };
   };
-
 }
