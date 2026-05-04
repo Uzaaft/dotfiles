@@ -187,7 +187,7 @@ in {
     package = pkgs.direnv;
     nix-direnv.enable = true;
     enableZshIntegration = true;
-    enableNushellIntegration = false;
+    enableNushellIntegration = true;
     silent = true;
     config = {
       whitelist = {
