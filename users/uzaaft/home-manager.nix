@@ -59,16 +59,12 @@ in {
   home.packages =
     [
       pkgs.amp
-      # pkgs.codex
-      # pkgs.oh-my-codex
-      # pkgs.oh-my-openagent
       pkgs._1password-cli
       inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
       # Stuff
       # CLI tools
       pkgs.alejandra
       pkgs.asciinema
-      pkgs.attic-client
       pkgs.bat
       pkgs.btop
       pkgs.curl
@@ -87,8 +83,6 @@ in {
       pkgs.lazygit
       pkgs.llama-cpp
       pkgs.nix-output-monitor
-      pkgs.nixd
-      pkgs.nodejs-slim_24
       pkgs.onefetch
       pkgs.repgrep
       pkgs.ripgrep
@@ -104,7 +98,6 @@ in {
       # non-darwin packages
       pkgs.usbutils
       pkgs.pciutils
-      pkgs.clang
       # Fallback CPU based terminal
       pkgs.foot
     ]);
