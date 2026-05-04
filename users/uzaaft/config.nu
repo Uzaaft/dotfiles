@@ -9,11 +9,6 @@ if ((which starship | length) > 0) {
   starship init nu | save -f $starship_autoload
 }
 
-def git_go_refresh_cache [git_path: string cache_dir: string projects_cache_file: string path_cache_file: string] {
-  let refresh_script = "cache_dir=\"$1\"; git_path=\"$2\"; projects_cache_file=\"$3\"; path_cache_file=\"$4\"; (mkdir -p \"$cache_dir\" && fd -HI '^\\.git$' --max-depth 5 --type d --base-directory \"$git_path\" | sed -E 's|/\\.git/?$||' | sort -u > \"$projects_cache_file.tmp\" && mv \"$projects_cache_file.tmp\" \"$projects_cache_file\" && printf '%s' \"$git_path\" > \"$path_cache_file\") >/dev/null 2>&1 &"
-  ^bash -lc $refresh_script _ $cache_dir $git_path $projects_cache_file $path_cache_file
-}
-
 def --env git_go [] {
   let git_path = ($env.GIT_PATH? | default ($env.HOME | path join 'repositories'))
   if ($git_path | str trim | is-empty) {
@@ -24,40 +19,20 @@ def --env git_go [] {
     return
   }
 
-  let cache_dir = ($nu | get 'cache-dir')
-  let projects_cache_file = ($cache_dir | path join 'git-go-projects.txt')
-  let path_cache_file = ($cache_dir | path join 'git-go-path.txt')
+  let discovered_projects_result = (
+    fd -HI '^\.git$' --max-depth 5 --type d --base-directory $git_path
+    | sed -E 's|/\.git/?$||'
+    | ^sort -u
+    | complete
+  )
 
-  mut projects = ''
-  if (($projects_cache_file | path exists) and ($path_cache_file | path exists)) {
-    let cached_git_path = (open --raw $path_cache_file | str trim)
-    if ($cached_git_path == $git_path) {
-      $projects = (open --raw $projects_cache_file | str trim)
-    }
+  if $discovered_projects_result.exit_code != 0 {
+    return
   }
 
-  git_go_refresh_cache $git_path $cache_dir $projects_cache_file $path_cache_file
-
+  let projects = ($discovered_projects_result.stdout | str trim)
   if ($projects | is-empty) {
-    let discovered_projects_result = (
-      fd -HI '^\.git$' --max-depth 5 --type d --base-directory $git_path
-      | sed -E 's|/\.git/?$||'
-      | ^sort -u
-      | complete
-    )
-
-    if $discovered_projects_result.exit_code != 0 {
-      return
-    }
-
-    $projects = ($discovered_projects_result.stdout | str trim)
-    if ($projects | is-empty) {
-      return
-    }
-
-    ^mkdir -p $cache_dir
-    $projects | save -f $projects_cache_file
-    $git_path | save -f $path_cache_file
+    return
   }
 
   let selected_path_result = (
