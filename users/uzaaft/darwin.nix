@@ -23,6 +23,7 @@
       "hiddenbar"
       "istat-menus"
       "linear-linear"
+      "logi-options+"
       "monodraw"
       "orbstack"
       "sioyek"
