@@ -48,11 +48,7 @@
       (final: prev: {
         amp = prev.callPackage ./packages/amp {};
         git-hunks = prev.callPackage ./packages/git-hunks {};
-        # direnv's checkPhase fails when direnv is loaded in the shell.
-        # Remove this once https://nixpk.gs/pr-tracker.html?pr=513971 lands.
-        direnv = prev.direnv.overrideAttrs {doCheck = false;};
         nushell = inputs.nixpkgs-stable.legacyPackages.${prev.system}.nushell;
-        # direnv = inputs.nixpkgs-stable.legacyPackages.${prev.system}.direnv;
       })
     ];
 
