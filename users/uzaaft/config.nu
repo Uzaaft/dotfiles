@@ -1,5 +1,20 @@
+use std/config *
+
 $env.config.show_banner = false
 $env.config.highlight_resolved_externals = true
+
+# Run direnv only when changing directories, matching Nushell's recommended integration.
+$env.config.hooks.env_change.PWD = $env.config.hooks.env_change.PWD? | default []
+$env.config.hooks.env_change.PWD ++= [
+  {||
+    if (which direnv | is-empty) {
+      return
+    }
+
+    direnv export json | from json | default {} | load-env
+    $env.PATH = do (env-conversions).path.from_string $env.PATH
+  }
+]
 
 let starship_autoload_dir = (($nu | get 'data-dir') | path join 'vendor' 'autoload')
 let starship_autoload = ($starship_autoload_dir | path join 'starship.nu')
