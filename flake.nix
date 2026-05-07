@@ -33,6 +33,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    helios = {
+      url = "github:Polymath-AS/helios";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     
   };
 

@@ -201,6 +201,26 @@
         "url": "https://flakehub.com/f/cachix/git-hooks.nix/0.1.941"
       }
     },
+    "helios": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1777122985,
+        "narHash": "sha256-Jvw+rx4okbaA+dttOLSkD0HPYpOwGEleX/lhn4s2LxY=",
+        "owner": "Polymath-AS",
+        "repo": "helios",
+        "rev": "daa2332f8140a471530290d958979e0477cfde2b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Polymath-AS",
+        "repo": "helios",
+        "type": "github"
+      }
+    },
     "helium": {
       "inputs": {
         "nixpkgs": [
@@ -426,6 +446,7 @@
         "darwin": "darwin",
         "determinate": "determinate",
         "ghostty": "ghostty",
+        "helios": "helios",
         "helium": "helium",
         "home-manager": "home-manager_2",
         "neovim-nightly-overlay": "neovim-nightly-overlay",

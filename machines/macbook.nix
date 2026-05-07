@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   # Set in Sept 2024 as part of the macOS Sequoia release.
@@ -31,5 +32,6 @@
   environment.shells = with pkgs; [zsh];
   environment.systemPackages = with pkgs; [
     cachix
+    inputs.helios.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }
