@@ -179,12 +179,13 @@ in {
     enable = true;
     package = pkgs.direnv;
     nix-direnv.enable = true;
+
     enableZshIntegration = true;
     enableNushellIntegration = true;
+
     silent = true;
     config = {
       whitelist = {
-        # Should add the following: polymath, stormwater-ai, uzaaft
         prefix = [
           "$HOME/repositories/github.com/uzaaft"
           "$HOME/repositories/github.com/polymath-as"
