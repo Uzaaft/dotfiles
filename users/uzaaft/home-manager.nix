@@ -208,7 +208,7 @@ in {
       template-aliases = {
         "format_short_id(id)" = "id.shortest(8)";
       };
-      reset-aliases = {
+      revset-aliases = {
         "mine()" = "author(uzaaft)";
       };
       signing = {
@@ -221,7 +221,7 @@ in {
         sign-on-push = true;
       };
       templates = {
-        push-bookmark-prefix = "uzaaft/";
+        git_push_bookmark = "\"uzaaft/\" ++ change_id.short()";
       };
       user = {
         name = "Uzair Aftab";
