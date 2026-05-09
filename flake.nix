@@ -38,7 +38,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    
+    hunk = {
+      url = "github:uzaaft/hunk-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -53,6 +56,7 @@
       (final: prev: {
         amp = prev.callPackage ./packages/amp {};
         git-hunks = prev.callPackage ./packages/git-hunks {};
+        hunk = inputs.hunk.packages.${prev.system}.default;
         nushell = inputs.nixpkgs-stable.legacyPackages.${prev.system}.nushell;
       })
     ];
