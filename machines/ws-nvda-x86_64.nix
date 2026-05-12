@@ -46,7 +46,15 @@
   security.sudo.wheelNeedsPassword = false;
   services = {
     tailscale.enable = true;
-    ollama.enable = true;
+    ollama = {
+      enable = true;
+      package = pkgs.ollama-cuda;
+      # Bind to all interfaces so the Mac (and other Tailscale peers) can
+      # reach this box. Exposure is scoped to tailscale0 by the firewall
+      # rule below; LAN and WAN never see port 11434.
+      host = "0.0.0.0";
+      port = 11434;
+    };
 
     xserver.videoDrivers = ["nvidia"];
     openssh = {
@@ -100,6 +108,8 @@
   networking.networkmanager.enable = true;
   networking.interfaces.enp7s0.useDHCP = true;
   networking.firewall.allowedUDPPorts = [41641];
+  # Expose Ollama only on the Tailscale interface.
+  networking.firewall.interfaces.tailscale0.allowedTCPPorts = [11434];
   nixpkgs.config = {
     allowUnfree = true;
     cudaSupport = true;
