@@ -5,6 +5,7 @@
   fetchNpmDeps,
   ripgrep,
   runCommand,
+  runtimeShell,
 }: let
   version = "0.0.1778761759-gbc66d9";
 
@@ -12,8 +13,8 @@
     mkdir -p $out
     tar -xzf ${
       fetchurl {
-        url = "https://registry.npmjs.org/@sourcegraph/amp/-/amp-0.0.1778761759-gbc66d9.tgz";
-        hash = "sha256-8JS1BXl0I9/Sg+dQ0rX4cyMRjQOPNSFh8wjZuJwyngI=";
+        url = "https://registry.npmjs.org/@ampcode/cli/-/cli-0.0.1778761759-gbc66d9.tgz";
+        hash = "sha256-HhJ92kcO/QjgowslEGeMJZNCkacuTnb09yEc1EDANEE=";
       }
     } -C $out --strip-components=1
     cp ${./package-lock.json} $out/package-lock.json
@@ -27,12 +28,18 @@ in
 
     npmDeps = fetchNpmDeps {
       inherit src;
-      hash = "sha256-R3JjGxezGempiK9dXVMgmJQuoNJ/Im+Ya4+b7DT7BkE=";
+      hash = "sha256-Q11Z6Jk2FUZUz1+TMic8pgEKhM5HPBQnirfX6d9Umlk=";
     };
 
     dontNpmBuild = true;
 
     postInstall = ''
+      cat > $out/bin/amp <<EOF
+      #!${runtimeShell}
+      exec $out/lib/node_modules/@ampcode/cli/bin/amp.exe "\$@"
+      EOF
+      chmod +x $out/bin/amp
+
       wrapProgram $out/bin/amp \
         --prefix PATH : ${lib.makeBinPath [ripgrep]} \
         --set AMP_SKIP_UPDATE_CHECK 1
@@ -43,7 +50,7 @@ in
     };
 
     meta = with lib; {
-      description = "CLI for Amp, an agentic coding tool in research preview from Sourcegraph";
+      description = "CLI for Amp, the frontier coding agent";
       homepage = "https://ampcode.com/";
       changelog = "https://github.com/sourcegraph/amp/releases";
       license = licenses.unfree;
