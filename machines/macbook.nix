@@ -24,6 +24,13 @@
     };
   };
 
+  # Determinate Nix manages /etc/nix/nix.conf itself; nix.settings above is
+  # ignored because nix.enable = false. Route trusted-users through the
+  # determinate module so it lands in /etc/nix/nix.custom.conf.
+  determinateNix.customSettings = {
+    trusted-users = ["@admin" "uzaaft"];
+  };
+
   # zsh is the default shell on Mac and we want to make sure that we're
   # configuring the rc correctly with nix-darwin paths.
   programs.zsh.enable = true;
