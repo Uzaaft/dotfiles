@@ -67,6 +67,7 @@ in {
       pkgs.asciinema
       pkgs.bat
       pkgs.btop
+      pkgs.comview
       pkgs.curl
       pkgs.eza
       pkgs.fastfetch

@@ -38,6 +38,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    comview = {
+      url = "github:uzaaft/comview-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hunk = {
       url = "github:uzaaft/hunk-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -57,6 +62,7 @@
         amp = prev.callPackage ./packages/amp {};
         git-hunks = prev.callPackage ./packages/git-hunks {};
         hunk = inputs.hunk.packages.${prev.system}.default;
+        comview = inputs.comview.packages.${prev.system}.default;
         nushell = inputs.nixpkgs-stable.legacyPackages.${prev.system}.nushell;
       })
     ];
