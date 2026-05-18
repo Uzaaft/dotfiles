@@ -82,6 +82,14 @@
     };
   };
 
+  # This generator loads NVIDIA userspace libraries and talks to the loaded
+  # kernel module. During a NixOS switch after a driver or kernel update, those
+  # can be from different generations until the next reboot, which makes NVML
+  # fail with "Driver/library version mismatch" and marks the switch failed.
+  # Let the service generate CDI data at boot, when the module and libraries
+  # come from the same system generation.
+  systemd.services.nvidia-container-toolkit-cdi-generator.restartIfChanged = false;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.mutableUsers = false;
 
