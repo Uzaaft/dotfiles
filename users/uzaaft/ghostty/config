@@ -1,4 +1,3 @@
-command = bash -l -c nu
 font-thicken = true
 font-family = JetBrains Mono
 font-size = 13
