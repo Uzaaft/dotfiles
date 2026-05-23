@@ -165,7 +165,6 @@ in {
   #---------------------------------------------------------------------
   programs.nh = {enable = true;};
 
-
   programs.lazydocker = {enable = true;};
 
   programs.nushell = { enable = true; };
