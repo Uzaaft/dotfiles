@@ -60,7 +60,7 @@ in {
     [
       pkgs.amp
       pkgs._1password-cli
-      inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+      inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default
       # Stuff
       # CLI tools
       pkgs.alejandra
@@ -92,7 +92,7 @@ in {
       pkgs.tmux
       pkgs.tree
       pkgs.watch
-      inputs.helium.packages.${pkgs.system}.default
+      inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
     ]
     ++ (lib.optionals isDarwin [
       ])
