@@ -219,11 +219,11 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
-        "lastModified": 1779523087,
-        "narHash": "sha256-iistIa3UIlSUIWRYRU3wdqTE6VM5LyNnNNcYcmeJFw4=",
+        "lastModified": 1780062083,
+        "narHash": "sha256-IPmHkvCTlm+zjJpd6laa2RhOIw5C1URrOdb5JUkt8k4=",
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "a968e120dd084bd886239d1cac938f0177f019d9",
+        "rev": "90175950d5004382abd3b0b9528e7be81b0b52ec",
         "type": "github"
       },
       "original": {
@@ -286,11 +286,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1779508010,
-        "narHash": "sha256-7Wcp38Saw8cnyfc1OyjsxiF0btKBaL5KcHV+q9ljsns=",
+        "lastModified": 1780027711,
+        "narHash": "sha256-i74IUAuKPSQJUl8CN4XZZEyCs8g0lg0oJCrW7QFYOTQ=",
         "owner": "schembriaiden",
         "repo": "helium-browser-nix-flake",
-        "rev": "4e6b8bdd6692db7f2357e4dd86444914e53ec095",
+        "rev": "c6364929cb9a7fe155195a75bcb6fa2433af6f75",
         "type": "github"
       },
       "original": {
@@ -327,11 +327,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779507042,
-        "narHash": "sha256-7wOwi8B6D0BYsieZCnHZZj2sNUzgJhLoIVSfkwB7lxQ=",
+        "lastModified": 1779969295,
+        "narHash": "sha256-HwIJ3tOcwSMiV75L7KqJXciXR9UfT+d7rwOZMX7cTnA=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "509ed3c603349a9d43de9e2ae6613baea6bd5b34",
+        "rev": "61e2c9659324181e0f0ed911958c536333b1d4f6",
         "type": "github"
       },
       "original": {
@@ -370,11 +370,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779494629,
-        "narHash": "sha256-VuZJ76qmY90clvY6RQfAPL5JHwhcf1jmyqBfKR7WQ7Q=",
+        "lastModified": 1780013080,
+        "narHash": "sha256-m984DKbcIeNNuLYFjN3780rPEd55Xe9/cB4BNKkIDvg=",
         "owner": "nix-community",
         "repo": "neovim-nightly-overlay",
-        "rev": "9b46852004ed151b36e424de6d529a231c622561",
+        "rev": "c6cc238427db8f61b786a66d7e02cf7724b30226",
         "type": "github"
       },
       "original": {
@@ -386,11 +386,11 @@
     "neovim-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1779493669,
-        "narHash": "sha256-09xuVobnmU/uZLUZLr/lb3tir2v0lwWEj92gGuJIdKU=",
+        "lastModified": 1779979065,
+        "narHash": "sha256-3uF/oP2D4Jka3DU2G8qqml75UOzPRrK+FIp+jghOq0s=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "f53d9ac90b7a5a0eefb22398a8ce4e249a3fc732",
+        "rev": "5d85669a33e10f1f156b086562458cbbc8054438",
         "type": "github"
       },
       "original": {
@@ -468,11 +468,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1779102034,
-        "narHash": "sha256-uTBbAAmkcLK3Fd3RjXG/VX1jkiY0gdh+oqWyB+BjyhI=",
-        "rev": "687f05a9184cad4eaf905c48b63649e3a86f5433",
+        "lastModified": 1779796641,
+        "narHash": "sha256-Cy89LFmgiCxIPBxJLWTmFJHwdeLkxUUYspm5yy8wJps=",
+        "rev": "25f538306313eae3927264466c70d7001dcea1df",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/25.11/nixos-25.11.11112.687f05a9184c/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixos/25.11/nixos-25.11.11422.25f538306313/nixexprs.tar.xz"
       },
       "original": {
         "type": "tarball",
@@ -508,11 +508,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1779357205,
-        "narHash": "sha256-STlbE8L45Uutxaffotwjqp+nX6g6jqc/mnx/7DxODyA=",
-        "rev": "f83fc3c307e74bc5fd5adb7eb6b8b13ffd2a36e1",
+        "lastModified": 1779560665,
+        "narHash": "sha256-NpH8iEQ5JHv/BtUuzTEXUMDxPLetCDzIv4OxL8H7Kps=",
+        "rev": "64c08a7ca051951c8eae34e3e3cb1e202fe36786",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.05pre1002845.f83fc3c307e7/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.05pre1004030.64c08a7ca051/nixexprs.tar.xz"
       },
       "original": {
         "type": "tarball",
