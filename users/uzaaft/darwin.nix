@@ -20,6 +20,7 @@
       "arc"
       "bitwarden"
       "discord"
+      "font-ioskeley-mono"
       "helium-browser"
       "hiddenbar"
       "istat-menus"
