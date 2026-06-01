@@ -142,11 +142,7 @@ in {
     // (
       # Darwin stuf
       if isDarwin
-      then {
-        yabai = {
-          source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/yabai";
-        };
-      }
+      then {}
       else {}
     )
     // (
