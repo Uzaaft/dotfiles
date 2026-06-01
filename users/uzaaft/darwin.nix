@@ -20,6 +20,7 @@
       "arc"
       "bitwarden"
       "discord"
+      "helium-browser"
       "hiddenbar"
       "istat-menus"
       "linear-linear"
@@ -31,7 +32,6 @@
       "spotify"
       "tableplus"
       # Required for Norwegian jobs
-      "helium-browser"
       "microsoft-teams"
       "notion"
       "proton-mail"
