@@ -208,6 +208,12 @@ in {
       revset-aliases = {
         "mine()" = "author(uzaaft)";
       };
+      alias = {
+        b = "branch";
+        n = "new";
+        tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"];
+        retrunk = ["rebase", "-d", "trunk()"];
+      };
       signing = {
         behavior = "own";
         backend = "ssh";
