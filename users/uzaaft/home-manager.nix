@@ -205,12 +205,13 @@ in {
         "format_short_id(id)" = "id.shortest(8)";
       };
       revset-aliases = {
-        "mine()" = "author(uzaaft)";
+        "closest_bookmark(to)" = "heads(::to & bookmarks())";
+        "fork_history(to, from)" = "fork_point(to | from)..@";
       };
-      alias = {
+      aliases = {
         b = "branch";
         n = "new";
-        tug = "bookmark move --from closest_bookmark(@-) --to @-";
+        tug = ["bookmark" "move" "--from" "closest_bookmark(@-)" "--to" "@-"];
         retrunk = "rebase -d trunk()";
       };
       signing = {
