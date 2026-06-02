@@ -94,8 +94,7 @@ in {
       pkgs.watch
       inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
     ]
-    ++ (lib.optionals isDarwin [
-      ])
+    ++ (lib.optionals isDarwin [])
     ++ (lib.optionals isLinux [
       # non-darwin packages
       pkgs.usbutils
@@ -211,8 +210,8 @@ in {
       alias = {
         b = "branch";
         n = "new";
-        tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"];
-        retrunk = ["rebase", "-d", "trunk()"];
+        tug = "bookmark move --from closest_bookmark(@-) --to @-";
+        retrunk = "rebase -d trunk()";
       };
       signing = {
         behavior = "own";
@@ -237,15 +236,23 @@ in {
 
   programs.ssh = {
     enable = true;
-    extraConfig = ''
-      ${
-        if isDarwin
-        then ''
-          IdentityAgent "${sshKeyPath}"
-        ''
-        else ""
+    enableDefaultConfig = false;
+    settings."*" =
+      {
+        ForwardAgent = false;
+        AddKeysToAgent = "no";
+        Compression = false;
+        ServerAliveInterval = 0;
+        ServerAliveCountMax = 3;
+        HashKnownHosts = false;
+        UserKnownHostsFile = "~/.ssh/known_hosts";
+        ControlMaster = "no";
+        ControlPath = "~/.ssh/master-%r@%n:%p";
+        ControlPersist = "no";
       }
-    '';
+      // lib.optionalAttrs isDarwin {
+        IdentityAgent = ''"${sshKeyPath}"'';
+      };
   };
   programs.bash = {
     enable = true;
