@@ -3,43 +3,27 @@ name: commit-messages
 description: Write clear commit messages. Use when asked to commit changes, write a commit message, prepare a commit, or describe changes for version control.
 ---
 
-# Committing Changes
+# Writing Commit Messages
 
-Make small, atomic commits with clear messages.
+Write commit messages that follow commit style guidelines for the project.
 
-## Workflow
+## Format
 
-### 1. Understand the Changes
-
-If you don't already understand the changes, review them first:
-
-```bash
-git diff HEAD
-git status --short
 ```
+<subsystem>: <summary>
 
-### 2. Stage and Commit
+<reference issues/PRs/etc.>
 
-Make small, atomic commits—each commit should address one logical change. If your work spans multiple concerns (e.g., a refactor and a bug fix), break it into separate commits.
-
-```bash
-# Stage entire files
-git add <files>
-
-# Or stage specific hunks for finer control
-git hunks list                            # List all hunks with IDs
-git hunks add 'file:@-old,len+new,len'    # Stage specific hunks by ID
-
-git commit -m "title" -m "body paragraph"
+<long form description>
 ```
 
 ## Rules
+
 ### Subject line
 
-- **Conventional cmmits**:
-  - Use a short lowercase identifier for the type of change. 
-  - Use a short, lowercase identifier for the
-  area of code changed (e.g., `terminal`, `api`, `lib`, `config`). Determine this from the file paths in the diff.
+- **Subsystem prefix**: Use a short, lowercase identifier for the
+  area of code changed (e.g., `api`, `components`, `build`, `vt`). Determine this from the file paths in the diff. Use nested subsystems with `/` when
+  helpful and exclusive (e.g., `crates/<name>`).
 - **Summary**: Lowercase start (not capitalized), imperative mood,
   no trailing period. Keep it concise—ideally under 60 characters
   total for the whole subject line.
