@@ -42,8 +42,5 @@ At the end of each plan, give me a list of unresolved questions to answer, if an
 - **Flow**: ifs↑ fors↓. State in parents, leaves pure. Min scope.
 - **Naming**: Correct nouns/verbs. Units last: `latency_ms_max`. No abbrevs (except ID/URL). Comments=why.
 
-## Commits
-Conventional: `<type>[scope]: desc`. Frequent commits. No AI attribution.
-
 ## Test
 Verify semantic correctness. Failing tests OK if exposing real bugs.
