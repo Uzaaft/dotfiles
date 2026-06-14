@@ -76,9 +76,7 @@ in {
       pkgs.fzf
       pkgs.gh
       pkgs.git-get
-      pkgs.git-hunks
       pkgs.git-lfs
-      pkgs.hunk
       pkgs.ijq
       pkgs.jq
       pkgs.jj-starship

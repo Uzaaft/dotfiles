@@ -43,10 +43,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hunk = {
-      url = "github:uzaaft/hunk-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
@@ -60,8 +56,6 @@
     overlays = [
       (final: prev: {
         amp = prev.callPackage ./packages/amp {};
-        git-hunks = prev.callPackage ./packages/git-hunks {};
-        hunk = inputs.hunk.packages.${prev.stdenv.hostPlatform.system}.default;
         comview = inputs.comview.packages.${prev.stdenv.hostPlatform.system}.default;
         nushell = inputs.nixpkgs-stable.legacyPackages.${prev.stdenv.hostPlatform.system}.nushell;
       })
