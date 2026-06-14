@@ -281,6 +281,10 @@ in {
 
       branch.autosetuprebase = "always";
       merge.conflictstyle = "zdiff3";
+      pager = {
+        diff = "comview";
+        show = "comview";
+      };
       color.ui = true;
       github.user = "uzaaft";
       push.default = "tracking";
