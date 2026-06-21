@@ -1,9 +1,9 @@
 {
-  description = "Example nix-darwin system flake";
+  description = "Bobr System Flake";
 
   inputs = {
     # We use the unstable nixpkgs repo for some packages.
-    nixpkgs-stable.url = "https://channels.nixos.org/nixos-25.11/nixexprs.tar.xz";
+    nixpkgs-stable.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.xz";
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
     # Spesific nixpkgs for darwin as recommended by nix-darwin docs.
 
