@@ -122,6 +122,7 @@ in {
   xdg.configFile =
     {
       # Always include these
+      "ghostty/config".text = builtins.readFile ./ghostty/config;
       amp = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/users/uzaaft/amp";
       };
