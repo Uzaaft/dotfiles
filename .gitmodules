@@ -1,3 +1,7 @@
 [submodule "config/nvim"]
 	path = config/nvim
 	url = git@github.com:uzaaft/nvim
+[submodule "users/uzaaft/agents/skills"]
+	path = users/uzaaft/agents/skills
+	url = git@github.com:uzaaft/skills.git
+	branch = main
