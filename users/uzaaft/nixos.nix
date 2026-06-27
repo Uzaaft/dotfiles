@@ -11,7 +11,6 @@
   environment.localBinInPath = true;
 
   programs.zsh.enable = true;
-  programs.mosh.enable = true;
 
   # We require this because we use lazy.nvim against the best wishes
   # a pure Nix system so this lets those unpatched binaries run.
