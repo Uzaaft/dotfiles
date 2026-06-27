@@ -83,11 +83,6 @@
       user = "uzaaft";
     };
 
-    nixosConfigurations.latte-panda-x86_64 = mkSystem "latte-panda-x86_64" {
-      system = "x86_64-linux";
-      user = "uzaaft";
-    };
-
     nixosConfigurations.nvidia-workstation = mkSystem "ws-nvda-x86_64" {
       system = "x86_64-linux";
       user = "uzaaft";
