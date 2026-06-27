@@ -60,6 +60,12 @@ in
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.backupFileExtension = "backup";
+        home-manager.extraSpecialArgs = {
+          currentSystem = system;
+          currentSystemName = name;
+          currentSystemUser = user;
+          inputs = inputs;
+        };
         home-manager.users.${user} = import userHMConfig {
           inputs = inputs;
         };
