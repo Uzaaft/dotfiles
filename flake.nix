@@ -57,7 +57,6 @@
       (final: prev: {
         amp = prev.callPackage ./packages/amp {};
         comview = inputs.comview.packages.${prev.stdenv.hostPlatform.system}.default;
-        nushell = inputs.nixpkgs-stable.legacyPackages.${prev.stdenv.hostPlatform.system}.nushell;
       })
     ];
 

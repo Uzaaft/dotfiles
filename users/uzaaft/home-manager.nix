@@ -84,7 +84,6 @@ in {
       pkgs.jq
       pkgs.jj-starship
       pkgs.lazygit
-      pkgs.llama-cpp
       pkgs.nix-output-monitor
       pkgs.onefetch
       pkgs.repgrep
@@ -101,6 +100,7 @@ in {
       # non-darwin packages
       pkgs.usbutils
       pkgs.pciutils
+      pkgs.llama-cpp
     ])
     ++ (lib.optionals isGraphicalLinux [
       # Fallback CPU based terminal
@@ -134,7 +134,6 @@ in {
       "starship.toml" = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/starship.toml";
       };
-      "nushell/config.nu".text = builtins.readFile ./config.nu;
       zsh = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/zsh";
       };
@@ -166,7 +165,6 @@ in {
 
   programs.lazydocker = {enable = true;};
 
-  programs.nushell = {enable = true;};
 
   programs.ghostty = {
     enable = isGraphicalLinux;
@@ -181,7 +179,6 @@ in {
     nix-direnv.enable = true;
 
     enableZshIntegration = true;
-    enableNushellIntegration = true;
 
     silent = true;
     config = {
