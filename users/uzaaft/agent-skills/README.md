@@ -1,4 +1,4 @@
-# Skills
+# Uzaaft Skills
 
 Personal coding-agent skills for TypeScript software design, review, refactoring, and implementation workflows.
 

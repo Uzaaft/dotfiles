@@ -1,5 +1,5 @@
 ---
-"dmmulroy-skills": patch
+"uzaaft-skills": patch
 ---
 
 Adopt Changesets-based release tooling and GitHub release automation.

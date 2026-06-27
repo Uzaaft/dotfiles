@@ -81,7 +81,7 @@ apply_patches() {
 }
 
 read -r -d '' TDD_OVERRIDE <<'MD' || true
-## Local overrides (dmmulroy/skills)
+## Local overrides (uzaaft/skills)
 
 This skill is vendored from mattpocock/skills. In this repository,
 `../coding-standards/TESTING_AND_VERIFICATION.md` is the source of truth for
