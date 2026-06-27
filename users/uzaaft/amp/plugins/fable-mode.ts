@@ -1,4 +1,10 @@
 // @amp-plugin updated automatically from https://ampcode.com/@amp/plugins/fable-mode.ts
+// @amp-agent-mode {"key":"claude-fable-5","label":"Claude Fable 5"}
+// @amp-agent-mode {"key":"claude-fable-low","label":"Claude Fable low"}
+// @amp-agent-mode {"key":"claude-fable-med","label":"Claude Fable med"}
+// @amp-agent-mode {"key":"claude-fable-xhi","label":"Claude Fable xhi"}
+// @amp-agent-mode {"key":"claude-fable-max","label":"Claude Fable max"}
+
 import type { PluginAPI } from '@ampcode/plugin'
 
 const FABLE_AGENT_PROMPT = `
