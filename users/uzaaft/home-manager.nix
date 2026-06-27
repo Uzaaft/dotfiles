@@ -1,11 +1,14 @@
 {inputs, ...}: {
   config,
+  currentSystemName,
   lib,
   pkgs,
   ...
 }: let
   isDarwin = pkgs.stdenv.isDarwin;
   isLinux = pkgs.stdenv.isLinux;
+  isVmAarch64 = currentSystemName == "vm-aarch64";
+  isGraphicalLinux = isVmAarch64;
 
   shellAliases = {
     cat = "bat";
@@ -98,6 +101,8 @@ in {
       # non-darwin packages
       pkgs.usbutils
       pkgs.pciutils
+    ])
+    ++ (lib.optionals isGraphicalLinux [
       # Fallback CPU based terminal
       pkgs.foot
     ]);
@@ -117,8 +122,6 @@ in {
   xdg.configFile =
     {
       # Always include these
-      "ghostty/config".text = builtins.readFile ./ghostty/config;
-      "ghostty/cursor.glsl".text = builtins.readFile ./ghostty/cursor.glsl;
       amp = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/users/uzaaft/amp";
       };
@@ -145,8 +148,10 @@ in {
     )
     // (
       # Linux stuf
-      if isLinux
+      if isGraphicalLinux
       then {
+        "ghostty/config".text = builtins.readFile ./ghostty/config;
+        "ghostty/cursor.glsl".text = builtins.readFile ./ghostty/cursor.glsl;
         niri = {
           source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/niri";
         };
@@ -161,10 +166,10 @@ in {
 
   programs.lazydocker = {enable = true;};
 
-  programs.nushell = { enable = true; };
+  programs.nushell = {enable = true;};
 
   programs.ghostty = {
-    enable = isLinux;
+    enable = isGraphicalLinux;
     package = inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default;
   };
 
@@ -232,7 +237,7 @@ in {
     };
   };
 
-  programs.fuzzel.enable = isLinux;
+  programs.fuzzel.enable = isGraphicalLinux;
 
   programs.ssh = {
     enable = true;
@@ -312,7 +317,7 @@ in {
   };
 
   programs.vicinae = {
-    enable = isLinux;
+    enable = isGraphicalLinux;
     settings = {
       favicon_service = "twenty";
       pop_to_root_on_close = true;
