@@ -310,16 +310,6 @@ in {
     };
   };
 
-  programs.delta = {
-    enableGitIntegration = true;
-    # enableJujutsuIntegration = true;
-    enable = true;
-    options = {
-      navigate = true;
-      dark = true;
-    };
-  };
-
   programs.vicinae = {
     enable = isLinux;
     settings = {
