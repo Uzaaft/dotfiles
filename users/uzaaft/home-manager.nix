@@ -90,9 +90,10 @@ in {
       pkgs.tmux
       pkgs.tree
       pkgs.watch
-      inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
     ]
-    ++ (lib.optionals isDarwin [])
+    ++ (lib.optionals isDarwin [
+      inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
+    ])
     ++ (lib.optionals isLinux [
       # non-darwin packages
       pkgs.usbutils
