@@ -47,7 +47,7 @@
     ];
     brews = [
       "gnupg"
-      "koekeishiya/formulae/yabai"
+      # "yabai"
       "zig"
     ];
   };
