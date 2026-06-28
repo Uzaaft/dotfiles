@@ -51,6 +51,9 @@
     then "~/.ssh/id_ed25519.pub"
     else "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
   );
+
+  dotfilesPath = "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles";
+  mutableConfig = path: config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/${path}";
 in {
   # Home-manager 22.11 requires this be set. We never set it so we have
   # to use the old state version.
@@ -113,36 +116,76 @@ in {
   #---------------------------------------------------------------------
   home.file = {
     ".zshenv" = {
-      source = builtins.path {path = ./.zshenv;};
+      source = mutableConfig "users/uzaaft/.zshenv";
     };
     ".tmux.conf" = {
-      source = builtins.path {path = ./.tmux.conf;};
+      source = mutableConfig "users/uzaaft/.tmux.conf";
+    };
+    ".cargo/binstall/crates-v1.json" = {
+      source = mutableConfig "stowed/.cargo/binstall/crates-v1.json";
+    };
+    ".cargo/config.toml" = {
+      source = mutableConfig "stowed/.cargo/config.toml";
     };
   };
 
   xdg.configFile =
     {
       # Always include these
-      "ghostty/config".text = builtins.readFile ./ghostty/config;
+      "bash/bashrc" = {
+        source = mutableConfig "users/uzaaft/bashrc";
+      };
+      ghostty = {
+        source = mutableConfig "users/uzaaft/ghostty";
+      };
       amp = {
-        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/users/uzaaft/amp";
+        source = mutableConfig "users/uzaaft/amp";
       };
       agents = {
-        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/users/uzaaft/agents";
+        source = mutableConfig "users/uzaaft/agents";
+      };
+      fish = {
+        source = mutableConfig "config/fish";
+      };
+      "goku/karabiner.edn" = {
+        source = mutableConfig "stowed/.config/goku/karabiner.edn";
+      };
+      "heimdall/config.toml" = {
+        source = mutableConfig "stowed/.config/heimdall/config.toml";
+      };
+      niri = {
+        source = mutableConfig "config/niri";
       };
       "herdr/config.toml" = {
         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/herdr/config.toml";
       };
       nvim = {
-        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/nvim";
+        source = mutableConfig "config/nvim";
+      };
+      "nushell/config.nu" = {
+        source = mutableConfig "users/uzaaft/config.nu";
+      };
+      "oh-my-posh/omp.json" = {
+        source = mutableConfig "users/uzaaft/omp.json";
+      };
+      opencode = {
+        source = mutableConfig "users/uzaaft/opencode";
       };
       "starship.toml" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/starship.toml";
+        source = mutableConfig "config/starship.toml";
+      };
+      "tmux/sand.sh" = {
+        source = mutableConfig "stowed/.config/tmux/sand.sh";
+      };
+      yabai = {
+        source = mutableConfig "config/yabai";
       };
       zsh = {
-        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/zsh";
+        source = mutableConfig "config/zsh";
       };
-      "lazygit/config.yml" = {source = ./lazygit.yml;};
+      "lazygit/config.yml" = {
+        source = mutableConfig "users/uzaaft/lazygit.yml";
+      };
     }
     // (
       # Darwin stuf
@@ -153,13 +196,7 @@ in {
     // (
       # Linux stuf
       if isGraphicalLinux
-      then {
-        "ghostty/config".text = builtins.readFile ./ghostty/config;
-        "ghostty/cursor.glsl".text = builtins.readFile ./ghostty/cursor.glsl;
-        niri = {
-          source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/niri";
-        };
-      }
+      then {}
       else {}
     );
 
@@ -169,7 +206,6 @@ in {
   programs.nh = {enable = true;};
 
   programs.lazydocker = {enable = true;};
-
 
   programs.ghostty = {
     enable = isGraphicalLinux;
@@ -265,7 +301,11 @@ in {
     enable = true;
     shellOptions = [];
     historyControl = ["ignoredups" "ignorespace"];
-    initExtra = builtins.readFile ./bashrc;
+    initExtra = ''
+      if [ -r "$HOME/.config/bash/bashrc" ]; then
+        . "$HOME/.config/bash/bashrc"
+      fi
+    '';
     shellAliases = shellAliases;
   };
 
