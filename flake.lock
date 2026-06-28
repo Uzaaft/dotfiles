@@ -480,6 +480,27 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       }
     },
+    "opencode": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1782668922,
+        "narHash": "sha256-U1Iycad9lH534oo940MfpPoslYpsH2dHrofqb8fyQuE=",
+        "owner": "anomalyco",
+        "repo": "opencode",
+        "rev": "bda0ddc207db7d413355a295f8e88043edf8dfea",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anomalyco",
+        "repo": "opencode",
+        "rev": "bda0ddc207db7d413355a295f8e88043edf8dfea",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "comview": "comview",
@@ -491,7 +512,8 @@
         "home-manager": "home-manager_2",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixpkgs": "nixpkgs_4",
-        "nixpkgs-stable": "nixpkgs-stable"
+        "nixpkgs-stable": "nixpkgs-stable",
+        "opencode": "opencode"
       }
     },
     "systems": {
