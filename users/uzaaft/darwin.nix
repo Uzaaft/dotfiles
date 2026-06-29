@@ -24,7 +24,7 @@
       "helium-browser"
       "hiddenbar"
       "istat-menus"
-      "linear-linear"
+      "linear"
       "logi-options+"
       "monodraw"
       "orbstack"
@@ -40,6 +40,7 @@
       "raycast"
       "visual-studio-code"
       "wispr-flow"
+      "opencode"
       {
         name = "ghostty@tip";
         greedy = true;

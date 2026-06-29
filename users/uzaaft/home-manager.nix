@@ -66,7 +66,6 @@ in {
     [
       pkgs.amp
       pkgs._1password-cli
-      inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default
       inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default
       # Stuff
       # CLI tools
@@ -105,6 +104,7 @@ in {
       pkgs.usbutils
       pkgs.pciutils
       pkgs.llama-cpp
+      inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default
     ])
     ++ (lib.optionals isGraphicalLinux [
       # Fallback CPU based terminal
