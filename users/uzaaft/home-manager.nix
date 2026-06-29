@@ -83,9 +83,10 @@ in {
       pkgs.gh
       pkgs.git-get
       pkgs.git-lfs
+      pkgs.herdr
       pkgs.ijq
-      pkgs.jq
       pkgs.jj-starship
+      pkgs.jq
       pkgs.lazygit
       pkgs.nix-output-monitor
       pkgs.onefetch
