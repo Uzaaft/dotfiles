@@ -127,6 +127,9 @@ in {
     ".cargo/config.toml" = {
       source = mutableConfig "stowed/.cargo/config.toml";
     };
+    "opencode/opencode.json" = {
+      source = mutableConfig "users/uzaaft/opencode.json";
+    };
   };
 
   xdg.configFile =
