@@ -104,6 +104,7 @@ in {
       pkgs.usbutils
       pkgs.pciutils
       pkgs.llama-cpp
+      pkgs.claude-code
       inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default
     ])
     ++ (lib.optionals isGraphicalLinux [

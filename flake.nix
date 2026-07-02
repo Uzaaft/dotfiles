@@ -61,6 +61,7 @@
     overlays = [
       (final: prev: {
         amp = prev.callPackage ./packages/amp {};
+        claude-code = prev.callPackage ./packages/claude-code {};
         comview = inputs.comview.packages.${prev.stdenv.hostPlatform.system}.default;
       })
     ];
@@ -80,6 +81,7 @@
         pkgs = nixpkgs.legacyPackages.${system};
       in {
         amp = pkgs.callPackage ./packages/amp {};
+        claude-code = pkgs.callPackage ./packages/claude-code {};
         git-hunks = pkgs.callPackage ./packages/git-hunks {};
       });
     nixosConfigurations.vm-aarch64 = mkSystem "vm-aarch64" {
