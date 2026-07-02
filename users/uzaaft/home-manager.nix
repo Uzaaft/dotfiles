@@ -128,6 +128,9 @@ in {
     ".cargo/config.toml" = {
       source = mutableConfig "stowed/.cargo/config.toml";
     };
+    ".claude/settings.json" = {
+      source = mutableConfig "users/uzaaft/claude/settings.json";
+    };
     "opencode/opencode.json" = {
       source = mutableConfig "users/uzaaft/opencode.json";
     };
