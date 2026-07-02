@@ -19,6 +19,8 @@
       "alt-tab"
       "arc"
       "bitwarden"
+      "codex"
+      "codexbar"
       "discord"
       "font-ioskeley-mono"
       "helium-browser"
@@ -40,7 +42,6 @@
       "raycast"
       "visual-studio-code"
       "wispr-flow"
-      "opencode"
       {
         name = "ghostty@tip";
         greedy = true;
@@ -48,8 +49,8 @@
     ];
     brews = [
       "gnupg"
-      # "yabai"
       "zig"
+      "opencode"
     ];
   };
   security.pam.services.sudo_local = {
