@@ -4,7 +4,7 @@
   "permission": {
     "edit": "allow",
     "read": "allow",
-    "bash": "ask",
+    "bash": "allow",
     "websearch": "allow",
     "webfetch": "allow"
   }
