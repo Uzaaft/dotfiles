@@ -8,13 +8,13 @@
 }:
 stdenvNoCC.mkDerivation {
   pname = "git-hunks";
-  version = "0-unstable-2026-01-23";
+  version = "0-unstable-2026-07-03";
 
   src = fetchFromGitHub {
     owner = "rockorager";
     repo = "git-hunks";
-    rev = "810609b492daae31fd974c220d77c76780db4b11";
-    hash = "sha256-VRscBmZ0Q/vL4B+8mkmQGV4Ppoj1qPpDz0kPAACjV94=";
+    rev = "482baff749d3267f01a35bc27e08d949391cb3a4";
+    hash = "sha256-0jUN9GDSK6AhkYJfQQv77mpa63Rh5jSDVIgNHNaQqyA=";
   };
 
   nativeBuildInputs = [makeWrapper];

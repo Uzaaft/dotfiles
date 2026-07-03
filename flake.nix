@@ -44,7 +44,7 @@
     };
 
     opencode = {
-      url = "github:anomalyco/opencode/bda0ddc207db7d413355a295f8e88043edf8dfea";
+      url = "github:anomalyco/opencode/a4fed69a826d72b7bb3280fab0460cc7aa698023";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
