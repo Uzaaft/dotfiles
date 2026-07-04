@@ -19,6 +19,7 @@
       "alt-tab"
       "arc"
       "bitwarden"
+      "claude-code"
       "codex"
       "codexbar"
       "discord"

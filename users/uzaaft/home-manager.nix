@@ -106,6 +106,7 @@ in {
       pkgs.pciutils
       pkgs.llama-cpp
       pkgs.claude-code
+      pkgs.codex
       inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default
     ])
     ++ (lib.optionals isGraphicalLinux [
