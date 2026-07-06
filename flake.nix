@@ -44,10 +44,14 @@
     };
 
     opencode = {
-      url = "github:anomalyco/opencode/a4fed69a826d72b7bb3280fab0460cc7aa698023";
+      url = "github:anomalyco/opencode/516f0266b88850309d7058251dcacc676c171263";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    bmux = {
+      url = "github:uzaaft/bmux";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -63,6 +67,7 @@
         amp = prev.callPackage ./packages/amp {};
         claude-code = prev.callPackage ./packages/claude-code {};
         comview = inputs.comview.packages.${prev.stdenv.hostPlatform.system}.default;
+        tmux = inputs.bmux.packages.${prev.stdenv.hostPlatform.system}.default;
       })
     ];
 

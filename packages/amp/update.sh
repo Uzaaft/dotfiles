@@ -13,14 +13,26 @@ echo "Latest version: $latest_version"
 # Extract current version from package.nix
 current_version=$(grep -Po 'version = "\K[^"]+' "$package_file")
 echo "Current version: $current_version"
+npm_deps_hash=$(awk '
+  /npmDeps = fetchNpmDeps/ { in_npmDeps=1 }
+  in_npmDeps && /hash = / {
+    match($0, /hash = "[^"]+"/)
+    print substr($0, RSTART + 8, RLENGTH - 9)
+    exit
+  }
+' "$package_file")
 
 # Check if update is needed
-if [ "$latest_version" = "$current_version" ]; then
+if [ "$latest_version" = "$current_version" ] && [ "$npm_deps_hash" != "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" ]; then
   echo "Package is already up to date!"
   exit 0
 fi
 
-echo "Update available: $current_version -> $latest_version"
+if [ "$latest_version" = "$current_version" ]; then
+  echo "Package version is current, continuing because npmDeps hash needs verification"
+else
+  echo "Update available: $current_version -> $latest_version"
+fi
 
 # Update version in package.nix
 sed -i "s/version = \"${current_version}\";/version = \"${latest_version}\";/" "$package_file"
@@ -86,7 +98,7 @@ awk '
 # Try to build and capture the correct npmDeps hash from the error message
 if ! npm_deps_output=$(NIXPKGS_ALLOW_UNFREE=1 nix build --impure "$script_dir/../.."#amp 2>&1); then
   # Extract the correct hash from the error message - looking for the "got:" line
-  correct_npm_hash=$(echo "$npm_deps_output" | grep -E "got:[[:space:]]*sha256-" | awk '{print $2}' | head -1)
+  correct_npm_hash=$(echo "$npm_deps_output" | awk '/got:[[:space:]]*sha256-/ { print $2; exit }')
 
   if [ -n "$correct_npm_hash" ]; then
     echo "Updating npmDeps hash to: $correct_npm_hash"
