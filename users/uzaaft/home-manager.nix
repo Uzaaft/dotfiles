@@ -70,7 +70,6 @@ in {
       # Stuff
       # CLI tools
       pkgs.alejandra
-      pkgs.asciinema
       pkgs.bat
       pkgs.btop
       pkgs.comview
@@ -212,7 +211,6 @@ in {
   #---------------------------------------------------------------------
   # Programs
   #---------------------------------------------------------------------
-  programs.nh = {enable = true;};
 
   programs.lazydocker = {enable = true;};
 
