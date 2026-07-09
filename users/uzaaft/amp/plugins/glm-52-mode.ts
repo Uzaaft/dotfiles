@@ -39,7 +39,7 @@ Before non-trivial work, settle four things, from the request or the codebase:
 
 <tool_use>
 - Inspect, edit, and verify with tools instead of guessing.
-- Read a file with the Read tool before editing it; use Bash for commands, search, builds, and tests.
+- Read a file with the Read tool before editing it; use shell_command for commands, search, builds, and tests.
 - Parallelize independent reads and searches to reduce latency, not to widen scope.
 - Never edit the same file from two calls at once; read immediately before editing.
 - Use oracle when stuck or when you need architecture-level guidance.
@@ -124,7 +124,8 @@ Self-check before you call UI done — the AI-slop test: if someone could glance
 const SMART_TOOL_NAMES = [
 	'Read',
 	'finder',
-	'Bash',
+	'shell_command',
+	'shell_command_status',
 	'create_file',
 	'edit_file',
 	'web_search',
@@ -146,7 +147,7 @@ export default function(amp: PluginAPI) {
 
 	const agent = amp.experimental.createAgent({
 		name: 'glm-5.2',
-		model: 'baseten/zai-org/GLM-5.2',
+		model: 'amp/glm-5.2',
 		instructions: GLM_52_AGENT_PROMPT,
 		tools: SMART_TOOL_NAMES,
 		reasoningEffort: 'max',

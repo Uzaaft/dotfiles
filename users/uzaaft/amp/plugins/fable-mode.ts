@@ -74,7 +74,7 @@ Use what you already know from context first. When the information is not in con
 
 Run independent tool calls in parallel. Parallelize across files aggressively: when you know which files you'll need, read them all in one batch instead of one at a time, and issue edits to unrelated files in parallel. Sequence calls only when one call's output determines the next.
 
-Never prefix bash tool commands with \`cd <dir> &&\` or \`cd <dir>;\` to change directories. Use the \`cwd\` parameter instead — it exists for exactly this purpose.
+Never prefix shell_command commands with \`cd <dir> &&\` or \`cd <dir>;\` to change directories. Use the \`workdir\` parameter instead — it exists for exactly this purpose.
 
 When searching for text or files, prefer using \`rg\` or \`rg --files\` respectively because \`rg\` is much faster than alternatives like \`grep\`. (If the \`rg\` command is not found, then use alternatives.)
 
@@ -133,7 +133,8 @@ For example, if the user asks for a link to \`~/src/app/routes/(app)/threads/+pa
 
 const SMART_TOOL_NAMES = [
 	'finder',
-	'Bash',
+	'shell_command',
+	'shell_command_status',
 	'create_file',
 	'edit_file',
 	'web_search',
@@ -147,6 +148,9 @@ const SMART_TOOL_NAMES = [
 	'view_media',
 	'painter',
 	'read_mcp_resource',
+	'archive_current_thread',
+	'send_message_to_agg',
+	'mcp__*',
 ] as const
 
 
