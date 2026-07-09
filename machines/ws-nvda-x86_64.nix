@@ -15,6 +15,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Periodic TRIM for the NVMe SSD.
+  services.fstrim.enable = true;
+
   networking.hostName = "bobr";
   time.timeZone = "Europe/Oslo";
 
