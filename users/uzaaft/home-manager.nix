@@ -106,6 +106,7 @@ in {
       pkgs.llama-cpp
       pkgs.claude-code
       pkgs.codex
+      pkgs.pi
       inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default
     ])
     ++ (lib.optionals isGraphicalLinux [
@@ -134,6 +135,10 @@ in {
     };
     "opencode/opencode.json" = {
       source = mutableConfig "users/uzaaft/opencode.json";
+    };
+    ".pi/agent" = {
+      source = inputs.pi-config.outPath;
+      recursive = true;
     };
   };
 

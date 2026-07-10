@@ -44,13 +44,18 @@
     };
 
     opencode = {
-      url = "github:anomalyco/opencode/516f0266b88850309d7058251dcacc676c171263";
+      url = "github:anomalyco/opencode/60c88336b9430b8a516c6a44884e3fbf45dc2f62";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     bmux = {
       url = "github:uzaaft/bmux";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    pi-config = {
+      url = "git+https://code.mehalter.com/mehalter/pi";
+      flake = false;
     };
   };
 
@@ -67,6 +72,7 @@
         amp = prev.callPackage ./packages/amp {};
         claude-code = prev.callPackage ./packages/claude-code {};
         comview = inputs.comview.packages.${prev.stdenv.hostPlatform.system}.default;
+        pi = prev.callPackage ./packages/pi {};
         tmux = inputs.bmux.packages.${prev.stdenv.hostPlatform.system}.default;
       })
     ];
@@ -88,6 +94,7 @@
         amp = pkgs.callPackage ./packages/amp {};
         claude-code = pkgs.callPackage ./packages/claude-code {};
         git-hunks = pkgs.callPackage ./packages/git-hunks {};
+        pi = pkgs.callPackage ./packages/pi {};
       });
     nixosConfigurations.vm-aarch64 = mkSystem "vm-aarch64" {
       system = "aarch64-linux";
