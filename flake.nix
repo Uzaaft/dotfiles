@@ -19,11 +19,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     ghostty = {
       url = "github:ghostty-org/ghostty";
     };
@@ -38,11 +33,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    comview = {
-      url = "github:uzaaft/comview-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
+    
     opencode = {
       url = "github:anomalyco/opencode/60c88336b9430b8a516c6a44884e3fbf45dc2f62";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -71,7 +62,6 @@
       (final: prev: {
         amp = prev.callPackage ./packages/amp {};
         claude-code = prev.callPackage ./packages/claude-code {};
-        comview = inputs.comview.packages.${prev.stdenv.hostPlatform.system}.default;
         pi = prev.callPackage ./packages/pi {};
         tmux = inputs.bmux.packages.${prev.stdenv.hostPlatform.system}.default;
       })

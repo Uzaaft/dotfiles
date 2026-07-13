@@ -66,13 +66,12 @@ in {
     [
       pkgs.amp
       pkgs._1password-cli
-      inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default
+      pkgs.neovim
       # Stuff
       # CLI tools
       pkgs.alejandra
       pkgs.bat
       pkgs.btop
-      pkgs.comview
       pkgs.curl
       pkgs.eza
       pkgs.fastfetch
@@ -322,10 +321,6 @@ in {
 
       branch.autosetuprebase = "always";
       merge.conflictstyle = "zdiff3";
-      pager = {
-        diff = "comview";
-        show = "comview";
-      };
       color.ui = true;
       github.user = "uzaaft";
       push.default = "tracking";
