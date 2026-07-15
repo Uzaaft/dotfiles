@@ -90,6 +90,8 @@ in {
       pkgs.onefetch
       pkgs.repgrep
       pkgs.ripgrep
+      inputs.hunk.packages.${pkgs.stdenv.hostPlatform.system}.hunk
+
       pkgs.starship
       pkgs.tmux
       pkgs.tree
@@ -288,7 +290,6 @@ in {
 
   programs.fuzzel.enable = isGraphicalLinux;
 
-  
   programs.bash = {
     enable = true;
     shellOptions = [];

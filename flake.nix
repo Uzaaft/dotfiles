@@ -33,7 +33,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    
     opencode = {
       url = "github:anomalyco/opencode/60c88336b9430b8a516c6a44884e3fbf45dc2f62";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,6 +46,11 @@
     pi-config = {
       url = "git+https://code.mehalter.com/mehalter/pi";
       flake = false;
+    };
+
+    hunk = {
+      url = "github:modem-dev/hunk";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
