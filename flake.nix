@@ -3,7 +3,7 @@
 
   inputs = {
     # We use the unstable nixpkgs repo for some packages.
-    nixpkgs-stable.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.xz";
+    # nixpkgs-stable.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.xz";
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
     # Spesific nixpkgs for darwin as recommended by nix-darwin docs.
 
@@ -34,7 +34,7 @@
     };
 
     opencode = {
-      url = "github:anomalyco/opencode/60c88336b9430b8a516c6a44884e3fbf45dc2f62";
+      url = "github:anomalyco/opencode/453b61e27b2f6c2752a60dd7d8412bdcf4e0aa3d";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -80,7 +80,6 @@
       nixpkgs.lib.genAttrs [
         "x86_64-linux"
         "aarch64-linux"
-        "x86_64-darwin"
         "aarch64-darwin"
       ] (system: let
         pkgs = nixpkgs.legacyPackages.${system};
