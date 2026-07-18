@@ -81,7 +81,6 @@ in {
       pkgs.gh
       pkgs.git-get
       pkgs.git-lfs
-      pkgs.herdr
       pkgs.ijq
       pkgs.jj-starship
       pkgs.jq
