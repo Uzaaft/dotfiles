@@ -53,11 +53,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784123936,
-        "narHash": "sha256-IOWwQMJhUxcojm0MRvuKs1fKLH727u4+hHeEOPhdUyA=",
+        "lastModified": 1784362797,
+        "narHash": "sha256-EP9b9b+OXDxHBPefFwMYCIaLq0fn3UkmrbfzbLUT7kQ=",
         "owner": "nix-darwin",
         "repo": "nix-darwin",
-        "rev": "a4cf1d10853b0d2be19b9eca35d749e201d70b55",
+        "rev": "b4cccbd4bc299c1f71ae185b79c3cf99aa82805c",
         "type": "github"
       },
       "original": {
@@ -247,11 +247,11 @@
         "zon2nix": "zon2nix_2"
       },
       "locked": {
-        "lastModified": 1784160805,
-        "narHash": "sha256-3S8Wn247/Sv9zJeeVYoSVaeBCq29s4378n9zsyNzJrI=",
+        "lastModified": 1784344581,
+        "narHash": "sha256-MyxeUiVizZRs0+PBHrtCva9cFxbDQaiaYkxDVqEjrgE=",
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "73534c4680a809398b396c94ac7f12fcccb7963d",
+        "rev": "f3c9a2b7262a989ba7e9408d00471fda8f788d16",
         "type": "github"
       },
       "original": {
@@ -378,11 +378,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784129366,
-        "narHash": "sha256-N5JiyICSeQF14x+OQebNyPpYowOT9Rs1iKyeCylSzOA=",
+        "lastModified": 1784351324,
+        "narHash": "sha256-By+kuRJZRqs2TuXgtR8vJ8cTKWXw33YG/Yollu5cO1U=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "165228b0efefc3e635e5174020c40ea64271dc25",
+        "rev": "460108009ca1ff69ca2ff19079ca2c838d6e3080",
         "type": "github"
       },
       "original": {
@@ -399,11 +399,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784194726,
-        "narHash": "sha256-7tDG9RVoEgbiljm3UTmGXsQRqvJyIuXqlOxga+otLKU=",
+        "lastModified": 1784375934,
+        "narHash": "sha256-wN816Zdj3RXrWVmS1cZ4zYVf7IVbJ0H+jUtbprbZDgU=",
         "owner": "modem-dev",
         "repo": "hunk",
-        "rev": "2458366fbf028759ac7ca7da729f4f6089e22b02",
+        "rev": "b580edd68b338ef34407238afe443e5e04a9c0f1",
         "type": "github"
       },
       "original": {
@@ -554,15 +554,15 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1784120854,
-        "narHash": "sha256-Pjytpyqs/h6Kfs46Pcj+upOCqq0/Wwq81YSSeko7ChM=",
-        "rev": "753cc8a3a87467296ddd1fa93f0cc3e81120ee46",
+        "lastModified": 1784280462,
+        "narHash": "sha256-tdf956RzIg3clDWEZsQrngaEJVxpPNzUsGhVHgGKBj8=",
+        "rev": "293d6abedf0478e681a4dfcfcb35b30fc796a32f",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1035164.753cc8a3a874/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.5449.293d6abedf04/nixexprs.tar.xz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
+        "url": "https://channels.nixos.org/nixos-26.05/nixexprs.tar.xz"
       }
     },
     "opencode": {
@@ -572,28 +572,28 @@
         ]
       },
       "locked": {
-        "lastModified": 1784225022,
-        "narHash": "sha256-Wc8p5WVWibG/kQRPgXkA30k9Dz/WNB6nEQeXC5Ze1UY=",
+        "lastModified": 1784357491,
+        "narHash": "sha256-IzSr51UezQKcVzYrjnVlYnW6UpugvEBNSeJ/OjlSEl8=",
         "owner": "anomalyco",
         "repo": "opencode",
-        "rev": "453b61e27b2f6c2752a60dd7d8412bdcf4e0aa3d",
+        "rev": "fab213312927ea64cf968832c527206e8c944f9e",
         "type": "github"
       },
       "original": {
         "owner": "anomalyco",
         "repo": "opencode",
-        "rev": "453b61e27b2f6c2752a60dd7d8412bdcf4e0aa3d",
+        "rev": "fab213312927ea64cf968832c527206e8c944f9e",
         "type": "github"
       }
     },
     "pi-config": {
       "flake": false,
       "locked": {
-        "lastModified": 1784216784,
-        "narHash": "sha256-uN7YGcLtV2LTXLQH8d7FrfAjU6Dhq1eVFALtgxQ4dOQ=",
+        "lastModified": 1784229614,
+        "narHash": "sha256-HukvtABjOwJgXJTFdMsLjvSfXfmsym9XGrhxglqIr3M=",
         "ref": "refs/heads/main",
-        "rev": "9fd0cd65c51dec5d60fd1999e994ae9d9102bf44",
-        "revCount": 75,
+        "rev": "b82838a682313f53202baeea7e7f92fe34621dd5",
+        "revCount": 78,
         "type": "git",
         "url": "https://code.mehalter.com/mehalter/pi"
       },

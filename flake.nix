@@ -3,8 +3,8 @@
 
   inputs = {
     # We use the unstable nixpkgs repo for some packages.
-    # nixpkgs-stable.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.xz";
-    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+    nixpkgs.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.xz";
+    # nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
     # Spesific nixpkgs for darwin as recommended by nix-darwin docs.
 
     home-manager = {
@@ -34,7 +34,7 @@
     };
 
     opencode = {
-      url = "github:anomalyco/opencode/453b61e27b2f6c2752a60dd7d8412bdcf4e0aa3d";
+      url = "github:anomalyco/opencode/fab213312927ea64cf968832c527206e8c944f9e";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
