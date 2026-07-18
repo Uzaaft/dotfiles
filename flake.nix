@@ -63,11 +63,18 @@
   } @ inputs: let
     # Overlays is the list of overlays we want to apply from flake inputs.
     overlays = [
-      (final: prev: {
+      (final: prev: let
+        system = prev.stdenv.hostPlatform.system;
+        unstable = import inputs.nixpkgs-unstable {
+          inherit system;
+          config.allowUnfree = true;
+        };
+      in {
         amp = prev.callPackage ./packages/amp {};
         claude-code = prev.callPackage ./packages/claude-code {};
         pi = prev.callPackage ./packages/pi {};
         tmux = inputs.bmux.packages.${prev.stdenv.hostPlatform.system}.default;
+        codex = unstable.codex;
       })
     ];
 
