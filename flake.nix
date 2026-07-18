@@ -4,7 +4,7 @@
   inputs = {
     # We use the unstable nixpkgs repo for some packages.
     nixpkgs.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.xz";
-    # nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+    nixpkgs-unstable.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
     # Spesific nixpkgs for darwin as recommended by nix-darwin docs.
 
     home-manager = {
@@ -15,7 +15,7 @@
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
 
     darwin = {
-      url = "github:nix-darwin/nix-darwin/master";
+      url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
