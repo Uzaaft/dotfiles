@@ -28,7 +28,6 @@
       "discord"
       "helium-browser"
       "hiddenbar"
-      "hunk"
       "imageoptim"
       "istat-menus"
       "linear"
