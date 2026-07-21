@@ -19,6 +19,8 @@
       "alt-tab"
       "arc"
       "brave-browser"
+      "chatgpt"
+      "claude"
       "claude-code"
       "clop"
       "codex"
