@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "agent-skills": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1784641400,
+        "narHash": "sha256-d2V2myYwB3RHA+S3GjyZz0N4h9HFOuqYn2+4ThcXcBk=",
+        "ref": "refs/heads/main",
+        "rev": "93ff95aac6388efa328c50c8a86581ee711e3804",
+        "revCount": 6,
+        "type": "git",
+        "url": "ssh://git@github.com/uzaaft/skills.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/uzaaft/skills.git"
+      }
+    },
     "bmux": {
       "inputs": {
         "ghostty": "ghostty",
@@ -617,6 +633,7 @@
     },
     "root": {
       "inputs": {
+        "agent-skills": "agent-skills",
         "bmux": "bmux",
         "darwin": "darwin",
         "determinate": "determinate",

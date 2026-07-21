@@ -48,6 +48,11 @@
       flake = false;
     };
 
+    agent-skills = {
+      url = "git+ssh://git@github.com/uzaaft/skills.git";
+      flake = false;
+    };
+
     hunk = {
       url = "github:modem-dev/hunk";
       inputs.nixpkgs.follows = "nixpkgs";

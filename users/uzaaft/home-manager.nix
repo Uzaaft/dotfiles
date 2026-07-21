@@ -140,6 +140,8 @@ in {
       source = inputs.pi-config.outPath;
       recursive = true;
     };
+    ".agents/skills".source = inputs.agent-skills;
+    ".claude/skills".source = inputs.agent-skills;
   };
 
   xdg.configFile =
@@ -153,9 +155,6 @@ in {
       };
       amp = {
         source = mutableConfig "users/uzaaft/amp";
-      };
-      agents = {
-        source = mutableConfig "users/uzaaft/agents";
       };
       fish = {
         source = mutableConfig "config/fish";
