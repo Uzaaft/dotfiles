@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+if ! command -v python3 >/dev/null 2>&1; then
+  exec nix shell nixpkgs#python3 -c "$0" "$@"
+fi
+
 # Syncs a curated set of Matt Pocock's agent skills
 # (https://github.com/mattpocock/skills) into this repository as top-level
 # skills, alongside our own. This makes our skills self-contained for
@@ -62,12 +66,6 @@ append_override() {
 apply_patches() {
   echo
   echo "Applying local patches..."
-
-  # tdd: upstream points at a `/codebase-design` skill we don't vendor.
-  # Repoint to our equivalent standards doc.
-  patch_replace "$REPO/tdd/SKILL.md" \
-    'run the `/codebase-design` skill for the vocabulary and the testability checks' \
-    'see `../coding-standards/DESIGNING_MODULES.md` for the vocabulary and testability checks'
 
   # tdd: upstream mocking.md permits boundary mocking and never bans spies/module
   # mocks. Our TESTING_AND_VERIFICATION.md forbids them. Make our doc win.
