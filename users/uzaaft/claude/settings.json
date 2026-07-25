@@ -3,6 +3,5 @@
     "commit": "",
     "pr": ""
   },
-  "model": "opus[1m]",
-  "advisorModel": "fable"
+  "model": "claude-fable-5[1m]"
 }
