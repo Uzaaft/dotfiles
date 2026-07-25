@@ -21,7 +21,10 @@
       "brave-browser"
       "chatgpt"
       "claude"
-      "claude-code"
+      {
+        name = "claude-code@latest";
+        greedy = true;
+      }
       "clop"
       "codex"
       "codexbar"
