@@ -136,10 +136,6 @@ in {
     "opencode/opencode.json" = {
       source = mutableConfig "users/uzaaft/opencode.json";
     };
-    ".pi/agent" = {
-      source = inputs.pi-config.outPath;
-      recursive = true;
-    };
     ".agents/skills".source = inputs.agent-skills;
     ".claude/skills".source = inputs.agent-skills;
   };

@@ -28,24 +28,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    helios = {
-      url = "github:Polymath-AS/helios";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     opencode = {
-      url = "github:anomalyco/opencode/7534d23551f665e65080809975b4ca5c7d63807b";
+      url = "github:anomalyco/opencode/7565e03536d19e850f9996c407f9bf5e932b5f7a";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     bmux = {
       url = "github:uzaaft/bmux";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    pi-config = {
-      url = "git+https://code.mehalter.com/mehalter/pi";
-      flake = false;
     };
 
     agent-skills = {
