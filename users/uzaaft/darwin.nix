@@ -32,7 +32,6 @@
       "helium-browser"
       "hiddenbar"
       "imageoptim"
-      "istat-menus"
       "linear"
       "logi-options+"
       "monodraw"
