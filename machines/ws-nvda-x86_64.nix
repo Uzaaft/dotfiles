@@ -108,6 +108,7 @@
   ];
 
   system.stateVersion = "24.11"; # Did you read the comment?
+  programs.niri.enable = true;
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
