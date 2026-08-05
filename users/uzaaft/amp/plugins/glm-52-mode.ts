@@ -137,9 +137,11 @@ const SMART_TOOL_NAMES = [
 	'librarian',
 	'view_media',
 	'painter',
+	'read_mcp_resource',
+	'mcp__*',
 ] as const
 
-export default function(amp: PluginAPI) {
+export default function (amp: PluginAPI) {
 	if (!amp.experimental) {
 		amp.logger.log('Experimental plugin API is not available.')
 		return
