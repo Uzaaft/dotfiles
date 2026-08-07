@@ -12,6 +12,21 @@
 
   programs.zsh.enable = true;
 
+  services.greetd = {
+    enable = true;
+    settings = {
+      terminal.vt = 1;
+      default_session = {
+        command = "${inputs.tuigreet.packages.${pkgs.stdenv.hostPlatform.system}.tuigreet}/bin/tuigreet --time --remember --cmd ${pkgs.niri}/bin/niri-session";
+        user = "greeter";
+      };
+    };
+  };
+
+  systemd.tmpfiles.rules = [
+    "d /var/cache/tuigreet 0755 greeter greeter -"
+  ];
+
   # We require this because we use lazy.nvim against the best wishes
   # a pure Nix system so this lets those unpatched binaries run.
   programs.nix-ld.enable = true;

@@ -23,9 +23,6 @@
   # nixpkgs.config.allowUnsupportedSystem = true;
 
   virtualisation.vmware.guest.enable = true;
-  services.displayManager.ly = {
-    enable = true;
-  };
 
   # Share our host filesystem
 }
