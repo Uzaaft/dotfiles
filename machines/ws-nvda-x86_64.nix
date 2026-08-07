@@ -85,6 +85,10 @@
     };
   };
 
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+  users.users.uzaaft.extraGroups = ["libvirtd"];
+
   # This generator loads NVIDIA userspace libraries and talks to the loaded
   # kernel module. During a NixOS switch after a driver or kernel update, those
   # can be from different generations until the next reboot, which makes NVML
@@ -98,6 +102,7 @@
 
   environment.systemPackages = with pkgs; [
     cachix
+    dnsmasq
     gnumake
     killall
     qemu
@@ -119,6 +124,7 @@
   networking.networkmanager.enable = true;
   networking.interfaces.enp7s0.useDHCP = true;
   networking.firewall.allowedUDPPorts = [41641];
+  networking.firewall.trustedInterfaces = ["virbr0"];
   # Expose Ollama only on the Tailscale interface.
   networking.firewall.interfaces.tailscale0.allowedTCPPorts = [11434];
   nixpkgs.config = {
