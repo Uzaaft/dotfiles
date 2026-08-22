@@ -83,12 +83,13 @@ in {
       pkgs.ijq
       pkgs.jj-starship
       pkgs.jq
+      pkgs.vscode-json-languageserver # Json lsp 
       pkgs.lazygit
       pkgs.nix-output-monitor
+      pkgs.nixd
       pkgs.repgrep
       pkgs.ripgrep
       inputs.hunk.packages.${pkgs.stdenv.hostPlatform.system}.hunk
-
       pkgs.starship
       pkgs.tmux
       pkgs.tree
