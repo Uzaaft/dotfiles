@@ -74,7 +74,6 @@ in {
       pkgs.btop
       pkgs.curl
       pkgs.eza
-      pkgs.fastfetch
       pkgs.fd
       pkgs.file
       pkgs.fzf
@@ -86,7 +85,6 @@ in {
       pkgs.jq
       pkgs.lazygit
       pkgs.nix-output-monitor
-      pkgs.onefetch
       pkgs.repgrep
       pkgs.ripgrep
       inputs.hunk.packages.${pkgs.stdenv.hostPlatform.system}.hunk
