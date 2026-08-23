@@ -1,7 +1,49 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "attribution": {
     "commit": "",
     "pr": ""
   },
-  "model": "claude-fable-5[1m]"
+  "model": "opus[1m]",
+  "outputStyle": "Concise",
+  "effortLevel": "xhigh",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
+  "autoMode": {
+    "allow": [
+      "$defaults",
+      "Bash(jj log:*)",
+      "Bash(jj diff:*)",
+      "Bash(jj status)"
+    ],
+    "environment": [
+      "### Org-wide",
+      "**Organization**: None configured",
+      "**Cloud provider(s)**: None configured",
+      "**Repository visibility**: Polymath-as/solidus — private (per gh)",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: None configured",
+      "**Default / protected branches**: main (default); no branch protection rules or rulesets listed for Polymath-as/solidus",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Source control**: The trusted repo (Polymath-as/solidus) and its origin remote only (no additional orgs configured)",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: None configured",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: .env, .env.example, .envrc, dashboard/.env.example, engine/src/secret_store.rs, engine/src/secrets.rs, infra/.terraform.lock.hcl, infra/main.tf, infra/outputs.tf, infra/provider.tf, infra/terraform.tfvars.example, infra/variables.tf, infra/versions.tf — share only with audiences cleared at the [named+specifics] bar",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment; ALPACA_PAPER/live trading endpoints in this repo warrant care given Alpaca live-trading capability",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment; infra/ (Terraform: main.tf, outputs.tf, provider.tf, variables.tf, versions.tf, terraform.tfvars.example) in this repo",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development (Rust trading engine, Solidus)",
+      "**Trusted repo**: /Users/uzaaft/repositories/github.com/polymath-as/solidus (github.com:Polymath-as/solidus, private) — confidential material is fine here; secrets and sensitive personal/entrusted data are never cleared into it by visibility alone",
+      "**Org-specific CLIs**: None configured",
+      "routine under /Users/uzaaft/repositories/github.com/polymath-as/solidus/ prefix: jj and uv usage observed in this project's transcripts"
+    ]
+  },
+  "voiceEnabled": true
 }
