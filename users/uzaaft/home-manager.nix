@@ -151,15 +151,7 @@ in {
       amp = {
         source = mutableConfig "users/uzaaft/amp";
       };
-      fish = {
-        source = mutableConfig "config/fish";
-      };
-      "goku/karabiner.edn" = {
-        source = mutableConfig "stowed/.config/goku/karabiner.edn";
-      };
-      "heimdall/config.toml" = {
-        source = mutableConfig "stowed/.config/heimdall/config.toml";
-      };
+      
       niri = {
         source = mutableConfig "config/niri";
       };
