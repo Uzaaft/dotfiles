@@ -123,6 +123,9 @@ in {
     ".tmux.conf" = {
       source = mutableConfig "users/uzaaft/.tmux.conf";
     };
+    ".local/bin/git-project" = {
+      source = mutableConfig "stowed/.local/bin/git-project";
+    };
     ".cargo/binstall/crates-v1.json" = {
       source = mutableConfig "stowed/.cargo/binstall/crates-v1.json";
     };
