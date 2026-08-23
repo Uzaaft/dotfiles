@@ -38,10 +38,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    bmux = {
-      url = "github:uzaaft/bmux";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # bmux = {
+    #   url = "github:uzaaft/bmux";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     agent-skills = {
       url = "git+ssh://git@github.com/uzaaft/skills.git";
@@ -73,7 +73,7 @@
         amp = prev.callPackage ./packages/amp {};
         claude-code = prev.callPackage ./packages/claude-code {};
         pi = prev.callPackage ./packages/pi {};
-        tmux = inputs.bmux.packages.${prev.stdenv.hostPlatform.system}.default;
+        # tmux = inputs.bmux.packages.${prev.stdenv.hostPlatform.system}.default;
         codex = unstable.codex;
       })
     ];
