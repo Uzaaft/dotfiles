@@ -7,14 +7,14 @@
   runCommand,
   runtimeShell,
 }: let
-  version = "0.84.1";
+  version = "0.84.3";
 
   srcWithLock = runCommand "pi-src-with-lock" {} ''
     mkdir -p $out
     tar -xzf ${
       fetchurl {
-        url = "https://registry.npmjs.org/@earendil-works/pi-coding-agent/-/pi-coding-agent-0.84.1.tgz";
-        hash = "sha256-ppoYWWAX6RlV/Q/Wd75p+rW26gHVsGIHvO407hUivCA=";
+        url = "https://registry.npmjs.org/@earendil-works/pi-coding-agent/-/pi-coding-agent-0.84.3.tgz";
+        hash = "sha256-0H3EF/eKFNrDdqh4tlVrUZYfEY95dx7jdTM9xRNWvHU=";
       }
     } -C $out --strip-components=1
     rm -f $out/npm-shrinkwrap.json
@@ -29,7 +29,7 @@ in
 
     npmDeps = fetchNpmDeps {
       inherit src;
-      hash = "sha256-g/y+CA4AgK5UmaacltW3KeT2YMli3NHOLZkjUqtdGgU=";
+      hash = "sha256-l7JQIN1/RKmKQvGuGKjZx037NbjH/a/TqxOsFzF2sj4=";
     };
 
     dontNpmBuild = true;
