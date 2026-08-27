@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   ...
 }: {
   # https://github.com/nix-community/home-manager/pull/2408
@@ -17,7 +16,7 @@
     settings = {
       terminal.vt = 1;
       default_session = {
-        command = "${inputs.tuigreet.packages.${pkgs.stdenv.hostPlatform.system}.tuigreet}/bin/tuigreet --time --remember --cmd ${pkgs.niri}/bin/niri-session";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd ${pkgs.niri}/bin/niri-session";
         user = "greeter";
       };
     };
