@@ -5,6 +5,14 @@
     "pr": ""
   },
   "model": "opus[1m]",
+  "extraKnownMarketplaces": {
+    "cloudflare": {
+      "source": {
+        "source": "github",
+        "repo": "cloudflare/skills"
+      }
+    }
+  },
   "outputStyle": "Concise",
   "effortLevel": "xhigh",
   "voice": {
@@ -45,5 +53,6 @@
       "routine under /Users/uzaaft/repositories/github.com/polymath-as/solidus/ prefix: jj and uv usage observed in this project's transcripts"
     ]
   },
-  "voiceEnabled": true
+  "tui": "fullscreen",
+  "outputStyle": "Concise"
 }
