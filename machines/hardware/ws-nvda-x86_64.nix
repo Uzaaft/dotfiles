@@ -15,17 +15,43 @@
   boot.initrd.kernelModules = ["r8169"];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
+
   hardware.graphics.enable = true;
+  # The AMD iGPU owns the display, so bring it up early for a stable console and
+  # make the RTX 5090 an explicit PRIME render-offload/CUDA device.
+  hardware.amdgpu.initrd.enable = true;
 
   hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
+    # nixos-26.05 currently carries an older driver. Pin the current NVIDIA
+    # new-feature release until the channel catches up; mkDriver still binds it
+    # to kernelPackages, so it is rebuilt for linuxPackages_latest.
+    package = let
+      packagedDriver = config.boot.kernelPackages.nvidiaPackages.latest;
+    in
+      if lib.versionAtLeast packagedDriver.version "610.57.04"
+      then packagedDriver
+      else
+        config.boot.kernelPackages.nvidiaPackages.mkDriver {
+          version = "610.57.04";
+          sha256_64bit = "sha256-suk1xmuDuwDAyFe8jg7g/VLekoa0DJzB7sKafOfrEW0=";
+          sha256_aarch64 = "sha256-QCefrMBCmpOwuOyXv1k5Gj0iB2CYlPgnG3JToUw/j54=";
+          openSha256 = "sha256-rQHOOOY4KL92Ww3KDwh+j4eGU7oNAH8LutZC5wmFnPo=";
+          settingsSha256 = "sha256-ZEMo8I8Zc2Tq6RVDNYpAH+f094dUaZiBqO+5f6lIjRI=";
+          persistencedSha256 = "sha256-aXmD2VY1RLlgAnlHhOUMWzvMyhI6JTClcFLm4imF/mA=";
+        };
     modesetting.enable = true;
     powerManagement.enable = true;
     nvidiaSettings = true;
+    nvidiaPersistenced = true;
     open = true;
-    # prime = {
-    #   amdgpuBusId = "PCI:121:0:0";
-    # };
+    prime = {
+      amdgpuBusId = "PCI:121:0:0";
+      nvidiaBusId = "PCI:1:0:0";
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
+    };
   };
   hardware.nvidia-container-toolkit.enable = true;
 
