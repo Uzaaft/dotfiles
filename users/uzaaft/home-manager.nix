@@ -182,9 +182,6 @@ in {
       "tmux/sand.sh" = {
         source = mutableConfig "stowed/.config/tmux/sand.sh";
       };
-      yabai = {
-        source = mutableConfig "config/yabai";
-      };
       zsh = {
         source = mutableConfig "config/zsh";
       };

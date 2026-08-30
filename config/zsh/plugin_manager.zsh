@@ -26,11 +26,6 @@ function zsh_install_missing_plugins() {
     clone-plugin "https://github.com/mehalter/zsh-nvim-appname"
     zcompile-many ${zsh_plugins}/zsh-nvim-appname/zsh-nvim-appname.plugin.zsh
   fi
-  
-  if [[ ! -e ${zsh_plugins}/yabai-zsh-completions ]]; then
-    clone-plugin "https://github.com/Amar1729/yabai-zsh-completions"
-    zcompile-many ${zsh_plugins}/yabai-zsh-completions/yabai-zsh-completions.plugin.zsh
-  fi
   if [[ ! -e ${zsh_plugins}/zsh-defer ]]; then
     clone-plugin "https://github.com/romkatv/zsh-defer"
     zcompile-many ${zsh_plugins}/zsh-defer/zsh-defer.plugin.zsh
