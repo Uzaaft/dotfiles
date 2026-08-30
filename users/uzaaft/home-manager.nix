@@ -176,6 +176,9 @@ in {
       "starship.toml" = {
         source = mutableConfig "config/starship.toml";
       };
+      "jj/config.toml" = {
+        source = mutableConfig "users/uzaaft/jujutsu.toml";
+      };
       "tmux/sand.sh" = {
         source = mutableConfig "stowed/.config/tmux/sand.sh";
       };
@@ -235,45 +238,6 @@ in {
 
   programs.jujutsu = {
     enable = true;
-    settings = {
-      ui = {
-        editor = "nvim";
-        diff-editor = ":builtin";
-        diff-formatter = ":git";
-        pager = "less -FRX";
-        default-command = ["log"];
-        graph.style = "curved";
-      };
-      template-aliases = {
-        "format_short_id(id)" = "id.shortest(8)";
-      };
-      revset-aliases = {
-        "closest_bookmark(to)" = "heads(::to & bookmarks())";
-        "fork_history(to, from)" = "fork_point(to | from)..@";
-      };
-      aliases = {
-        b = "branch";
-        n = "new";
-        tug = ["bookmark" "move" "--from" "closest_bookmark(@-)" "--to" "@-"];
-        retrunk = "rebase -d trunk()";
-      };
-      signing = {
-        behavior = "own";
-        backend = "ssh";
-        key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
-      };
-      git = {
-        colocate = true;
-        sign-on-push = true;
-      };
-      templates = {
-        git_push_bookmark = "\"uzaaft/\" ++ change_id.short()";
-      };
-      user = {
-        name = "Uzair Aftab";
-        email = "git@uzaaft.me";
-      };
-    };
   };
 
   programs.fuzzel.enable = isGraphicalLinux;
