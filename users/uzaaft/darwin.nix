@@ -42,13 +42,11 @@
       "slack"
       "spotify"
       "tableplus"
+      "wispr-flow"
       # Required for Norwegian jobs
       "microsoft-teams"
-      "notion"
-      "pycharm"
       "raycast"
       "visual-studio-code"
-      "wispr-flow"
       {
         name = "ghostty@tip";
         greedy = true;
