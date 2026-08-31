@@ -31,6 +31,7 @@
       "discord"
       "helium-browser"
       "hiddenbar"
+      "hermes-desktop"
       "imageoptim"
       "linear"
       "logi-options+"
