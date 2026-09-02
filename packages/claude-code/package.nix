@@ -13,14 +13,14 @@
   ripgrep,
   socat,
 }: let
-  version = "2.1.247";
+  version = "2.1.258";
 
   srcWithLock = runCommand "claude-code-src-with-lock" {} ''
     mkdir -p $out
     tar -xzf ${
       fetchurl {
-        url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-2.1.247.tgz";
-        hash = "sha256-xj/37gH7yC93tubGxycLVSLhmmFkg0SZ45MANN9ZZxA=";
+        url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-2.1.258.tgz";
+        hash = "sha256-aVpty/R16iTyDSxNy21UCobejIyZatiMGXLQtx0ZH/w=";
       }
     } -C $out --strip-components=1
     sed -i 's/"postinstall": "node install.cjs",/"postinstall": "node install.cjs"/' $out/package.json
@@ -36,7 +36,7 @@ in
 
     npmDeps = fetchNpmDeps {
       inherit src;
-      hash = "sha256-av+gAIkiA1S643bEX2qFhPoOslR5+zzOYiIBjtPdF9c=";
+      hash = "sha256-rbJLb+yfl4Tr+429ruw6g7vBbj3HXFToJXA5y4tXzRg=";
     };
 
     dontNpmBuild = true;
