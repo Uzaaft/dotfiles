@@ -26,10 +26,7 @@
     nix-rosetta-builder.inputs.nixpkgs.follows = "nixpkgs";
 
     home-manager = {
-      # We need to use nightly home-manager because it contains this
-      # fix we need for nushell nightly:
-      # https://github.com/nix-community/home-manager/commit/a69ebd97025969679de9f930958accbe39b4c705
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
