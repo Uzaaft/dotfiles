@@ -67,9 +67,9 @@
       in {
         amp = prev.callPackage ./packages/amp {};
         claude-code = prev.callPackage ./packages/claude-code {};
+        codex = prev.callPackage ./packages/codex {};
         pi = prev.callPackage ./packages/pi {};
         # tmux = inputs.bmux.packages.${prev.stdenv.hostPlatform.system}.default;
-        codex = unstable.codex;
       })
     ];
 
@@ -77,7 +77,7 @@
       inherit overlays nixpkgs inputs;
     };
   in {
-    # Expose amp package
+    # Expose local packages
     packages =
       nixpkgs.lib.genAttrs [
         "x86_64-linux"
@@ -88,6 +88,7 @@
       in {
         amp = pkgs.callPackage ./packages/amp {};
         claude-code = pkgs.callPackage ./packages/claude-code {};
+        codex = pkgs.callPackage ./packages/codex {};
         git-hunks = pkgs.callPackage ./packages/git-hunks {};
         pi = pkgs.callPackage ./packages/pi {};
       });
