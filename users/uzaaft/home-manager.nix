@@ -135,6 +135,9 @@ in {
     ".claude/settings.json" = {
       source = mutableConfig "users/uzaaft/claude/settings.json";
     };
+    ".codex/AGENTS.md" = {
+      source = mutableConfig "users/uzaaft/agents.md";
+    };
     "opencode/opencode.json" = {
       source = mutableConfig "users/uzaaft/opencode.json";
     };
