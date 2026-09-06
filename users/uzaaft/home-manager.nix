@@ -26,24 +26,8 @@
     gg = "git get";
     c = "cargo";
     pp = "pnpm";
-    atc = "amp threads continue";
     ls-scripts = "cat package.json | jq .scripts";
 
-    ga = "git add";
-    gc = "git commit";
-    gco = "git checkout";
-    gcp = "git cherry-pick";
-    gdiff = "git diff";
-    gl = "git prettylog";
-    gp = "git push";
-    gs = "git status";
-    gt = "git tag";
-
-    jd = "jj desc";
-    jf = "jj git fetch";
-    jn = "jj new";
-    jp = "jj git push";
-    js = "jj st";
   };
 
   sshKeyPath = (
@@ -69,7 +53,6 @@ in {
       pkgs.neovim
       # Stuff
       # CLI tools
-      pkgs.alejandra
       pkgs.bat
       pkgs.btop
       pkgs.curl
@@ -79,7 +62,6 @@ in {
       pkgs.fzf
       pkgs.gh
       pkgs.git-get
-      pkgs.git-lfs
       pkgs.ijq
       pkgs.jj-starship
       pkgs.jq
@@ -87,9 +69,7 @@ in {
       pkgs.lazygit
       pkgs.nix-output-monitor
       pkgs.nixd
-      pkgs.repgrep
       pkgs.ripgrep
-      inputs.hunk.packages.${pkgs.stdenv.hostPlatform.system}.hunk
       pkgs.starship
       pkgs.tmux
       pkgs.tree
