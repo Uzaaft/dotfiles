@@ -11,7 +11,7 @@
       cleanup = "uninstall";
     };
 
-    taps = ["koekeishiya/formulae"];
+    taps = ["koekeishiya/formulae" "polymath-as/bobrvm" "uzaaft/costbar"];
 
     casks = [
       "1password"
@@ -21,34 +21,31 @@
       "brave-browser"
       "chatgpt"
       "claude"
+      "codexbar"
       {
-        name = "claude-code@latest";
+        name = "ghostty@tip";
         greedy = true;
       }
       "clop"
-      "codex"
-      "codexbar"
       "discord"
+      "grokbot"
       "helium-browser"
-      "hiddenbar"
       "hermes-desktop"
+      "hiddenbar"
       "imageoptim"
       "linear"
       "logi-options+"
-      "monodraw"
-      "orbstack"
-      "proton-mail"
-      "sioyek"
+      "raycast"
       "slack"
-      "spotify"
       "tableplus"
       "wispr-flow"
       # Required for Norwegian jobs
       "microsoft-teams"
-      "raycast"
       "visual-studio-code"
+      # CLI tools
+      "codex"
       {
-        name = "ghostty@tip";
+        name = "claude-code@latest";
         greedy = true;
       }
     ];
@@ -58,6 +55,7 @@
       "opencode"
     ];
   };
+
   security.pam.services.sudo_local = {
     touchIdAuth = true;
     reattach = true;
