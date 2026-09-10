@@ -133,5 +133,3 @@ if (is-terminal --stdin) {
   $env.GPG_TTY = (tty)
 }
 
-alias atc = amp threads continue
-alias lg = lazygit

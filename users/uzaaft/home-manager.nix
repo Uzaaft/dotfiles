@@ -21,8 +21,6 @@
     ls = "eza -a --icons --color=always -s type -F";
     lt = "eza -T --icons=auto --group-directories-first --hyperlink";
 
-    lg = "lazygit";
-    ldo = "lazydocker";
     gg = "git get";
     c = "cargo";
     pp = "pnpm";
@@ -66,7 +64,6 @@ in {
       pkgs.jj-starship
       pkgs.jq
       pkgs.vscode-json-languageserver # Json lsp 
-      pkgs.lazygit
       pkgs.nix-output-monitor
       pkgs.nixd
       pkgs.ripgrep
@@ -167,9 +164,6 @@ in {
       };
       zsh = {
         source = mutableConfig "config/zsh";
-      };
-      "lazygit/config.yml" = {
-        source = mutableConfig "users/uzaaft/lazygit.yml";
       };
     }
     // (
