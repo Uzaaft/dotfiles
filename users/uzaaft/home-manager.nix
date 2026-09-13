@@ -61,16 +61,15 @@ in {
       pkgs.gh
       pkgs.git-get
       pkgs.ijq
-      pkgs.jj-starship
       pkgs.jq
       pkgs.vscode-json-languageserver # Json lsp 
       pkgs.nix-output-monitor
       pkgs.nixd
       pkgs.ripgrep
-      pkgs.starship
       pkgs.tmux
       pkgs.tree
       pkgs.watch
+      pkgs.zsh-powerlevel10k
     ]
     ++ (lib.optionals isDarwin [
       inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -102,6 +101,9 @@ in {
     };
     ".local/bin/git-project" = {
       source = mutableConfig "stowed/.local/bin/git-project";
+    };
+    ".local/bin/rex-project" = {
+      source = mutableConfig "stowed/.local/bin/rex-project";
     };
     ".cargo/binstall/crates-v1.json" = {
       source = mutableConfig "stowed/.cargo/binstall/crates-v1.json";
@@ -152,9 +154,6 @@ in {
       };
       opencode = {
         source = mutableConfig "users/uzaaft/opencode";
-      };
-      "starship.toml" = {
-        source = mutableConfig "config/starship.toml";
       };
       "jj/config.toml" = {
         source = mutableConfig "users/uzaaft/jujutsu.toml";
