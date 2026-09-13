@@ -104,7 +104,6 @@
   users.mutableUsers = false;
 
   environment.systemPackages = with pkgs; [
-    cachix
     dnsmasq
     gnumake
     killall
