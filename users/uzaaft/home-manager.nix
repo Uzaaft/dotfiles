@@ -7,8 +7,7 @@
 }: let
   isDarwin = pkgs.stdenv.isDarwin;
   isLinux = pkgs.stdenv.isLinux;
-  isVmAarch64 = currentSystemName == "vm-aarch64";
-  isGraphicalLinux = isVmAarch64;
+  isGraphicalLinux = currentSystemName == "vm-aarch64" || currentSystemName == "ws-nvda-x86_64";
 
   shellAliases = {
     cat = "bat";
@@ -78,10 +77,9 @@ in {
       # non-darwin packages
       pkgs.usbutils
       pkgs.pciutils
-      pkgs.llama-cpp
+      # pkgs.llama-cpp
       pkgs.claude-code
       pkgs.codex
-      pkgs.pi
       inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default
     ])
     ++ (lib.optionals isGraphicalLinux [
@@ -182,8 +180,6 @@ in {
   # Programs
   #---------------------------------------------------------------------
 
-  programs.lazydocker = {enable = true;};
-
   programs.ghostty = {
     enable = isGraphicalLinux;
     package = inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default;
@@ -269,22 +265,6 @@ in {
         if isDarwin
         then {program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";}
         else {};
-    };
-  };
-
-  programs.vicinae = {
-    enable = isGraphicalLinux;
-    settings = {
-      favicon_service = "twenty";
-      pop_to_root_on_close = true;
-      telemetry = {
-        system_info = false;
-      };
-      theme = {
-        dark = {
-          name = "vicinae-dark";
-        };
-      };
     };
   };
 }
