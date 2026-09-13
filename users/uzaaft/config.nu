@@ -16,14 +16,6 @@ $env.config.hooks.env_change.PWD ++= [
   }
 ]
 
-let starship_autoload_dir = (($nu | get 'data-dir') | path join 'vendor' 'autoload')
-let starship_autoload = ($starship_autoload_dir | path join 'starship.nu')
-
-if ((which starship | length) > 0) {
-  mkdir $starship_autoload_dir
-  starship init nu | save -f $starship_autoload
-}
-
 def --env git_go [] {
   let git_path = ($env.GIT_PATH? | default ($env.HOME | path join 'repositories'))
   if ($git_path | str trim | is-empty) {
@@ -92,8 +84,8 @@ if ('/opt/homebrew' | path type) == 'dir' {
     '/opt/homebrew/bin'
     '/opt/homebrew/sbin'
   ]
-  $env.MANPATH = $env.MANPATH? | prepend '/opt/homebrew/share/man'
-  $env.INFOPATH = $env.INFOPATH? | prepend '/opt/homebrew/share/info'
+  $env.MANPATH = ($env.MANPATH? | default '' | split row ':' | prepend '/opt/homebrew/share/man' | str join ':')
+  $env.INFOPATH = ($env.INFOPATH? | default '' | split row ':' | prepend '/opt/homebrew/share/info' | str join ':')
 }
 
 $env.config.keybindings = $env.config.keybindings | append [
