@@ -69,7 +69,7 @@
         amp = prev.callPackage ./packages/amp {};
         claude-code = prev.callPackage ./packages/claude-code {};
         codex = prev.callPackage ./packages/codex {};
-        pi = prev.callPackage ./packages/pi {};
+        # pi = prev.callPackage ./packages/pi {};
         # tmux = inputs.bmux.packages.${prev.stdenv.hostPlatform.system}.default;
       })
     ];
@@ -91,7 +91,6 @@
         claude-code = pkgs.callPackage ./packages/claude-code {};
         codex = pkgs.callPackage ./packages/codex {};
         git-hunks = pkgs.callPackage ./packages/git-hunks {};
-        pi = pkgs.callPackage ./packages/pi {};
       });
     nixosConfigurations.vm-aarch64 = mkSystem "vm-aarch64" {
       system = "aarch64-linux";
