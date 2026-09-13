@@ -11,7 +11,7 @@
       cleanup = "uninstall";
     };
 
-    taps = ["koekeishiya/formulae" "polymath-as/bobrvm" "uzaaft/costbar"];
+    # taps = ["polymath-as/bobrvm" "uzaaft/costbar"];
 
     casks = [
       "1password"
@@ -28,7 +28,7 @@
       }
       "clop"
       "discord"
-      "grokbot"
+      "grok-bot"
       "helium-browser"
       "hermes-desktop"
       "hiddenbar"
