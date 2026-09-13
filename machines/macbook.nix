@@ -41,7 +41,5 @@
   environment.systemPath = lib.mkAfter [ "\${PATH:-/usr/bin:/bin}" ];
 
   environment.shells = with pkgs; [zsh];
-  environment.systemPackages = with pkgs; [
-    cachix
-  ];
+  environment.systemPackages = with pkgs; [ ];
 }
