@@ -1,15 +1,8 @@
 [ui]
 editor = "nvim"
+default-command = ["log"]
 diff-editor = ":builtin"
 diff-formatter = ":git"
-pager = "less -FRX"
-default-command = ["log"]
-
-[ui.graph]
-style = "curved"
-
-[template-aliases]
-"format_short_id(id)" = "id.shortest(8)"
 
 [revset-aliases]
 "closest_bookmark(to)" = "heads(::to & bookmarks())"
@@ -21,6 +14,10 @@ n = "new"
 tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"]
 retrunk = "rebase -d trunk()"
 
+[template-aliases]
+"format_short_id(id)" = "id.shortest(8)"
+
+
 [signing]
 behavior = "own"
 backend = "ssh"
@@ -29,9 +26,6 @@ key = "~/.ssh/id_ed25519.pub"
 [git]
 colocate = true
 sign-on-push = true
-
-[templates]
-git_push_bookmark = "\"uzaaft/\" ++ change_id.short()"
 
 [user]
 name = "Uzair Aftab"
