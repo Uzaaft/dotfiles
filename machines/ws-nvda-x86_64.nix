@@ -18,6 +18,7 @@
   # Periodic TRIM for the NVMe SSD.
   services.fstrim.enable = true;
   services.speechd.enable = false;
+  services.pipewire.enable = false;
 
   networking.hostName = "bobr";
   time.timeZone = "Europe/Oslo";
