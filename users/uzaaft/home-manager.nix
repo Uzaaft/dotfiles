@@ -71,7 +71,6 @@ in {
       pkgs.zsh-powerlevel10k
     ]
     ++ (lib.optionals isDarwin [
-      inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
     ])
     ++ (lib.optionals isLinux [
       # non-darwin packages
@@ -102,9 +101,6 @@ in {
     };
     ".local/bin/rex-project" = {
       source = mutableConfig "stowed/.local/bin/rex-project";
-    };
-    ".cargo/binstall/crates-v1.json" = {
-      source = mutableConfig "stowed/.cargo/binstall/crates-v1.json";
     };
     ".cargo/config.toml" = {
       source = mutableConfig "stowed/.cargo/config.toml";
@@ -138,9 +134,6 @@ in {
       niri = {
         source = mutableConfig "config/niri";
       };
-      "herdr/config.toml" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles/config/herdr/config.toml";
-      };
       nvim = {
         source = mutableConfig "config/nvim";
       };
@@ -155,9 +148,6 @@ in {
       };
       "jj/config.toml" = {
         source = mutableConfig "users/uzaaft/jujutsu.toml";
-      };
-      "tmux/sand.sh" = {
-        source = mutableConfig "stowed/.config/tmux/sand.sh";
       };
       zsh = {
         source = mutableConfig "config/zsh";
@@ -184,8 +174,6 @@ in {
     enable = isGraphicalLinux;
     package = inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default;
   };
-
-  programs.gpg.enable = !isDarwin;
 
   programs.direnv = {
     enable = true;
