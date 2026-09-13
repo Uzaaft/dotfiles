@@ -1,3 +1,8 @@
+# --- powerlevel10k instant prompt; must stay near the top ---
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 autoload -U colors && colors
 bindkey -v
 # PS1="%{$fg[magenta]%}%~%{$fg[red]%} %{$reset_color%}$%b "
@@ -76,13 +81,19 @@ function load_completion() {
 zsh-defer load_completion
 
 source $ZDOTDIR/git_go.zsh
+source $ZDOTDIR/rex_go.zsh
 source $ZDOTDIR/path.zsh
 source $ZDOTDIR/rationalise-dot.zsh
 source $ZDOTDIR/aliases.zsh
 # Load zsh-syntax-highlighting; should be last.
 # source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# --- starship prompt ---
-if (( $+commands[starship] )); then
-  eval "$(starship init zsh)"
-fi
+# --- powerlevel10k prompt ---
+# nixpkgs revisions disagree on where the theme lands, so glob both layouts
+_p10k_themes=(
+  /etc/profiles/per-user/${USER:-$USERNAME}/share/zsh{/themes/powerlevel10k,-powerlevel10k}/powerlevel10k.zsh-theme(N)
+  $HOME/.nix-profile/share/zsh{/themes/powerlevel10k,-powerlevel10k}/powerlevel10k.zsh-theme(N)
+)
+(( $#_p10k_themes )) && source $_p10k_themes[1]
+unset _p10k_themes
+[[ -r $ZDOTDIR/.p10k.zsh ]] && source $ZDOTDIR/.p10k.zsh
