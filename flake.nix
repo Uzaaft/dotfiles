@@ -20,12 +20,7 @@
     };
 
     ghostty = {
-      url = "github:ghostty-org/ghostty";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    helium = {
-      url = "github:schembriaiden/helium-browser-nix-flake";
+      url = "github:uzaaft/ghostty/push-xpztrnpxmwmp";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
