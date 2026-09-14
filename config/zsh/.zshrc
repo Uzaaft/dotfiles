@@ -42,6 +42,7 @@ function load_completion() {
   compinit -d ${comp_cache}
   [[ ${comp_cache}.zwc -nt ${comp_cache} ]] || zcompile -R -- "${comp_cache}".zwc "${comp_cache}" # compile completion  cache
 
+  source <(COMPLETE=zsh jj)
   source <(fzf --zsh)
 
   # --- fzf-tab ---
