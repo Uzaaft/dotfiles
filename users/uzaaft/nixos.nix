@@ -10,6 +10,7 @@
   environment.localBinInPath = true;
 
   programs.zsh.enable = true;
+  programs.zsh.enableGlobalCompInit = false;
 
   services.greetd = {
     enable = true;

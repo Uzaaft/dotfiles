@@ -37,9 +37,15 @@ source $ZDOTDIR/plugin_manager.zsh
 function load_completion() {
   autoload -Uz compinit
   zmodload zsh/complist
-  comp_cache=${zsh_cache}/zcompdump-${ZSH_VERSION}
+
+  local comp_cache=${zsh_cache}/zcompdump-${ZSH_VERSION}
+  local -a fresh_comp_cache=(${~comp_cache}(N.mh-24))
   _comp_options+=(globdots)		# Include hidden files.
-  compinit -d ${comp_cache}
+  if (( ${#fresh_comp_cache} )); then
+    compinit -C -d ${comp_cache}
+  else
+    compinit -d ${comp_cache}
+  fi
   [[ ${comp_cache}.zwc -nt ${comp_cache} ]] || zcompile -R -- "${comp_cache}".zwc "${comp_cache}" # compile completion  cache
 
   source <(COMPLETE=zsh jj)

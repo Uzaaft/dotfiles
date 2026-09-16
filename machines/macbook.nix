@@ -35,6 +35,7 @@
   # zsh is the default shell on Mac and we want to make sure that we're
   # configuring the rc correctly with nix-darwin paths.
   programs.zsh.enable = true;
+  programs.zsh.enableGlobalCompInit = false;
   services.tailscale.enable = true;
 
   # Keep paths inherited from GUI terminals after Nix's configured paths.
