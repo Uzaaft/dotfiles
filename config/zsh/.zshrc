@@ -88,7 +88,6 @@ function load_completion() {
 zsh-defer load_completion
 
 source $ZDOTDIR/git_go.zsh
-source $ZDOTDIR/rex_go.zsh
 source $ZDOTDIR/path.zsh
 source $ZDOTDIR/rationalise-dot.zsh
 source $ZDOTDIR/aliases.zsh
