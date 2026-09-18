@@ -13,6 +13,8 @@
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
+  # Adds a Memtest86+ entry to the boot menu for testing RAM.
+  boot.loader.systemd-boot.memtest86.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Periodic TRIM for the NVMe SSD.
