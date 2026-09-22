@@ -38,7 +38,7 @@
   users.users.uzaaft = {
     isNormalUser = true;
     home = "/home/uzaaft";
-    extraGroups = ["wheel" "docker" "video"];
+    extraGroups = ["wheel" "podman" "video"];
     shell = pkgs.zsh;
     hashedPassword = "$6$5h.pMKRtGXli6Ix0$IW1YG5nUV9K0Z.TuXWU0E6N0maqrcWMf1exw0TgkKKDwFZ9grjBFsE.OiNCYiRW.ibuRgEeEVbAn4jrIYiwDZ0";
     openssh.authorizedKeys.keys = [

@@ -75,19 +75,14 @@
     };
   };
 
-  virtualisation.docker = {
+  virtualisation.podman = {
     enable = true;
-    rootless = {
+    dockerCompat = true;
+    dockerSocket.enable = true;
+    defaultNetwork.settings.dns_enabled = true;
+    autoPrune = {
       enable = true;
-      setSocketVariable = true;
-      daemon.settings.features.cdi = true;
-    };
-    daemon.settings = {
-      ipv6 = false;
-      hosts = [
-        "unix:///run/user/1000/docker.sock"
-        "tcp://0.0.0.0:2375"
-      ];
+      flags = ["--all" "--volumes"];
     };
   };
 
