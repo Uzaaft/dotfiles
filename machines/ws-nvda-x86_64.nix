@@ -102,7 +102,6 @@
   users.mutableUsers = false;
 
   environment.systemPackages = with pkgs; [
-    dnsmasq
     gnumake
     killall
     qemu
@@ -113,7 +112,12 @@
   ];
 
   system.stateVersion = "24.11"; # Did you read the comment?
-  programs.niri.enable = true;
+  programs.niri = {
+    enable = true;
+    # GTK provides the portal file chooser, so Nautilus is unnecessary.
+    useNautilus = false;
+  };
+  services.gnome.gnome-keyring.enable = false;
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
