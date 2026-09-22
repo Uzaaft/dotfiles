@@ -143,6 +143,9 @@
       "20-wireless" = {
         matchConfig.WLANInterfaceType = "station";
         networkConfig.DHCP = "yes";
+        # A disconnected Wi-Fi adapter must not block boot or activation when
+        # Ethernet is the active network connection.
+        linkConfig.RequiredForOnline = false;
         # Prefer Ethernet whenever both links have a default route.
         dhcpV4Config.RouteMetric = 1025;
         ipv6AcceptRAConfig.RouteMetric = 1025;
