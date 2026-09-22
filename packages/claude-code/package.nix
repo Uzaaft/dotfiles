@@ -1,57 +1,63 @@
 {
   lib,
   stdenv,
-  buildNpmPackage,
   fetchurl,
-  fetchNpmDeps,
-  runCommand,
-  runtimeShell,
   alsa-lib,
   autoPatchelfHook,
   bubblewrap,
+  makeWrapper,
   procps,
   ripgrep,
   socat,
+  zstd,
 }: let
-  version = "2.1.268";
-
-  srcWithLock = runCommand "claude-code-src-with-lock" {} ''
-    mkdir -p $out
-    tar -xzf ${
-      fetchurl {
-        url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-2.1.268.tgz";
-        hash = "sha256-0UCiN5OHn2sMM39jajg7MKSSnVW5fvSRxey/fkqrqcs=";
-      }
-    } -C $out --strip-components=1
-    sed -i 's/"postinstall": "node install.cjs",/"postinstall": "node install.cjs"/' $out/package.json
-    sed -i '/"prepare":/d' $out/package.json
-    cp ${./package-lock.json} $out/package-lock.json
-  '';
+  version = "2.1.278";
+  release = {
+    "aarch64-darwin" = {
+      platform = "darwin-arm64";
+      hash = "sha256-26kWLSXnTFmtcsnfcvgMvELsyYQTfv/AldPvxs26Vog=";
+    };
+    "aarch64-linux" = {
+      platform = "linux-arm64";
+      hash = "sha256-S3WKEy1OUtVYD/E9En87IarALHgMv4gDSFqytaFN/xs=";
+    };
+    "x86_64-linux" = {
+      platform = "linux-x64";
+      hash = "sha256-X12yBCUbhFesaLIATtFApQyP7qYuUkbMKM3o0ErXYMs=";
+    };
+  }.${stdenv.hostPlatform.system} or (throw "claude-code: unsupported system ${stdenv.hostPlatform.system}");
 in
-  buildNpmPackage rec {
+  stdenv.mkDerivation {
     pname = "claude-code";
     inherit version;
 
-    src = srcWithLock;
-
-    npmDeps = fetchNpmDeps {
-      inherit src;
-      hash = "sha256-kBGPnrPIaZ99iP2kUO6gVD6wdEDxVxR4Tix3lH1+xhg=";
+    src = fetchurl {
+      url = "https://downloads.claude.ai/claude-code-releases/${version}/${release.platform}/claude.zst";
+      inherit (release) hash;
     };
 
-    dontNpmBuild = true;
+    dontUnpack = true;
+    dontConfigure = true;
+    dontBuild = true;
+    # Stripping invokes the bundled Bun runtime rather than the CLI binary.
+    dontStrip = true;
 
-    nativeBuildInputs = lib.optionals stdenv.hostPlatform.isElf [autoPatchelfHook];
+    nativeBuildInputs = [
+      makeWrapper
+      zstd
+    ] ++ lib.optionals stdenv.hostPlatform.isElf [autoPatchelfHook];
 
     buildInputs = lib.optionals stdenv.hostPlatform.isLinux [alsa-lib];
 
-    postInstall = ''
-      cat > $out/bin/claude <<EOF
-      #!${runtimeShell}
-      exec $out/lib/node_modules/@anthropic-ai/claude-code/bin/claude.exe "\$@"
-      EOF
-      chmod +x $out/bin/claude
+    installPhase = ''
+      runHook preInstall
+      mkdir -p $out/bin
+      unzstd -q $src -o $out/bin/claude
+      chmod 755 $out/bin/claude
+      runHook postInstall
+    '';
 
+    postFixup = ''
       wrap_args=(
         --prefix PATH : ${lib.makeBinPath ([procps ripgrep] ++ lib.optionals stdenv.hostPlatform.isLinux [bubblewrap socat])}
         --set DISABLE_AUTOUPDATER 1
