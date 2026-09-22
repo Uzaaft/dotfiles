@@ -60,7 +60,6 @@
         amp = prev.callPackage ./packages/amp {};
         claude-code = prev.callPackage ./packages/claude-code {};
         codex = prev.callPackage ./packages/codex {};
-        # pi = prev.callPackage ./packages/pi {};
         # tmux = inputs.bmux.packages.${prev.stdenv.hostPlatform.system}.default;
       })
     ];
