@@ -126,10 +126,35 @@
     ];
   };
 
-  networking.networkmanager.enable = true;
-  networking.interfaces.enp7s0.useDHCP = true;
+  networking = {
+    useNetworkd = true;
+    wireless.iwd = {
+      enable = true;
+      # iwd handles Wi-Fi association while networkd remains the sole owner
+      # of addresses, routes, and DHCP.
+      settings.General.EnableNetworkConfiguration = false;
+    };
+  };
+  systemd.network = {
+    enable = true;
+    networks = {
+      "10-ethernet" = {
+        matchConfig = {
+          Type = "ether";
+          Kind = "!*";
+        };
+        networkConfig.DHCP = "yes";
+      };
+      "20-wireless" = {
+        matchConfig.WLANInterfaceType = "station";
+        networkConfig.DHCP = "yes";
+        # Prefer Ethernet whenever both links have a default route.
+        dhcpV4Config.RouteMetric = 1025;
+        ipv6AcceptRAConfig.RouteMetric = 1025;
+      };
+    };
+  };
   networking.firewall.allowedUDPPorts = [41641];
-  networking.firewall.trustedInterfaces = ["virbr0"];
   # Expose Ollama only on the Tailscale interface.
   networking.firewall.interfaces.tailscale0.allowedTCPPorts = [11434];
   nixpkgs.config = {
