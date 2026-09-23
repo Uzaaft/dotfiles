@@ -10,6 +10,17 @@
   # Be careful updating this.
   boot.kernelPackages = pkgs.linuxPackages_latest;
   hardware.enableRedistributableFirmware = true;
+  fonts = {
+    enableDefaultPackages = false;
+    packages = with pkgs; [
+      dejavu_fonts
+      freefont_ttf
+      gyre-fonts
+      liberation_ttf
+      noto-fonts-color-emoji
+      unifont
+    ];
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
