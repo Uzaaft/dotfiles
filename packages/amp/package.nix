@@ -1,48 +1,52 @@
 {
   lib,
-  buildNpmPackage,
   fetchurl,
-  fetchNpmDeps,
   ripgrep,
-  runCommand,
-  runtimeShell,
+  makeWrapper,
+  stdenvNoCC,
 }: let
-  version = "0.0.1789300838-gde32db";
+  version = "0.0.1790152370-gb14497";
 
-  srcWithLock = runCommand "amp-src-with-lock" {} ''
-    mkdir -p $out
-    tar -xzf ${
-      fetchurl {
-        url = "https://registry.npmjs.org/@ampcode/cli/-/cli-0.0.1789300838-gde32db.tgz";
-        hash = "sha256-BLesLxZszTzjPeSvCb7LzFkApBUO1wtKoWABGFqh3MQ=";
-      }
-    } -C $out --strip-components=1
-    cp ${./package-lock.json} $out/package-lock.json
-  '';
+  platformSources = {
+    x86_64-linux = {
+      url = "https://registry.npmjs.org/@ampcode/cli-linux-x64/-/cli-linux-x64-${version}.tgz";
+      hash = "sha256-2R7/CjGY1IV26wVnfmw+P67NLdUXdxShGIMOH8XTK5c=";
+    };
+    aarch64-linux = {
+      url = "https://registry.npmjs.org/@ampcode/cli-linux-arm64/-/cli-linux-arm64-${version}.tgz";
+      hash = "sha256-0inp4FDA2NbnOLOAlUFIVVmaGL/nAFQdRdcP+KoadWg=";
+    };
+    x86_64-darwin = {
+      url = "https://registry.npmjs.org/@ampcode/cli-darwin-x64/-/cli-darwin-x64-${version}.tgz";
+      hash = "sha256-DENYt6ijpI5U7yo82VomolC2/TUcJ87DJIXt1XqAyHI=";
+    };
+    aarch64-darwin = {
+      url = "https://registry.npmjs.org/@ampcode/cli-darwin-arm64/-/cli-darwin-arm64-${version}.tgz";
+      hash = "sha256-cWfxSAr0kaf+TLtBxI6zQ6CCT4IdBA+t0G6R1duXOCs=";
+    };
+  };
+  platformSource = platformSources.${stdenvNoCC.hostPlatform.system}
+    or (throw "Amp CLI is unsupported on ${stdenvNoCC.hostPlatform.system}");
 in
-  buildNpmPackage rec {
+  stdenvNoCC.mkDerivation {
     pname = "amp";
     inherit version;
 
-    src = srcWithLock;
+    src = fetchurl platformSource;
+    sourceRoot = ".";
+    nativeBuildInputs = [makeWrapper];
 
-    npmDeps = fetchNpmDeps {
-      inherit src;
-      hash = "sha256-oLEVULwfY0WQ0q63aorySmTv1aGzcmrJdUDyPuqSkNM=";
-    };
+    unpackPhase = ''
+      tar -xzf "$src" --strip-components=1
+    '';
 
-    dontNpmBuild = true;
-
-    postInstall = ''
-      cat > $out/bin/amp <<EOF
-      #!${runtimeShell}
-      exec $out/lib/node_modules/@ampcode/cli/bin/amp.exe "\$@"
-      EOF
-      chmod +x $out/bin/amp
-
-      wrapProgram $out/bin/amp \
+    installPhase = ''
+      runHook preInstall
+      install -Dm755 amp $out/libexec/amp
+      makeWrapper $out/libexec/amp $out/bin/amp \
         --prefix PATH : ${lib.makeBinPath [ripgrep]} \
         --set AMP_SKIP_UPDATE_CHECK 1
+      runHook postInstall
     '';
 
     passthru = {
@@ -56,7 +60,7 @@ in
       license = licenses.unfree;
       sourceProvenance = with lib.sourceTypes; [binaryBytecode];
       maintainers = with maintainers; [];
-      platforms = platforms.all;
+      platforms = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
       mainProgram = "amp";
     };
   }
