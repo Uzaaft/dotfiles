@@ -109,7 +109,6 @@ clean:
 update:
 	$(MAKE) amp/update
 	$(MAKE) claude-code/update
-	$(MAKE) pi/update
 	$(MAKE) git-hunks/update
 	$(MAKE) opencode/update
 	nix flake update
@@ -121,10 +120,6 @@ amp/update:
 # Update claude-code to the latest npm release
 claude-code/update:
 	nix-shell -p nodejs --run "cd packages/claude-code && ./update.sh"
-
-# Update pi to the latest npm release
-pi/update:
-	nix-shell -p nodejs --run "cd packages/pi && ./update.sh"
 
 # Update git-hunks to the latest upstream Git revision
 git-hunks/update:
@@ -169,7 +164,6 @@ help:
 	@echo "  update  - Update all packages and flake inputs"
 	@echo "  amp/update - Update amp to the latest npm release"
 	@echo "  claude-code/update - Update claude-code to the latest npm release"
-	@echo "  pi/update - Update pi to the latest npm release"
 	@echo "  git-hunks/update - Update git-hunks to the latest upstream Git revision"
 	@echo "  opencode/update - Update opencode to the latest upstream Git revision"
 	@echo "  show    - Show system generations"
