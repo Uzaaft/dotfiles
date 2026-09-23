@@ -24,11 +24,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    opencode = {
-      url = "github:anomalyco/opencode";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # bmux = {
     #   url = "github:uzaaft/bmux";
     #   inputs.nixpkgs.follows = "nixpkgs";

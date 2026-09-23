@@ -344,26 +344,6 @@
         "url": "https://channels.nixos.org/nixos-26.05/nixexprs.tar.xz"
       }
     },
-    "opencode": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1790138302,
-        "narHash": "sha256-bv/GySCrn/ehZWHA09+CMvn7TmHPcUnANRVYJYukNYs=",
-        "owner": "anomalyco",
-        "repo": "opencode",
-        "rev": "18ef3cc7c5a25b82114c953a80ccc09f4988f74e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "anomalyco",
-        "repo": "opencode",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "agent-skills": "agent-skills",
@@ -372,8 +352,7 @@
         "ghostty": "ghostty",
         "home-manager": "home-manager_2",
         "nixpkgs": "nixpkgs_3",
-        "nixpkgs-unstable": "nixpkgs-unstable",
-        "opencode": "opencode"
+        "nixpkgs-unstable": "nixpkgs-unstable"
       }
     },
     "systems": {

@@ -39,6 +39,7 @@ in {
   # Home-manager 22.11 requires this be set. We never set it so we have
   # to use the old state version.
   home.stateVersion = "25.05";
+  home.sessionVariables.OPENCODE_DISABLE_AUTOUPDATE = "true";
 
   xdg.enable = true;
 
@@ -79,7 +80,7 @@ in {
       # pkgs.llama-cpp
       pkgs.claude-code
       pkgs.codex
-      inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default
+      pkgs.opencode
     ])
     ++ (lib.optionals isGraphicalLinux [
       # Fallback CPU based terminal
