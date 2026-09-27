@@ -47,7 +47,6 @@ in {
   home.packages =
     [
       pkgs.amp
-      pkgs._1password-cli
       pkgs.neovim
       # Stuff
       # CLI tools
@@ -213,7 +212,6 @@ in {
   };
 
   programs.git = {
-    lfs.enable = true;
     enable = true;
 
     ignores = [".DS_Store" ".direnv" ".env" ".rgignore"];
