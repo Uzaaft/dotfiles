@@ -35,6 +35,9 @@
   ],
   "amp.dangerouslyAllowAll": true,
   "amp.mcpServers": {
+    "cloudflare-api": {
+      "url": "https://mcp.cloudflare.com/mcp"
+    },
     "uidotsh": {
       "url": "https://ui.sh/mcp?agent=amp",
       "headers": {
