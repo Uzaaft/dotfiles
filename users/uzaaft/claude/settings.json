@@ -4,7 +4,7 @@
     "commit": "",
     "pr": ""
   },
-  "model": "opus[1m]",
+  "model": "opus",
   "extraKnownMarketplaces": {
     "cloudflare": {
       "source": {
@@ -15,6 +15,12 @@
   },
   "outputStyle": "Concise",
   "effortLevel": "xhigh",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "medium"
+    }
+  },
+  "tui": "fullscreen",
   "voice": {
     "enabled": true,
     "mode": "hold"
@@ -52,7 +58,5 @@
       "**Org-specific CLIs**: None configured",
       "routine under /Users/uzaaft/repositories/github.com/polymath-as/solidus/ prefix: jj and uv usage observed in this project's transcripts"
     ]
-  },
-  "tui": "fullscreen",
-  "outputStyle": "Concise"
+  }
 }
