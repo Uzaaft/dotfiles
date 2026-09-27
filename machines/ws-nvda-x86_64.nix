@@ -65,7 +65,7 @@
   services = {
     tailscale.enable = true;
     ollama = {
-      enable = true;
+      enable = false;
       package = pkgs.ollama-cuda;
       # Bind to all interfaces so the Mac (and other Tailscale peers) can
       # reach this box. Exposure is scoped to tailscale0 by the firewall
@@ -74,7 +74,7 @@
       port = 11434;
     };
 
-    xserver.videoDrivers = ["nvidia"];
+    xserver.videoDrivers = ["amdgpu" "nvidia"];
     openssh = {
       enable = true;
       settings = {
@@ -106,6 +106,20 @@
   # Let the service generate CDI data at boot, when the module and libraries
   # come from the same system generation.
   systemd.services.nvidia-container-toolkit-cdi-generator.restartIfChanged = false;
+
+  # RTX 5090: measured ~5% less Tensor Core throughput for 110 W less power.
+  # Leave boost clocks and the automatic fan curve under driver control.
+  systemd.services.nvidia-power-limit = {
+    description = "Set RTX 5090 power limit";
+    wantedBy = ["multi-user.target"];
+    requires = ["nvidia-persistenced.service"];
+    after = ["nvidia-persistenced.service"];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = "${lib.getBin config.hardware.nvidia.package}/bin/nvidia-smi -i 00000000:01:00.0 -pl 490";
+    };
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.mutableUsers = false;
