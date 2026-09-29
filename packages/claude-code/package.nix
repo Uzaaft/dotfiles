@@ -11,19 +11,19 @@
   socat,
   zstd,
 }: let
-  version = "2.1.280";
+  version = "2.1.284";
   release = {
     "aarch64-darwin" = {
       platform = "darwin-arm64";
-      hash = "sha256-IU+v2dYLwDl8todHt2WrdSvktTMDwXatiFxMr74wgm8=";
+      hash = "sha256-7SbunMvwWy36PIq/UjSLeLACdDBIJK0e6vnYg2b6cK4=";
     };
     "aarch64-linux" = {
       platform = "linux-arm64";
-      hash = "sha256-agHzBBjzUSKmcsz3S+1kq6URmtR8cVSKO0R8yf7EjIE=";
+      hash = "sha256-bjG4beOVJZREG075HB9QecE4WwFpqd81HdJ2K7IzbSM=";
     };
     "x86_64-linux" = {
       platform = "linux-x64";
-      hash = "sha256-J5EOKucE2PLoAkiX2P3x53EIB7r09pgsDjeXwFgxU4Q=";
+      hash = "sha256-UCHWMdrL1RZgOnebPPJGMIVHBBeoOLagg193+kTSPwo=";
     };
   }.${stdenv.hostPlatform.system} or (throw "claude-code: unsupported system ${stdenv.hostPlatform.system}");
 in
