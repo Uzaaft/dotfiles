@@ -5,24 +5,24 @@
   makeWrapper,
   stdenvNoCC,
 }: let
-  version = "0.0.1790152370-gb14497";
+  version = "0.0.1790683256-gc25f8e";
 
   platformSources = {
     x86_64-linux = {
       url = "https://registry.npmjs.org/@ampcode/cli-linux-x64/-/cli-linux-x64-${version}.tgz";
-      hash = "sha256-2R7/CjGY1IV26wVnfmw+P67NLdUXdxShGIMOH8XTK5c=";
+      hash = "sha256-oZZxh/EriwqMtBpCVsjpzuRrMwAwVW1D/3s0bR2a/RA=";
     };
     aarch64-linux = {
       url = "https://registry.npmjs.org/@ampcode/cli-linux-arm64/-/cli-linux-arm64-${version}.tgz";
-      hash = "sha256-0inp4FDA2NbnOLOAlUFIVVmaGL/nAFQdRdcP+KoadWg=";
+      hash = "sha256-wygUtTRrYVifGY9jDP+3rSrxKSs3gnxMNIh8gee89rQ=";
     };
     x86_64-darwin = {
       url = "https://registry.npmjs.org/@ampcode/cli-darwin-x64/-/cli-darwin-x64-${version}.tgz";
-      hash = "sha256-DENYt6ijpI5U7yo82VomolC2/TUcJ87DJIXt1XqAyHI=";
+      hash = "sha256-IOQf4pwILfoMjBlNdpLI1p5QBWBLEHkh5yGrcHdFLUs=";
     };
     aarch64-darwin = {
       url = "https://registry.npmjs.org/@ampcode/cli-darwin-arm64/-/cli-darwin-arm64-${version}.tgz";
-      hash = "sha256-cWfxSAr0kaf+TLtBxI6zQ6CCT4IdBA+t0G6R1duXOCs=";
+      hash = "sha256-qqgJBP1BMDRoanwchSqrGWV2MnrGY9jGqOR5pxT6d1Q=";
     };
   };
   platformSource = platformSources.${stdenvNoCC.hostPlatform.system}
