@@ -125,25 +125,9 @@ claude-code/update:
 git-hunks/update:
 	cd packages/git-hunks && ./update.sh
 
-# Update opencode to the latest upstream Git revision
+# Update opencode to the latest npm release
 opencode/update:
-	latest_rev="$$(git ls-remote https://github.com/anomalyco/opencode.git HEAD | awk '{print $$1}')"; \
-	current_rev="$$(sed -nE 's|.*github:anomalyco/opencode/([0-9a-f]+).*|\1|p' flake.nix)"; \
-	if [ -z "$$latest_rev" ]; then \
-		echo "Could not fetch latest opencode revision"; \
-		exit 1; \
-	fi; \
-	if [ -z "$$current_rev" ]; then \
-		echo "Could not find current opencode revision in flake.nix"; \
-		exit 1; \
-	fi; \
-	if [ "$$latest_rev" = "$$current_rev" ]; then \
-		echo "opencode is already up to date: $$current_rev"; \
-		exit 0; \
-	fi; \
-	echo "Updating opencode: $$current_rev -> $$latest_rev"; \
-	perl -0pi -e "s|github:anomalyco/opencode/[0-9a-f]+|github:anomalyco/opencode/$$latest_rev|" flake.nix; \
-	nix flake update opencode
+	nix-shell -p nodejs --run "cd packages/opencode && ./update.sh"
 
 # Show the current system generation
 show:
@@ -165,5 +149,5 @@ help:
 	@echo "  amp/update - Update amp to the latest npm release"
 	@echo "  claude-code/update - Update claude-code to the latest npm release"
 	@echo "  git-hunks/update - Update git-hunks to the latest upstream Git revision"
-	@echo "  opencode/update - Update opencode to the latest upstream Git revision"
+	@echo "  opencode/update - Update opencode to the latest npm release"
 	@echo "  show    - Show system generations"
