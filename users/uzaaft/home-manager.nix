@@ -99,9 +99,6 @@ in {
     ".local/bin/git-project" = {
       source = mutableConfig "stowed/.local/bin/git-project";
     };
-    ".local/bin/rex-project" = {
-      source = mutableConfig "stowed/.local/bin/rex-project";
-    };
     ".cargo/config.toml" = {
       source = mutableConfig "stowed/.cargo/config.toml";
     };
@@ -130,7 +127,10 @@ in {
       amp = {
         source = mutableConfig "users/uzaaft/amp";
       };
-      
+      rex = {
+        source = mutableConfig "users/uzaaft/rex";
+      };
+
       niri = {
         source = mutableConfig "config/niri";
       };
