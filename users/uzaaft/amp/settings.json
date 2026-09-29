@@ -34,16 +34,5 @@
     }
   ],
   "amp.dangerouslyAllowAll": true,
-  "amp.mcpServers": {
-    "cloudflare-api": {
-      "url": "https://mcp.cloudflare.com/mcp"
-    },
-    "uidotsh": {
-      "url": "https://ui.sh/mcp?agent=amp",
-      "headers": {
-        "Authorization": "Bearer TULVaVU6ufB7ni0a23gFNnnc8c71hit4"
-      }
-    }
-  }
-
+  "amp.mcpServers": {}
 }
