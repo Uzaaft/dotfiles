@@ -111,8 +111,8 @@ in {
     "opencode/opencode.json" = {
       source = mutableConfig "users/uzaaft/opencode.json";
     };
-    ".agents/skills".source = inputs.agent-skills;
-    ".claude/skills".source = inputs.agent-skills;
+    ".agents/skills".source = mutableConfig "users/uzaaft/agent-skills";
+    ".claude/skills".source = mutableConfig "users/uzaaft/agent-skills";
   };
 
   xdg.configFile =

@@ -29,11 +29,6 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    agent-skills = {
-      url = "git+ssh://git@github.com/uzaaft/skills.git";
-      flake = false;
-    };
-
   };
 
   outputs = {
