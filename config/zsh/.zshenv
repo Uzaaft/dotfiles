@@ -1,4 +1,6 @@
-# export SSH_AUTH_SOCK="/Users/uzaaft/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+if [[ "$OSTYPE" == darwin* ]]; then
+  export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+fi
 export GOKU_EDN_CONFIG_FILE="$HOME/.config/goku/karabiner.edn"
 export NPM_CONFIG_PREFIX="/Users/uzaaft/.npm-global"
 export GIT_PATH="$HOME/repositories/"
@@ -17,5 +19,3 @@ if [ -n "${NVIM_LISTEN_ADDRESS+x}" ] || [ -n "${NVIM+x}" ]; then
 else
   export MANPAGER="nvim -c 'Man!'"
 fi
-
-

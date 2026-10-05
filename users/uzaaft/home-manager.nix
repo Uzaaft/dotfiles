@@ -247,11 +247,6 @@ in {
         if isLinux
         then "${config.home.homeDirectory}/.ssh/id_ed25519.pub"
         else "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYZX17OSEH3mKJsP4oFuaGtr8F5TF/3/RXOCw2cBgps";
-
-      "gpg \"ssh\"" =
-        if isDarwin
-        then {program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";}
-        else {};
     };
   };
 }
