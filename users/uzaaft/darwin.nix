@@ -11,7 +11,20 @@
       cleanup = "uninstall";
     };
 
-    # taps = ["polymath-as/bobrvm" "uzaaft/costbar"];
+    taps = [
+      {
+        name = "bobrwm/tap";
+        trusted = true;
+      }
+      {
+      name = "abue-ammar/tinycast";
+      trusted = true;
+      }
+      # {
+      #   name = "uzaaft/costbar";
+      #   trusted = true;
+      # }
+    ];
 
     casks = [
       "1password"
@@ -19,8 +32,10 @@
       "alt-tab"
       "arc"
       "brave-browser"
+      "bobrwm/tap/bobrwm"
       "chatgpt"
       "claude"
+      "cloudflare-warp"
       "codexbar"
       {
         name = "ghostty@tip";
@@ -35,7 +50,7 @@
       "imageoptim"
       "linear"
       "logi-options+"
-      "raycast"
+      "abue-ammar/tinycast/tinycast"
       "slack"
       "tableplus"
       "wispr-flow"
@@ -46,6 +61,10 @@
       "codex"
       {
         name = "claude-code@latest";
+        greedy = true;
+      }
+      {
+        name = "ghostty@tip";
         greedy = true;
       }
     ];
