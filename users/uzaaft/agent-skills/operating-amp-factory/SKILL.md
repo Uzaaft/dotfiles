@@ -1,12 +1,12 @@
 ---
 name: operating-amp-factory
-description: Builds and operates an Amp-only personal software factory in Rex using `rex do` for scripted workspaces, test stations, servers, logs, diffs, and review. Use when asked to set up a software factory, orchestrate development work in Rex, or keep an Amp task moving with visible supporting terminals.
+description: Builds and operates an Amp-only personal software factory in Rex using `rex do` to arrange split panes for tests, servers, logs, diffs, and review. Use when asked to set up a software factory, orchestrate development work in Rex, or keep an Amp task moving with visible supporting terminals.
 compatibility: Requires Amp and Rex CLIs and a live Rex session.
 ---
 
 # Operating an Amp Factory
 
-Use Amp as the only agent runtime and Rex as the visible control plane. The default factory is one useful Amp agent plus purpose-built terminals for tests, servers, logs, diffs, and review.
+Use Amp as the only agent runtime and Rex as the visible control plane. Treat the current Amp pane as the factory anchor and arrange purpose-built terminal splits around it for tests, servers, logs, diffs, and review.
 
 ## Boundaries
 
@@ -15,7 +15,7 @@ Use Amp as the only agent runtime and Rex as the visible control plane. The defa
 - Do not support Claude Code, Codex, OpenCode, or other agent runtimes.
 - Use Rex to operate terminals and layouts, not to bypass Amp's approval, thread, or delegation rules.
 - Default to one coding agent. Add parallel Amp work only when the tasks are independent and their checkouts and file ownership are explicit.
-- Preserve existing panes and processes. Create only the stations the task needs.
+- Preserve existing panes and processes. Create only the stations the task needs, and never type into a pane without first establishing what it is running.
 
 ## Orient
 
@@ -31,30 +31,50 @@ Treat `REX_SESSION` and `REX_BLOCK` as the factory's origin, not necessarily the
 
 Find the project root, repository guidance, actual development commands, and existing running stations before changing the layout. Do not invent `npm`, `pnpm`, test, server, or log commands.
 
-## Design the smallest factory
+## Design the split layout
 
 Choose stations from the work rather than creating a fixed dashboard:
 
-- **Agent:** the current Amp terminal; never replace or close it incidentally.
+- **Agent:** the current Amp terminal and stable layout anchor; never replace, split by guessed focus, or close it incidentally.
 - **Test:** the narrowest useful test or watch command.
 - **Server:** a long-lived development server when the work needs one.
 - **Logs:** output that must remain visible while Amp works.
 - **Review:** a finite diff, status, or verification command.
 
-Prefer a new Rex window for each long-lived concern. Use splits only when two streams must be watched together. Create support stations with `focus = false` so the user's current work is not interrupted.
+Default to one tab with a small, readable binary split tree:
+
+```diagram
+┌────────────────────────────┬──────────────┐
+│                            │ Server/Logs  │
+│ Amp                        │              │
+│                            ├──────────────┤
+│                            │ Secondary    │
+├────────────────────────────┤ long-lived   │
+│ Tests/Review               │ station      │
+└────────────────────────────┴──────────────┘
+```
+
+- Split **right** for a long-lived sibling such as a server or log stream. Give the new pane about 30% of the width.
+- Split **down** from the Amp anchor for tests, review output, or another compact feedback loop. Give the new pane about 30% of the anchor's height.
+- Split an existing support pane when two related streams belong together, such as server over logs.
+- Use a new window only for a genuinely separate subcontext, not as the default station container.
+- Create every support split with `focus = false` so Amp remains focused.
+
+Inspect the current session before creating anything. Reuse a pane whose label, working directory, and process already match the required role. Never infer the anchor from global focus; use the inherited `REX_BLOCK` or an explicitly resolved full block ID.
 
 ## Use `rex do` as the orchestration primitive
 
 Use one `rex do` Lua script for a cohesive layout change. Pass dynamic values through JSON arguments; do not interpolate project paths, labels, or commands into Lua source.
 
-This pattern creates several visible stations in the inherited session:
+Represent each station with a stable logical role, an anchor role, split geometry, and an argument-vector command. This pattern builds a split tree around the inherited Amp pane:
 
 ```sh
 factory_args=$(jq -nc \
   --arg session "$REX_SESSION" \
+  --arg anchor "$REX_BLOCK" \
   --arg cwd "$project_dir" \
   --argjson stations "$stations_json" \
-  '{session_id: $session, cwd: $cwd, stations: $stations}')
+  '{session_id: $session, anchor_block_id: $anchor, cwd: $cwd, stations: $stations}')
 
 cat <<'LUA' | rex do -s "$REX_SESSION" - --args "$factory_args" --json
 local function terminal(command, cwd)
@@ -68,40 +88,79 @@ local function terminal(command, cwd)
     })
 end
 
+local blocks = { amp = rex.args.anchor_block_id }
 local created = {}
 for _, station in ipairs(rex.args.stations) do
-    local result, err = rex.call("session.new_window", {
+    local anchor = blocks[station.anchor or "amp"]
+    if anchor == nil then
+        error("unknown anchor role: " .. tostring(station.anchor), 0)
+    end
+
+    local result, err = rex.call("session.new_split", {
         session_id = rex.args.session_id,
-        window_label = station.label,
+        anchor_block_id = anchor,
+        direction = station.direction,
+        side = station.side or "after",
+        ratio = station.ratio,
         focus = false,
         layout = terminal(station.command, station.cwd or rex.args.cwd),
     })
     if err ~= nil then
         error(err, 0)
     end
-    table.insert(created, result)
+    local block_id = result.block_ids[1]
+    blocks[station.role] = block_id
+
+    local _, label_err = rex.call("session.set_block_label", {
+        session_id = rex.args.session_id,
+        block_id = block_id,
+        label = station.label,
+    })
+    if label_err ~= nil then
+        error(label_err, 0)
+    end
+
+    table.insert(created, {
+        role = station.role,
+        block_id = block_id,
+        split_ids = result.split_ids,
+    })
 end
 return created
 LUA
 ```
 
-Build `stations_json` with `jq`. Each `command` is an argument array, for example:
+In Rex, `horizontal` divides width and `vertical` divides height. The ratio belongs to the `before` side, so `side = "after", ratio = 0.70` leaves 70% for the existing anchor and 30% for the new station. Build `stations_json` with `jq`; each command is an argument array:
 
 ```sh
 stations_json=$(jq -nc \
-  --argjson test '["pnpm", "vitest", "--watch"]' \
-  --argjson diff '["git", "--no-pager", "diff"]' \
+  --argjson server '["pnpm", "dev"]' \
+  --argjson tests '["pnpm", "vitest", "--watch"]' \
+  --argjson logs '["sh", "-c", "tail -n 100 -f .app.log"]' \
   '[
-    {label: "Tests", command: $test},
-    {label: "Review", command: $diff}
+    {
+      role: "server", label: "Server", anchor: "amp",
+      direction: "horizontal", side: "after", ratio: 0.70,
+      command: $server
+    },
+    {
+      role: "tests", label: "Tests", anchor: "amp",
+      direction: "vertical", side: "after", ratio: 0.70,
+      command: $tests
+    },
+    {
+      role: "logs", label: "Logs", anchor: "server",
+      direction: "vertical", side: "after", ratio: 0.65,
+      command: $logs
+    }
   ]')
 ```
 
-Use `sh -c` only when the command genuinely needs shell syntax such as a pipeline. For one station or one split, a direct Rex command is simpler and should be preferred.
+Order matters because later stations may anchor to earlier roles. Use `sh -c` only when the command genuinely needs shell syntax such as a pipeline. For one station, a direct `rex split -s "$REX_SESSION" -b "$REX_BLOCK" ...` command is simpler and should be preferred.
 
 ## Operate the factory
 
-After creation, keep the returned full block IDs. Verify the relevant state instead of assuming creation means readiness:
+Keep the returned role-to-block mapping. Full Rex IDs are stable for the resource lifetime, but never guess or reconstruct them. Verify the relevant state instead of assuming creation means readiness:
 
 ```sh
 rex capture -s "$REX_SESSION" -b "$block_id" --trim --unwrap
@@ -112,6 +171,7 @@ rex session inspect "$REX_SESSION" --json
 - A server is ready only after its output or endpoint says so.
 - A finite check passes only when its process reports exit status 0 and its output is correct.
 - A Rex wait timeout means the process is still running, not that it failed.
+- Read existing output before waiting for new output or retrying a command. A timeout or connection failure can have happened after the operation succeeded.
 - Stop a foreground process with `rex send-key ... ctrl+c`; close its pane only when cleanup is requested or clearly safe.
 - Reuse or restart a station when possible. Do not accumulate duplicate test, server, or log windows.
 
