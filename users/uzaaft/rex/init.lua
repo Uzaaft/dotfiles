@@ -13,31 +13,6 @@ local function basename(path)
 end
 
 rex.action({
-    name = "dev_session",
-    title = "Dev Layout",
-    category = "Layouts",
-    keywords = "layout dev session harness claude hunk nvim",
-    args = { harness = "string?", cwd = "string?" },
-    run = function(ctx, args)
-        local cwd = args.cwd
-        local harness = args.harness or "claude"
-
-        local result, err = rex.call("session.create", {
-            label = basename(cwd) or "dev",
-            initial_windows = {
-                { window_label = harness, layout = term({ harness }, cwd) },
-                { window_label = "nvim", layout = term({ "nvim" }, cwd) },
-            },
-        })
-        if err ~= nil then
-            error(err, 0)
-        end
-
-        return result
-    end,
-})
-
-rex.action({
     name = "project_session",
     title = "New Session from Git Project…",
     category = "Session",
