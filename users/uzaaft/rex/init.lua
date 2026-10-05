@@ -55,6 +55,104 @@ fi
     end,
 })
 
+rex.action({
+    name = "swap_pane",
+    title = "Swap Pane",
+    category = "Pane",
+    keywords = "swap rotate pane previous next",
+    args = { direction = "string" },
+    run = function(ctx, args)
+        local view, err = rex.call("session.view", { session_id = ctx.session_id })
+        if err ~= nil then
+            error(err, 0)
+        end
+
+        local window = view.focused_window
+        local panes = {}
+        local function collect(node)
+            if node.block_id ~= nil then
+                table.insert(panes, node.block_id)
+            elseif node.split ~= nil then
+                collect(node.split.before)
+                collect(node.split.after)
+            end
+        end
+
+        for _, layer in ipairs(window.layers) do
+            if layer.kind == "tiled" and layer.layout ~= nil then
+                collect(layer.layout)
+            end
+        end
+
+        for index, pane in ipairs(panes) do
+            if pane == window.focused_block_id and #panes > 1 then
+                local offset = args.direction == "previous" and -1 or 1
+                local other = panes[((index - 1 + offset) % #panes) + 1]
+                local result, swap_err = rex.call("session.swap_blocks", {
+                    session_id = ctx.session_id,
+                    block_id = pane,
+                    other_block_id = other,
+                })
+                if swap_err ~= nil then
+                    error(swap_err, 0)
+                end
+                return result
+            end
+        end
+    end,
+})
+
+rex.action({
+    name = "rotate_panes",
+    title = "Rotate Pane Layout",
+    category = "Pane",
+    keywords = "cycle rotate pane location position horizontal vertical",
+    run = function(ctx)
+        local view, err = rex.call("session.view", { session_id = ctx.session_id })
+        if err ~= nil then
+            error(err, 0)
+        end
+
+        local panes = {}
+        local horizontal = true
+        local function collect(node)
+            if node.block_id ~= nil then
+                table.insert(panes, node.block_id)
+            elseif node.split ~= nil then
+                horizontal = horizontal and node.split.direction == "horizontal"
+                collect(node.split.before)
+                collect(node.split.after)
+            end
+        end
+
+        for _, layer in ipairs(view.focused_window.layers) do
+            if layer.kind == "tiled" and layer.layout ~= nil then
+                collect(layer.layout)
+            end
+        end
+
+        if #panes < 2 then
+            return
+        end
+
+        table.insert(panes, 1, table.remove(panes))
+        local direction = horizontal and "vertical" or "horizontal"
+        for index = #panes, 2, -1 do
+            local _, move_err = rex.call("session.move_block", {
+                session_id = ctx.session_id,
+                block_id = panes[index],
+                anchor_block_id = panes[1],
+                direction = direction,
+                side = "after",
+                ratio = (index - 1) / index,
+            })
+            if move_err ~= nil then
+                error(move_err, 0)
+            end
+        end
+    end,
+})
+
 rex.mode("prefix")
 
 rex.bind("ctrl+a", "client.mode.enter", { name = "prefix", once = true })
@@ -75,6 +173,7 @@ rex.bind("prefix/h", "pane.focus.left")
 rex.bind("prefix/j", "pane.focus.down")
 rex.bind("prefix/k", "pane.focus.up")
 rex.bind("prefix/l", "pane.focus.right")
+rex.bind("prefix/[Space]", "rotate_panes")
 
 rex.bind("prefix/n", "client.tab.next")
 rex.bind("prefix/p", "client.tab.previous")
