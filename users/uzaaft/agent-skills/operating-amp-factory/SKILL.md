@@ -64,19 +64,60 @@ Inspect the current session before creating anything. Reuse a pane whose label, 
 
 ## Use `rex do` as the orchestration primitive
 
-Use one `rex do` Lua script for a cohesive layout change. Pass dynamic values through JSON arguments; do not interpolate project paths, labels, or commands into Lua source.
+Use one `rex do` Lua script for a cohesive layout change. Pass dynamic values through a generated JSON argument file; do not interpolate project paths, labels, or commands into Lua source.
+
+Never construct JSON-encoded command arrays in shell variables and feed them back through `--argjson`. In particular, do not write nested expressions such as `'["sh","-c",("..." + $value)]'`. That crosses shell, jq, JSON, and shell-command quoting layers and is easy to over-escape.
+
+For a complex command, put the shell program in a literal heredoc and pass it to jq as one opaque string. Let a single jq invocation construct the complete argument document. Direct commands such as `pnpm dev` may remain literal JSON arrays inside that same jq program.
 
 Represent each station with a stable logical role, an anchor role, split geometry, and an argument-vector command. This pattern builds a split tree around the inherited Amp pane:
 
 ```sh
-factory_args=$(jq -nc \
+factory_args_file=$(mktemp "${TMPDIR:-/tmp}/amp-factory.XXXXXX.json")
+trap 'rm -f "$factory_args_file"' EXIT
+
+hardware_script=$(cat <<'SH'
+system_profiler SPHardwareDataType SPDisplaysDataType
+printf '\nMetal tools:\n'
+xcrun -f metal 2>/dev/null || true
+exec "${SHELL:-/bin/zsh}" -l
+SH
+)
+
+review_script=$(cat <<'SH'
+printf 'Repository: '
+git rev-parse --show-toplevel
+printf '\nBranch/status:\n'
+git status --short --branch
+exec "${SHELL:-/bin/zsh}" -l
+SH
+)
+
+jq -n \
   --arg session "$REX_SESSION" \
   --arg anchor "$REX_BLOCK" \
   --arg cwd "$project_dir" \
-  --argjson stations "$stations_json" \
-  '{session_id: $session, anchor_block_id: $anchor, cwd: $cwd, stations: $stations}')
+  --arg hardware_script "$hardware_script" \
+  --arg review_script "$review_script" \
+  '{
+    session_id: $session,
+    anchor_block_id: $anchor,
+    cwd: $cwd,
+    stations: [
+      {
+        role: "hardware", label: "Apple Hardware", anchor: "amp",
+        direction: "horizontal", side: "after", ratio: 0.70,
+        command: ["sh", "-c", $hardware_script]
+      },
+      {
+        role: "review", label: "Audit Review", anchor: "amp",
+        direction: "vertical", side: "after", ratio: 0.72,
+        command: ["sh", "-c", $review_script]
+      }
+    ]
+  }' >"$factory_args_file"
 
-cat <<'LUA' | rex do -s "$REX_SESSION" - --args "$factory_args" --json
+cat <<'LUA' | rex do -s "$REX_SESSION" - --args "@$factory_args_file" --json
 local function terminal(command, cwd)
     return rex.layout.block({
         flavor = "com.superlogical.terminal.shell",
@@ -86,6 +127,28 @@ local function terminal(command, cwd)
             exit = { on_completion = false },
         },
     })
+end
+
+local known_roles = { amp = true }
+for index, station in ipairs(rex.args.stations) do
+    if type(station.role) ~= "string" or station.role == "" or known_roles[station.role] then
+        error("station " .. index .. " has an invalid or duplicate role", 0)
+    end
+    if not known_roles[station.anchor or "amp"] then
+        error("station " .. index .. " has an unknown anchor role", 0)
+    end
+    if station.direction ~= "horizontal" and station.direction ~= "vertical" then
+        error("station " .. index .. " has an invalid direction", 0)
+    end
+    if type(station.command) ~= "table" or #station.command == 0 then
+        error("station " .. index .. " has an empty command", 0)
+    end
+    for argument_index, argument in ipairs(station.command) do
+        if type(argument) ~= "string" then
+            error("station " .. index .. " command argument " .. argument_index .. " is not a string", 0)
+        end
+    end
+    known_roles[station.role] = true
 end
 
 local blocks = { amp = rex.args.anchor_block_id }
@@ -130,33 +193,18 @@ return created
 LUA
 ```
 
-In Rex, `horizontal` divides width and `vertical` divides height. The ratio belongs to the `before` side, so `side = "after", ratio = 0.70` leaves 70% for the existing anchor and 30% for the new station. Build `stations_json` with `jq`; each command is an argument array:
+The temporary file avoids command-line quoting and size limits. Remove it after `rex do` returns; Rex has already copied the terminal options by then. Validate it before mutation when constructing a more dynamic document:
 
 ```sh
-stations_json=$(jq -nc \
-  --argjson server '["pnpm", "dev"]' \
-  --argjson tests '["pnpm", "vitest", "--watch"]' \
-  --argjson logs '["sh", "-c", "tail -n 100 -f .app.log"]' \
-  '[
-    {
-      role: "server", label: "Server", anchor: "amp",
-      direction: "horizontal", side: "after", ratio: 0.70,
-      command: $server
-    },
-    {
-      role: "tests", label: "Tests", anchor: "amp",
-      direction: "vertical", side: "after", ratio: 0.70,
-      command: $tests
-    },
-    {
-      role: "logs", label: "Logs", anchor: "server",
-      direction: "vertical", side: "after", ratio: 0.65,
-      command: $logs
-    }
-  ]')
+jq -e '
+  .session_id != "" and
+  .anchor_block_id != "" and
+  (.stations | type == "array" and length > 0) and
+  all(.stations[]; .command | type == "array" and length > 0)
+' "$factory_args_file" >/dev/null
 ```
 
-Order matters because later stations may anchor to earlier roles. Use `sh -c` only when the command genuinely needs shell syntax such as a pipeline. For one station, a direct `rex split -s "$REX_SESSION" -b "$REX_BLOCK" ...` command is simpler and should be preferred.
+In Rex, `horizontal` divides width and `vertical` divides height. The ratio belongs to the `before` side, so `side = "after", ratio = 0.70` leaves 70% for the existing anchor and 30% for the new station. Station order matters because later stations may anchor to earlier roles. Use `sh -c` only when the command genuinely needs shell syntax. For one station, a direct `rex split -s "$REX_SESSION" -b "$REX_BLOCK" ...` command is simpler and should be preferred.
 
 ## Operate the factory
 
@@ -172,6 +220,7 @@ rex session inspect "$REX_SESSION" --json
 - A finite check passes only when its process reports exit status 0 and its output is correct.
 - A Rex wait timeout means the process is still running, not that it failed.
 - Read existing output before waiting for new output or retrying a command. A timeout or connection failure can have happened after the operation succeeded.
+- A multi-split Lua script validates all station data before mutating Rex, but the individual API calls are not an atomic transaction. If it fails after execution begins, inspect labels and block IDs before deciding whether anything was created or retrying.
 - Stop a foreground process with `rex send-key ... ctrl+c`; close its pane only when cleanup is requested or clearly safe.
 - Reuse or restart a station when possible. Do not accumulate duplicate test, server, or log windows.
 
