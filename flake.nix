@@ -70,7 +70,6 @@
         amp = pkgs.callPackage ./packages/amp {};
         claude-code = pkgs.callPackage ./packages/claude-code {};
         codex = pkgs.callPackage ./packages/codex {};
-        git-hunks = pkgs.callPackage ./packages/git-hunks {};
       });
     nixosConfigurations.vm-aarch64 = mkSystem "vm-aarch64" {
       system = "aarch64-linux";
