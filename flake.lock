@@ -281,6 +281,26 @@
         "type": "github"
       }
     },
+    "jj-get": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790939067,
+        "narHash": "sha256-zdUQym+dn9Jyji+182LCabXZvMEKNMARQSqYokbXCMo=",
+        "owner": "uzaaft",
+        "repo": "jj-get",
+        "rev": "954cffff43b70f68a5e4c58c2303f046e9d9230f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "uzaaft",
+        "repo": "jj-get",
+        "type": "github"
+      }
+    },
     "nix": {
       "inputs": {
         "bdwgc": "bdwgc",
@@ -396,6 +416,7 @@
         "direnv-instant": "direnv-instant",
         "ghostty": "ghostty",
         "home-manager": "home-manager_2",
+        "jj-get": "jj-get",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }

@@ -29,11 +29,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # bmux = {
-    #   url = "github:uzaaft/bmux";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
+    jj-get = {
+      url = "github:uzaaft/jj-get";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -55,7 +54,7 @@
         amp = prev.callPackage ./packages/amp {};
         claude-code = prev.callPackage ./packages/claude-code {};
         codex = prev.callPackage ./packages/codex {};
-        # tmux = inputs.bmux.packages.${prev.stdenv.hostPlatform.system}.default;
+        jj-get = inputs.jj-get.packages.${system}.jj-get;
       })
     ];
 
