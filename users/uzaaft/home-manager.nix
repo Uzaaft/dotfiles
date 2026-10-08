@@ -36,6 +36,8 @@
   dotfilesPath = "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles";
   mutableConfig = path: config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/${path}";
 in {
+  imports = [inputs.direnv-instant.homeModules.direnv-instant];
+
   # Home-manager 22.11 requires this be set. We never set it so we have
   # to use the old state version.
   home.stateVersion = "25.05";
@@ -180,7 +182,6 @@ in {
     package = pkgs.direnv;
     nix-direnv.enable = true;
 
-    enableZshIntegration = true;
 
     silent = true;
     config = {
@@ -192,6 +193,9 @@ in {
       };
     };
   };
+
+  # This module replaces direnv's shell hooks with its asynchronous hooks.
+  programs.direnv-instant.enable = true;
 
   programs.jujutsu = {
     enable = true;
