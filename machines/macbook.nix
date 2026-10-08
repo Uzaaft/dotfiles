@@ -39,8 +39,8 @@
   services.tailscale.enable = true;
 
   # Keep paths inherited from GUI terminals after Nix's configured paths.
-  environment.systemPath = lib.mkAfter [ "\${PATH:-/usr/bin:/bin}" ];
+  environment.systemPath = lib.mkAfter ["\${PATH:-/usr/bin:/bin}"];
 
   environment.shells = with pkgs; [zsh];
-  environment.systemPackages = with pkgs; [ ];
+  environment.systemPackages = with pkgs; [];
 }
