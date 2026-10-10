@@ -24,7 +24,6 @@
     c = "cargo";
     pp = "pnpm";
     ls-scripts = "cat package.json | jq .scripts";
-
   };
 
   sshKeyPath = (
@@ -63,7 +62,7 @@ in {
       pkgs.jj-get
       pkgs.ijq
       pkgs.jq
-      pkgs.vscode-json-languageserver # Json lsp 
+      pkgs.vscode-json-languageserver # Json lsp
       pkgs.nix-output-monitor
       pkgs.nixd
       pkgs.ripgrep
@@ -73,7 +72,7 @@ in {
       pkgs.zsh-powerlevel10k
     ]
     ++ (lib.optionals isDarwin [
-    ])
+      ])
     ++ (lib.optionals isLinux [
       # non-darwin packages
       pkgs.usbutils
@@ -179,7 +178,6 @@ in {
     enable = true;
     package = pkgs.direnv;
     nix-direnv.enable = true;
-
 
     silent = true;
     config = {
