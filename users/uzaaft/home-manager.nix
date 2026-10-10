@@ -133,17 +133,11 @@ in {
         source = mutableConfig "users/uzaaft/rex";
       };
 
-      niri = {
-        source = mutableConfig "config/niri";
-      };
       nvim = {
         source = mutableConfig "config/nvim";
       };
       "nushell/config.nu" = {
         source = mutableConfig "users/uzaaft/config.nu";
-      };
-      "oh-my-posh/omp.json" = {
-        source = mutableConfig "users/uzaaft/omp.json";
       };
       opencode = {
         source = mutableConfig "users/uzaaft/opencode";
@@ -164,7 +158,11 @@ in {
     // (
       # Linux stuf
       if isGraphicalLinux
-      then {}
+      then {
+        niri = {
+          source = mutableConfig "config/niri";
+        };
+      }
       else {}
     );
 
@@ -228,8 +226,6 @@ in {
         prune = true;
       };
       aliases = {
-        st = "status";
-        feedback = "!f() { git checkout -b \"$(git rev-parse --abbrev-ref HEAD)/feedback\" && git add -A && git commit -m \"$1\"; }; f";
       };
 
       branch.autosetuprebase = "always";
