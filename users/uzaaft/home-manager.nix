@@ -60,7 +60,7 @@ in {
       pkgs.file
       pkgs.fzf
       pkgs.gh
-      pkgs.git-get
+      pkgs.jj-get
       pkgs.ijq
       pkgs.jq
       pkgs.vscode-json-languageserver # Json lsp 
