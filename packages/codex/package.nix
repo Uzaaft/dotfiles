@@ -6,24 +6,24 @@
   bubblewrap,
   ripgrep,
 }: let
-  version = "0.153.4";
+  version = "0.162.1";
 
   release =
     {
       "aarch64-darwin" = {
         target = "aarch64-apple-darwin";
-        hash = "sha256-jPkR6mdlI7+yEh7FYYSNKrpWSJCtU2202KM1PyuYULE=";
-        hostHash = "sha256-Ramw/fU7mLhaa7keF13ZDpYTKKehT7UKQJAiBRmd8d8=";
+        hash = "sha256-spOg/N2HGQCkTApPQKGqQBsx4ChU95Dr24vV0Rd/0f4=";
+        hostHash = "sha256-H0ZKKJStvJFuQxtr8ZvvLLSFz34T5jbUJXjFgZYrNyc=";
       };
       "aarch64-linux" = {
         target = "aarch64-unknown-linux-musl";
-        hash = "sha256-XNphgr2Uw6MPLrY6SVSJ6/f2kf3bFNcPSMbBpQcbbN4=";
-        hostHash = "sha256-2AR7jTM3DWCQ5ynSfrdt5gomhrqhwUPBOMmwXccNgTs=";
+        hash = "sha256-vzyicZ8RQ7FED72FwUk3nmlseCxQrXmR+L/OxgsmAME=";
+        hostHash = "sha256-E5XOk2f4rNKAZ03/CD7fJb8iHZCLg1HVvU8/3ekYHpo=";
       };
       "x86_64-linux" = {
         target = "x86_64-unknown-linux-musl";
-        hash = "sha256-9HlCTsoJJITcQNh64oxE9MxAI0pgBF1hMeSTgA2BSjA=";
-        hostHash = "sha256-+VgwqGlZCVdmS7/Ge8ywh3OAa2k2cLrxWQgXb4m0zTE=";
+        hash = "sha256-hvJo2BuJjz4UTF7P8q0v2ixYAuBC1hlbclOP4PoSUFc=";
+        hostHash = "sha256-RYI56kXB/FCNiWlfGAqzUvKDRwmopGkppEZvTwQ5mto=";
       };
     }.${
       stdenvNoCC.hostPlatform.system

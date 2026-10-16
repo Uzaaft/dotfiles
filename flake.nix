@@ -73,6 +73,7 @@
         amp = prev.callPackage ./packages/amp {};
         claude-code = prev.callPackage ./packages/claude-code {};
         codex = prev.callPackage ./packages/codex {};
+        opencode = prev.callPackage ./packages/opencode {};
         jj-get = inputs.jj-get.packages.${system}.jj-get;
       })
     ];
@@ -93,6 +94,7 @@
         amp = pkgs.callPackage ./packages/amp {};
         claude-code = pkgs.callPackage ./packages/claude-code {};
         codex = pkgs.callPackage ./packages/codex {};
+        opencode = pkgs.callPackage ./packages/opencode {};
       });
     nixosConfigurations.vm-aarch64 = mkSystem "vm-aarch64" {
       system = "aarch64-linux";

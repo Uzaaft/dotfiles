@@ -4,20 +4,20 @@
   stdenvNoCC,
   unzip,
 }: let
-  version = "1.18.35";
+  version = "1.19.0";
 
   platformSources = {
     x86_64-linux = {
       url = "https://github.com/anomalyco/opencode/releases/download/v${version}/opencode-linux-x64.tar.gz";
-      hash = "sha256-yPiItFH1SUoY+Fj/+w4LaPTkuqnCQXYcXyBohPD6ZA0=";
+      hash = "sha256-e7nmGtb+rPLonBCmosGEDj3kIgu1C6H8cRDzGAYHauw=";
     };
     aarch64-linux = {
       url = "https://github.com/anomalyco/opencode/releases/download/v${version}/opencode-linux-arm64.tar.gz";
-      hash = "sha256-9/K6We6KqU04j5aWV1oy0g5xwu5I3vn4D8aTpg/sbHI=";
+      hash = "sha256-6YQdQ9PhqPNu0mkVktO4tPsJfmBsi1WaJ3obhFhA4ms=";
     };
     aarch64-darwin = {
       url = "https://github.com/anomalyco/opencode/releases/download/v${version}/opencode-darwin-arm64.zip";
-      hash = "sha256-gLBRJDV6d81XlFv942CCoCjoKcGY0iLV4UZhf0mixLc=";
+      hash = "sha256-DV9RGUjW+/7fm7FnU8CsQmE9zI3nXZ3rfo0M9YTI+6Y=";
     };
   };
   platformSource = platformSources.${stdenvNoCC.hostPlatform.system}
