@@ -5,3 +5,4 @@ config/zsh/.zcompdump*
 config/fish/completions
 /config/zsh/.zcompcache
 /users/uzaaft/amp/settings.json.amp-write-meta
+.cache/
