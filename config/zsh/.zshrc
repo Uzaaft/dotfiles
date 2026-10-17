@@ -83,7 +83,7 @@ function load_completion() {
     *) git log --color=always $word ;;
     esac'
 
-  eval "$(direnv-instant hook zsh)"
+  # eval "$(direnv-instant hook zsh)"
 }
 zsh-defer load_completion
 
