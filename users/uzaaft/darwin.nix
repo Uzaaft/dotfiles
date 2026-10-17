@@ -70,7 +70,6 @@
     ];
     brews = [
       "gnupg"
-      "zig"
       "opencode"
     ];
   };
