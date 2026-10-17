@@ -30,3 +30,10 @@ sign-on-push = true
 [user]
 name = "Uzair Aftab"
 email = "git@uzaaft.me"
+
+[templates]
+git_push_bookmark = "\"uzaaft/\" ++ change_id.short()"
+commit_trailers = '''
+format_signed_off_by_trailer(self)
+++ if(!trailers.contains_key("Change-Id"), format_gerrit_change_id_trailer(self))
+'''
