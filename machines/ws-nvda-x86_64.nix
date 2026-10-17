@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./hardware/ws-nvda-x86_64.nix
+    ../lib/amp-runners.nix
   ];
   # Be careful updating this.
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -24,6 +25,9 @@
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
+  # The installer detects the older fallback EFI binary first. Allow bootctl
+  # update to skip the already-current canonical binaries without failing.
+  boot.loader.systemd-boot.graceful = true;
   # Adds a Memtest86+ entry to the boot menu for testing RAM.
   boot.loader.systemd-boot.memtest86.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -63,6 +67,16 @@
   # Don't require password for sudo
   security.sudo.wheelNeedsPassword = false;
   services = {
+    amp-runners = {
+      enable = true;
+      user = "uzaaft";
+      package = pkgs.amp;
+      runners.dev.repos = [
+        "polymath-as/solidus"
+        "antithesishq/bombadil"
+        "uzaaft/dotfiles"
+      ];
+    };
     tailscale.enable = true;
     ollama = {
       enable = false;
@@ -95,7 +109,7 @@
     };
   };
 
-  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.enable = false;
   programs.virt-manager.enable = true;
   users.users.uzaaft.extraGroups = ["libvirtd"];
 
@@ -128,6 +142,8 @@
     gnumake
     killall
     qemu
+    stress-ng
+    gpu-burn
 
     (writeShellScriptBin "niri-auto" ''
       niri msg output Virtual-1 mode auto
