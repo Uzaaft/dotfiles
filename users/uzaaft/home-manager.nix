@@ -103,9 +103,6 @@ in {
     ".cargo/config.toml" = {
       source = mutableConfig "stowed/.cargo/config.toml";
     };
-    ".claude/settings.json" = {
-      source = mutableConfig "users/uzaaft/claude/settings.json";
-    };
     ".codex/AGENTS.md" = {
       source = mutableConfig "users/uzaaft/agents.md";
     };
@@ -115,6 +112,15 @@ in {
     ".agents/skills".source = mutableConfig "users/uzaaft/agent-skills";
     ".claude/skills".source = mutableConfig "users/uzaaft/agent-skills";
   };
+
+  # Claude Code saves its settings by writing a temporary file beside the
+  # file its link points at, then renaming it over. Through home-manager's
+  # link that is the read-only store, so the link goes straight to the
+  # dotfiles instead, and saves (such as installing a plugin) land there.
+  home.activation.claudeSettings = lib.hm.dag.entryAfter ["linkGeneration"] ''
+    run mkdir -p "$HOME/.claude"
+    run ln -sfn "${dotfilesPath}/users/uzaaft/claude/settings.json" "$HOME/.claude/settings.json"
+  '';
 
   xdg.configFile =
     {
