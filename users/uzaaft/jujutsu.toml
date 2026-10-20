@@ -9,10 +9,10 @@ diff-formatter = ":git"
 "fork_history(to, from)" = "fork_point(to | from)..@"
 
 [aliases]
-b = "branch"
-n = "new"
+b = ["bookmark"]
+n = ["new"]
 tug = ["bookmark", "move", "--from", "closest_bookmark(@-)", "--to", "@-"]
-retrunk = "rebase -d trunk()"
+retrunk = ["rebase", "-d", "trunk()"]
 
 [template-aliases]
 "format_short_id(id)" = "id.shortest(8)"
