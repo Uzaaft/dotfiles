@@ -33,7 +33,7 @@
       url = "github:uzaaft/jj-get";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    jujutsu.url = "github:martinvonz/jj";
+    
   };
 
   outputs = {
@@ -45,7 +45,6 @@
   } @ inputs: let
     # Overlays is the list of overlays we want to apply from flake inputs.
     overlays = [
-      inputs.jujutsu.overlays.default
       (final: prev: let
         system = prev.stdenv.hostPlatform.system;
         unstable = import inputs.nixpkgs-unstable {
@@ -58,6 +57,7 @@
         codex = prev.callPackage ./packages/codex {};
         opencode = prev.callPackage ./packages/opencode {};
         jj-get = inputs.jj-get.packages.${system}.jj-get;
+        jujutsu = unstable.jujutsu;
       })
     ];
 
