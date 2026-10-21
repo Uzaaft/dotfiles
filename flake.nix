@@ -33,6 +33,8 @@
       url = "github:uzaaft/jj-get";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    rex.url = "https://pkgs.superlogical.com/rex/nix/snapshot.tar.gz";
   };
 
   outputs = {
@@ -50,19 +52,22 @@
           inherit system;
           config.allowUnfree = true;
         };
-        xdgDesktopPortalWithoutGeoLocation = (prev.xdg-desktop-portal.override {
-          enableGeoLocation = false;
-        }).overrideAttrs (_: {
-          doCheck = false;
-        });
+        xdgDesktopPortalWithoutGeoLocation =
+          (prev.xdg-desktop-portal.override {
+            enableGeoLocation = false;
+          }).overrideAttrs (_: {
+            doCheck = false;
+          });
         gstPluginsBadWithoutFlite = prev.gst_all_1.gst-plugins-bad.overrideAttrs (old: {
           buildInputs = prev.lib.filter (dependency: dependency != prev.flite) old.buildInputs;
           mesonFlags = old.mesonFlags ++ ["-Dflite=disabled"];
         });
         gtk4WithoutFlite = prev.gtk4.override {
-          gst_all_1 = prev.gst_all_1 // {
-            gst-plugins-bad = gstPluginsBadWithoutFlite;
-          };
+          gst_all_1 =
+            prev.gst_all_1
+            // {
+              gst-plugins-bad = gstPluginsBadWithoutFlite;
+            };
         };
       in {
         xdg-desktop-portal = xdgDesktopPortalWithoutGeoLocation;

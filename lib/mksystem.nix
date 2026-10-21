@@ -40,9 +40,23 @@ in
         else inputs.determinate.nixosModules.default
       )
       (
+        if !darwin
+        then inputs.rex.nixosModules.default
+        else {}
+      )
+      (
         if darwin
         then {nix.enable = false;}
-        else {}
+        else {
+          # One root login server that runs a Rex server per account, as that
+          # account, for callers identified through the host's Tailscale.
+          services.rex.loginServer = {
+            enable = true;
+            tailscaleServe.enable = true;
+            accounts.${user}.principals = ["tailscale:Uzaaft@github"];
+            defaults."tailscale:Uzaaft@github" = user;
+          };
+        }
       )
 
       # Apply our overlays. Overlays are keyed by system type so we have
