@@ -75,6 +75,8 @@
         "polymath-as/solidus"
         "antithesishq/bombadil"
         "uzaaft/dotfiles"
+        "Polymath-AS/odin"
+        "Polymath-AS/snowstead-web"
       ];
     };
     tailscale.enable = true;
