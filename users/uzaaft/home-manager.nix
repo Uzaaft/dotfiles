@@ -66,7 +66,6 @@ in {
       pkgs.nix-output-monitor
       pkgs.nixd
       pkgs.ripgrep
-      pkgs.tmux
       pkgs.tree
       pkgs.watch
       pkgs.zsh-powerlevel10k
@@ -93,9 +92,6 @@ in {
   home.file = {
     ".zshenv" = {
       source = mutableConfig "users/uzaaft/.zshenv";
-    };
-    ".tmux.conf" = {
-      source = mutableConfig "users/uzaaft/.tmux.conf";
     };
     ".local/bin/git-project" = {
       source = mutableConfig "stowed/.local/bin/git-project";
