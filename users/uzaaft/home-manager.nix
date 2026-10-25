@@ -54,7 +54,6 @@ in {
       # CLI tools
       pkgs.bat
       pkgs.btop
-      pkgs.curl
       pkgs.eza
       pkgs.fd
       pkgs.file
