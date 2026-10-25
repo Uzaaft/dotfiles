@@ -77,6 +77,8 @@
         "uzaaft/dotfiles"
         "Polymath-AS/odin"
         "Polymath-AS/snowstead-web"
+        "polymath-as/infrastructure"
+        "uzaaft/libghostty-rs"
       ];
     };
     tailscale.enable = true;
