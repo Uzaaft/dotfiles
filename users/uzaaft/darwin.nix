@@ -17,8 +17,8 @@
         trusted = true;
       }
       {
-      name = "abue-ammar/tinycast";
-      trusted = true;
+        name = "abue-ammar/tinycast";
+        trusted = true;
       }
       # {
       #   name = "uzaaft/costbar";

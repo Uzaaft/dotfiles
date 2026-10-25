@@ -159,3 +159,15 @@ rex.bind("ctrl+a>[Space]", "rotate_panes")
 rex.bind("ctrl+a>shift+e", "pane.balance")
 rex.bind("ctrl+a>x", "pane.close")
 rex.bind("ctrl+a>z", "pane.zoom")
+
+-- Persistent resize mode; exclusive keys cannot leak into the terminal.
+rex.mode("resize", { exclusive = true })
+rex.bind("ctrl+a>shift+r", "client.mode.enter", { name = "resize" })
+for key, direction in pairs({ h = "left", j = "down", k = "up", l = "right" }) do
+    rex.bind("resize/" .. key, "pane.resize", { direction = direction })
+    rex.bind("resize/shift+" .. key, "pane.resize", { direction = direction, amount = 15 })
+    rex.bind("resize/" .. direction, "pane.resize", { direction = direction })
+end
+rex.bind("resize/=", "pane.balance")
+rex.bind("resize/enter", "client.mode.exit")
+rex.bind("resize/escape", "client.mode.exit")

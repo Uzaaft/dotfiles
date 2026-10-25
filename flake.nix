@@ -52,34 +52,13 @@
           inherit system;
           config.allowUnfree = true;
         };
-        xdgDesktopPortalWithoutGeoLocation =
-          (prev.xdg-desktop-portal.override {
-            enableGeoLocation = false;
-          }).overrideAttrs (_: {
-            doCheck = false;
-          });
-        gstPluginsBadWithoutFlite = prev.gst_all_1.gst-plugins-bad.overrideAttrs (old: {
-          buildInputs = prev.lib.filter (dependency: dependency != prev.flite) old.buildInputs;
-          mesonFlags = old.mesonFlags ++ ["-Dflite=disabled"];
-        });
-        gtk4WithoutFlite = prev.gtk4.override {
-          gst_all_1 =
-            prev.gst_all_1
-            // {
-              gst-plugins-bad = gstPluginsBadWithoutFlite;
-            };
-        };
       in {
-        xdg-desktop-portal = xdgDesktopPortalWithoutGeoLocation;
-        xdg-desktop-portal-gnome = prev.xdg-desktop-portal-gnome.override {
-          gtk4 = gtk4WithoutFlite;
-          xdg-desktop-portal = xdgDesktopPortalWithoutGeoLocation;
-        };
         amp = prev.callPackage ./packages/amp {};
         claude-code = prev.callPackage ./packages/claude-code {};
         codex = prev.callPackage ./packages/codex {};
         opencode = prev.callPackage ./packages/opencode {};
         jj-get = inputs.jj-get.packages.${system}.jj-get;
+        jujutsu = unstable.jujutsu;
       })
     ];
 

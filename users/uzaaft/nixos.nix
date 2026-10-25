@@ -42,4 +42,9 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYZX17OSEH3mKJsP4oFuaGtr8F5TF/3/RXOCw2cBgps"
     ];
   };
+  security.pki.caCertificateBlacklist = [
+  "Comodo AAA Services root"
+  "emSign EEC Root CA - G3"
+  ];
+
 }
