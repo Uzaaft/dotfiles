@@ -22,22 +22,22 @@ default: switch
 build:
 ifeq ($(UNAME), Darwin)
 	NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs#nh \
-		--option extra-substituters https://install.determinate.systems \
-		--option extra-trusted-public-keys cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM= \
-		-- darwin build --impure ".#darwinConfigurations.ArchMac"
+	  --option extra-substituters https://install.determinate.systems \
+	  --option extra-trusted-public-keys cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM= \
+	  -- darwin build --impure ".#darwinConfigurations.ArchMac"
 else
 	NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs#nh \
-		--option extra-substituters https://install.determinate.systems \
-		--option extra-trusted-public-keys cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM= \
-		-- os build --impure ".#nixosConfigurations.${NIXNAME}"
+	  --option extra-substituters https://install.determinate.systems \
+	  --option extra-trusted-public-keys cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM= \
+	  -- os build --impure ".#nixosConfigurations.${NIXNAME}"
 endif
 
 # Switch to the configuration
 switch:
 ifeq ($(UNAME), Darwin)
-	NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs#nh -- darwin switch --impure ".#darwinConfigurations.ArchMac"
+	NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs#nh -- --no-nom darwin switch --no-nom --impure ".#darwinConfigurations.ArchMac"
 else
-	NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs#nh -- os switch --impure ".#nixosConfigurations.${NIXNAME}"
+	NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs#nh -- os switch --no-nom --impure ".#nixosConfigurations.${NIXNAME}"
 endif
 
 vm/bootstrap0:
