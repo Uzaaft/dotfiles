@@ -47,6 +47,7 @@ in {
   # Packages I always want installed.
   home.packages =
     [
+      pkgs._1password-cli
       pkgs.amp
       pkgs.neovim
       # Stuff
