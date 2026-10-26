@@ -35,7 +35,7 @@ endif
 # Switch to the configuration
 switch:
 ifeq ($(UNAME), Darwin)
-	NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs#nh -- --no-nom darwin switch --no-nom --impure ".#darwinConfigurations.ArchMac"
+	NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs#nh -- darwin switch --no-nom --impure ".#darwinConfigurations.ArchMac"
 else
 	NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs#nh -- os switch --no-nom --impure ".#nixosConfigurations.${NIXNAME}"
 endif
