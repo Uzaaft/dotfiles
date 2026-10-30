@@ -136,6 +136,7 @@ rex.bind("ctrl+space", "client.tab.previous")
 rex.bind("ctrl+a>a", "pane.send_key", { key = "ctrl+a" })
 rex.bind("ctrl+a>r", "client.config.reload")
 rex.bind("ctrl+a>shift+[Semicolon]", "client.palette.toggle")
+rex.bind("ctrl+a>v", "client.sidebar.activity.toggle")
 
 rex.bind("ctrl+a>s", "session.switch")
 rex.bind("ctrl+a>shift+s", "project_session")
@@ -159,6 +160,9 @@ rex.bind("ctrl+a>[Space]", "rotate_panes")
 rex.bind("ctrl+a>shift+e", "pane.balance")
 rex.bind("ctrl+a>x", "pane.close")
 rex.bind("ctrl+a>z", "pane.zoom")
+rex.bind("ctrl+a>f", "pane.float")
+rex.bind("ctrl+a>shift+[Digit1]", "pane.move_to_new_tab")
+rex.bind("ctrl+a>m", "pane.move_to_tab")
 
 -- Persistent resize mode; exclusive keys cannot leak into the terminal.
 rex.mode("resize", { exclusive = true })
