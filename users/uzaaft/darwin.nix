@@ -92,6 +92,6 @@
   system.primaryUser = "uzaaft";
   users.users.uzaaft = {
     home = "/Users/uzaaft";
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
   };
 }

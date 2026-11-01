@@ -3,9 +3,14 @@
   # imports = [
   # ];
 
+  # Lets fish find completions from packages Home Manager installs.
+  environment.pathsToLink = ["/share/fish"];
+
   # Add ~/.local/bin to PATH
   environment.localBinInPath = true;
 
+  # fish is the login shell; zsh stays available.
+  programs.fish.enable = true;
   programs.zsh.enable = true;
   programs.zsh.enableGlobalCompInit = false;
 
@@ -21,7 +26,7 @@
     isNormalUser = true;
     home = "/home/uzaaft";
     extraGroups = ["wheel" "podman" "video"];
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     hashedPassword = "$6$5h.pMKRtGXli6Ix0$IW1YG5nUV9K0Z.TuXWU0E6N0maqrcWMf1exw0TgkKKDwFZ9grjBFsE.OiNCYiRW.ibuRgEeEVbAn4jrIYiwDZ0";
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKYZX17OSEH3mKJsP4oFuaGtr8F5TF/3/RXOCw2cBgps"
