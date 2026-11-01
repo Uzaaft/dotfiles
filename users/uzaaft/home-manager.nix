@@ -43,6 +43,41 @@ in {
 
   xdg.enable = true;
 
+  # Home Manager loads these in every shell it manages, and nu inherits them
+  home.sessionVariables =
+    {
+      EDITOR = "nvim";
+      MANPAGER = "nvim +Man!";
+      GIT_PATH = "$HOME/repositories/";
+      GEM_HOME = "$HOME/.gem";
+      DENO_INSTALL = "$HOME/.deno/";
+      NPM_CONFIG_PREFIX = "$HOME/.npm-global";
+      PNPM_HOME = "$HOME/pnpm";
+      BAT_THEME = "Catppuccin-mocha";
+    }
+    // lib.optionalAttrs isDarwin {
+      SSH_AUTH_SOCK = "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock";
+      GOKU_EDN_CONFIG_FILE = "$HOME/.config/goku/karabiner.edn";
+    };
+
+  home.sessionPath =
+    [
+      "$HOME/.local/bin"
+      "$HOME/.cargo/bin"
+      "$HOME/.bun/bin"
+      "$HOME/pnpm"
+      "$HOME/go/bin"
+      "$HOME/.npm-global/bin"
+      "$HOME/.gem/bin"
+    ]
+    ++ lib.optionals isDarwin [
+      "/opt/homebrew/opt/rustup/bin"
+      "/opt/homebrew/opt/llvm/bin"
+      "/opt/homebrew/bin"
+      "/opt/homebrew/opt/gnu-sed/libexec/gnubin"
+      "/opt/homebrew/opt/libpq/bin"
+    ];
+
   # Packages I always want installed.
   home.packages =
     [
@@ -210,6 +245,7 @@ in {
     '';
     shellAliases = shellAliases;
   };
+
 
   programs.zsh = {
     enable = true;
