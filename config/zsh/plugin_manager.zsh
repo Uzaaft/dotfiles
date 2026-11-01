@@ -1,0 +1,55 @@
+# --- minimal zsh plugin manager ---
+function zsh_install_missing_plugins() {
+  function zcompile-many() { local f; for f; do zcompile -R -- "$f".zwc "$f"; done }
+  function clone-plugin() {
+    local plugin="$(basename ${1})"
+    echo "Installing ${plugin}"
+    git clone --quiet --depth=1 "${1}.git" ${zsh_plugins}/${plugin} > /dev/null
+  }
+  # clone plugins, add more plugin downloads here with optional compilation calls to improve startup
+  if [[ ! -e ${zsh_plugins}/zsh-completions ]]; then
+    clone-plugin "https://github.com/zsh-users/zsh-completions"
+  fi
+  if [[ ! -e ${zsh_plugins}/fzf-tab ]]; then
+    clone-plugin "https://github.com/Aloxaf/fzf-tab"
+    zcompile-many ${zsh_plugins}/fzf-tab/*.zsh
+  fi
+  if [[ ! -e ${zsh_plugins}/zsh-syntax-highlighting ]]; then
+    clone-plugin "https://github.com/zsh-users/zsh-syntax-highlighting"
+    zcompile-many ${zsh_plugins}/zsh-syntax-highlighting/{zsh-syntax-highlighting.zsh,highlighters/*/*.zsh}
+  fi
+  if [[ ! -e ${zsh_plugins}/zsh-autosuggestions ]]; then
+    clone-plugin "https://github.com/zsh-users/zsh-autosuggestions"
+    zcompile-many ${zsh_plugins}/zsh-autosuggestions/{zsh-autosuggestions.zsh,src/**/*.zsh}
+  fi
+  if [[ ! -e ${zsh_plugins}/zsh-nvim-appname ]]; then
+    clone-plugin "https://github.com/mehalter/zsh-nvim-appname"
+    zcompile-many ${zsh_plugins}/zsh-nvim-appname/zsh-nvim-appname.plugin.zsh
+  fi
+  if [[ ! -e ${zsh_plugins}/zsh-defer ]]; then
+    clone-plugin "https://github.com/romkatv/zsh-defer"
+    zcompile-many ${zsh_plugins}/zsh-defer/zsh-defer.plugin.zsh
+  fi
+
+  unfunction zcompile-many clone-plugin
+}
+
+# --- zsh plugin manager updater ---
+function zsh_update_plugins() { rm -rf ${zsh_plugins}/**; zsh_install_missing_plugins }
+
+# --- install zsh plugins ---
+zsh_install_missing_plugins
+
+# --- zsh-defer ---
+source ${zsh_plugins}/zsh-defer/zsh-defer.plugin.zsh
+
+# --- zsh-syntax-highlighting ---
+zsh-defer source ${zsh_plugins}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# --- zsh-autosuggestions ---
+zsh-defer source ${zsh_plugins}/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# --- zsh-nvim-appname ---
+fpath+=${zsh_plugins}/zsh-nvim-appname
+source ${zsh_plugins}/zsh-nvim-appname/zsh-nvim-appname.plugin.zsh
+
+bindkey '^ ' autosuggest-accept
