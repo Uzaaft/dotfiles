@@ -1,29 +1,11 @@
 {
-  description = "NixOS systems and tools by mitchellh";
+  description = "Bobr System Flake";
 
   inputs = {
-    # Pin our primary nixpkgs repository. This is the main nixpkgs repository
-    # we'll use for our configurations. Be very careful changing this because
-    # it'll impact your entire system.
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
-
-    # Used to get ibus 1.5.29 which has some quirks we want to test.
-    nixpkgs-old-ibus.url = "github:nixos/nixpkgs/e2dd4e18cc1c7314e24154331bae07df76eb582f";
-
     # We use the unstable nixpkgs repo for some packages.
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-
-    # Build a custom WSL installer
-    nixos-wsl.url = "github:nix-community/NixOS-WSL";
-    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
-
-    # snapd
-    nix-snapd.url = "github:nix-community/nix-snapd";
-    nix-snapd.inputs.nixpkgs.follows = "nixpkgs";
-
-    # https://github.com/cpick/nix-rosetta-builder
-    nix-rosetta-builder.url = "github:cpick/nix-rosetta-builder";
-    nix-rosetta-builder.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.xz";
+    nixpkgs-unstable.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+    # Spesific nixpkgs for darwin as recommended by nix-darwin docs.
 
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
@@ -35,55 +17,47 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+
     darwin = {
       url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # I think technically you're not supposed to override the nixpkgs
-    # used by neovim but recently I had failures if I didn't pin to my
-    # own. We can always try to remove that anytime.
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
+    ghostty = {
+      url = "github:uzaaft/ghostty/push-xpztrnpxmwmp";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Other packages
-    jujutsu.url = "github:martinvonz/jj";
-    zig.url = "github:mitchellh/zig-overlay";
+    jj-get = {
+      url = "github:uzaaft/jj-get";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    # Non-flakes
-    theme-bobthefish.url = "github:oh-my-fish/theme-bobthefish/e3b4d4eafc23516e35f162686f08a42edf844e40";
-    theme-bobthefish.flake = false;
-    fish-fzf.url = "github:jethrokuan/fzf/24f4739fc1dffafcc0da3ccfbbd14d9c7d31827a";
-    fish-fzf.flake = false;
-    fish-foreign-env.url = "github:oh-my-fish/plugin-foreign-env/dddd9213272a0ab848d474d0cbde12ad034e65bc";
-    fish-foreign-env.flake = false;
+    rex.url = "https://pkgs.superlogical.com/rex/nix/snapshot.tar.gz";
   };
 
-  outputs = { nixpkgs, ... }@inputs: let
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    darwin,
+    ...
+  } @ inputs: let
     # Overlays is the list of overlays we want to apply from flake inputs.
     overlays = [
-      inputs.jujutsu.overlays.default
-      inputs.zig.overlays.default
-
-      (_final: prev: let
+      (final: prev: let
         system = prev.stdenv.hostPlatform.system;
         unstable = import inputs.nixpkgs-unstable {
           inherit system;
           config.allowUnfree = true;
         };
       in {
-        # gh CLI on stable has bugs.
-        gh = unstable.gh;
-
-        # Want the latest version of these
-        claude-code = unstable.claude-code;
-        nushell = unstable.nushell;
-
-        ibus = prev.ibus;
-        ibus_stable = prev.ibus;
-        ibus_1_5_29 = inputs.nixpkgs-old-ibus.legacyPackages.${system}.ibus;
-        ibus_1_5_31 = unstable.ibus;
+        amp = prev.callPackage ./packages/amp {};
+        claude-code = prev.callPackage ./packages/claude-code {};
+        codex = prev.callPackage ./packages/codex {};
+        jj-get = inputs.jj-get.packages.${system}.jj-get;
+        jujutsu = unstable.jujutsu;
       })
     ];
 
@@ -91,31 +65,32 @@
       inherit overlays nixpkgs inputs;
     };
   in {
+    # Expose local packages
+    packages =
+      nixpkgs.lib.genAttrs [
+        "x86_64-linux"
+        "aarch64-linux"
+        "aarch64-darwin"
+      ] (system: let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in {
+        amp = pkgs.callPackage ./packages/amp {};
+        claude-code = pkgs.callPackage ./packages/claude-code {};
+        codex = pkgs.callPackage ./packages/codex {};
+      });
     nixosConfigurations.vm-aarch64 = mkSystem "vm-aarch64" {
       system = "aarch64-linux";
-      user   = "mitchellh";
+      user = "uzaaft";
     };
 
-    nixosConfigurations.vm-aarch64-utm = mkSystem "vm-aarch64-utm" {
-      system = "aarch64-linux";
-      user   = "mitchellh";
-    };
-
-    nixosConfigurations.wsl = mkSystem "wsl" {
+    nixosConfigurations.nvidia-workstation = mkSystem "ws-nvda-x86_64" {
       system = "x86_64-linux";
-      user   = "mitchellh";
-      wsl    = true;
+      user = "uzaaft";
     };
 
-    darwinConfigurations.macbook-pro-m1 = mkSystem "macbook-pro-m1" {
+    darwinConfigurations.ArchMac = mkSystem "macbook" {
       system = "aarch64-darwin";
-      user   = "mitchellh";
-      darwin = true;
-    };
-
-    darwinConfigurations.mac-studio = mkSystem "mac-studio" {
-      system = "aarch64-darwin";
-      user   = "mitchellh";
+      user = "uzaaft";
       darwin = true;
     };
   };

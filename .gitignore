@@ -1,4 +1,7 @@
-.DS_Store
-backup.tar.gz
 result
-iso/nixos.iso
+.DS_Store
+config/zsh/.zsh_history
+config/zsh/.zcompdump*
+/config/zsh/.zcompcache
+/users/uzaaft/amp/settings.json.amp-write-meta
+.cache/
