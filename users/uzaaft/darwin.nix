@@ -59,7 +59,6 @@
       "tableplus"
       "wispr-flow"
       # Required for Norwegian jobs
-      "microsoft-teams"
       "visual-studio-code"
       # CLI tools
       "codex"
