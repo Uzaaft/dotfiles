@@ -20,6 +20,10 @@
         name = "abue-ammar/tinycast";
         trusted = true;
       }
+      {
+        name = "steipete/tap";
+        trusted = true;
+      }
       # {
       #   name = "uzaaft/costbar";
       #   trusted = true;
