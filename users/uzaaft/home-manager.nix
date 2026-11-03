@@ -93,12 +93,13 @@ in {
       pkgs.file
       pkgs.fzf
       pkgs.gh
-      pkgs.jj-get
+      pkgs.hunk
       pkgs.ijq
+      pkgs.jj-get
       pkgs.jq
-      pkgs.vscode-json-languageserver # Json lsp
       pkgs.nix-output-monitor
       pkgs.nixd
+      pkgs.vscode-json-languageserver # Json lsp
       pkgs.ripgrep
       pkgs.tree
       pkgs.watch
