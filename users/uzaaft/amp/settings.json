@@ -1,4 +1,5 @@
 {
+  "amp.runner.env.enabled": true,
   "amp.notifications.enabled": false,
   "amp.tab.clipboard.enabled": false,
   "amp.git.commit.coauthor.enabled": false,
