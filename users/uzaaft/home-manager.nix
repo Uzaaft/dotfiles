@@ -230,6 +230,10 @@ in {
   # This module replaces direnv's shell hooks with its asynchronous hooks.
   programs.direnv-instant.enable = true;
 
+  programs.atuin = {
+    enable = true;
+  };
+
   programs.jujutsu = {
     enable = true;
   };
