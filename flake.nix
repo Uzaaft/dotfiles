@@ -59,6 +59,7 @@
         jj-get = inputs.jj-get.packages.${system}.jj-get;
         jujutsu = unstable.jujutsu;
         hunk = unstable.hunk;
+        atuin = unstable.atuin;
       })
     ];
 

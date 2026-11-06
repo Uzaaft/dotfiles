@@ -232,6 +232,18 @@ in {
 
   programs.atuin = {
     enable = true;
+    # Behave like the fzf shell integration: fuzzy matching, a bottom panel
+    # with the search bar on top, no preview pane, and the selected command
+    # pasted onto the prompt for editing instead of running immediately.
+    forceOverwriteSettings = true;
+    # Ctrl-R opens atuin; leave the up-arrow alone so it scrolls the native
+    # history like it did before atuin.
+    flags = ["--disable-up-arrow"];
+    settings = {
+      invert = true;
+      show_preview = false;
+      enter_accept = false;
+    };
   };
 
   programs.jujutsu = {
