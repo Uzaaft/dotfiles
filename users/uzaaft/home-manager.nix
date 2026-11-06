@@ -127,6 +127,9 @@ in {
     ".local/bin/git-project" = {
       source = mutableConfig "stowed/.local/bin/git-project";
     };
+    ".local/bin/rex-layout" = {
+      source = mutableConfig "stowed/.local/bin/rex-layout";
+    };
     ".cargo/config.toml" = {
       source = mutableConfig "stowed/.cargo/config.toml";
     };

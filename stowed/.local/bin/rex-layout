@@ -1,0 +1,129 @@
+#!/usr/bin/env nu
+
+# Save/restore local Rex layouts, directories, and commands recorded by config.nu.
+# Floating panes and scrollback are omitted. Restore re-runs recorded commands.
+def api [method: string, args: record = {}] {
+  # Nu's JSON serializer leaves ESC literal; Rex requires it escaped.
+  let json = ($args | to json -r | str replace --all "\u{1b}" '\u001b')
+  let result = (^rex --autostart=false api call $method $json | complete)
+  if $result.exit_code != 0 { error make {msg: ($result.stderr | str trim)} }
+  $result.stdout | from json
+}
+
+def snapshot-file [file] {
+  $file | default (
+    $env.XDG_STATE_HOME? | default ($env.HOME | path join .local state)
+    | path join rex-layout snapshot.json
+  ) | path expand
+}
+
+def write-snapshot [file: path, snapshot: record] {
+  let parent = ($file | path dirname)
+  mkdir $parent
+  let temp = (^mktemp ($parent | path join '.rex-layout.XXXXXX') | str trim)
+  try {
+    $snapshot | to json | str replace --all "\u{1b}" '\u001b' | save --raw --force $temp
+    mv --force $temp $file
+  } catch {|err|
+    rm --force $temp
+    error make {msg: $err.msg}
+  }
+}
+
+def layout [node: record, blocks: record] {
+  if $node.block_id? != null {
+    $blocks | get $node.block_id
+  } else {
+    {split: {
+      direction: $node.split.direction, ratio: $node.split.ratio,
+      before: (layout $node.split.before $blocks),
+      after: (layout $node.split.after $blocks)
+    }}
+  }
+}
+
+# Never replay a command in a fallback directory if its original directory vanished.
+def check-directories [tree: record] {
+  if $tree.block? != null {
+    let options = ($tree.block.options? | default {})
+    if $options.initial_input? != null and ($options.cwd | path type) != dir {
+      error make {msg: $'Command directory is missing: ($options.cwd)'}
+    }
+  } else {
+    check-directories $tree.split.before
+    check-directories $tree.split.after
+  }
+}
+
+# Save all sessions to one atomic, owner-readable snapshot. An empty server leaves it intact.
+def 'main save' [file?: path] {
+  let file = (snapshot-file $file)
+  let host = (api server.status).host_id
+  let sessions = (api session.list).sessions | each {|session|
+    let view = (api session.view {session_id: $session.session_id})
+    let windows = $view.windows | each {|window|
+      let tiled = ($window.layers | where {|layer| $layer.kind == tiled and $layer.layout? != null })
+      let blocks = $tiled | get --optional blocks | default [] | flatten | reduce --fold {} {|block, acc|
+        let process = if $block.flavor == 'com.superlogical.terminal.shell' and $block.host_id == $host {
+          api block.method {
+            session_id: $session.session_id, block_id: $block.block_id,
+            method: process, args: {}
+          }
+        } else { {} }
+        let record_file = (snapshot-file null | path dirname | path join running $'($block.block_id).json')
+        let running = (try { open --raw $record_file | from json } catch { null })
+        let pids = ([$process.child?.pid? $process.foreground?.pid?] | append ($process.ancestors? | default [] | get --optional pid | default []))
+        let replay = $running != null and $running.pid in $pids and $block.block_id != $env.REX_BLOCK?
+        let cwd = if $replay { $running.cwd } else {
+          $process.foreground?.cwd? | default $process.child?.cwd? | default ''
+        }
+        let options = {cwd: $cwd} | merge (if $replay {
+          # Bracketed paste bypasses keybindings that would rewrite literal command text.
+          {shell: $running.shell, initial_input: ("\u{1b}[200~" + $running.command + "\u{1b}[201~\r")}
+        } else { {} })
+        $acc | upsert $block.block_id {block: {
+          flavor: 'com.superlogical.terminal.shell', label: $block.label, options: $options
+        }}
+      }
+      let tree = if ($tiled | is-empty) {
+        {block: {flavor: 'com.superlogical.terminal.shell'}}
+      } else { layout $tiled.0.layout $blocks }
+      {layout: $tree} | merge (if $window.label =~ '^Window [0-9a-f]{8}$' {
+        {}
+      } else { {window_label: $window.label} })
+    }
+    {ids: [$session.session_id], label: $session.label, initial_windows: $windows}
+  } | where {|session| $session.initial_windows | is-not-empty }
+  if ($sessions | is-empty) { print 'Nothing to save'; return }
+  write-snapshot $file {host_id: $host, sessions: $sessions}
+  print $'Saved ($sessions | length) sessions to ($file)'
+}
+
+# Restore missing sessions, re-running recorded commands. --dry-run changes nothing.
+def 'main restore' [file?: path, --dry-run (-n)] {
+  let file = (snapshot-file $file)
+  mut snapshot = (open --raw $file | from json)
+  if $snapshot.host_id != (api server.status).host_id {
+    error make {msg: 'Snapshot belongs to another Rex host'}
+  }
+  let live = ((api session.list).sessions | get session_id)
+  for entry in ($snapshot.sessions | enumerate) {
+    let session = $entry.item
+    if ($session.ids | any {|id| $id in $live }) {
+      print $'Skipped ($session.label)'
+    } else if $dry_run {
+      print $'Would restore ($session.label)'
+    } else {
+      for window in $session.initial_windows { check-directories $window.layout }
+      let created = (api session.create ($session | select label initial_windows))
+      $snapshot.sessions = ($snapshot.sessions | update $entry.index (
+        $session | update ids ($session.ids | append $created.session_id)
+      ))
+      write-snapshot $file $snapshot
+      print $'Restored ($session.label)'
+    }
+  }
+}
+
+# Manual Rex session snapshots; run `rex-layout save` or `rex-layout restore --dry-run`.
+def main [] { help main }

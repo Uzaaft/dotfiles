@@ -3,6 +3,34 @@ use std/config *
 $env.config.show_banner = false
 $env.config.highlight_resolved_externals = true
 
+# rex-layout only replays commands still running when a snapshot is taken.
+def rex-command-file [] {
+  if $env.REX_BLOCK? == null { return null }
+  $env.XDG_STATE_HOME? | default ($env.HOME | path join .local state)
+  | path join rex-layout running $'($env.REX_BLOCK).json'
+}
+
+$env.config.hooks.pre_execution = ($env.config.hooks.pre_execution | append {||
+  try {
+    let file = (rex-command-file)
+    if $file != null {
+      let parent = ($file | path dirname)
+      if not ($parent | path exists) { mkdir $parent; ^chmod 700 $parent }
+      {pid: $nu.pid, shell: $nu.current-exe, cwd: $env.PWD, command: (commandline)}
+      | to json | save --force $file
+    }
+  } catch { }
+})
+
+$env.config.hooks.pre_prompt = ($env.config.hooks.pre_prompt | append {||
+  try {
+    let file = (rex-command-file)
+    if $file != null and ($file | path exists) {
+      if (open --raw $file | from json).pid == $nu.pid { rm $file }
+    }
+  } catch { }
+})
+
 def --env git_go [] {
   let git_path = ($env.GIT_PATH? | default ($env.HOME | path join 'repositories'))
   if ($git_path | str trim | is-empty) {
@@ -111,4 +139,3 @@ $env.config.keybindings = $env.config.keybindings | append [
 if (is-terminal --stdin) {
   $env.GPG_TTY = (tty)
 }
-
