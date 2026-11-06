@@ -1,4 +1,4 @@
-local shell = "com.superlogical.terminal.shell"
+-- Layout helpers
 
 local function must(result, err)
     if err ~= nil then
@@ -38,19 +38,9 @@ local function tiled_panes(window)
     return panes, horizontal
 end
 
-rex.action{
-    name = "project_session",
-    title = "New Session from Git Project…",
-    category = "Session",
-    keywords = "new session project repository picker",
-    run = function(ctx)
-        return must(rex.session.new_layer{
-            bounds = { x = 0.1, y = 0.1, w = 0.8, h = 0.8 },
-            focus = true,
-            layout = rex.layout.block{
-                flavor = shell,
-                options = {
-                    command = { "bash", "-c", [=[
+-- Project picker
+
+local project_picker = [=[
 set -euo pipefail
 trap 'printf "\nProject picker failed. Press Enter to close.\n" >&2; read -r' ERR
 
@@ -69,12 +59,28 @@ if ! rex ${client:+-C "$client"} do session.select session_id="$session"; then
     printf '\nSession created: %s\nSelect it with Ctrl-a s. Press Enter to close.\n' "$session" >&2
     read -r
 fi
-]=], "project_session", ctx.client_id },
+]=]
+
+rex.action{
+    name = "project_session",
+    title = "New Session from Git Project…",
+    category = "Session",
+    keywords = "new session project repository picker",
+    run = function(ctx)
+        return must(rex.session.new_layer{
+            bounds = { x = 0.1, y = 0.1, w = 0.8, h = 0.8 },
+            focus = true,
+            layout = rex.layout.block{
+                flavor = "com.superlogical.terminal.shell",
+                options = {
+                    command = { "bash", "-c", project_picker, "project_session", ctx.client_id },
                 },
             },
         })
     end,
 }
+
+-- Pane layout actions
 
 rex.action{
     name = "swap_pane",
@@ -130,23 +136,34 @@ rex.action{
     end,
 }
 
-rex.bind("ctrl+space", "client.tab.previous")
-
 -- tmux-style ctrl+a prefix. Physical key codes keep the US positions on any layout.
+
+-- App controls and activity
 rex.bind("ctrl+a>a", "pane.send_key", { key = "ctrl+a" })
 rex.bind("ctrl+a>r", "client.config.reload")
 rex.bind("ctrl+a>shift+[Semicolon]", "client.palette.toggle")
 rex.bind("ctrl+a>v", "client.sidebar.activity.toggle")
+rex.bind("ctrl+a>shift+v", "pane.view_activity")
 
+-- Session and window pickers
 rex.bind("ctrl+a>s", "session.switch")
 rex.bind("ctrl+a>shift+s", "project_session")
 rex.bind("ctrl+a>shift+[Digit4]", "session.rename")
+rex.bind("ctrl+a>w", "pane.go_to")
 
+-- Tabs: new tabs and splits inherit the focused terminal's working directory.
 rex.bind("ctrl+a>c", "client.tab.new")
 rex.bind("ctrl+a>[Comma]", "client.tab.rename")
 rex.bind("ctrl+a>n", "client.tab.next")
 rex.bind("ctrl+a>p", "client.tab.previous")
+-- Rex exposes previous-in-order, not tmux's most-recently-used last-window.
+rex.bind("ctrl+space", "client.tab.previous")
+rex.bind("ctrl+a>ctrl+space", "client.tab.previous")
+for index = 1, 9 do
+    rex.bind("ctrl+a>[Digit" .. index .. "]", "client.tab.goto", { index = index })
+end
 
+-- Pane navigation and layout
 rex.bind("ctrl+a>shift+[Quote]", "pane.split.down")
 rex.bind("ctrl+a>shift+[Digit5]", "pane.split.right")
 rex.bind("ctrl+a>h", "pane.focus.left")
@@ -163,6 +180,14 @@ rex.bind("ctrl+a>z", "pane.zoom")
 rex.bind("ctrl+a>f", "pane.float")
 rex.bind("ctrl+a>shift+[Digit1]", "pane.move_to_new_tab")
 rex.bind("ctrl+a>m", "pane.move_to_tab")
+
+-- Scrollback and clipboard access; Rex has no vi copy-mode/selection actions yet.
+rex.bind("ctrl+a>[BracketLeft]", "client.scroll.page_up")
+rex.bind("ctrl+a>pageup", "client.scroll.page_up")
+rex.bind("ctrl+a>pagedown", "client.scroll.page_down")
+rex.bind("ctrl+a>[Slash]", "client.find.open")
+rex.bind("ctrl+a>[BracketRight]", "pane.paste")
+rex.bind("ctrl+a>y", "pane.copy")
 
 -- Persistent resize mode; exclusive keys cannot leak into the terminal.
 rex.mode("resize", { exclusive = true })
