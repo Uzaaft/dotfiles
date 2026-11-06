@@ -8,8 +8,8 @@
     ./hardware/ws-nvda-x86_64.nix
     ../lib/amp-runners.nix
   ];
-  # Be careful updating this.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # Pinned to the 7.3 stable series; bump deliberately once NVIDIA supports newer.
+  boot.kernelPackages = pkgs.linuxPackages_7_3;
   hardware.enableRedistributableFirmware = true;
   fonts = {
     enableDefaultPackages = false;
