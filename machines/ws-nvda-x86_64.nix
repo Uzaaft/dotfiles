@@ -11,16 +11,11 @@
   # Pinned to the 7.3 stable series; bump deliberately once NVIDIA supports newer.
   boot.kernelPackages = pkgs.linuxPackages_7_3;
   hardware.enableRedistributableFirmware = true;
+  hardware.cpu.amd.updateMicrocode = true;
+  hardware.wirelessRegulatoryDatabase = true;
   fonts = {
     enableDefaultPackages = false;
-    packages = with pkgs; [
-      dejavu_fonts
-      freefont_ttf
-      gyre-fonts
-      liberation_ttf
-      noto-fonts-color-emoji
-      unifont
-    ];
+    packages = with pkgs; [ ];
   };
 
   # Use the systemd-boot EFI boot loader.
@@ -97,7 +92,8 @@
       port = 11434;
     };
 
-    xserver.videoDrivers = ["amdgpu" "nvidia"];
+    # Selects the NVIDIA driver; there is no X server on this headless host.
+    xserver.videoDrivers = ["nvidia"];
     openssh = {
       enable = true;
       settings = {
