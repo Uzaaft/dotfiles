@@ -29,6 +29,9 @@
     "enabled": true,
     "mode": "hold"
   },
+  "editorMode": "vim",
+  "preferredNotifChannel": "ghostty",
+  "autoCompactEnabled": true,
   "autoMode": {
     "allow": [
       "$defaults",
