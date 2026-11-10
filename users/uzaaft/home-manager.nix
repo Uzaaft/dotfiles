@@ -34,6 +34,21 @@
 
   dotfilesPath = "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles";
   mutableConfig = path: config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/${path}";
+
+  rexHosts = lib.optionals isDarwin [
+    {
+      label = "bobr";
+      endpoints = ["https://uzaaft@bobr.tailed558.ts.net"];
+    }
+    {
+      label = "eik-a100-vm";
+      endpoints = ["https://eik-a100-vm.tailed558.ts.net"];
+    }
+    {
+      label = "eik-rtx6000-vm";
+      endpoints = ["https://eik-rtx6000-vm.tailed558.ts.net"];
+    }
+  ];
 in {
   imports = [inputs.direnv-instant.homeModules.direnv-instant];
 
@@ -161,8 +176,16 @@ in {
       amp = {
         source = mutableConfig "users/uzaaft/amp";
       };
-      rex = {
-        source = mutableConfig "users/uzaaft/rex";
+      "rex/init.lua" = {
+        source = mutableConfig "users/uzaaft/rex/init.lua";
+      };
+      "rex/hosts.lua" = {
+        text = lib.concatMapStringsSep "\n" (host: ''
+          rex.host{
+              label = ${builtins.toJSON host.label},
+              endpoints = { ${lib.concatMapStringsSep ", " builtins.toJSON host.endpoints} },
+          }
+        '') rexHosts;
       };
 
       nvim = {

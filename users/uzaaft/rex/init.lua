@@ -1,3 +1,6 @@
+-- Home Manager generates this module with hosts for the current platform.
+require("hosts")
+
 -- Layout helpers
 
 local function must(result, err)
@@ -68,7 +71,7 @@ rex.action{
     keywords = "new session project repository picker",
     run = function(ctx)
         return must(rex.session.new_layer{
-            bounds = { x = 0.1, y = 0.1, w = 0.8, h = 0.8 },
+            bounds = { 0.1, 0.1, 0.8, 0.8 },
             focus = true,
             layout = rex.layout.block{
                 flavor = "com.superlogical.terminal.shell",
@@ -156,6 +159,8 @@ rex.bind("ctrl+a>c", "client.tab.new")
 rex.bind("ctrl+a>[Comma]", "client.tab.rename")
 rex.bind("ctrl+a>n", "client.tab.next")
 rex.bind("ctrl+a>p", "client.tab.previous")
+rex.bind("ctrl+a>shift+left", "client.tab.move.backward")
+rex.bind("ctrl+a>shift+right", "client.tab.move.forward")
 -- Rex exposes previous-in-order, not tmux's most-recently-used last-window.
 rex.bind("ctrl+space", "client.tab.previous")
 rex.bind("ctrl+a>ctrl+space", "client.tab.previous")
@@ -178,10 +183,17 @@ rex.bind("ctrl+a>shift+e", "pane.balance")
 rex.bind("ctrl+a>x", "pane.close")
 rex.bind("ctrl+a>z", "pane.zoom")
 rex.bind("ctrl+a>f", "pane.float")
+rex.bind("ctrl+a>shift+f", "pane.new_floating")
+rex.bind("ctrl+a>shift+m", "pane.minimize_floating")
+rex.bind("ctrl+a>ctrl+m", "pane.minimize_all_floating")
 rex.bind("ctrl+a>shift+[Digit1]", "pane.move_to_new_tab")
 rex.bind("ctrl+a>m", "pane.move_to_tab")
+rex.bind("ctrl+a>g", "pane.go_to_directory")
+rex.bind("ctrl+a>i", "pane.insert_path")
 
 -- Scrollback and clipboard access; Rex has no vi copy-mode/selection actions yet.
+rex.bind("ctrl+a>up", "client.prompt.previous")
+rex.bind("ctrl+a>down", "client.prompt.next")
 rex.bind("ctrl+a>[BracketLeft]", "client.scroll.page_up")
 rex.bind("ctrl+a>pageup", "client.scroll.page_up")
 rex.bind("ctrl+a>pagedown", "client.scroll.page_down")
