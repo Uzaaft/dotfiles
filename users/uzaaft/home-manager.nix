@@ -35,7 +35,7 @@
   dotfilesPath = "${config.home.homeDirectory}/repositories/github.com/uzaaft/dotfiles";
   mutableConfig = path: config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/${path}";
 
-  rexHosts = lib.optionals isDarwin [
+  rexHosts = lib.optionals (currentSystemName == "macbook") [
     {
       label = "bobr";
       endpoints = ["https://uzaaft@bobr.tailed558.ts.net"];
