@@ -164,6 +164,15 @@ in {
     run ln -sfn "${dotfilesPath}/users/uzaaft/claude/settings.json" "$HOME/.claude/settings.json"
   '';
 
+  # Remove the old directory link before Home Manager links individual files.
+  # Otherwise it writes through that link and replaces the dotfiles themselves.
+  home.activation.rexConfigDirectory = lib.hm.dag.entryBetween ["linkGeneration"] ["writeBoundary"] ''
+    if [ -L "${config.xdg.configHome}/rex" ] &&
+       [ "$(readlink -f "${config.xdg.configHome}/rex")" = "${dotfilesPath}/users/uzaaft/rex" ]; then
+      run unlink "${config.xdg.configHome}/rex"
+    fi
+  '';
+
   xdg.configFile =
     {
       # Always include these
