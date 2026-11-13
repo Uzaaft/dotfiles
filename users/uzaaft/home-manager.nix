@@ -114,7 +114,6 @@ in {
       pkgs.jq
       pkgs.nix-output-monitor
       pkgs.nixd
-      pkgs.python3 # rex-layout
       pkgs.vscode-json-languageserver # Json lsp
       pkgs.ripgrep
       pkgs.tree
@@ -142,9 +141,6 @@ in {
   home.file = {
     ".local/bin/git-project" = {
       source = mutableConfig "stowed/.local/bin/git-project";
-    };
-    ".local/bin/rex-layout" = {
-      source = mutableConfig "stowed/.local/bin/rex-layout";
     };
     ".cargo/config.toml" = {
       source = mutableConfig "stowed/.cargo/config.toml";
@@ -188,6 +184,9 @@ in {
       };
       "rex/init.lua" = {
         source = mutableConfig "users/uzaaft/rex/init.lua";
+      };
+      "rex/layout.lua" = {
+        source = mutableConfig "users/uzaaft/rex/layout.lua";
       };
       "rex/hosts.lua" = {
         text = lib.concatMapStringsSep "\n" (host: ''
