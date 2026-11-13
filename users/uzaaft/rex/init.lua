@@ -141,8 +141,36 @@ rex.action{
 
 -- tmux-style ctrl+a prefix. Physical key codes keep the US positions on any layout.
 
+rex.action{
+    name = "show_keys",
+    title = "Show Leader Keys",
+    category = "Keys",
+    run = function()
+        return must(rex.session.new_layer{
+            bounds = { 0.1, 0.1, 0.8, 0.8 },
+            focus = true,
+            layout = rex.layout.block{
+                flavor = "com.superlogical.terminal.shell",
+                options = {
+                    command = { "bash", "-c", [=[
+set -euo pipefail
+rex keymap --json |
+    jq -r '.bindings[] | select(.mode == null and .keys[0] == "ctrl+a") |
+        [.keys[1], .action, (if .args then (.args | tojson) else "" end)] | @tsv' |
+    sort | column -t -s $'\t' |
+    fzf --height=100% --layout=reverse --border --no-sort \
+        --header='Ctrl-a leader keys · Type to filter · Esc or Enter to close' \
+        --bind=enter:abort || [[ $? == 130 ]]
+]=] },
+                },
+            },
+        })
+    end,
+}
+
 -- App controls and activity
 rex.bind("ctrl+a>a", "pane.send_key", { key = "ctrl+a" })
+rex.bind("ctrl+a>shift+[Slash]", "show_keys")
 rex.bind("ctrl+a>r", "client.config.reload")
 rex.bind("ctrl+a>shift+[Semicolon]", "client.palette.toggle")
 rex.bind("ctrl+a>v", "client.sidebar.activity.toggle")
