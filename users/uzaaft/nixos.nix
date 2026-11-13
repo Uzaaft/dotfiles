@@ -3,10 +3,10 @@
   # imports = [
   # ];
 
-
   # Add ~/.local/bin to PATH
   environment.localBinInPath = true;
 
+  # zsh is the login shell.
   programs.zsh.enable = true;
   programs.zsh.enableGlobalCompInit = false;
 

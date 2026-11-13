@@ -58,7 +58,7 @@ in {
 
   xdg.enable = true;
 
-  # Home Manager loads these in every shell it manages, and nu inherits them
+  # Home Manager loads these in every shell it manages.
   home.sessionVariables =
     {
       EDITOR = "nvim";
@@ -114,6 +114,7 @@ in {
       pkgs.jq
       pkgs.nix-output-monitor
       pkgs.nixd
+      pkgs.python3 # rex-layout
       pkgs.vscode-json-languageserver # Json lsp
       pkgs.ripgrep
       pkgs.tree
@@ -216,6 +217,7 @@ in {
         "path.zsh"
         "plugin_manager.zsh"
         "rationalise-dot.zsh"
+        "rex.zsh"
         "zprofile.zsh"
         "zshenv.zsh"
         "zshrc.zsh"
@@ -261,7 +263,6 @@ in {
     };
   };
 
-  # This module replaces direnv's shell hooks with its asynchronous hooks.
   programs.direnv-instant.enable = true;
 
   programs.jujutsu = {
@@ -282,22 +283,22 @@ in {
     shellAliases = shellAliases;
   };
 
-
   programs.zsh = {
     enable = true;
     dotDir = "${config.xdg.configHome}/zsh";
     # zshrc.zsh runs its own deferred compinit.
     enableCompletion = false;
     # zshrc.zsh appends with inc_append_history instead of sharing.
-    history.share = false;
+    history = {
+      path = "${config.xdg.stateHome}/zsh/history";
+      size = 1000000;
+      save = 1000000;
+      share = false;
+      extended = true;
+    };
     envExtra = ''source "$ZDOTDIR/zshenv.zsh"'';
     profileExtra = ''source "$ZDOTDIR/zprofile.zsh"'';
     initContent = ''source "$ZDOTDIR/zshrc.zsh"'';
-  };
-
-  programs.nushell = {
-    enable = true;
-    extraConfig = ''source "${dotfilesPath}/users/uzaaft/config.nu"'';
   };
 
   programs.git = {

@@ -16,12 +16,17 @@ setopt hist_ignore_space
 setopt hist_reduce_blanks
 setopt hist_verify
 setopt inc_append_history
+setopt extended_history
 setopt interactivecomments
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd:cd ..:cd.."
 export HISTSIZE=1000000
-export HISTFILE="${XDG_STATE_HOME-$HOME/.local/state}/zsh/history"
+export HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/zsh/history"
 export SAVEHIST=1000000
 export KEYTIMEOUT=10
+
+# Create writable, private history without truncating existing entries.
+(umask 077; mkdir -p -- "${HISTFILE:h}" && touch -- "$HISTFILE")
+chmod 600 -- "$HISTFILE"
 
 # --- zsh data directories ---
 zsh_data="${XDG_DATA_HOME:-$HOME/.local/share}/zsh"
@@ -89,6 +94,7 @@ source $ZDOTDIR/git_go.zsh
 source $ZDOTDIR/path.zsh
 source $ZDOTDIR/rationalise-dot.zsh
 source $ZDOTDIR/aliases.zsh
+source $ZDOTDIR/rex.zsh
 # Load zsh-syntax-highlighting; should be last.
 # source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
