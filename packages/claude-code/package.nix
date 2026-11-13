@@ -11,20 +11,20 @@
   socat,
   zstd,
 }: let
-  version = "2.1.322";
+  version = "2.1.323";
   release =
     {
       "aarch64-darwin" = {
         platform = "darwin-arm64";
-        hash = "sha256-pULFFKB9DKCUCN8rhgi+bFJDifIyMn0Zayb1tBBWuBM=";
+        hash = "sha256-IHiPOPUgOV2l3DFbpu8vhsaghQ2RBOa4cM2YBpfoEFU=";
       };
       "aarch64-linux" = {
         platform = "linux-arm64";
-        hash = "sha256-LGvh6fyh3LiU5H4RZy9EMvTPioefXlMCia0wgCEAxdc=";
+        hash = "sha256-/oSnDkkZi0SJrq2+CM2/tqAavyyg2N/oYdX5M+ThUWs=";
       };
       "x86_64-linux" = {
         platform = "linux-x64";
-        hash = "sha256-m7dVi9mSykV+ZFi/FoZXL3oxVrgzHdhEM5Hb/lkMHu0=";
+        hash = "sha256-1fhaxOm3ypXmu+7q8Fr3wg/2Ld0qD0mx9KBpnDCrBoY=";
       };
     }.${
       stdenv.hostPlatform.system
