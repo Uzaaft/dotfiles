@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+
+set -o pipefail
+
+usage() {
+  cat <<'EOF'
+Usage: git-project [--tmux] [PROJECT_ROOT]
+
+Select a Git project below PROJECT_ROOT with fzf and print its path.
+With --tmux, create or switch to a tmux session rooted in that project.
+EOF
+}
+
+fail() {
+  printf 'git-project: %s\n' "$1" >&2
+  exit 1
+}
+
+tmux_mode=false
+
+case "${1:-}" in
+--tmux)
+  tmux_mode=true
+  shift
+  ;;
+-h | --help)
+  usage
+  exit 0
+  ;;
+esac
+
+if (( $# > 1 )); then
+  usage >&2
+  exit 2
+fi
+
+command -v fd >/dev/null 2>&1 || fail "fd is required"
+command -v fzf >/dev/null 2>&1 || fail "fzf is required"
+
+project_root="${1:-${GIT_PATH:-$HOME/repositories}}"
+project_root="$(cd -- "$project_root" 2>/dev/null && pwd -P)" ||
+  fail "project root does not exist: ${1:-${GIT_PATH:-$HOME/repositories}}"
+
+selected_project="$({
+  fd -HI '^\.git$' --max-depth 5 --base-directory "$project_root" |
+    sed -E 's#(^|/)\.git/?$##; s#^$#.#' |
+    sort -u
+} | fzf --no-multi --prompt='Git project > ')" || exit 0
+
+[[ -n "$selected_project" ]] || exit 0
+selected_project="$(cd -- "$project_root/$selected_project" && pwd -P)" ||
+  fail "selected project no longer exists"
+
+if [[ "$tmux_mode" == false ]]; then
+  printf '%s\n' "$selected_project"
+  exit 0
+fi
+
+command -v tmux >/dev/null 2>&1 || fail "tmux is required"
+
+session_name="$(basename -- "$selected_project" | sed 's/[^[:alnum:]_-]/_/g')"
+[[ -n "$session_name" ]] || session_name=project
+
+if [[ -z "${TMUX:-}" ]]; then
+  exec tmux new-session -A -s "$session_name" -c "$selected_project"
+fi
+
+if ! tmux has-session -t "=$session_name" 2>/dev/null; then
+  tmux new-session -d -s "$session_name" -c "$selected_project"
+fi
+
+tmux switch-client -t "=$session_name"

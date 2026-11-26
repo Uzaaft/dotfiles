@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+# fzf-tab file preview, trimmed from mehalter's gist to installed tools.
+
+case $(file -bL --mime-type "$1") in
+cannot\ open*) exit ;;
+inode/directory) eza -a --icons=always --color=always --group-directories-first -- "$1" ;;
+application/json) jq --color-output . "$1" ;;
+text/* | */xml) bat --style=plain --color=always "$1" ;;
+*) file -bL "$1" ;;
+esac

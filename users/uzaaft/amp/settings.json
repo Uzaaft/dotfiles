@@ -1,0 +1,99 @@
+{
+  "amp.runner.env.enabled": true,
+  "amp.notifications.enabled": false,
+  "amp.tab.clipboard.enabled": false,
+  "amp.git.commit.coauthor.enabled": false,
+  "amp.git.commit.ampThread.enabled": false,
+  "amp.experimental.modes": [
+    "bombadil"
+  ],
+  "amp.anthropic.effort": "max",
+  "amp.permissions": [
+    {
+      "tool": "Bash",
+      "action": "ask"
+    },
+    {
+      "tool": "create_file",
+      "action": "ask"
+    },
+    {
+      "tool": "edit_file",
+      "action": "ask"
+    },
+    {
+      "tool": "undo_edit",
+      "action": "ask"
+    },
+    {
+      "tool": "painter",
+      "action": "reject"
+    },
+    {
+      "tool": "*",
+      "action": "allow"
+    }
+  ],
+  "amp.dangerouslyAllowAll": true,
+  "amp.mcpServers": {
+    "1password": {
+      "command": "1password-mcp"
+    }
+  },
+  "amp.loopJobs": {
+    "T-01a19ddb-3934-725b-b2dd-121b6d2ad94f": {
+      "threadID": "T-01a19ddb-3934-725b-b2dd-121b6d2ad94f",
+      "endeavor": "Continue improving and fuzzing the Hokum Bombadil RPC specification. Claim the loop cycle first. Inspect existing running campaigns before starting another; never duplicate a running campaign. Keep a longer campaign running against an immutable spec snapshot while improving the next spec version. Prioritize behavioral properties and measured coverage gaps rather than adding redundant structural assertions. Inspect Hokum source and actual traces, validate new properties with positive and planted-negative controls, and run the revised spec against real Hokum UI handlers. Replay and shrink genuine failures; retain and explain false spec assumptions instead of weakening assertions to hide failures. Use isolated HOME/config paths, invalid D-Bus addresses and built-in mock scenes; do not launch desktop services or manipulate real devices. Preserve unrelated work. Do not commit, push, publish, or change remote state. Evidence is under .amp/in/artifacts/rune-hokum; current binary and source archive are retained there. Summarize completed states, actual action/flow coverage, failures, limits, and local delivery state. If the executor is unavailable or a campaign is still running, report that briefly instead of duplicating work.",
+      "mutationPolicy": "workspace",
+      "cadenceMinutes": 15,
+      "deadlineAt": "2026-11-09T01:11:07.291Z",
+      "status": "completed",
+      "attempts": 5,
+      "completedRuns": 5,
+      "createdAt": "2026-11-08T23:11:07.291Z",
+      "updatedAt": "2026-11-09T01:11:18.966Z",
+      "stopReason": "deadline reached"
+    },
+    "T-01a1d1f3-e46f-7728-8564-b4874f1a5b4f": {
+      "threadID": "T-01a1d1f3-e46f-7728-8564-b4874f1a5b4f",
+      "endeavor": "Iteratively expand Grok Build fuzzing in /home/uzaaft/repositories/github.com/antithesishq/bombadil-zoo-normal-fuzz. Preserve the original worktree and all unrelated changes. Keep the unmodified Grok Build 1.0.77 target, normal initial terminal size 120x40, generated resize bounds 80-220 columns by 24-60 rows, --swarm, --time-limit-run 20s, and --parallelism 4. Do not add tiny-window resizes.\n\nEach cycle, inspect the latest finalized results under .state/grok-build/runs and check for an active campaign for this worktree before launching anything. Never overlap campaigns. Review violations, crashes, request/fixture coverage, and the current harnesses/grok-build/spec.ts, mock.py, test.py, and README.md. Make one focused, meaningful expansion to terminal actions and one focused, meaningful expansion to mock protocol coverage per cycle, guided by uncovered behavior or observed failures. Add or update contract tests for mock changes, keep documentation accurate, stage all Grok harness changes so Nix sees them, and run the relevant unit tests plus nix build .#checks.x86_64-linux.specs .#checks.x86_64-linux.smoke-grok-build --no-link -L. Do not suppress failures or weaken existing properties. Reproduce and classify any target failure before calling it a Grok defect; harness false positives must be fixed at their root cause.\n\nIf a 60-minute campaign is still active, perform and validate the next focused expansion but do not launch another campaign; report that the current campaign is continuing. If no campaign is active, analyze the completed run, validate the expansion, then launch exactly one new 60-minute campaign with: nix run .#fuzz-grok-build -- --time-limit-fuzz 60m --time-limit-run 20s --parallelism 4 --swarm --columns 120 --rows 40. Leave it running for a later cycle and report its run ID and launch state. Do not wait for a 60-minute campaign to finish inside a cycle. If there is no safe useful expansion left, give a concise update and continue monitoring rather than churning code. Continue until the user stops or changes the loop.",
+      "mutationPolicy": "workspace",
+      "cadenceMinutes": 30,
+      "status": "running",
+      "attempts": 42,
+      "completedRuns": 40,
+      "createdAt": "2026-11-12T23:30:51.692Z",
+      "updatedAt": "2026-11-14T02:32:21.313Z",
+      "leaseUntil": "2026-11-14T03:02:21.313Z"
+    },
+    "T-01a1d1dc-7157-727f-9c83-d0008506b887": {
+      "threadID": "T-01a1d1dc-7157-727f-9c83-d0008506b887",
+      "endeavor": "Operate a continuous small-screen/history fuzzing loop for Grok Build 1.0.77 in /home/uzaaft/repositories/github.com/antithesishq/bombadil-zoo. A separate thread, T-01a1d1f3-e46f-7728-8564-b4874f1a5b4f, owns normal-window fuzzing in /home/uzaaft/repositories/github.com/antithesishq/bombadil-zoo-normal-fuzz. Never edit or stage anything in that other worktree, kill its processes, launch campaigns there, or change its schedule. Coordinate with it through send_thread_message and preserve all unrelated work. Do not commit or push.\n\nThe first local iteration is already running as process 3688640 with .amp/in/grok-small-campaign.pid and .amp/in/grok-small-iteration-1-campaign.log. Every cycle, first check this PID with kill -0 and /proc/<pid>/cmdline plus the log. Ignore the other thread's campaigns. If that process is alive, do not launch another campaign, do not churn the spec, and give only a short progress update.\n\nIf no local campaign is active, identify the newest finalized local run under .state/grok-build/runs/. Review status, violations, crashes, distinct panic dimensions/backtraces, mock scenario coverage, action sequences, and disk use. Check for results from the normal-window thread when available and share distinct findings with it using send_thread_message. Preserve useful failing traces with their matching specs under harnesses/grok-build/traces/ and never overwrite original evidence. Update the existing Amp bug artifact acc340ef-50fc-4d01-a505-4f092d3d9050 and the evidence README with the iteration number, run ID, concrete evidence, and next decision.\n\nBased on the evidence, make at most one focused small-screen/geometry spec expansion in harnesses/grok-build/spec.ts, plus narrowly related tests and documentation. Do not duplicate the normal-window thread's protocol expansions and do not make cosmetic changes when no useful expansion remains. Keep the 50 ms quiescence setting unless evidence justifies changing it. The next campaign uses a two-phase generator: 240 warm-up actions at 100x40 to build completed turns, scrollback, stashes, and session state, followed by history and small-geometry interaction at 2-9 and 10-23 rows. The per-run limit is 120s to reach deep states. Future iterations must be driven by distinct coverage gaps or findings. Do not alter the staged index.\n\nBefore launching, validate with nix build .#checks.x86_64-linux.specs .#checks.x86_64-linux.smoke-grok-build .#checks.x86_64-linux.mock-grok-build --no-link -L and fix relevant failures. Then launch exactly one new 60-minute campaign with nix run .#fuzz-grok-build -- --time-limit-fuzz 60m --time-limit-run 120s --parallelism 4 --swarm --quiescence-timeout-ms 50. Use the existing PID-file pattern: write the shell PID to .amp/in/grok-small-campaign.pid, clean it on exit, log to the next .amp/in/grok-small-iteration-N-campaign.log, and store the exit code in .amp/in/grok-small-iteration-N.exit. Leave that campaign running for the next cycle.\n\nIf no useful expansion remains, keep the current spec rather than churning and continue monitoring. Continue until the user explicitly asks to pause or stop the loop. Each cycle must end with a concise summary of campaign state, findings, any spec change, validation, and what was launched or why no launch occurred.",
+      "mutationPolicy": "workspace",
+      "cadenceMinutes": 30,
+      "status": "paused",
+      "attempts": 87,
+      "completedRuns": 86,
+      "createdAt": "2026-11-13T10:00:11.287Z",
+      "updatedAt": "2026-11-15T06:31:32.375Z",
+      "lastError": "The loop cannot safely proceed: a separate .tism agent replaced harnesses/grok-build/spec.ts with a normal-window rewrite (40-250 columns x 12-70 rows), removing this loop's required two-row profile. Restoring the validated iteration-32 snapshot would revert changes this loop did not make, and adopting the rewrite would change the loop's scope and duplicate normal-window work. No fuzz process is active; the last validated spec is preserved at .state/grok-build/runs/20261114-223204/spec. User decision required: restore that snapshot or re-scope the loop.",
+      "stopReason": "cycle failed; paused for review"
+    },
+    "T-01a1f0d4-6774-72a2-ac31-331d7be067a1": {
+      "threadID": "T-01a1f0d4-6774-72a2-ac31-331d7be067a1",
+      "endeavor": "Run the next round of the requested fx campaign series: one normal and one unconstrained 10-minute campaign concurrently, with nix run .#fuzz-fx -- --time-limit-fuzz 10m --time-limit-run 10s --parallelism 1 and ZOO_FX_UNCONSTRAINED=1 for the second. There must be 10 completed rounds total, including any completed before this cycle. Inspect status, violations, crashes, stderr, and provider tracebacks for each result. Diagnose and fix confirmed fx harness or fixture gaps in harnesses/fx, run focused checks, and repeat the failed mode. Preserve unrelated changes and do not commit or push. Report each round's result and stop after round 10.",
+      "mutationPolicy": "workspace",
+      "cadenceMinutes": 11,
+      "maxIterations": 10,
+      "deadlineAt": "2026-11-19T14:13:04.348Z",
+      "status": "completed",
+      "attempts": 10,
+      "completedRuns": 10,
+      "createdAt": "2026-11-19T10:13:04.348Z",
+      "updatedAt": "2026-11-19T12:07:58.046Z",
+      "stopReason": "endeavor completed"
+    }
+  },
+  "amp.remoteThreadCreation.enabled": true,
+  "amp.gauge": "tokens"
+}
