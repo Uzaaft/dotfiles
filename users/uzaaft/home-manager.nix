@@ -263,20 +263,34 @@ in {
   # Manager module supplies the CLI, terminfo, and SSH terminal fallback.
   programs.rex.enable = isMacRunner;
 
-  programs.ssh = lib.mkIf isMacRunner {
+  programs.ssh = lib.mkIf isDarwin {
     enable = true;
     enableDefaultConfig = false;
     settings = {
-      "*" = {
-        IdentityAgent = "none";
-        IdentityFile = "~/.ssh/id_ed25519";
-        IdentitiesOnly = true;
-        ForwardAgent = false;
-        Compression = true;
-        ControlMaster = "auto";
-        ControlPath = "~/.ssh/control-%r@%h:%p";
-        ControlPersist = "1h";
-      };
+      "*" =
+        {
+          # macOS's /etc/ssh/crypto.conf prefers classical ecdh-sha2-nistp256;
+          # prefer the post-quantum hybrids and keep the default fallbacks.
+          KexAlgorithms = "^mlkem768x25519-sha256,sntrup761x25519-sha512";
+        }
+        // (
+          if isMacRunner
+          then {
+            IdentityAgent = "none";
+            IdentityFile = "~/.ssh/id_ed25519";
+            IdentitiesOnly = true;
+            ForwardAgent = false;
+            Compression = true;
+            ControlMaster = "auto";
+            ControlPath = "~/.ssh/control-%r@%h:%p";
+            ControlPersist = "1h";
+          }
+          else {
+            IdentityAgent = "\"${sshKeyPath}\"";
+          }
+        );
+    }
+    // lib.optionalAttrs isMacRunner {
       "eik-a100-vm" = {
         HostName = "192.168.122.14";
         User = "u";
